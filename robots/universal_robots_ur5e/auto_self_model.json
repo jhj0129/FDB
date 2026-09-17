@@ -1,0 +1,254 @@
+{
+  "schema_version": "1.0",
+  "robot_id": "universal_robots_ur5e",
+  "model_version": "menagerie-2026.9.0-2a3464301404",
+  "source_artifacts": [
+    {
+      "repository": "https://github.com/google-deepmind/mujoco_menagerie",
+      "object_id": "2a3464301404aba712e25a68701afeeff4ddedf8",
+      "entry": "ur5e",
+      "license": "BSD-3-Clause"
+    }
+  ],
+  "links": [
+    {
+      "name": "base",
+      "parent": "world",
+      "child_count": 1,
+      "mass": 4.0
+    },
+    {
+      "name": "shoulder_link",
+      "parent": "base",
+      "child_count": 1,
+      "mass": 3.7
+    },
+    {
+      "name": "upper_arm_link",
+      "parent": "shoulder_link",
+      "child_count": 1,
+      "mass": 8.393
+    },
+    {
+      "name": "forearm_link",
+      "parent": "upper_arm_link",
+      "child_count": 1,
+      "mass": 2.275
+    },
+    {
+      "name": "wrist_1_link",
+      "parent": "forearm_link",
+      "child_count": 1,
+      "mass": 1.219
+    },
+    {
+      "name": "wrist_2_link",
+      "parent": "wrist_1_link",
+      "child_count": 1,
+      "mass": 1.219
+    },
+    {
+      "name": "wrist_3_link",
+      "parent": "wrist_2_link",
+      "child_count": 0,
+      "mass": 0.1889
+    }
+  ],
+  "joints": [
+    {
+      "name": "shoulder_pan_joint",
+      "type": "hinge",
+      "parent": "base",
+      "child": "shoulder_link",
+      "limits": [
+        -6.28319,
+        6.28319
+      ],
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "source": "compiled Menagerie MJCF"
+    },
+    {
+      "name": "shoulder_lift_joint",
+      "type": "hinge",
+      "parent": "shoulder_link",
+      "child": "upper_arm_link",
+      "limits": [
+        -6.28319,
+        6.28319
+      ],
+      "axis": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "source": "compiled Menagerie MJCF"
+    },
+    {
+      "name": "elbow_joint",
+      "type": "hinge",
+      "parent": "upper_arm_link",
+      "child": "forearm_link",
+      "limits": [
+        -3.1415,
+        3.1415
+      ],
+      "axis": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "source": "compiled Menagerie MJCF"
+    },
+    {
+      "name": "wrist_1_joint",
+      "type": "hinge",
+      "parent": "forearm_link",
+      "child": "wrist_1_link",
+      "limits": [
+        -6.28319,
+        6.28319
+      ],
+      "axis": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "source": "compiled Menagerie MJCF"
+    },
+    {
+      "name": "wrist_2_joint",
+      "type": "hinge",
+      "parent": "wrist_1_link",
+      "child": "wrist_2_link",
+      "limits": [
+        -6.28319,
+        6.28319
+      ],
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "source": "compiled Menagerie MJCF"
+    },
+    {
+      "name": "wrist_3_joint",
+      "type": "hinge",
+      "parent": "wrist_2_link",
+      "child": "wrist_3_link",
+      "limits": [
+        -6.28319,
+        6.28319
+      ],
+      "axis": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "source": "compiled Menagerie MJCF"
+    }
+  ],
+  "end_effector_candidates": [
+    {
+      "site": "attachment_site",
+      "body": "wrist_3_link",
+      "confidence": 0.95,
+      "reason": "Terminal/tool site from compiled model."
+    }
+  ],
+  "grippers": [],
+  "confirmed_facts": [
+    {
+      "joint_count": 6,
+      "actuator_count": 6,
+      "actuated_hinge_count": 6,
+      "actuators": [
+        {
+          "name": "shoulder_pan",
+          "transmission": "joint",
+          "target_id": 0,
+          "control_range": [
+            -6.2831,
+            6.2831
+          ]
+        },
+        {
+          "name": "shoulder_lift",
+          "transmission": "joint",
+          "target_id": 1,
+          "control_range": [
+            -6.2831,
+            6.2831
+          ]
+        },
+        {
+          "name": "elbow",
+          "transmission": "joint",
+          "target_id": 2,
+          "control_range": [
+            -3.1415,
+            3.1415
+          ]
+        },
+        {
+          "name": "wrist_1",
+          "transmission": "joint",
+          "target_id": 3,
+          "control_range": [
+            -6.2831,
+            6.2831
+          ]
+        },
+        {
+          "name": "wrist_2",
+          "transmission": "joint",
+          "target_id": 4,
+          "control_range": [
+            -6.2831,
+            6.2831
+          ]
+        },
+        {
+          "name": "wrist_3",
+          "transmission": "joint",
+          "target_id": 5,
+          "control_range": [
+            -6.2831,
+            6.2831
+          ]
+        }
+      ]
+    }
+  ],
+  "inferences": [
+    {
+      "claim": "serial_arm_candidate",
+      "confidence": 0.9
+    }
+  ],
+  "capabilities": [
+    {
+      "name": "position_reach_candidate",
+      "status": "unverified"
+    }
+  ],
+  "discovered_behaviors": [],
+  "safety_constraints": [
+    {
+      "type": "joint_limits",
+      "source": "compiled model"
+    },
+    {
+      "type": "simulation_only",
+      "value": true
+    }
+  ],
+  "unresolved_questions": [
+    "Verify end-effector behavior with small simulation motions.",
+    "Determine collision-safe home configuration."
+  ]
+}

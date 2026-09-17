@@ -1,0 +1,285 @@
+{
+  "schema_version": "1.0",
+  "robot_id": "kuka_iiwa_14",
+  "model_version": "menagerie-2026.9.0-83262d87764c",
+  "source_artifacts": [
+    {
+      "repository": "https://github.com/google-deepmind/mujoco_menagerie",
+      "object_id": "83262d87764c82a92b87a27e19730582bcc334fb",
+      "entry": "iiwa14",
+      "license": "BSD-3-Clause"
+    }
+  ],
+  "links": [
+    {
+      "name": "base",
+      "parent": "world",
+      "child_count": 1,
+      "mass": 5.0
+    },
+    {
+      "name": "link1",
+      "parent": "base",
+      "child_count": 1,
+      "mass": 5.76
+    },
+    {
+      "name": "link2",
+      "parent": "link1",
+      "child_count": 1,
+      "mass": 6.35
+    },
+    {
+      "name": "link3",
+      "parent": "link2",
+      "child_count": 1,
+      "mass": 3.5
+    },
+    {
+      "name": "link4",
+      "parent": "link3",
+      "child_count": 1,
+      "mass": 3.5
+    },
+    {
+      "name": "link5",
+      "parent": "link4",
+      "child_count": 1,
+      "mass": 3.5
+    },
+    {
+      "name": "link6",
+      "parent": "link5",
+      "child_count": 1,
+      "mass": 1.8
+    },
+    {
+      "name": "link7",
+      "parent": "link6",
+      "child_count": 0,
+      "mass": 1.2
+    }
+  ],
+  "joints": [
+    {
+      "name": "joint1",
+      "type": "hinge",
+      "parent": "base",
+      "child": "link1",
+      "limits": [
+        -2.96706,
+        2.96706
+      ],
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "source": "compiled Menagerie MJCF"
+    },
+    {
+      "name": "joint2",
+      "type": "hinge",
+      "parent": "link1",
+      "child": "link2",
+      "limits": [
+        -2.0944,
+        2.0944
+      ],
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "source": "compiled Menagerie MJCF"
+    },
+    {
+      "name": "joint3",
+      "type": "hinge",
+      "parent": "link2",
+      "child": "link3",
+      "limits": [
+        -2.96706,
+        2.96706
+      ],
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "source": "compiled Menagerie MJCF"
+    },
+    {
+      "name": "joint4",
+      "type": "hinge",
+      "parent": "link3",
+      "child": "link4",
+      "limits": [
+        -2.0944,
+        2.0944
+      ],
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "source": "compiled Menagerie MJCF"
+    },
+    {
+      "name": "joint5",
+      "type": "hinge",
+      "parent": "link4",
+      "child": "link5",
+      "limits": [
+        -2.96706,
+        2.96706
+      ],
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "source": "compiled Menagerie MJCF"
+    },
+    {
+      "name": "joint6",
+      "type": "hinge",
+      "parent": "link5",
+      "child": "link6",
+      "limits": [
+        -2.0944,
+        2.0944
+      ],
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "source": "compiled Menagerie MJCF"
+    },
+    {
+      "name": "joint7",
+      "type": "hinge",
+      "parent": "link6",
+      "child": "link7",
+      "limits": [
+        -3.05433,
+        3.05433
+      ],
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "source": "compiled Menagerie MJCF"
+    }
+  ],
+  "end_effector_candidates": [
+    {
+      "site": "attachment_site",
+      "body": "link7",
+      "confidence": 0.95,
+      "reason": "Terminal/tool site from compiled model."
+    }
+  ],
+  "grippers": [],
+  "confirmed_facts": [
+    {
+      "joint_count": 7,
+      "actuator_count": 7,
+      "actuated_hinge_count": 7,
+      "actuators": [
+        {
+          "name": "actuator1",
+          "transmission": "joint",
+          "target_id": 0,
+          "control_range": [
+            -2.96706,
+            2.96706
+          ]
+        },
+        {
+          "name": "actuator2",
+          "transmission": "joint",
+          "target_id": 1,
+          "control_range": [
+            -2.0944,
+            2.0944
+          ]
+        },
+        {
+          "name": "actuator3",
+          "transmission": "joint",
+          "target_id": 2,
+          "control_range": [
+            -2.96706,
+            2.96706
+          ]
+        },
+        {
+          "name": "actuator4",
+          "transmission": "joint",
+          "target_id": 3,
+          "control_range": [
+            -2.0944,
+            2.0944
+          ]
+        },
+        {
+          "name": "actuator5",
+          "transmission": "joint",
+          "target_id": 4,
+          "control_range": [
+            -2.96706,
+            2.96706
+          ]
+        },
+        {
+          "name": "actuator6",
+          "transmission": "joint",
+          "target_id": 5,
+          "control_range": [
+            -2.0944,
+            2.0944
+          ]
+        },
+        {
+          "name": "actuator7",
+          "transmission": "joint",
+          "target_id": 6,
+          "control_range": [
+            -3.05433,
+            3.05433
+          ]
+        }
+      ]
+    }
+  ],
+  "inferences": [
+    {
+      "claim": "serial_arm_candidate",
+      "confidence": 0.9
+    }
+  ],
+  "capabilities": [
+    {
+      "name": "position_reach_candidate",
+      "status": "unverified"
+    }
+  ],
+  "discovered_behaviors": [],
+  "safety_constraints": [
+    {
+      "type": "joint_limits",
+      "source": "compiled model"
+    },
+    {
+      "type": "simulation_only",
+      "value": true
+    }
+  ],
+  "unresolved_questions": [
+    "Verify end-effector behavior with small simulation motions.",
+    "Determine collision-safe home configuration."
+  ]
+}

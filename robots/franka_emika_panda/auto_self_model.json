@@ -1,0 +1,362 @@
+{
+  "schema_version": "1.0",
+  "robot_id": "franka_emika_panda",
+  "model_version": "menagerie-2026.9.0-3d2262eeb81e",
+  "source_artifacts": [
+    {
+      "repository": "https://github.com/google-deepmind/mujoco_menagerie",
+      "object_id": "3d2262eeb81ecec19abfa31dd509e35abbb33e67",
+      "entry": "panda",
+      "license": "Apache-2.0"
+    }
+  ],
+  "links": [
+    {
+      "name": "link0",
+      "parent": "world",
+      "child_count": 1,
+      "mass": 0.629769
+    },
+    {
+      "name": "link1",
+      "parent": "link0",
+      "child_count": 1,
+      "mass": 4.970684
+    },
+    {
+      "name": "link2",
+      "parent": "link1",
+      "child_count": 1,
+      "mass": 0.646926
+    },
+    {
+      "name": "link3",
+      "parent": "link2",
+      "child_count": 1,
+      "mass": 3.228604
+    },
+    {
+      "name": "link4",
+      "parent": "link3",
+      "child_count": 1,
+      "mass": 3.587895
+    },
+    {
+      "name": "link5",
+      "parent": "link4",
+      "child_count": 1,
+      "mass": 1.225946
+    },
+    {
+      "name": "link6",
+      "parent": "link5",
+      "child_count": 1,
+      "mass": 1.666555
+    },
+    {
+      "name": "link7",
+      "parent": "link6",
+      "child_count": 1,
+      "mass": 0.735522
+    },
+    {
+      "name": "hand",
+      "parent": "link7",
+      "child_count": 2,
+      "mass": 0.73
+    },
+    {
+      "name": "left_finger",
+      "parent": "hand",
+      "child_count": 0,
+      "mass": 0.015
+    },
+    {
+      "name": "right_finger",
+      "parent": "hand",
+      "child_count": 0,
+      "mass": 0.015
+    }
+  ],
+  "joints": [
+    {
+      "name": "joint1",
+      "type": "hinge",
+      "parent": "link0",
+      "child": "link1",
+      "limits": [
+        -2.8973,
+        2.8973
+      ],
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "source": "compiled Menagerie MJCF"
+    },
+    {
+      "name": "joint2",
+      "type": "hinge",
+      "parent": "link1",
+      "child": "link2",
+      "limits": [
+        -1.7628,
+        1.7628
+      ],
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "source": "compiled Menagerie MJCF"
+    },
+    {
+      "name": "joint3",
+      "type": "hinge",
+      "parent": "link2",
+      "child": "link3",
+      "limits": [
+        -2.8973,
+        2.8973
+      ],
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "source": "compiled Menagerie MJCF"
+    },
+    {
+      "name": "joint4",
+      "type": "hinge",
+      "parent": "link3",
+      "child": "link4",
+      "limits": [
+        -3.0718,
+        -0.0698
+      ],
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "source": "compiled Menagerie MJCF"
+    },
+    {
+      "name": "joint5",
+      "type": "hinge",
+      "parent": "link4",
+      "child": "link5",
+      "limits": [
+        -2.8973,
+        2.8973
+      ],
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "source": "compiled Menagerie MJCF"
+    },
+    {
+      "name": "joint6",
+      "type": "hinge",
+      "parent": "link5",
+      "child": "link6",
+      "limits": [
+        -0.0175,
+        3.7525
+      ],
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "source": "compiled Menagerie MJCF"
+    },
+    {
+      "name": "joint7",
+      "type": "hinge",
+      "parent": "link6",
+      "child": "link7",
+      "limits": [
+        -2.8973,
+        2.8973
+      ],
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "source": "compiled Menagerie MJCF"
+    },
+    {
+      "name": "finger_joint1",
+      "type": "slide",
+      "parent": "hand",
+      "child": "left_finger",
+      "limits": [
+        0.0,
+        0.04
+      ],
+      "axis": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "source": "compiled Menagerie MJCF"
+    },
+    {
+      "name": "finger_joint2",
+      "type": "slide",
+      "parent": "hand",
+      "child": "right_finger",
+      "limits": [
+        0.0,
+        0.04
+      ],
+      "axis": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "source": "compiled Menagerie MJCF"
+    }
+  ],
+  "end_effector_candidates": [
+    {
+      "body": "hand",
+      "confidence": 0.9,
+      "reason": "Common parent of detected finger-joint bodies."
+    },
+    {
+      "body": "left_finger",
+      "confidence": 0.55,
+      "reason": "Leaf body; requires behavioral verification."
+    },
+    {
+      "body": "right_finger",
+      "confidence": 0.55,
+      "reason": "Leaf body; requires behavioral verification."
+    }
+  ],
+  "grippers": [
+    {
+      "type": "candidate_parallel_or_multi_finger",
+      "finger_joints": [
+        "finger_joint1",
+        "finger_joint2"
+      ],
+      "confidence": 0.8
+    }
+  ],
+  "confirmed_facts": [
+    {
+      "joint_count": 9,
+      "actuator_count": 8,
+      "actuated_hinge_count": 7,
+      "actuators": [
+        {
+          "name": "actuator1",
+          "transmission": "joint",
+          "target_id": 0,
+          "control_range": [
+            -2.8973,
+            2.8973
+          ]
+        },
+        {
+          "name": "actuator2",
+          "transmission": "joint",
+          "target_id": 1,
+          "control_range": [
+            -1.7628,
+            1.7628
+          ]
+        },
+        {
+          "name": "actuator3",
+          "transmission": "joint",
+          "target_id": 2,
+          "control_range": [
+            -2.8973,
+            2.8973
+          ]
+        },
+        {
+          "name": "actuator4",
+          "transmission": "joint",
+          "target_id": 3,
+          "control_range": [
+            -3.0718,
+            -0.0698
+          ]
+        },
+        {
+          "name": "actuator5",
+          "transmission": "joint",
+          "target_id": 4,
+          "control_range": [
+            -2.8973,
+            2.8973
+          ]
+        },
+        {
+          "name": "actuator6",
+          "transmission": "joint",
+          "target_id": 5,
+          "control_range": [
+            -0.0175,
+            3.7525
+          ]
+        },
+        {
+          "name": "actuator7",
+          "transmission": "joint",
+          "target_id": 6,
+          "control_range": [
+            -2.8973,
+            2.8973
+          ]
+        },
+        {
+          "name": "actuator8",
+          "transmission": "tendon",
+          "target_id": 0,
+          "control_range": [
+            0.0,
+            255.0
+          ]
+        }
+      ]
+    }
+  ],
+  "inferences": [
+    {
+      "claim": "serial_arm_candidate",
+      "confidence": 0.9
+    }
+  ],
+  "capabilities": [
+    {
+      "name": "position_reach_candidate",
+      "status": "unverified"
+    }
+  ],
+  "discovered_behaviors": [],
+  "safety_constraints": [
+    {
+      "type": "joint_limits",
+      "source": "compiled model"
+    },
+    {
+      "type": "simulation_only",
+      "value": true
+    }
+  ],
+  "unresolved_questions": [
+    "Verify end-effector behavior with small simulation motions.",
+    "Determine collision-safe home configuration."
+  ]
+}

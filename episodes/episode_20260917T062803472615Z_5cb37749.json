@@ -1,0 +1,100 @@
+{
+  "schema_version": "1.0",
+  "episode_id": "episode_20260917T062803472615Z_5cb37749",
+  "created_at": "2026-09-17T06:28:03.472615+00:00",
+  "stage": "v3",
+  "task": "Derive self-models for three unfamiliar/open-source robot morphologies.",
+  "observation": {
+    "models": [
+      "franka_emika_panda",
+      "universal_robots_ur5e",
+      "kuka_iiwa_14"
+    ]
+  },
+  "goal": {
+    "self_model_count": 3,
+    "no_guessed_limits": true
+  },
+  "candidate_plans": [
+    {
+      "robot": "franka_emika_panda",
+      "path": "robots/franka_emika_panda/auto_self_model.json",
+      "joints": 9,
+      "end_effectors": [
+        {
+          "body": "left_finger",
+          "confidence": 0.55,
+          "reason": "Leaf body; requires behavioral verification."
+        },
+        {
+          "body": "right_finger",
+          "confidence": 0.55,
+          "reason": "Leaf body; requires behavioral verification."
+        }
+      ]
+    },
+    {
+      "robot": "universal_robots_ur5e",
+      "path": "robots/universal_robots_ur5e/auto_self_model.json",
+      "joints": 6,
+      "end_effectors": [
+        {
+          "site": "attachment_site",
+          "body": "wrist_3_link",
+          "confidence": 0.95,
+          "reason": "Terminal/tool site from compiled model."
+        }
+      ]
+    },
+    {
+      "robot": "kuka_iiwa_14",
+      "path": "robots/kuka_iiwa_14/auto_self_model.json",
+      "joints": 7,
+      "end_effectors": [
+        {
+          "site": "attachment_site",
+          "body": "link7",
+          "confidence": 0.95,
+          "reason": "Terminal/tool site from compiled model."
+        }
+      ]
+    }
+  ],
+  "decision": {
+    "selected_plan_id": "generic_compiled-model-inspection",
+    "reason": "Use one inspector and compiled source data for every robot.",
+    "predicted_evaluation": {
+      "models_written": 3
+    }
+  },
+  "execution": {
+    "outputs": [
+      "robots/franka_emika_panda/auto_self_model.json",
+      "robots/universal_robots_ur5e/auto_self_model.json",
+      "robots/kuka_iiwa_14/auto_self_model.json"
+    ]
+  },
+  "result": {
+    "final_state": {},
+    "objective_evaluation": {
+      "models_written": 3
+    },
+    "user_evaluation": null
+  },
+  "reflection": {
+    "success_factors": [
+      "Model-independent tree, joint, actuator, and site traversal."
+    ],
+    "failure_causes": [],
+    "learned": "Tool sites provide stronger end-effector evidence than leaf-body heuristics.",
+    "next_experiment": "Perform small joint motions to verify inferred end-effectors.",
+    "confidence": 0.85,
+    "unresolved_questions": [
+      "How should branched and mobile morphologies be classified?"
+    ]
+  },
+  "sources": [
+    "research/research_20260917_panda_model.json"
+  ],
+  "skills_used": []
+}

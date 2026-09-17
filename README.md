@@ -72,6 +72,10 @@ An injected missed grasp is now diagnosed from lift and retention metrics and re
 with an evidence-backed alternative after sandbox reset. It is explicitly not yet an
 online same-state recovery skill.
 
+v3 has begun with a generic compiled-model inspector. The same code produces sourced
+self-models for Panda, UR5e, and KUKA iiwa 14, preferring explicit tool sites and then
+structural gripper/leaf evidence instead of guessed robot-specific dimensions.
+
 ## Quick start
 
 Python 3.10 or newer is required. Runtime code has no third-party dependencies.
@@ -110,6 +114,7 @@ python -m fdb.v2.grasp_lift_cli
 python -m fdb.v2.pick_place_cli
 python -m fdb.v2.manipulation_suite_cli
 python -m fdb.v2.recovery_cli
+python -m fdb.v3.cli
 ```
 
 Each successful CLI run creates an `episodes/episode_*.json` file. Episode records

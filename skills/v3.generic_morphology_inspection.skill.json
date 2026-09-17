@@ -1,0 +1,21 @@
+{
+  "schema_version": "1.0",
+  "skill_id": "v3.generic_morphology_inspection",
+  "version": "0.1.0",
+  "status": "candidate",
+  "description": "Derive a conservative robot self-model from compiled MuJoCo structure without robot-specific link names.",
+  "prerequisites": ["Compilable sourced MuJoCo model", "Recorded artifact provenance and license"],
+  "inputs": {"model_name": "Menagerie registry name"},
+  "outputs": {"self_model": "robot_self_model schema-compatible JSON"},
+  "procedure": ["Traverse body tree", "Read joints, axes, and limits", "Read actuator transmissions", "Prefer terminal tool sites", "Infer common parent of finger bodies", "Retain lower-confidence leaf candidates", "Record unresolved behavioral checks"],
+  "acceptance_criteria": [
+    {"metric": "limits_from_compiled_model", "operator": "equals", "threshold": true},
+    {"metric": "provenance_recorded", "operator": "equals", "threshold": true},
+    {"metric": "end_effector_candidates_nonempty", "operator": "equals", "threshold": true}
+  ],
+  "known_limits": ["Three serial arms tested", "Behavioral verification pending", "Mobile and branched bodies untested"],
+  "evidence": ["experiments/0011_v3_generic_morphology.md", "episodes/episode_20260917T062823086346Z_652207a5.json", "tests/test_v3_morphology.py"],
+  "verification": {"environment": "Menagerie 2026.9.0", "success_count": 3, "failure_count": 1, "last_verified_at": "2026-09-17T06:28:23.086346+00:00"},
+  "deprecation": null
+}
+

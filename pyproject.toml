@@ -45,6 +45,9 @@ fdb-humanoid-challenge = "fdb.challenge.humanoid_suite:main"
 fdb-render-humanoids = "fdb.challenge.render_humanoids:main"
 fdb-humanoid-balance-data = "fdb.challenge.balance_data:main"
 fdb-humanoid-balance-train = "fdb.challenge.balance_training:main"
+fdb-multi-object-sort = "fdb.challenge.multi_object_sorting:main"
+fdb-human-gait = "fdb.challenge.human_gait:main"
+fdb-object-sort-train = "fdb.challenge.object_sort_training:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]

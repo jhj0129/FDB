@@ -1,0 +1,52 @@
+{
+  "task": "multi_object_classify_pick_sort",
+  "object_count": 3,
+  "classification_accuracy": 1.0,
+  "sorting_success_count": 3,
+  "sorting_success_rate": 1.0,
+  "robot_table_contact_steps": 0,
+  "deepest_robot_table_penetration_m": 0.0,
+  "minimum_hand_table_clearance_m": 0.1161890892248485,
+  "hard_safety_pass": true,
+  "results": [
+    {
+      "object_id": "red_cube",
+      "predicted_class": "red_small",
+      "expected_class": "red_small",
+      "classification_correct": true,
+      "final_xy_error_m": 0.002245120323001563,
+      "final_z_error_m": 0.0006371762168758122,
+      "lifted_m": 0.20781157593698713,
+      "released": true,
+      "success": true
+    },
+    {
+      "object_id": "green_wide",
+      "predicted_class": "green_wide",
+      "expected_class": "green_wide",
+      "classification_correct": true,
+      "final_xy_error_m": 0.002528426700992914,
+      "final_z_error_m": 0.0006371762168758122,
+      "lifted_m": 0.19926383641615725,
+      "released": true,
+      "success": true
+    },
+    {
+      "object_id": "blue_tall",
+      "predicted_class": "blue_tall",
+      "expected_class": "blue_tall",
+      "classification_correct": true,
+      "final_xy_error_m": 0.0031468971532889185,
+      "final_z_error_m": 0.0006371762168758122,
+      "lifted_m": 0.19556196574502888,
+      "released": true,
+      "success": true
+    }
+  ],
+  "video": "artifacts/fdb_multi_object_sorting.mp4",
+  "fps": 30,
+  "resolution": [
+    640,
+    480
+  ]
+}

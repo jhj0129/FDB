@@ -14,6 +14,8 @@ FDB는 초파리 connectome에서 영감을 받은 검증 중심 의사결정 �
 - v5 5개 MLP 앙상블 세계모델과 안전한 MuJoCo fallback
 - v5 Panda 테이블 충돌을 실행 전에 거부하는 학습형 안전 앙상블
 - 다중 로봇 기준선: G1, Booster T1, Robotis OP3, Berkeley Humanoid의 5개 과제
+- Panda 다중 물체 분류·배치: 세 물체 3/3 성공, 로봇-테이블 접촉 0
+- 사람 보행 원리 기반 휴머노이드 보행: G1과 OP3 4초 완주, T1과 Berkeley 실패 보존
 
 v5는 3,900개의 MuJoCo rollout으로 학습했다. 독립 시험 500개에서 평균 최종 위치
 오차 10.72mm와 성공 판정 정확도 99.4%를 기록했다. 분포 밖 또는 불확실한 입력은
@@ -38,11 +40,24 @@ Panda 조작에는 비의도 로봇 테이블 접촉 0과 관통 0을 하드 게
 안정 recall은 41.2%로 보수적이다. 따라서 현재는 물리 rollout 앞의 `candidate` screen이며
 처음 보는 로봇에 일반화됐다는 주장은 하지 않는다.
 
+물체 분류에는 RGB와 세 축 크기를 입력으로 받는 5개 MLP 앙상블 후보를 추가했다.
+합성 잡음 독립 시험 144개에서는 100%였지만 색으로 크게 분리된 세 클래스 결과이므로
+일반 물체 인식 성능이 아니다. 실제 Panda 장면에서는 세 물체를 각 구역에 모두 옮겼고
+최대 XY 오차는 3.15mm, 비의도 테이블 접촉은 0회였다.
+
+사람 보행의 지지/유각 전환, 유각기 무릎 굽힘, 발목 보상, 반대쪽 팔 흔들기를 네 모델에
+적용했다. G1은 367.0mm, OP3는 212.2mm 이동하며 4초를 완주했다. T1은 2.34초,
+Berkeley는 0.45초에 낙상했다. 현재는 open-loop 가설 검증이며 다음 단계는 지지 다각형,
+CoM/ZMP 및 capture step을 쓰는 폐루프 제어다. 첫 몸통 pitch-발목 되먹임은 T1의 낙상을
+막았지만 발 수직 변위가 2.4mm에 그쳐 보행 성공이 아닌 직립 안정화로 기록했다.
+
 ## 주요 결과물
 
 - `artifacts/fdb_v5_neural_prediction.mp4` 신경망 예측과 실제 물리 결과 비교
 - `artifacts/fdb_final_pick_place.mp4` 접촉 0 Panda pick and place
 - `artifacts/fdb_humanoid_challenge.mp4` 네 휴머노이드의 연속 과제와 외란 비교
+- `artifacts/fdb_multi_object_sorting.mp4` 세 물체 분류·집기·구역 배치
+- `artifacts/fdb_human_gait.mp4` 네 휴머노이드의 사람형 보행 후보 비교
 - `models/v5/push_dynamics_ensemble.pt` PyTorch 학습 체크포인트
 - `models/v5/push_dynamics_ensemble.npz` MuJoCo 환경용 portable 추론 모델
 - `models/v5/panda_table_safety.pt` Panda 자세 안전 PyTorch 체크포인트
@@ -68,6 +83,9 @@ MUJOCO_GL=egl .venv/bin/python -m fdb.v2.render_final
 MUJOCO_GL=egl .venv/bin/python -m fdb.challenge.render_humanoids
 .venv/bin/python -m fdb.challenge.balance_data
 PYTHONPATH=src ~/venvs/robot_ai/bin/python -m fdb.challenge.balance_training
+PYTHONPATH=src ~/venvs/robot_ai/bin/python -m fdb.challenge.object_sort_training
+MUJOCO_GL=egl .venv/bin/python -m fdb.challenge.multi_object_sorting
+MUJOCO_GL=egl .venv/bin/python -m fdb.challenge.human_gait
 ```
 
 현재 결과는 시뮬레이션 연구 증거이며 실제 로봇 실행 승인이 아니다. 실제 적용 전에는

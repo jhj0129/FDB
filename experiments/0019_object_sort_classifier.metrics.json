@@ -1,0 +1,25 @@
+{
+  "dataset": {
+    "train": 576,
+    "test": 144,
+    "classes": [
+      "red_small",
+      "green_wide",
+      "blue_tall"
+    ]
+  },
+  "features": [
+    "red",
+    "green",
+    "blue",
+    "half_x",
+    "half_y",
+    "half_z"
+  ],
+  "ensemble_members": 5,
+  "test_accuracy": 1.0,
+  "minimum_test_confidence": 0.9980565309524536,
+  "mean_test_confidence": 0.9997716546058655,
+  "scope": "합성 색·크기 잡음 범위 안의 세 클래스 후보 모델",
+  "hard_gate": "분류 결과와 무관하게 테이블 충돌·안전 높이는 MuJoCo가 최종 검증"
+}

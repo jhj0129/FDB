@@ -1,0 +1,16 @@
+{
+  "video": "artifacts/fdb_sort_and_walk_final.mp4",
+  "resolution": [
+    960,
+    540
+  ],
+  "fps": 30,
+  "timeline": {
+    "0_to_34_93s": "Panda 3-object neural classification and sorting",
+    "34_93_to_38_93s": "four-humanoid contact-gated gait comparison"
+  },
+  "sources": [
+    "artifacts/fdb_multi_object_sorting.mp4",
+    "artifacts/fdb_human_gait.mp4"
+  ]
+}

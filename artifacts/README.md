@@ -1,5 +1,8 @@
 # 시연 결과물
 
+`fdb_sort_and_walk_final.mp4`는 아래 Panda 분류 시연 34.93초와 휴머노이드 비교 4초를
+960×540으로 이어 붙인 최종 통합본이다.
+
 `fdb_multi_object_sorting.mp4`는 Panda가 5개 MLP portable 앙상블로 세 물체를 분류해
 각 색상 구역으로 옮기는 시연이다. JSON에는 3/3 성공, 신뢰도, 최종 위치 오차와 접촉
 안전 지표가 있다.

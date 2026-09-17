@@ -50,6 +50,7 @@ fdb-human-gait = "fdb.challenge.human_gait:main"
 fdb-object-sort-train = "fdb.challenge.object_sort_training:main"
 fdb-gait-robustness = "fdb.challenge.gait_robustness:main"
 fdb-sorting-robustness = "fdb.challenge.sorting_robustness:main"
+fdb-render-showcase = "fdb.challenge.render_showcase:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]

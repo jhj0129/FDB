@@ -46,6 +46,8 @@ Panda 조작에는 비의도 로봇 테이블 접촉 0과 관통 0을 하드 게
 portable MLP 앙상블의 최소 신뢰도는 0.9998, 최대 XY 오차는 3.15mm, 비의도 테이블
 접촉은 0회였다.
 source와 target 위치를 바꾼 두 장면까지 포함하면 9/9 배치와 전 장면 접촉 0을 유지했다.
+학습 prototype에서 먼 애매한 물체는 `unknown`으로 거부해 자신 있게 오분류하는 경로도
+차단했다.
 
 사람 보행의 지지/유각 전환, 유각기 무릎 굽힘, 발목 보상, 반대쪽 팔 흔들기와 hip roll
 무게 이동을 네 모델에 적용했다. 발 접촉을 직접 계측한 폐루프 후보에서 G1은 170.1mm와
@@ -55,8 +57,10 @@ pitch-발목 되먹임으로 4초 직립했지만 단일 지지 0%, 발 수직 �
 쓰는 지지면 기반 폐루프 제어다.
 
 개발용 마찰·체중 5% 외란 6조건에서 G1과 OP3가 6/6을 통과한 뒤 더 넓은 마찰과 새로운
-외란 7조건을 고정 정책으로 시험했다. G1은 독립 7/7, OP3는 3/7 보행과 4/7 직립이었다.
-T1은 독립 7/7 직립했지만 단일 지지 0%였다. 다음 우선순위는 OP3의 capture step 생성이다.
+외란 7조건을 시험했다. G1은 독립 7/7이었다. OP3는 첫 정책의 3/7 보행·4/7 직립에서
+외란 방향별 pitch/roll 운동량 보상을 추가해 6/7 보행·7/7 직립으로 개선됐다. 다만 외란
+방향을 시뮬레이터에서 제공받으므로 실제 센서 기반 회복은 아니다. T1은 독립 7/7 직립했지만
+단일 지지 0%였다. 다음 우선순위는 외란 방향 추정과 capture step 생성이다.
 
 ## 주요 결과물
 
@@ -65,6 +69,7 @@ T1은 독립 7/7 직립했지만 단일 지지 0%였다. 다음 우선순위는 
 - `artifacts/fdb_humanoid_challenge.mp4` 네 휴머노이드의 연속 과제와 외란 비교
 - `artifacts/fdb_multi_object_sorting.mp4` 세 물체 분류·집기·구역 배치
 - `artifacts/fdb_human_gait.mp4` 네 휴머노이드의 사람형 보행 후보 비교
+- `artifacts/fdb_sort_and_walk_final.mp4` 분류와 보행을 이어 붙인 38.93초 최종본
 - `models/v5/push_dynamics_ensemble.pt` PyTorch 학습 체크포인트
 - `models/v5/push_dynamics_ensemble.npz` MuJoCo 환경용 portable 추론 모델
 - `models/v5/panda_table_safety.pt` Panda 자세 안전 PyTorch 체크포인트
@@ -96,6 +101,7 @@ MUJOCO_GL=egl .venv/bin/python -m fdb.challenge.multi_object_sorting
 MUJOCO_GL=egl .venv/bin/python -m fdb.challenge.human_gait
 .venv/bin/python -m fdb.challenge.gait_robustness
 .venv/bin/python -m fdb.challenge.sorting_robustness
+.venv/bin/python -m fdb.challenge.render_showcase
 ```
 
 현재 결과는 시뮬레이션 연구 증거이며 실제 로봇 실행 승인이 아니다. 실제 적용 전에는

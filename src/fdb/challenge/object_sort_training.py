@@ -72,6 +72,8 @@ def train(seed: int = 17) -> tuple[dict[str, object], dict[str, object]]:
         "mean": torch.tensor(mean),
         "std": torch.tensor(std),
         "labels": labels,
+        "prototypes": torch.tensor(prototypes),
+        "ood_scale": torch.tensor([0.055, 0.055, 0.055, 0.0018, 0.0018, 0.0018]),
         "metrics": metrics,
     }
     return metrics, checkpoint
@@ -94,6 +96,8 @@ def main() -> None:
         "mean": checkpoint["mean"].numpy(),
         "std": checkpoint["std"].numpy(),
         "labels": np.asarray(checkpoint["labels"]),
+        "prototypes": checkpoint["prototypes"].numpy(),
+        "ood_scale": checkpoint["ood_scale"].numpy(),
     }
     for member, state in enumerate(checkpoint["state_dicts"]):
         for key, value in state.items():

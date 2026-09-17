@@ -38,11 +38,12 @@ HOLDOUT_SCENARIOS = (
 def run() -> dict[str, object]:
     runs = []
     for robot in ("unitree_g1", "robotis_op3", "booster_t1"):
+        variant = "momentum_feedback" if robot == "robotis_op3" else "pitch_feedback"
         for split, scenarios in (("development", SCENARIOS), ("holdout", HOLDOUT_SCENARIOS)):
             for scenario in scenarios:
                 result, _, _ = simulate_gait(
                     robot,
-                    "pitch_feedback",
+                    variant,
                     floor_friction_scale=scenario.friction_scale,
                     push_xy_fraction=scenario.push_xy_fraction,
                 )

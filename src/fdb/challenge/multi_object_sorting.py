@@ -82,7 +82,13 @@ def classify_object_neural(
         probabilities.append(exp / np.sum(exp))
     mean_probability = np.mean(probabilities, axis=0)
     index = int(np.argmax(mean_probability))
-    return str(archive["labels"][index]), float(mean_probability[index])
+    prototype_distance = float(np.min(np.linalg.norm(
+        (archive["prototypes"] - features[None, :]) / archive["ood_scale"], axis=1
+    )))
+    confidence = float(mean_probability[index])
+    if prototype_distance > 4.5 or confidence < 0.90:
+        return "unknown", confidence
+    return str(archive["labels"][index]), confidence
 
 
 def _ffmpeg_executable() -> str:

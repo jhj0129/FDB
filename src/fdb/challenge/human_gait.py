@@ -27,12 +27,13 @@ class GaitMap:
     knee_sign: float = 1.0
     hip_roll: tuple[int, int] | None = None
     hip_roll_amplitude: float = 0.0
+    ankle_roll: tuple[int, int] | None = None
 
 
 GAIT_MAPS = {
     "unitree_g1": GaitMap((0, 6), (3, 9), (4, 10), (15, 22), ("left_ankle_roll_link", "right_ankle_roll_link"), 0.04, 0.16, hip_roll=(1, 7), hip_roll_amplitude=0.08),
     "booster_t1": GaitMap((11, 17), (14, 20), (15, 21), (2, 6), ("left_foot_link", "right_foot_link"), 0.08, 0.20),
-    "robotis_op3": GaitMap((10, 16), (11, 17), (12, 18), (2, 5), ("l_ank_roll_link", "r_ank_roll_link"), 0.12, 0.28, -1.0),
+    "robotis_op3": GaitMap((10, 16), (11, 17), (12, 18), (2, 5), ("l_ank_roll_link", "r_ank_roll_link"), 0.12, 0.28, -1.0, ankle_roll=(13, 19)),
     "berkeley_humanoid": GaitMap((2, 8), (3, 9), (4, 10), None, ("ll_faa", "lr_faa"), 0.05, 0.05),
 }
 
@@ -161,7 +162,7 @@ def simulate_gait(
     import mujoco
     import mujoco_menagerie as menagerie
 
-    if variant not in {"human_like", "pitch_feedback", "static_arms", "low_clearance"}:
+    if variant not in {"human_like", "pitch_feedback", "momentum_feedback", "static_arms", "low_clearance"}:
         raise ValueError(f"unknown gait variant: {variant}")
     model = menagerie.get(robot_name).model("scene")
     plane_ids = np.flatnonzero(model.geom_type == mujoco.mjtGeom.mjGEOM_PLANE)
@@ -183,6 +184,9 @@ def simulate_gait(
     minimum_upright = 1.0
     fallen = False
     completed = 0.0
+    recovery_axis: str | None = None
+    if variant == "momentum_feedback" and any(abs(value) > 0.0 for value in push_xy_fraction):
+        recovery_axis = "x" if abs(push_xy_fraction[0]) >= abs(push_xy_fraction[1]) else "y"
     for step in range(max(1, int(duration_s / model.opt.timestep))):
         time_s = step * model.opt.timestep
         data.xfrc_applied[:] = 0.0
@@ -191,17 +195,34 @@ def simulate_gait(
             data.xfrc_applied[root_id, 0] = push_xy_fraction[0] * total_mass * 9.81
             data.xfrc_applied[root_id, 1] = push_xy_fraction[1] * total_mass * 9.81
         _apply_gait(data, model, gait, base, time_s, variant)
-        if variant == "pitch_feedback":
+        if variant in {"pitch_feedback", "momentum_feedback"}:
             root_rotation = data.xmat[root_id].reshape(3, 3)
             gain = PITCH_FEEDBACK_GAINS[robot_name]
+            velocity_term = (
+                float(data.qvel[0])
+                if variant == "momentum_feedback" and robot_name == "robotis_op3" and recovery_axis == "x"
+                else 0.0
+            )
             correction = gain * (
-                float(root_rotation[0, 2]) + 0.05 * float(data.qvel[4])
+                float(root_rotation[0, 2]) + 0.05 * float(data.qvel[4]) + velocity_term
             )
             data.ctrl[gait.ankle_pitch[0]] += correction
             data.ctrl[gait.ankle_pitch[1]] += correction
             data.ctrl[:] = np.clip(
                 data.ctrl, model.actuator_ctrlrange[:, 0], model.actuator_ctrlrange[:, 1]
             )
+            if (
+                variant == "momentum_feedback" and robot_name == "robotis_op3"
+                and gait.ankle_roll is not None and recovery_axis == "y"
+            ):
+                roll_correction = 0.2 * (
+                    float(root_rotation[1, 2]) + 0.05 * float(data.qvel[3]) + float(data.qvel[1])
+                )
+                data.ctrl[gait.ankle_roll[0]] += roll_correction
+                data.ctrl[gait.ankle_roll[1]] += roll_correction
+                data.ctrl[:] = np.clip(
+                    data.ctrl, model.actuator_ctrlrange[:, 0], model.actuator_ctrlrange[:, 1]
+                )
         mujoco.mj_step(model, data)
         completed = (step + 1) * model.opt.timestep
         for values, body_id in zip(foot_z, feet):
@@ -252,7 +273,7 @@ def simulate_gait(
         support_phase_transition_count=support_phase_transition_count,
         arm_swing_available=gait.shoulder_pitch is not None,
         arm_swing_amplitude_rad=0.22 if gait.shoulder_pitch is not None and variant != "static_arms" else 0.0,
-        ankle_pitch_feedback_gain=PITCH_FEEDBACK_GAINS[robot_name] if variant == "pitch_feedback" else 0.0,
+        ankle_pitch_feedback_gain=PITCH_FEEDBACK_GAINS[robot_name] if variant in {"pitch_feedback", "momentum_feedback"} else 0.0,
         fallen=fallen,
         upright_complete=upright_complete,
         success=success,

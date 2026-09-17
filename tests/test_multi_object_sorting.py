@@ -1,4 +1,5 @@
 import pytest
+from dataclasses import replace
 
 pytest.importorskip("mujoco")
 
@@ -17,6 +18,15 @@ def test_portable_neural_ensemble_classifies_scene_objects():
     predictions = [classify_object_neural(obj) for obj in OBJECTS]
     assert [label for label, _ in predictions] == ["red_small", "green_wide", "blue_tall"]
     assert min(confidence for _, confidence in predictions) >= 0.95
+
+
+def test_portable_neural_ensemble_rejects_ambiguous_ood_object():
+    ambiguous = replace(
+        OBJECTS[0], color="yellow", size_class="unknown",
+        rgba=(0.50, 0.50, 0.05, 1.0), half_size=(0.030, 0.012, 0.015),
+    )
+    label, _ = classify_object_neural(ambiguous)
+    assert label == "unknown"
 
 
 def test_three_objects_are_physically_sorted_without_robot_table_contact():

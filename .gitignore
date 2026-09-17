@@ -13,4 +13,9 @@ artifacts/fdb_neural_gait_skill.mp4
 artifacts/fdb_neural_gait_skill.png
 artifacts/fdb_cognitive_showcase.mp4
 artifacts/fdb_cognitive_showcase.png
+artifacts/fdb_dynamic_gait_baseline.mp4
+artifacts/fdb_dynamic_gait_baseline.png
+artifacts/fdb_deepmimic_1m.mp4
+artifacts/fdb_deepmimic_1m.png
+LocoMuJoCo_recordings/
 models/local/

@@ -59,6 +59,9 @@ fdb-shape-insertion = "fdb.challenge.shape_insertion:main"
 fdb-shape-command = "fdb.challenge.shape_command:main"
 fdb-insertion-recovery = "fdb.challenge.insertion_recovery:main"
 fdb-gait-skill-train = "fdb.challenge.gait_skill_learning:main"
+fdb-cognitive-profile = "fdb.challenge.cognitive_curriculum:main"
+fdb-dynamic-gait-baseline = "fdb.challenge.dynamic_gait_baseline:main"
+fdb-deepmimic-train = "fdb.challenge.deepmimic_training:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]

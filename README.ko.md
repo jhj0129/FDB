@@ -79,6 +79,8 @@ pitch-발목 되먹임으로 4초 직립했지만 단일 지지 0%, 발 수직 �
 - `artifacts/fdb_shape_insertion.mp4` 카메라 CNN 판단과 Panda 정사각형 삽입
 - `artifacts/fdb_insertion_recovery.mp4` 첫 삽입 실패 뒤 후보 시뮬레이션으로 복구
 - `artifacts/fdb_neural_gait_skill.mp4` 사람 보행을 학습한 신경망의 좌우 10걸음(로컬 전용)
+- `artifacts/fdb_dynamic_gait_baseline.json` 자유 물리 추종 실패와 다음 정책의 기준선
+- `artifacts/fdb_deepmimic_training_1m.json` H1 DeepMimic PPO 100만 step 학습·물리 평가
 - `models/v6/shape_fit_cnn.msgpack` 형상·fit·회전을 예측하는 two-tower CNN
 - `models/v5/push_dynamics_ensemble.pt` PyTorch 학습 체크포인트
 - `models/v5/push_dynamics_ensemble.npz` MuJoCo 환경용 portable 추론 모델
@@ -117,6 +119,9 @@ MUJOCO_GL=egl .venv/bin/python -m fdb.challenge.shape_insertion
 .venv/bin/python -m fdb.challenge.shape_command "네모를 네모칸에 넣어"
 .venv/bin/python -m fdb.challenge.insertion_recovery
 .venv/bin/python -m fdb.challenge.gait_skill_learning
+.venv/bin/python -m fdb.challenge.dynamic_gait_baseline
+.venv/bin/python -m fdb.challenge.cognitive_curriculum
+.venv/bin/python -m fdb.challenge.deepmimic_training --timesteps 1048576 --num-envs 64
 ```
 
 현재 결과는 시뮬레이션 연구 증거이며 실제 로봇 실행 승인이 아니다. 실제 적용 전에는

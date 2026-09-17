@@ -1,0 +1,78 @@
+{
+  "schema_version": "1.0",
+  "operational_score": 18,
+  "operational_target": 36,
+  "target_completion_percent": 50.0,
+  "human_age_equivalent": null,
+  "age_interpretation": "사람의 발달연령으로 환산할 수 없는 좁은 과제형 시스템",
+  "capabilities": [
+    {
+      "name": "시각 형상·fit 판단",
+      "score": 3,
+      "target": 4,
+      "evidence": "독립 합성 시험 safe-fit 94.7%, 카메라 정사각형 4/4",
+      "next_gate": "실제 렌더 원·삼각형·직사각형으로 확장"
+    },
+    {
+      "name": "한국어 목표 연결",
+      "score": 2,
+      "target": 4,
+      "evidence": "정해진 형상 별칭과 삽입 동사, 불완전 명령 거부",
+      "next_gate": "관계·순서·수식어를 포함한 조합 명령"
+    },
+    {
+      "name": "접촉 안전 조작",
+      "score": 3,
+      "target": 4,
+      "evidence": "삽입 중심 오차 7.76mm 이하, 로봇-테이블 접촉 0",
+      "next_gate": "접촉력 기반 미세 탐색과 실제 센서 잡음"
+    },
+    {
+      "name": "실패 인식·복구",
+      "score": 2,
+      "target": 4,
+      "evidence": "40도 오류 실패 뒤 후보 시뮬레이션으로 복구",
+      "next_gate": "관측 기반 원인 분류와 여러 실패 종류 복구"
+    },
+    {
+      "name": "실행 전 상식 제약",
+      "score": 3,
+      "target": 4,
+      "evidence": "손·물체 바닥 여유를 실행 전 검사",
+      "next_gate": "충돌·가림·불안정 파지까지 예측"
+    },
+    {
+      "name": "사람 동작 모방",
+      "score": 3,
+      "target": 4,
+      "evidence": "신경망 생성 10회 교대 착지, 5 stride",
+      "next_gate": "속도·방향·보폭 명령으로 재조합"
+    },
+    {
+      "name": "동역학 보행",
+      "score": 0,
+      "target": 4,
+      "evidence": "PD 궤적 추종 최선도 1.212초에 낙상; 10걸음은 kinematic 생성",
+      "next_gate": "접촉·IMU 입력 정책으로 10걸음 물리 rollout"
+    },
+    {
+      "name": "새 상황 전이",
+      "score": 1,
+      "target": 4,
+      "evidence": "각 과제의 제한된 변형만 검증",
+      "next_gate": "보지 못한 배치·물체·마찰에서 사전 고정 시험"
+    },
+    {
+      "name": "지속 자율 학습",
+      "score": 1,
+      "target": 4,
+      "evidence": "상태·다음 gate 저장과 예약 실행은 있으나 경험 재학습은 수동",
+      "next_gate": "경험 버퍼→평가→재학습→회귀검사 폐루프"
+    }
+  ],
+  "selected_next_gate": {
+    "capability": "동역학 보행",
+    "task": "접촉·IMU 입력 정책으로 10걸음 물리 rollout"
+  },
+  "completion_rule": "모든 항목 4점이며 보지 못한 시험 세트에서 안전 기준을 통과해야 목표 달성"
+}

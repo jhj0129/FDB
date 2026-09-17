@@ -23,5 +23,5 @@
     "How much real-camera domain randomization is needed before physical hardware transfer?",
     "Can a learned residual policy reproduce all ten alternating steps under physics instead of kinematic playback?"
   ],
-  "next_gate": "10걸음 신경망 기술을 교사로 접촉·관성 입력 동역학 정책을 학습하고, 조작은 원·삼각형·직사각형 수용구와 접촉 기반 재시도로 확장한다."
+  "next_gate": "100만 step PPO의 1.39초 생존·0 touchdown을 넘어, 접촉 전환·몸통 자세 보상과 초기 상태 커리큘럼을 추가해 체크포인트를 수천만 step까지 재개한다. 조작은 원·삼각형·직사각형 수용구로 확장한다."
 }

@@ -1,0 +1,50 @@
+{
+  "experiment": "free-root physics tracking of the neural human-gait reference",
+  "required_alternating_steps": 10,
+  "candidates": [
+    {
+      "kp": 120.0,
+      "kd": 8.0,
+      "survival_s": 1.166,
+      "fell": true,
+      "alternating_touchdowns_before_fall": 1,
+      "minimum_root_height_m": 0.36453408176305707
+    },
+    {
+      "kp": 200.0,
+      "kd": 12.0,
+      "survival_s": 1.212,
+      "fell": true,
+      "alternating_touchdowns_before_fall": 0,
+      "minimum_root_height_m": 0.38425929222897115
+    },
+    {
+      "kp": 300.0,
+      "kd": 18.0,
+      "survival_s": 1.0,
+      "fell": true,
+      "alternating_touchdowns_before_fall": 1,
+      "minimum_root_height_m": 0.34880776453867507
+    },
+    {
+      "kp": 450.0,
+      "kd": 28.0,
+      "survival_s": 0.997,
+      "fell": true,
+      "alternating_touchdowns_before_fall": 1,
+      "minimum_root_height_m": 0.39298796874033665
+    }
+  ],
+  "best": {
+    "kp": 200.0,
+    "kd": 12.0,
+    "survival_s": 1.212,
+    "fell": true,
+    "alternating_touchdowns_before_fall": 0,
+    "minimum_root_height_m": 0.38425929222897115
+  },
+  "success": false,
+  "interpretation": "kinematic imitation alone is insufficient; contact/IMU feedback and balance learning are required",
+  "video": "artifacts/fdb_dynamic_gait_baseline.mp4",
+  "preview": "artifacts/fdb_dynamic_gait_baseline.png"
+}

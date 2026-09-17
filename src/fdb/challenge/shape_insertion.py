@@ -11,6 +11,7 @@ import numpy as np
 import cv2
 
 from fdb.challenge.shape_fit_learning import ShapeFitPredictor, _polygon
+from fdb.challenge.manipulation_common_sense import CartesianWaypoint, require_safe_manipulation_plan
 from fdb.v2.inspector import load_robot
 from fdb.v2.pose_reach import PandaPoseReachExperiment
 from fdb.v2.render_final import _ffmpeg_executable
@@ -215,6 +216,14 @@ def run_insertion(
         ((*HOLE_XY, 0.58), target_quat),
         ((*HOLE_XY, grasp_z + 0.015), target_quat),
         ((*HOLE_XY, 0.55), target_quat),
+    )
+    waypoint_names = ("approach", "align_object", "lift", "transfer", "insert", "retreat")
+    require_safe_manipulation_plan(
+        (
+            CartesianWaypoint(name, tuple(position), carrying_object=2 <= index <= 4)
+            for index, (name, (position, _)) in enumerate(zip(waypoint_names, poses))
+        ),
+        surface_z=TABLE_TOP_Z,
     )
     targets = [PandaPoseReachExperiment(position, quaternion).run()[0].target_qpos for position, quaternion in poses]
     stages = (

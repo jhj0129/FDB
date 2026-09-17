@@ -10,6 +10,7 @@ from fdb.v2.pose_reach import PandaPoseReachExperiment
 from fdb.v2.pregrasp import CollisionAwarePregraspExperiment
 from fdb.v2.grasp_lift import PandaGraspLiftExperiment
 from fdb.v2.pick_place import PandaPickPlaceExperiment
+from fdb.v2.manipulation_suite import SCENARIOS, run_manipulation_suite
 
 
 def test_inspector_builds_sourced_panda_self_model():
@@ -66,6 +67,13 @@ def test_pick_place_selects_a_stable_released_placement():
     assert selected.pick_lift_height_m >= 0.08
     assert selected.final_xy_error_m <= 0.05
     assert selected.released is True
+
+
+def test_pick_place_generalizes_across_declared_object_suite():
+    result = run_manipulation_suite()
+    assert result.trial_count == len(SCENARIOS) == 6
+    assert result.success_rate >= 5 / 6
+    assert result.max_final_xy_error_m <= 0.05
 
 
 def test_pregrasp_rejects_colliding_candidates_before_score():

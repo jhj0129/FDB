@@ -1,0 +1,207 @@
+{
+  "trials": [
+    {
+      "scenario": {
+        "scenario_id": "nominal",
+        "source_xy": [
+          0.45,
+          0.15
+        ],
+        "target_xy": [
+          0.58,
+          -0.12
+        ],
+        "half_size": [
+          0.022,
+          0.022,
+          0.025
+        ],
+        "density": 300.0,
+        "sliding_friction": 2.0
+      },
+      "selected": {
+        "plan": {
+          "plan_id": "place_high",
+          "place_hand_z": 0.385
+        },
+        "pick_lift_height_m": 0.14665145432927845,
+        "final_xy_error_m": 0.005581072961868724,
+        "final_object_z": 0.3343628237831242,
+        "released": true,
+        "stable": true,
+        "success": true,
+        "score": 98.82006778593866
+      }
+    },
+    {
+      "scenario": {
+        "scenario_id": "small_light",
+        "source_xy": [
+          0.43,
+          0.13
+        ],
+        "target_xy": [
+          0.56,
+          -0.1
+        ],
+        "half_size": [
+          0.019,
+          0.019,
+          0.022
+        ],
+        "density": 220,
+        "sliding_friction": 1.7
+      },
+      "selected": {
+        "plan": {
+          "plan_id": "place_high",
+          "place_hand_z": 0.385
+        },
+        "pick_lift_height_m": 0.14626502085573356,
+        "final_xy_error_m": 0.006846638742191303,
+        "final_object_z": 0.3315385351114724,
+        "released": true,
+        "stable": true,
+        "success": true,
+        "score": 98.58452576270898
+      }
+    },
+    {
+      "scenario": {
+        "scenario_id": "small_heavy",
+        "source_xy": [
+          0.47,
+          0.12
+        ],
+        "target_xy": [
+          0.6,
+          -0.08
+        ],
+        "half_size": [
+          0.02,
+          0.02,
+          0.023
+        ],
+        "density": 480,
+        "sliding_friction": 2.3
+      },
+      "selected": {
+        "plan": {
+          "plan_id": "place_high",
+          "place_hand_z": 0.385
+        },
+        "pick_lift_height_m": 0.14487212938680338,
+        "final_xy_error_m": 0.005110371617077235,
+        "final_object_z": 0.33214556348277635,
+        "released": true,
+        "stable": true,
+        "success": true,
+        "score": 98.89248202486218
+      }
+    },
+    {
+      "scenario": {
+        "scenario_id": "wide",
+        "source_xy": [
+          0.42,
+          0.1
+        ],
+        "target_xy": [
+          0.57,
+          -0.15
+        ],
+        "half_size": [
+          0.026,
+          0.021,
+          0.025
+        ],
+        "density": 320,
+        "sliding_friction": 2.0
+      },
+      "selected": {
+        "plan": {
+          "plan_id": "place_high",
+          "place_hand_z": 0.385
+        },
+        "pick_lift_height_m": 0.15402040469933703,
+        "final_xy_error_m": 0.00799609715182527,
+        "final_object_z": 0.3343628237831242,
+        "released": true,
+        "stable": true,
+        "success": true,
+        "score": 98.33706294794736
+      }
+    },
+    {
+      "scenario": {
+        "scenario_id": "tall",
+        "source_xy": [
+          0.48,
+          0.1
+        ],
+        "target_xy": [
+          0.55,
+          -0.16
+        ],
+        "half_size": [
+          0.021,
+          0.021,
+          0.03
+        ],
+        "density": 280,
+        "sliding_friction": 1.8
+      },
+      "selected": {
+        "plan": {
+          "plan_id": "place_centered",
+          "place_hand_z": 0.375
+        },
+        "pick_lift_height_m": 0.13880766907493786,
+        "final_xy_error_m": 0.02224597326448327,
+        "final_object_z": 0.3304817140816175,
+        "released": true,
+        "stable": true,
+        "success": true,
+        "score": 94.5989767552651
+      }
+    },
+    {
+      "scenario": {
+        "scenario_id": "low_friction",
+        "source_xy": [
+          0.44,
+          0.16
+        ],
+        "target_xy": [
+          0.6,
+          -0.14
+        ],
+        "half_size": [
+          0.022,
+          0.022,
+          0.025
+        ],
+        "density": 300,
+        "sliding_friction": 1.4
+      },
+      "selected": {
+        "plan": {
+          "plan_id": "place_high",
+          "place_hand_z": 0.385
+        },
+        "pick_lift_height_m": 0.15280794460317176,
+        "final_xy_error_m": 0.007088878364374989,
+        "final_object_z": 0.33471407393663477,
+        "released": true,
+        "stable": true,
+        "success": true,
+        "score": 98.55363172078847
+      }
+    }
+  ],
+  "success_count": 6,
+  "trial_count": 6,
+  "success_rate": 1.0,
+  "mean_final_xy_error_m": 0.009144838683636799,
+  "max_final_xy_error_m": 0.02224597326448327
+}

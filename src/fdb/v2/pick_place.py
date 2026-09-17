@@ -8,6 +8,16 @@ from .pose_reach import PandaPoseReachExperiment
 
 
 @dataclass(frozen=True)
+class PickPlaceScenario:
+    scenario_id: str = "nominal"
+    source_xy: tuple[float, float] = (0.45, 0.15)
+    target_xy: tuple[float, float] = (0.58, -0.12)
+    half_size: tuple[float, float, float] = (0.022, 0.022, 0.025)
+    density: float = 300.0
+    sliding_friction: float = 2.0
+
+
+@dataclass(frozen=True)
 class PlaceCandidate:
     plan_id: str
     place_hand_z: float
@@ -26,9 +36,12 @@ class PickPlaceResult:
 
 
 class PandaPickPlaceExperiment:
-    source = (0.45, 0.15, 0.335)
-    target = (0.58, -0.12, 0.335)
-    grasp_hand_z = 0.375
+    def __init__(self, scenario: PickPlaceScenario | None = None) -> None:
+        self.scenario = scenario or PickPlaceScenario()
+        object_z = 0.31 + self.scenario.half_size[2]
+        self.source = (*self.scenario.source_xy, object_z)
+        self.target = (*self.scenario.target_xy, object_z)
+        self.grasp_hand_z = object_z + 0.04
 
     def candidates(self) -> tuple[PlaceCandidate, ...]:
         return (
@@ -50,8 +63,8 @@ class PandaPickPlaceExperiment:
         obj.add_freejoint(name="object_free")
         obj.add_geom(
             name="object_geom", type=mujoco.mjtGeom.mjGEOM_BOX,
-            size=[0.022, 0.022, 0.025], density=300,
-            friction=[2.0, 0.01, 0.001], rgba=[1.0, 0.1, 0.1, 1.0]
+            size=self.scenario.half_size, density=self.scenario.density,
+            friction=[self.scenario.sliding_friction, 0.01, 0.001], rgba=[1.0, 0.1, 0.1, 1.0]
         )
         model = spec.compile()
         data = mujoco.MjData(model)
@@ -115,4 +128,3 @@ class PandaPickPlaceExperiment:
     def run(self) -> tuple[PickPlaceResult, tuple[PickPlaceResult, ...]]:
         results = tuple(self.run_candidate(candidate) for candidate in self.candidates())
         return max(results, key=lambda item: (item.success, item.score)), results
-

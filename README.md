@@ -66,6 +66,8 @@ it in the gripper. It is intentionally still a candidate pending place/release a
 variation tests.
 The first full pick-and-place loop now lifts, transfers, places, releases, and retreats;
 its selected candidate finishes 5.6 mm from the target center.
+Across six declared variations in size, density, friction, source, and target, the full
+loop achieved 100% first-attempt success with 22.3 mm maximum placement error.
 
 ## Quick start
 
@@ -103,6 +105,7 @@ python -m fdb.v2.pose_reach_cli
 python -m fdb.v2.pregrasp_cli
 python -m fdb.v2.grasp_lift_cli
 python -m fdb.v2.pick_place_cli
+python -m fdb.v2.manipulation_suite_cli
 ```
 
 Each successful CLI run creates an `episodes/episode_*.json` file. Episode records

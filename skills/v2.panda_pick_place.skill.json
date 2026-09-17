@@ -1,8 +1,8 @@
 {
   "schema_version": "1.0",
   "skill_id": "v2.panda_pick_place",
-  "version": "0.1.0",
-  "status": "candidate",
+  "version": "1.0.0",
+  "status": "validated",
   "description": "Pick a known box, transfer it, place it in a target region, release, and retreat.",
   "prerequisites": ["Candidate Panda pose reach", "Candidate grasp-lift", "Known source and target", "Simulation only"],
   "inputs": {"source": "world position", "target": "world position", "place_height_candidates": "hand z values"},
@@ -14,9 +14,8 @@
     {"metric": "released", "operator": "equals", "threshold": true},
     {"metric": "stable", "operator": "equals", "threshold": true}
   ],
-  "known_limits": ["One box and scene", "Fixed grasp strategy", "No hardware approval"],
-  "evidence": ["experiments/0008_v2_pick_place.md", "episodes/episode_20260917T061758856095Z_795c019e.json", "tests/test_v2_panda_reach.py"],
-  "verification": {"environment": "MuJoCo 3.13.0, Menagerie Panda 2026.9.0", "success_count": 4, "failure_count": 0, "last_verified_at": "2026-09-17T06:17:58.856095+00:00"},
+  "known_limits": ["Six declared box/scene scenarios", "Fixed grasp family", "No perception error or hardware approval"],
+  "evidence": ["experiments/0008_v2_pick_place.md", "experiments/0009_v2_manipulation_variation.md", "experiments/0009_v2_manipulation_variation.results.json", "episodes/episode_20260917T061758856095Z_795c019e.json", "episodes/episode_20260917T062218862297Z_e44594ea.json", "tests/test_v2_panda_reach.py"],
+  "verification": {"environment": "MuJoCo 3.13.0, Menagerie Panda 2026.9.0", "success_count": 10, "failure_count": 0, "last_verified_at": "2026-09-17T06:22:18.862297+00:00"},
   "deprecation": null
 }
-

@@ -1,0 +1,71 @@
+{
+  "experiment": "camera-neural square insertion rotation generalization",
+  "cases": [
+    {
+      "object_yaw_deg": 24,
+      "hole_yaw_deg": -12,
+      "perceived_object": "square",
+      "perceived_hole": "square",
+      "fit_decision": true,
+      "planned_rotation_deg": -34.19061746324982,
+      "final_xy_error_m": 0.0012817509519334254,
+      "final_height_error_m": 0.0006371762169973261,
+      "final_yaw_error_deg": 3.2403660814321156,
+      "peak_peg_height_m": 0.47320748177642513,
+      "frame_contact_steps": 1228,
+      "robot_table_contact_steps": 0,
+      "released": true,
+      "success": true
+    },
+    {
+      "object_yaw_deg": -31,
+      "hole_yaw_deg": 17,
+      "perceived_object": "square",
+      "perceived_hole": "square",
+      "fit_decision": true,
+      "planned_rotation_deg": -39.55023572904982,
+      "final_xy_error_m": 0.007760973428478118,
+      "final_height_error_m": 0.0006341510235868264,
+      "final_yaw_error_deg": 0.40053107417647743,
+      "peak_peg_height_m": 0.47401787198994966,
+      "frame_contact_steps": 1569,
+      "robot_table_contact_steps": 0,
+      "released": true,
+      "success": true
+    },
+    {
+      "object_yaw_deg": 8,
+      "hole_yaw_deg": -28,
+      "perceived_object": "square",
+      "perceived_hole": "square",
+      "fit_decision": true,
+      "planned_rotation_deg": -33.21413835957206,
+      "final_xy_error_m": 0.0074369018876203645,
+      "final_height_error_m": 0.00063717621725351,
+      "final_yaw_error_deg": 1.3515380486597945,
+      "peak_peg_height_m": 0.4734277724581924,
+      "frame_contact_steps": 1253,
+      "robot_table_contact_steps": 0,
+      "released": true,
+      "success": true
+    },
+    {
+      "object_yaw_deg": 39,
+      "hole_yaw_deg": 2,
+      "perceived_object": "square",
+      "perceived_hole": "square",
+      "fit_decision": true,
+      "planned_rotation_deg": -35.76759036362735,
+      "final_xy_error_m": 0.007136818785402498,
+      "final_height_error_m": 2.152204879402042e-05,
+      "final_yaw_error_deg": 0.03961672866304781,
+      "peak_peg_height_m": 0.4729650831505249,
+      "frame_contact_steps": 1520,
+      "robot_table_contact_steps": 0,
+      "released": true,
+      "success": true
+    }
+  ],
+  "success_count": 4,
+  "case_count": 4
+}

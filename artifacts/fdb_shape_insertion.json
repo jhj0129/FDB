@@ -1,0 +1,18 @@
+{
+  "task": "perceive square, match square receptacle, align, insert",
+  "result": {
+    "perceived_object": "square",
+    "perceived_hole": "square",
+    "fit_decision": true,
+    "planned_rotation_deg": -34.19061746324982,
+    "final_xy_error_m": 0.0012817509519334254,
+    "final_height_error_m": 0.0006371762169973261,
+    "final_yaw_error_deg": 3.2403660814321156,
+    "peak_peg_height_m": 0.47320748177642513,
+    "frame_contact_steps": 1228,
+    "robot_table_contact_steps": 0,
+    "released": true,
+    "success": true
+  },
+  "video": "artifacts/fdb_shape_insertion.mp4"
+}

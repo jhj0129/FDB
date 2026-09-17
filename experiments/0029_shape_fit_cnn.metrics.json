@@ -1,0 +1,22 @@
+{
+  "model": "three-layer visual CNN with object, receptacle, fit, and alignment heads",
+  "input": "32x64 RGB camera-like synthetic scenes",
+  "classes": [
+    "square",
+    "circle",
+    "triangle",
+    "rectangle",
+    "unknown"
+  ],
+  "train_samples": 6000,
+  "test_samples": 1500,
+  "object_shape_accuracy": 0.998,
+  "hole_shape_accuracy": 0.9966666666666667,
+  "fit_decision_accuracy": 0.9473333333333334,
+  "fit_positive_count": 484,
+  "mean_alignment_error_deg": 2.47588908961102,
+  "p95_alignment_error_deg": 7.417792760511006,
+  "last_training_loss": 0.06568529456853867,
+  "scope_limit": "합성 장면에서의 시각·어포던스 파일럿이며 실제 카메라 일반화는 아직 미검증",
+  "raw_fit_decision_accuracy": 0.9406666666666667
+}

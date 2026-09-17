@@ -1,0 +1,102 @@
+{
+  "definition": "좌우 발이 번갈아 이륙하고 진행 방향 앞쪽에 착지하는 동작이 10걸음 이상 연속됨",
+  "result": {
+    "source": "LAFAN1 walk1_subject1 retargeted by LocoMuJoCo",
+    "robot": "Unitree H1",
+    "start_frame": 5237,
+    "end_frame": 5527,
+    "duration_s": 5.8,
+    "alternating_touchdowns": 10,
+    "completed_strides": 5,
+    "left_touchdowns": 5,
+    "right_touchdowns": 5,
+    "minimum_swing_clearance_m": 0.12652385950088502,
+    "minimum_forward_placement_m": 1.6434491822206851,
+    "pelvis_path_length_m": 10.492103576660156,
+    "net_pelvis_displacement_m": 9.545427322387695,
+    "success": true
+  },
+  "touchdowns": [
+    {
+      "frame": 5286,
+      "side": "right",
+      "lift_frame": 5257,
+      "air_time_s": 0.58,
+      "maximum_foot_height_m": 0.2064155638217926,
+      "forward_placement_m": 1.8034365203929283
+    },
+    {
+      "frame": 5310,
+      "side": "left",
+      "lift_frame": 5281,
+      "air_time_s": 0.58,
+      "maximum_foot_height_m": 0.181523859500885,
+      "forward_placement_m": 1.6434491822206851
+    },
+    {
+      "frame": 5336,
+      "side": "right",
+      "lift_frame": 5305,
+      "air_time_s": 0.62,
+      "maximum_foot_height_m": 0.21824225783348083,
+      "forward_placement_m": 1.9095760989996577
+    },
+    {
+      "frame": 5362,
+      "side": "left",
+      "lift_frame": 5331,
+      "air_time_s": 0.62,
+      "maximum_foot_height_m": 0.19034594297409058,
+      "forward_placement_m": 1.8259990026520878
+    },
+    {
+      "frame": 5386,
+      "side": "right",
+      "lift_frame": 5357,
+      "air_time_s": 0.58,
+      "maximum_foot_height_m": 0.20871810615062714,
+      "forward_placement_m": 1.9134444273940971
+    },
+    {
+      "frame": 5410,
+      "side": "left",
+      "lift_frame": 5380,
+      "air_time_s": 0.6,
+      "maximum_foot_height_m": 0.19686897099018097,
+      "forward_placement_m": 1.934875419725588
+    },
+    {
+      "frame": 5434,
+      "side": "right",
+      "lift_frame": 5405,
+      "air_time_s": 0.58,
+      "maximum_foot_height_m": 0.20883171260356903,
+      "forward_placement_m": 1.925666611914762
+    },
+    {
+      "frame": 5459,
+      "side": "left",
+      "lift_frame": 5428,
+      "air_time_s": 0.62,
+      "maximum_foot_height_m": 0.19938364624977112,
+      "forward_placement_m": 1.919863191713043
+    },
+    {
+      "frame": 5483,
+      "side": "right",
+      "lift_frame": 5453,
+      "air_time_s": 0.6,
+      "maximum_foot_height_m": 0.20471908152103424,
+      "forward_placement_m": 1.8978131542724146
+    },
+    {
+      "frame": 5507,
+      "side": "left",
+      "lift_frame": 5477,
+      "air_time_s": 0.6,
+      "maximum_foot_height_m": 0.20170415937900543,
+      "forward_placement_m": 1.771991809555118
+    }
+  ],
+  "video": "artifacts/fdb_behavioral_walk.mp4"
+}

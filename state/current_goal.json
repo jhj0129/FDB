@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0",
-  "stage": "human_motion_imitation_and_complex_manipulation",
-  "goal": "실제 사람 모션을 H1, G1, Cassie에 재표적화하고 복합 조작 및 서랍 조립 과제로 일반화한다.",
+  "stage": "visual_affordance_and_behavioral_gait",
+  "goal": "카메라에서 물체와 수용구의 형상·크기·방향·삽입 가능성을 이해해 명령대로 조작하고, 최소 10걸음 연속 교대 보행을 학습 정책으로 재현한다.",
   "status": "in_progress",
   "active_hypotheses": [
     "Fresh-state MuJoCo candidate rollouts can improve first-attempt physical task selection.",
@@ -9,14 +9,18 @@
     "A fixed open-source robot model can reuse FDB candidate simulation and objective evaluation boundaries.",
     "A shared observation and recovery policy can transfer across humanoids after morphology-aware normalization.",
     "Human motion reference tracking will produce more human-like gait than procedural sinusoidal targets.",
-    "Ordered manipulation with OOD rejection and retry recovery can compose existing FDB skills."
+    "Ordered manipulation with OOD rejection and retry recovery can compose existing FDB skills.",
+    "A two-tower visual network can learn object-receptacle compatibility and rotation from pixels.",
+    "Ten-step alternating human reference motion can supervise a contact-aware neural gait policy."
   ],
   "unresolved_questions": [
     "How should rotate be evaluated independently from translation?",
     "Which orientation representation and collision metric should gate pre-grasp reach?",
     "How should balance observations and task scores be normalized across humanoids of different size and capability?",
     "Which CMU or LAFAN1 gait clip gives the cleanest heel-strike and toe-off labels after retargeting?",
-    "Can the same reference gait be retargeted to H1, G1, and Cassie without morphology-specific reward tuning?"
+    "Can the same reference gait be retargeted to H1, G1, and Cassie without morphology-specific reward tuning?",
+    "How much real-camera domain randomization is needed before physical hardware transfer?",
+    "Can a learned residual policy reproduce all ten alternating steps under physics instead of kinematic playback?"
   ],
-  "next_gate": "CMU 보행 파형의 안전 진폭을 자동 탐색해 G1 보폭을 확대하고, 같은 궤적을 H1과 Cassie에 재표적화한다."
+  "next_gate": "10걸음 H1 사람 궤적을 교사로 접촉 인식 모방 정책을 학습하고, 조작은 여러 형상·수용구와 실패 재시도로 확장한다."
 }

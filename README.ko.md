@@ -16,6 +16,12 @@ FDB는 초파리 connectome에서 영감을 받은 검증 중심 의사결정 �
 - 다중 로봇 기준선: G1, Booster T1, Robotis OP3, Berkeley Humanoid의 5개 과제
 - Panda 다중 물체 분류·배치: 세 물체 3/3 성공, 로봇-테이블 접촉 0
 - 사람 보행 원리 기반 휴머노이드 보행: G1과 OP3 4초 완주, T1과 Berkeley 실패 보존
+- v6 카메라 CNN: 물체·수용구 형상, 삽입 가능성, 필요한 회전 추론
+- `네모를 네모칸에 넣어` 한국어 명령에서 Panda 정렬·삽입까지 통합
+
+> 판정 정정: 과거의 4초·10mm 보행 기준은 폐기했다. 최신 보행 합격선은 양발이 실제로
+> 번갈아 이륙해 진행 방향 앞에 착지하는 동작이 최소 10걸음 이어지는 것이다. 과거
+> `fdb_motion_imitation`은 양발 접촉이 끊기지 않아 보행 실패로 재분류했다.
 
 v5는 3,900개의 MuJoCo rollout으로 학습했다. 독립 시험 500개에서 평균 최종 위치
 오차 10.72mm와 성공 판정 정확도 99.4%를 기록했다. 분포 밖 또는 불확실한 입력은
@@ -70,6 +76,8 @@ pitch-발목 되먹임으로 4초 직립했지만 단일 지지 0%, 발 수직 �
 - `artifacts/fdb_multi_object_sorting.mp4` 세 물체 분류·집기·구역 배치
 - `artifacts/fdb_human_gait.mp4` 네 휴머노이드의 사람형 보행 후보 비교
 - `artifacts/fdb_sort_and_walk_final.mp4` 분류와 보행을 이어 붙인 38.93초 최종본
+- `artifacts/fdb_shape_insertion.mp4` 카메라 CNN 판단과 Panda 정사각형 삽입
+- `models/v6/shape_fit_cnn.msgpack` 형상·fit·회전을 예측하는 two-tower CNN
 - `models/v5/push_dynamics_ensemble.pt` PyTorch 학습 체크포인트
 - `models/v5/push_dynamics_ensemble.npz` MuJoCo 환경용 portable 추론 모델
 - `models/v5/panda_table_safety.pt` Panda 자세 안전 PyTorch 체크포인트
@@ -102,6 +110,9 @@ MUJOCO_GL=egl .venv/bin/python -m fdb.challenge.human_gait
 .venv/bin/python -m fdb.challenge.gait_robustness
 .venv/bin/python -m fdb.challenge.sorting_robustness
 .venv/bin/python -m fdb.challenge.render_showcase
+.venv/bin/python -m fdb.challenge.shape_fit_learning
+MUJOCO_GL=egl .venv/bin/python -m fdb.challenge.shape_insertion
+.venv/bin/python -m fdb.challenge.shape_command "네모를 네모칸에 넣어"
 ```
 
 현재 결과는 시뮬레이션 연구 증거이며 실제 로봇 실행 승인이 아니다. 실제 적용 전에는

@@ -16,6 +16,7 @@ dependencies = []
 physics = ["mujoco>=3.13,<4"]
 robot = ["mujoco>=3.13,<4", "mujoco-menagerie==2026.9.0", "imageio-ffmpeg>=0.6,<1"]
 neural = ["mujoco>=3.13,<4", "numpy>=2,<3", "torch>=2.5,<3", "imageio-ffmpeg>=0.6,<1"]
+vision = ["jax>=0.7,<1", "flax>=0.12,<1", "optax>=0.2,<1", "opencv-python>=4.11,<5"]
 dev = ["pytest>=7", "jsonschema>=4"]
 
 [project.scripts]
@@ -52,6 +53,10 @@ fdb-gait-robustness = "fdb.challenge.gait_robustness:main"
 fdb-sorting-robustness = "fdb.challenge.sorting_robustness:main"
 fdb-render-showcase = "fdb.challenge.render_showcase:main"
 fdb-motion-imitation = "fdb.challenge.motion_imitation:main"
+fdb-behavioral-gait = "fdb.challenge.behavioral_gait:main"
+fdb-shape-fit-train = "fdb.challenge.shape_fit_learning:main"
+fdb-shape-insertion = "fdb.challenge.shape_insertion:main"
+fdb-shape-command = "fdb.challenge.shape_command:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]

@@ -1,18 +1,22 @@
 {
   "schema_version": "1.0",
-  "stage": "multi_robot_challenge",
-  "goal": "학습형 세계모델과 안전 게이트를 유지하며 여러 휴머노이드와 다양한 챌린지 과제로 일반화한다.",
-  "status": "implemented",
+  "stage": "human_motion_imitation_and_complex_manipulation",
+  "goal": "실제 사람 모션을 H1, G1, Cassie에 재표적화하고 복합 조작 및 서랍 조립 과제로 일반화한다.",
+  "status": "planned",
   "active_hypotheses": [
     "Fresh-state MuJoCo candidate rollouts can improve first-attempt physical task selection.",
     "Feedback control generalizes better than nominal open-loop control under moderate dynamics variation.",
     "A fixed open-source robot model can reuse FDB candidate simulation and objective evaluation boundaries.",
-    "A shared observation and recovery policy can transfer across humanoids after morphology-aware normalization."
+    "A shared observation and recovery policy can transfer across humanoids after morphology-aware normalization.",
+    "Human motion reference tracking will produce more human-like gait than procedural sinusoidal targets.",
+    "Ordered manipulation with OOD rejection and retry recovery can compose existing FDB skills."
   ],
   "unresolved_questions": [
     "How should rotate be evaluated independently from translation?",
     "Which orientation representation and collision metric should gate pre-grasp reach?",
-    "How should balance observations and task scores be normalized across humanoids of different size and capability?"
+    "How should balance observations and task scores be normalized across humanoids of different size and capability?",
+    "Which CMU or LAFAN1 gait clip gives the cleanest heel-strike and toe-off labels after retargeting?",
+    "Can the same reference gait be retargeted to H1, G1, and Cassie without morphology-specific reward tuning?"
   ],
-  "next_gate": "로봇 하나를 통째로 제외한 균형 예측 일반화와 recovery 행동 후보를 비교한다."
+  "next_gate": "LocoMuJoCo 걷기 궤적을 H1에서 재생하고 현재 procedural gait보다 DTW와 접촉 순서가 개선되는지 검증한다."
 }

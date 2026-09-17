@@ -68,6 +68,9 @@ The first full pick-and-place loop now lifts, transfers, places, releases, and r
 its selected candidate finishes 5.6 mm from the target center.
 Across six declared variations in size, density, friction, source, and target, the full
 loop achieved 100% first-attempt success with 22.3 mm maximum placement error.
+An injected missed grasp is now diagnosed from lift and retention metrics and recovered
+with an evidence-backed alternative after sandbox reset. It is explicitly not yet an
+online same-state recovery skill.
 
 ## Quick start
 
@@ -106,6 +109,7 @@ python -m fdb.v2.pregrasp_cli
 python -m fdb.v2.grasp_lift_cli
 python -m fdb.v2.pick_place_cli
 python -m fdb.v2.manipulation_suite_cli
+python -m fdb.v2.recovery_cli
 ```
 
 Each successful CLI run creates an `episodes/episode_*.json` file. Episode records

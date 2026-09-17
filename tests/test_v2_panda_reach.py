@@ -11,6 +11,7 @@ from fdb.v2.pregrasp import CollisionAwarePregraspExperiment
 from fdb.v2.grasp_lift import PandaGraspLiftExperiment
 from fdb.v2.pick_place import PandaPickPlaceExperiment
 from fdb.v2.manipulation_suite import SCENARIOS, run_manipulation_suite
+from fdb.v2.recovery import ResetBasedRecoveryExperiment
 
 
 def test_inspector_builds_sourced_panda_self_model():
@@ -74,6 +75,15 @@ def test_pick_place_generalizes_across_declared_object_suite():
     assert result.trial_count == len(SCENARIOS) == 6
     assert result.success_rate >= 5 / 6
     assert result.max_final_xy_error_m <= 0.05
+
+
+def test_missed_grasp_is_diagnosed_and_recovers_from_reset():
+    result = ResetBasedRecoveryExperiment().run()
+    assert result.initial_attempt.success is False
+    assert result.diagnosis.failure_type == "missed_grasp"
+    assert result.recovery_attempt.success is True
+    assert result.recovered is True
+    assert result.reset_based is True
 
 
 def test_pregrasp_rejects_colliding_candidates_before_score():

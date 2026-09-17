@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.0",
+  "skill_id": "v2.reset_based_grasp_recovery",
+  "version": "0.1.0",
+  "status": "candidate",
+  "description": "Diagnose a missed grasp from objective metrics and retry a validated alternative after sandbox reset.",
+  "prerequisites": ["Repeatable sandbox reset", "Grasp-lift objective metrics", "Validated alternative grasp"],
+  "inputs": {"failed_result": "GraspLiftResult"},
+  "outputs": {"diagnosis": "FailureDiagnosis", "recovery": "RecoveryResult"},
+  "procedure": ["Detect insufficient lift", "Check object retention distance", "Classify missed grasp", "Reset sandbox", "Select evidence-backed low grasp", "Re-execute and evaluate"],
+  "acceptance_criteria": [{"metric": "recovered", "operator": "equals", "threshold": true}],
+  "known_limits": ["Requires reset", "Does not reacquire object pose in the same state", "Simulation only"],
+  "evidence": ["experiments/0010_v2_reset_recovery.md", "episodes/episode_20260917T062511240470Z_d03b9c29.json", "tests/test_v2_panda_reach.py"],
+  "verification": {"environment": "MuJoCo sandbox", "success_count": 2, "failure_count": 0, "last_verified_at": "2026-09-17T06:25:11.240470+00:00"},
+  "deprecation": null
+}
+

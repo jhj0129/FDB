@@ -28,6 +28,7 @@ fdb-v2-pregrasp = "fdb.v2.pregrasp_cli:main"
 fdb-v2-grasp-lift = "fdb.v2.grasp_lift_cli:main"
 fdb-v2-pick-place = "fdb.v2.pick_place_cli:main"
 fdb-v2-manipulation-suite = "fdb.v2.manipulation_suite_cli:main"
+fdb-v2-recovery = "fdb.v2.recovery_cli:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]

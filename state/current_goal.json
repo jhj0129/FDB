@@ -1,15 +1,16 @@
 {
   "schema_version": "1.0",
-  "stage": "v0",
-  "goal": "Move an object of a specified color to a target zone of a specified color using the minimum decision loop.",
+  "stage": "v1",
+  "goal": "Validate physics-based candidate selection for planar object interaction in MuJoCo.",
   "status": "implemented",
   "active_hypotheses": [
-    "A deterministic symbolic environment is sufficient to validate the first Task-to-Evaluation loop."
+    "Fresh-state MuJoCo candidate rollouts can improve first-attempt physical task selection.",
+    "Open-loop force plans will degrade under mass and friction variation."
   ],
   "unresolved_questions": [
-    "What obstacle representation and physics interface should v1 standardize?",
-    "Which MuJoCo task suite provides the best first baseline?"
+    "Should feedback control or online system identification be introduced first?",
+    "What variation range should define robust v1 success?",
+    "How should rotate be evaluated independently from translation?"
   ],
-  "next_gate": "Run v0 tests and establish a repeatable v1 experiment design."
+  "next_gate": "Randomize mass and friction, measure first-attempt success, and compare open-loop selection with feedback."
 }
-

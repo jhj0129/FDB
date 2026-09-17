@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0",
+  "research_id": "research_20260917_mujoco_python_api",
+  "created_at": "2026-09-17T05:40:00Z",
+  "question": "What is the supported minimal Python interface for deterministic MuJoCo candidate rollouts and Cartesian force application?",
+  "search_queries": [
+    "official MuJoCo Python bindings MjModel MjData mj_step",
+    "official MuJoCo xfrc_applied force torque layout"
+  ],
+  "sources": [
+    {
+      "title": "MuJoCo Python bindings documentation",
+      "locator": "https://github.com/google-deepmind/mujoco/blob/main/doc/python.rst",
+      "retrieved_at": "2026-09-17T05:40:00Z",
+      "claims": [
+        "The canonical Python package exposes MjModel, MjData, and mj_step.",
+        "Model fields and data arrays are mutable views and values must be copied for historical logs.",
+        "The PyPI package includes the MuJoCo library."
+      ]
+    },
+    {
+      "title": "MuJoCo simulation programming documentation",
+      "locator": "https://github.com/google-deepmind/mujoco/blob/main/doc/programming/simulation.rst",
+      "retrieved_at": "2026-09-17T05:45:00Z",
+      "claims": [
+        "xfrc_applied represents Cartesian wrenches applied at body centers of mass.",
+        "mj_step advances forward dynamics and integration."
+      ]
+    },
+    {
+      "title": "MuJoCo perturbation-force implementation",
+      "locator": "https://github.com/google-deepmind/mujoco/blob/main/src/engine/engine_vis_interact.c",
+      "retrieved_at": "2026-09-17T05:48:00Z",
+      "claims": [
+        "xfrc_applied stores force in the first three values and torque in the final three values."
+      ]
+    }
+  ],
+  "cross_checks": [
+    "The official engine source was used to resolve an incorrect torque-first assumption.",
+    "A short local rollout confirmed that the first three wrench values produce translation."
+  ],
+  "interpretation": "Use one fresh MjModel and MjData per candidate, copy observed arrays before stepping, apply planar force through xfrc_applied[:, 0:2], and compare rollouts using objective metrics.",
+  "hypotheses": [
+    "A small force-duration candidate set can achieve the deterministic planar target without feedback.",
+    "The same open-loop plan will not necessarily generalize to changed mass or friction."
+  ],
+  "validation": {
+    "environment": "MuJoCo 3.13.0 with packaged fdb_v1_push MJCF",
+    "protocol": "Evaluate three force-duration candidates from fresh state and repeat the winner from another fresh state.",
+    "result": "The balanced candidate stopped 0.04499 m from the target center; predicted and executed metrics matched."
+  },
+  "confidence": 0.9,
+  "unresolved_questions": [
+    "How much mass, friction, and pose variation can the selected plan tolerate?",
+    "Should feedback control or online system identification be introduced first?"
+  ],
+  "status": "validated"
+}
+

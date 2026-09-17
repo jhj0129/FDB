@@ -1,0 +1,47 @@
+{
+  "schema_version": "1.0",
+  "skill_id": "v1.physics_push",
+  "version": "0.1.0",
+  "status": "candidate",
+  "description": "Select and execute an open-loop planar force pulse that moves a MuJoCo puck into a target region.",
+  "prerequisites": [
+    "MuJoCo 3.13 or a compatible 3.x version is installed.",
+    "The packaged planar push MJCF is used without parameter changes.",
+    "The target and puck names exist in the model."
+  ],
+  "inputs": {"task": "string", "environment": "fdb_v1_push MJCF"},
+  "outputs": {"selected_prediction": "PhysicsRollout", "execution": "PhysicsRollout", "episode": "episode JSON"},
+  "procedure": [
+    "Load a fresh MuJoCo model for every candidate.",
+    "Read the puck and target positions from MuJoCo data.",
+    "Apply each candidate force at the puck center of mass and settle.",
+    "Measure completion, final error, path, time, contacts, bounds, and stability.",
+    "Select completion first and objective score second.",
+    "Execute the selected plan in a separate fresh rollout and record the result."
+  ],
+  "acceptance_criteria": [
+    {"metric": "final_distance_m", "operator": "less_than_or_equal", "threshold": 0.14},
+    {"metric": "unintended_contact_count", "operator": "equals", "threshold": 0},
+    {"metric": "out_of_bounds", "operator": "equals", "threshold": false},
+    {"metric": "stable", "operator": "equals", "threshold": true}
+  ],
+  "known_limits": [
+    "Validated only for the packaged deterministic planar model.",
+    "Open-loop force is not robust to unknown mass, friction, or initial pose.",
+    "Not a physical robot controller and not approved for hardware.",
+    "Rotation and obstacle avoidance are not yet implemented."
+  ],
+  "evidence": [
+    "tests/test_v1_physics_loop.py",
+    "episodes/episode_20260917T055041686817Z_255634e7.json",
+    "experiments/0001_v1_open_loop_push.md"
+  ],
+  "verification": {
+    "environment": "MuJoCo 3.13.0, fdb_v1_push MJCF",
+    "success_count": 2,
+    "failure_count": 2,
+    "last_verified_at": "2026-09-17T05:50:41.686817+00:00"
+  },
+  "deprecation": null
+}
+

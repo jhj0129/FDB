@@ -27,7 +27,7 @@ actions, evaluate its behavior, and improve future decisions from experience?
 7. Optimize first-attempt performance by combining prior knowledge, memory, candidate
    futures, and simulation.
 
-## Current milestone: FDB v0
+## Current milestone: FDB v1
 
 v0 implements a deterministic 2D decision loop without physical interaction:
 
@@ -41,6 +41,11 @@ specified color.” The code changes symbolic object state, evaluates multiple p
 selects the best plan, and writes a structured, append-only episode. This narrow scope
 is intentional: later versions can replace the parser, world model, planner, simulator,
 critic, and executor independently.
+
+v1 now adds the first MuJoCo physics task. FDB generates three open-loop force
+candidates, runs each from a fresh identical model, selects using objective success and
+quality metrics, repeats the selected plan as execution, and records prediction versus
+actual outcome. This is a planar push experiment, not yet a robot manipulation system.
 
 ## Quick start
 
@@ -62,6 +67,13 @@ For development tests:
 ```bash
 python -m pip install pytest
 pytest
+```
+
+Install and run the optional v1 physics environment:
+
+```bash
+python -m pip install -e '.[physics]'
+python -m fdb.v1.cli --task "빨간 물체를 파란 목표 구역으로 밀어라"
 ```
 
 Each successful CLI run creates an `episodes/episode_*.json` file. Episode records
@@ -94,7 +106,7 @@ See [Memory architecture](docs/memory_architecture.md),
 
 ## Roadmap
 
-- v1: MuJoCo-based push, move, and rotate interactions.
+- v1: MuJoCo-based push, move, and rotate interactions (planar push foundation active).
 - v2: fixed-robot reach, grasp, lift, place, and release skills.
 - v3: unfamiliar URDF/MJCF/mesh/manual morphology analysis.
 - v4: simulation-based body-schema and capability discovery.

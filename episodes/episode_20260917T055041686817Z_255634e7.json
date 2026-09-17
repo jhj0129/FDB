@@ -1,0 +1,178 @@
+{
+  "schema_version": "1.0",
+  "episode_id": "episode_20260917T055041686817Z_255634e7",
+  "created_at": "2026-09-17T05:50:41.686817+00:00",
+  "stage": "v1",
+  "task": "빨간 물체를 파란 목표 구역으로 밀어라",
+  "observation": {
+    "environment": "MuJoCo",
+    "model": "fdb.v1/assets/push.xml",
+    "initial_position": [
+      -0.55,
+      -0.25
+    ],
+    "target_position": [
+      0.55,
+      0.25
+    ]
+  },
+  "goal": {
+    "relation": "puck center within target radius",
+    "success_radius_m": 0.14
+  },
+  "candidate_plans": [
+    {
+      "plan": {
+        "plan_id": "gentle_long",
+        "force_newtons": 2.0,
+        "force_steps": 160,
+        "settle_steps": 500,
+        "rationale": "Low force applied for longer to limit overshoot."
+      },
+      "initial_position": [
+        -0.55,
+        -0.25
+      ],
+      "target_position": [
+        0.55,
+        0.25
+      ],
+      "final_position": [
+        0.23466856781996392,
+        0.10666753082725594
+      ],
+      "evaluation": {
+        "success": false,
+        "score": -20.362780214140578,
+        "final_distance": 0.3463785629046179,
+        "path_length": 0.8619260344548404,
+        "execution_time": 1.320000000000001,
+        "unintended_contact_count": 0,
+        "out_of_bounds": false,
+        "stable": true
+      }
+    },
+    {
+      "plan": {
+        "plan_id": "balanced",
+        "force_newtons": 4.0,
+        "force_steps": 120,
+        "settle_steps": 500,
+        "rationale": "Moderate force and duration for a balanced transfer."
+      },
+      "initial_position": [
+        -0.55,
+        -0.25
+      ],
+      "target_position": [
+        0.55,
+        0.25
+      ],
+      "final_position": [
+        0.5909571481838178,
+        0.26861688553809915
+      ],
+      "evaluation": {
+        "success": true,
+        "score": 94.0039244933243,
+        "final_distance": 0.04498973676839969,
+        "path_length": 1.2532943341278562,
+        "execution_time": 1.2400000000000009,
+        "unintended_contact_count": 0,
+        "out_of_bounds": false,
+        "stable": true
+      }
+    },
+    {
+      "plan": {
+        "plan_id": "firm_short",
+        "force_newtons": 7.0,
+        "force_steps": 80,
+        "settle_steps": 500,
+        "rationale": "Higher force applied briefly to overcome static friction."
+      },
+      "initial_position": [
+        -0.55,
+        -0.25
+      ],
+      "target_position": [
+        0.55,
+        0.25
+      ],
+      "final_position": [
+        0.7386257909107681,
+        0.33573899586853084
+      ],
+      "evaluation": {
+        "success": false,
+        "score": -14.35088677433557,
+        "final_distance": 0.2071976457618588,
+        "path_length": 1.4155022431213151,
+        "execution_time": 1.1600000000000008,
+        "unintended_contact_count": 0,
+        "out_of_bounds": false,
+        "stable": true
+      }
+    }
+  ],
+  "decision": {
+    "selected_plan_id": "balanced",
+    "reason": "Completion first, then highest objective physics score.",
+    "predicted_evaluation": {
+      "success": true,
+      "score": 94.0039244933243,
+      "final_distance": 0.04498973676839969,
+      "path_length": 1.2532943341278562,
+      "execution_time": 1.2400000000000009,
+      "unintended_contact_count": 0,
+      "out_of_bounds": false,
+      "stable": true
+    }
+  },
+  "execution": {
+    "plan": {
+      "plan_id": "balanced",
+      "force_newtons": 4.0,
+      "force_steps": 120,
+      "settle_steps": 500,
+      "rationale": "Moderate force and duration for a balanced transfer."
+    }
+  },
+  "result": {
+    "final_state": {
+      "puck_position": [
+        0.5909571481838178,
+        0.26861688553809915
+      ]
+    },
+    "objective_evaluation": {
+      "success": true,
+      "score": 94.0039244933243,
+      "final_distance": 0.04498973676839969,
+      "path_length": 1.2532943341278562,
+      "execution_time": 1.2400000000000009,
+      "unintended_contact_count": 0,
+      "out_of_bounds": false,
+      "stable": true
+    },
+    "user_evaluation": null
+  },
+  "reflection": {
+    "success_factors": [
+      "Selected plan succeeded in a fresh physics rollout"
+    ],
+    "failure_causes": [],
+    "learned": "Open-loop force candidates can be compared before execution.",
+    "next_experiment": "Add feedback control and randomized mass/friction trials.",
+    "confidence": 0.8,
+    "unresolved_questions": [
+      "How robust is the selected plan to mass and friction variation?"
+    ]
+  },
+  "sources": [
+    "research/research_20260917_mujoco_python_api.json"
+  ],
+  "skills_used": [
+    "v1.physics_push"
+  ]
+}

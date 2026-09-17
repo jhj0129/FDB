@@ -1,0 +1,34 @@
+{
+  "experiment": "CMU human motion imitation pilot",
+  "robot": "unitree_g1",
+  "results": [
+    {
+      "controller": "procedural_gait_baseline",
+      "source": "CMU subject 69 trial 01, frames 61-203",
+      "duration_s": 4.0,
+      "completed_duration_s": 4.0,
+      "displacement_xy_m": 0.17010746166821028,
+      "minimum_height_ratio": 0.99927283383119,
+      "minimum_upright_cosine": 0.9783345178357816,
+      "normalized_human_reference_rmse": 0.02876835653705965,
+      "fallen": false
+    },
+    {
+      "controller": "human_motion_imitation",
+      "source": "CMU subject 69 trial 01, frames 61-203",
+      "duration_s": 4.0,
+      "completed_duration_s": 4.0,
+      "displacement_xy_m": 0.0342612553585489,
+      "minimum_height_ratio": 1.0,
+      "minimum_upright_cosine": 0.9973250251733776,
+      "normalized_human_reference_rmse": 0.005851531828685695,
+      "fallen": false
+    }
+  ],
+  "reference_error_improvement_fraction": 0.7965983277095547,
+  "video": "artifacts/fdb_motion_imitation.mp4",
+  "layout": {
+    "left_orange": "procedural gait baseline",
+    "right_green": "CMU human motion imitation"
+  }
+}

@@ -58,6 +58,9 @@ The follow-up workspace suite reached 12/12 declared targets with a maximum erro
 9.7 mm, validating position-only reach within that explicit envelope.
 The first 6D pose-reach baseline also preserves hand orientation within 0.0122 rad while
 reaching within 5.4 mm, but remains a candidate until multi-pose and obstacle tests pass.
+Collision-aware pre-grasp selection now rejects candidates with any obstacle contact
+before comparing endpoint score; the first safe candidate reached within 7.4 mm with
+zero contact steps.
 
 ## Quick start
 
@@ -92,6 +95,7 @@ python -m pip install -e '.[robot]'
 python -m fdb.v2.cli
 python -m fdb.v2.reach_suite_cli
 python -m fdb.v2.pose_reach_cli
+python -m fdb.v2.pregrasp_cli
 ```
 
 Each successful CLI run creates an `episodes/episode_*.json` file. Episode records

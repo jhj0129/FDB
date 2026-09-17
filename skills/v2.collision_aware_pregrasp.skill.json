@@ -1,0 +1,32 @@
+{
+  "schema_version": "1.0",
+  "skill_id": "v2.collision_aware_pregrasp",
+  "version": "0.1.0",
+  "status": "candidate",
+  "description": "Reject Panda pre-grasp candidates that contact an obstacle before comparing objective quality.",
+  "prerequisites": ["Obstacle collision geometry is available", "Candidate targets are reachable", "Simulation-only execution"],
+  "inputs": {"obstacle": "MuJoCo geom", "candidate_targets": "Cartesian positions"},
+  "outputs": {"selected_candidate": "collision-free PregraspResult"},
+  "procedure": [
+    "Compile the sourced robot with obstacle geometry.",
+    "Solve and execute each candidate from identical state.",
+    "Count simulation steps containing obstacle contact.",
+    "Reject unstable, inaccurate, or contacting candidates.",
+    "Score only valid candidates."
+  ],
+  "acceptance_criteria": [
+    {"metric": "contact_step_count", "operator": "equals", "threshold": 0},
+    {"metric": "position_error_m", "operator": "less_than_or_equal", "threshold": 0.02},
+    {"metric": "stable", "operator": "equals", "threshold": true}
+  ],
+  "known_limits": ["One obstacle layout", "No allowed grasp-contact classification", "No hardware approval"],
+  "evidence": ["experiments/0006_v2_collision_aware_pregrasp.md", "episodes/episode_20260917T061048103139Z_2c33c4f9.json", "tests/test_v2_panda_reach.py"],
+  "verification": {
+    "environment": "MuJoCo 3.13.0, Menagerie Panda 2026.9.0",
+    "success_count": 2,
+    "failure_count": 2,
+    "last_verified_at": "2026-09-17T06:10:48.103139+00:00"
+  },
+  "deprecation": null
+}
+

@@ -24,6 +24,7 @@ fdb-v1-robustness = "fdb.v1.robustness_cli:main"
 fdb-v2 = "fdb.v2.cli:main"
 fdb-v2-reach-suite = "fdb.v2.reach_suite_cli:main"
 fdb-v2-pose = "fdb.v2.pose_reach_cli:main"
+fdb-v2-pregrasp = "fdb.v2.pregrasp_cli:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]

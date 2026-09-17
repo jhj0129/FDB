@@ -1,0 +1,126 @@
+{
+  "schema_version": "1.0",
+  "episode_id": "episode_20260917T061048103139Z_2c33c4f9",
+  "created_at": "2026-09-17T06:10:48.103139+00:00",
+  "stage": "v2",
+  "task": "Select a collision-free Panda pre-grasp pose around an obstacle.",
+  "observation": {
+    "obstacle_position": [
+      0.45,
+      0.15,
+      0.55
+    ],
+    "obstacle_radius": 0.06
+  },
+  "goal": {
+    "contact_step_count": 0,
+    "position_error_m_max": 0.02
+  },
+  "candidate_plans": [
+    {
+      "plan": {
+        "plan_id": "direct_center",
+        "target": [
+          0.45,
+          0.15,
+          0.55
+        ]
+      },
+      "contact_step_count": 1460,
+      "position_error_m": 0.10712988062959587,
+      "stable": true,
+      "score": -2973.564940314798
+    },
+    {
+      "plan": {
+        "plan_id": "centered_high",
+        "target": [
+          0.45,
+          0.15,
+          0.75
+        ]
+      },
+      "contact_step_count": 12,
+      "position_error_m": 0.005433580654750013,
+      "stable": true,
+      "score": -26.71679032737501
+    },
+    {
+      "plan": {
+        "plan_id": "side_high",
+        "target": [
+          0.55,
+          0.15,
+          0.75
+        ]
+      },
+      "contact_step_count": 0,
+      "position_error_m": 0.007384344696579061,
+      "stable": true,
+      "score": 96.30782765171047
+    }
+  ],
+  "decision": {
+    "selected_plan_id": "side_high",
+    "reason": "Collision-free validity is mandatory before objective score.",
+    "predicted_evaluation": {
+      "plan": {
+        "plan_id": "side_high",
+        "target": [
+          0.55,
+          0.15,
+          0.75
+        ]
+      },
+      "contact_step_count": 0,
+      "position_error_m": 0.007384344696579061,
+      "stable": true,
+      "score": 96.30782765171047
+    }
+  },
+  "execution": {
+    "target": [
+      0.55,
+      0.15,
+      0.75
+    ]
+  },
+  "result": {
+    "final_state": {},
+    "objective_evaluation": {
+      "plan": {
+        "plan_id": "side_high",
+        "target": [
+          0.55,
+          0.15,
+          0.75
+        ]
+      },
+      "contact_step_count": 0,
+      "position_error_m": 0.007384344696579061,
+      "stable": true,
+      "score": 96.30782765171047
+    },
+    "user_evaluation": null
+  },
+  "reflection": {
+    "success_factors": [
+      "Rejected accurate but colliding candidates before score comparison."
+    ],
+    "failure_causes": [
+      "Direct center and centered-high candidates contacted the obstacle."
+    ],
+    "learned": "Safety feasibility must be lexicographically prior to endpoint quality.",
+    "next_experiment": "Approach from the selected pre-grasp and close the gripper on a movable object.",
+    "confidence": 0.85,
+    "unresolved_questions": [
+      "Which contacts should be allowed during grasp closure?"
+    ]
+  },
+  "sources": [
+    "research/research_20260917_panda_model.json"
+  ],
+  "skills_used": [
+    "v2.collision_aware_pregrasp"
+  ]
+}

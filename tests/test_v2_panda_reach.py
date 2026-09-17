@@ -7,6 +7,7 @@ from fdb.v2.inspector import inspect_robot
 from fdb.v2.reach import PandaReachExperiment
 from fdb.v2.reach_suite import WORKSPACE_TARGETS, run_reach_suite
 from fdb.v2.pose_reach import PandaPoseReachExperiment
+from fdb.v2.pregrasp import CollisionAwarePregraspExperiment
 
 
 def test_inspector_builds_sourced_panda_self_model():
@@ -45,3 +46,13 @@ def test_pose_reach_preserves_home_hand_orientation():
     assert selected.position_error_m <= 0.02
     assert selected.orientation_error_rad <= 0.03
     assert selected.joint_limit_violations == 0
+
+
+def test_pregrasp_rejects_colliding_candidates_before_score():
+    selected, candidates = CollisionAwarePregraspExperiment().run()
+    by_id = {candidate.plan.plan_id: candidate for candidate in candidates}
+    assert by_id["direct_center"].contact_step_count > 0
+    assert by_id["centered_high"].contact_step_count > 0
+    assert selected.plan.plan_id == "side_high"
+    assert selected.collision_free is True
+    assert selected.position_error_m <= 0.02

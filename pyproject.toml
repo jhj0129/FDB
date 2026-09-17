@@ -14,12 +14,14 @@ dependencies = []
 
 [project.optional-dependencies]
 physics = ["mujoco>=3.13,<4"]
+robot = ["mujoco>=3.13,<4", "mujoco-menagerie==2026.9.0"]
 dev = ["pytest>=7", "jsonschema>=4"]
 
 [project.scripts]
 fdb = "fdb.cli:main"
 fdb-v1 = "fdb.v1.cli:main"
 fdb-v1-robustness = "fdb.v1.robustness_cli:main"
+fdb-v2 = "fdb.v2.cli:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]

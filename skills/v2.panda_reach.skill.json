@@ -1,0 +1,43 @@
+{
+  "schema_version": "1.0",
+  "skill_id": "v2.panda_reach",
+  "version": "0.1.0",
+  "status": "candidate",
+  "description": "Reach a Cartesian hand target with the pinned Menagerie Franka Panda using MuJoCo Jacobians and damped least squares.",
+  "prerequisites": [
+    "mujoco-menagerie 2026.9.0 Franka Panda object 3d2262eeb81e is available.",
+    "Target is position-only and lies in the tested neighborhood.",
+    "Execution is simulation-only."
+  ],
+  "inputs": {"target_position_m": "length-3 tuple", "robot_self_model": "robots/franka_emika_panda/self_model.json"},
+  "outputs": {"joint_position_target": "7 joint values", "objective_evaluation": "ReachResult"},
+  "procedure": [
+    "Reset to the model's home keyframe.",
+    "Read the hand body position and MuJoCo position Jacobian.",
+    "Solve damped least squares and clamp each update to model joint limits.",
+    "Compare damping candidates through separate simulations.",
+    "Execute the selected joint target with model position actuators.",
+    "Measure endpoint error, contacts, and limit violations."
+  ],
+  "acceptance_criteria": [
+    {"metric": "execution_error_m", "operator": "less_than_or_equal", "threshold": 0.02},
+    {"metric": "joint_limit_violations", "operator": "equals", "threshold": 0}
+  ],
+  "known_limits": [
+    "Only one Cartesian target has been recorded.",
+    "Orientation, obstacles, grasp contact, noise, and hardware are not validated."
+  ],
+  "evidence": [
+    "experiments/0003_v2_panda_reach.md",
+    "episodes/episode_20260917T060011847583Z_d98e181c.json",
+    "tests/test_v2_panda_reach.py"
+  ],
+  "verification": {
+    "environment": "MuJoCo 3.13.0, Menagerie Panda 2026.9.0",
+    "success_count": 4,
+    "failure_count": 0,
+    "last_verified_at": "2026-09-17T06:00:11.847583+00:00"
+  },
+  "deprecation": null
+}
+

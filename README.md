@@ -50,6 +50,11 @@ The robustness suite also compares the nominal open-loop plan with bounded PD fe
 across 30 paired randomized scenarios. Feedback achieved 100% first-attempt success
 versus 80% for open-loop and is now the scoped default under dynamics uncertainty.
 
+v2 has begun with a pinned, Apache-2.0 Franka Panda model from MuJoCo Menagerie. FDB
+derives a robot self-model from compiled MJCF data and compares joint-limit-aware DLS
+reach candidates using MuJoCo body Jacobians. The first position-only reach baseline
+executes within 5.3 mm of its target; generalized reach and grasp remain unvalidated.
+
 ## Quick start
 
 Python 3.10 or newer is required. Runtime code has no third-party dependencies.
@@ -79,6 +84,8 @@ python -m pip install -e '.[physics]'
 python -m fdb.v1.cli --task "빨간 물체를 파란 목표 구역으로 밀어라"
 python -m fdb.v1.robustness_cli \
   --output experiments/local_robustness.results.json
+python -m pip install -e '.[robot]'
+python -m fdb.v2.cli
 ```
 
 Each successful CLI run creates an `episodes/episode_*.json` file. Episode records

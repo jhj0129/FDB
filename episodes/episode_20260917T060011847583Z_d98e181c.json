@@ -1,0 +1,173 @@
+{
+  "schema_version": "1.0",
+  "episode_id": "episode_20260917T060011847583Z_d98e181c",
+  "created_at": "2026-09-17T06:00:11.847583+00:00",
+  "stage": "v2",
+  "task": "Reach the Cartesian target with the Franka Panda hand.",
+  "observation": {
+    "robot_self_model": "robots/franka_emika_panda/self_model.json",
+    "target_m": [
+      0.45,
+      0.15,
+      0.55
+    ]
+  },
+  "goal": {
+    "execution_error_m_max": 0.02,
+    "joint_limit_violations": 0
+  },
+  "candidate_plans": [
+    {
+      "plan": {
+        "plan_id": "low_damping",
+        "damping": 0.005,
+        "max_iterations": 200
+      },
+      "converged": true,
+      "ik_iterations": 6,
+      "ik_error_m": 7.254328304061493e-06,
+      "execution_error_m": 0.0052976511377515224,
+      "joint_limit_violations": 0,
+      "contact_count": 0,
+      "score": 97.35117443112424,
+      "target_qpos": [
+        0.15002467531858765,
+        -0.14357478941467505,
+        0.15475840937111396,
+        -1.8643401191016706,
+        0.032687670106082735,
+        1.366562324469768,
+        -0.7853
+      ]
+    },
+    {
+      "plan": {
+        "plan_id": "balanced_damping",
+        "damping": 0.03,
+        "max_iterations": 200
+      },
+      "converged": true,
+      "ik_iterations": 6,
+      "ik_error_m": 3.4104203325564106e-05,
+      "execution_error_m": 0.005297433677350288,
+      "joint_limit_violations": 0,
+      "contact_count": 0,
+      "score": 97.35128316132486,
+      "target_qpos": [
+        0.15006582878875452,
+        -0.14363901937934578,
+        0.1547235741606023,
+        -1.8644075085851104,
+        0.03263411367325677,
+        1.3664987868981113,
+        -0.7853
+      ]
+    },
+    {
+      "plan": {
+        "plan_id": "high_damping",
+        "damping": 0.15,
+        "max_iterations": 200
+      },
+      "converged": true,
+      "ik_iterations": 8,
+      "ik_error_m": 5.5137986613931426e-05,
+      "execution_error_m": 0.005291511852936574,
+      "joint_limit_violations": 0,
+      "contact_count": 0,
+      "score": 97.35424407353172,
+      "target_qpos": [
+        0.15095369867039932,
+        -0.14337965395996657,
+        0.15414932020210978,
+        -1.8641159802395086,
+        0.03158821767245949,
+        1.3665541894758986,
+        -0.7853
+      ]
+    }
+  ],
+  "decision": {
+    "selected_plan_id": "high_damping",
+    "reason": "Successful execution first, then objective score and IK iterations.",
+    "predicted_evaluation": {
+      "plan": {
+        "plan_id": "high_damping",
+        "damping": 0.15,
+        "max_iterations": 200
+      },
+      "converged": true,
+      "ik_iterations": 8,
+      "ik_error_m": 5.5137986613931426e-05,
+      "execution_error_m": 0.005291511852936574,
+      "joint_limit_violations": 0,
+      "contact_count": 0,
+      "score": 97.35424407353172,
+      "target_qpos": [
+        0.15095369867039932,
+        -0.14337965395996657,
+        0.15414932020210978,
+        -1.8641159802395086,
+        0.03158821767245949,
+        1.3665541894758986,
+        -0.7853
+      ]
+    }
+  },
+  "execution": {
+    "joint_position_target": [
+      0.15095369867039932,
+      -0.14337965395996657,
+      0.15414932020210978,
+      -1.8641159802395086,
+      0.03158821767245949,
+      1.3665541894758986,
+      -0.7853
+    ]
+  },
+  "result": {
+    "final_state": {},
+    "objective_evaluation": {
+      "plan": {
+        "plan_id": "high_damping",
+        "damping": 0.15,
+        "max_iterations": 200
+      },
+      "converged": true,
+      "ik_iterations": 8,
+      "ik_error_m": 5.5137986613931426e-05,
+      "execution_error_m": 0.005291511852936574,
+      "joint_limit_violations": 0,
+      "contact_count": 0,
+      "score": 97.35424407353172,
+      "target_qpos": [
+        0.15095369867039932,
+        -0.14337965395996657,
+        0.15414932020210978,
+        -1.8641159802395086,
+        0.03158821767245949,
+        1.3665541894758986,
+        -0.7853
+      ]
+    },
+    "user_evaluation": null
+  },
+  "reflection": {
+    "success_factors": [
+      "Used model joint limits and MuJoCo body Jacobian."
+    ],
+    "failure_causes": [],
+    "learned": "A sourced robot model can be inspected and controlled without guessed morphology.",
+    "next_experiment": "Add orientation-aware reach, collision filtering, and grasp targets.",
+    "confidence": 0.8,
+    "unresolved_questions": [
+      "How should collision-free pose candidates be generated?"
+    ]
+  },
+  "sources": [
+    "research/research_20260917_panda_model.json"
+  ],
+  "skills_used": [
+    "v2.panda_reach"
+  ]
+}

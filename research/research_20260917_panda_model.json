@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "research_id": "research_20260917_panda_model",
+  "created_at": "2026-09-17T05:58:00Z",
+  "question": "Which maintained open-source MuJoCo robot model is suitable for FDB v2 fixed-arm manipulation?",
+  "search_queries": [
+    "MuJoCo Menagerie Franka Panda license actuators gripper",
+    "MuJoCo Menagerie UR5e license model"
+  ],
+  "sources": [
+    {
+      "title": "MuJoCo Menagerie",
+      "locator": "https://github.com/google-deepmind/mujoco_menagerie",
+      "retrieved_at": "2026-09-17T05:58:00Z",
+      "claims": [
+        "Menagerie curates MuJoCo robot models and reports per-model licenses.",
+        "The package pins model releases and exposes model object IDs for provenance."
+      ]
+    },
+    {
+      "title": "Franka Emika Panda MJCF description",
+      "locator": "https://github.com/google-deepmind/mujoco_menagerie/tree/main/franka_emika_panda",
+      "retrieved_at": "2026-09-17T05:58:00Z",
+      "claims": [
+        "The model is Apache-2.0 and derived from the public Panda URDF.",
+        "It provides seven arm position actuators, finger mimic constraint, gripper tendon, and gripper actuator."
+      ]
+    }
+  ],
+  "cross_checks": [
+    "The installed 2026.9.0 registry reports Apache-2.0 and object ID 3d2262eeb81ecec19abfa31dd509e35abbb33e67.",
+    "The compiled model exposes 9 joints and 8 actuators; limits were read from mjModel rather than copied from prose."
+  ],
+  "interpretation": "Panda provides a maintained, licensed arm-plus-gripper baseline. FDB should load the pinned Menagerie artifact and derive morphology directly from the compiled model.",
+  "hypotheses": [
+    "MuJoCo body Jacobians plus joint-limit-clamped DLS can establish a reach baseline without custom kinematics.",
+    "A single-target reach result is insufficient to validate generalized reach."
+  ],
+  "validation": {
+    "environment": "mujoco-menagerie 2026.9.0, Franka Panda object 3d2262eeb81e",
+    "protocol": "Inspect compiled morphology, solve three DLS damping candidates, execute with model position actuators, and measure Cartesian error and joint limits.",
+    "result": "All candidates converged; selected execution error was 0.00529 m with no limit violations or contacts."
+  },
+  "confidence": 0.9,
+  "unresolved_questions": [
+    "How well does reach generalize across workspace targets and orientation constraints?",
+    "How should collision-free reach candidates be generated?"
+  ],
+  "status": "validated"
+}
+

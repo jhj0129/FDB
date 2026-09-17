@@ -19,6 +19,7 @@ dev = ["pytest>=7", "jsonschema>=4"]
 [project.scripts]
 fdb = "fdb.cli:main"
 fdb-v1 = "fdb.v1.cli:main"
+fdb-v1-robustness = "fdb.v1.robustness_cli:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]

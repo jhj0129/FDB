@@ -1,0 +1,26 @@
+{
+  "schema_version": "1.0",
+  "memory_id": "control.feedback_under_dynamics_uncertainty.v1",
+  "status": "active",
+  "rule": "Prefer bounded state feedback over a nominal open-loop force pulse when mass, friction, or initial state are uncertain and state observations are available.",
+  "scope": {
+    "environment": "planar MuJoCo object translation",
+    "mass_scale": [0.4, 1.8],
+    "sliding_friction": [0.2, 1.4],
+    "initial_offset_m": [-0.15, 0.15]
+  },
+  "evidence": {
+    "experiment": "experiments/0002_v1_robustness.md",
+    "paired_trials": 30,
+    "open_loop_success_rate": 0.8,
+    "feedback_success_rate": 1.0,
+    "open_loop_mean_final_distance_m": 0.07586999810347006,
+    "feedback_mean_final_distance_m": 0.03832773571516151
+  },
+  "exceptions": [
+    "Do not assume the result transfers to delayed or noisy observations.",
+    "Do not treat simulation validation as physical robot approval."
+  ],
+  "promoted_at": "2026-09-17T05:56:06.642605+00:00"
+}
+

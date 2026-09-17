@@ -34,14 +34,14 @@
   "evidence": [
     "tests/test_v1_physics_loop.py",
     "episodes/episode_20260917T055041686817Z_255634e7.json",
-    "experiments/0001_v1_open_loop_push.md"
+    "experiments/0001_v1_open_loop_push.md",
+    "experiments/0002_v1_robustness.md"
   ],
   "verification": {
     "environment": "MuJoCo 3.13.0, fdb_v1_push MJCF",
-    "success_count": 2,
-    "failure_count": 2,
-    "last_verified_at": "2026-09-17T05:50:41.686817+00:00"
+    "success_count": 26,
+    "failure_count": 8,
+    "last_verified_at": "2026-09-17T05:56:06.642605+00:00"
   },
   "deprecation": null
 }
-

@@ -1,0 +1,110 @@
+{
+  "schema_version": "1.0",
+  "episode_id": "episode_20260917T055606642605Z_dff95e12",
+  "created_at": "2026-09-17T05:56:06.642605+00:00",
+  "stage": "v1",
+  "task": "Compare open-loop and feedback control under randomized physics.",
+  "observation": {
+    "scenario_count": 30,
+    "seed": 1701,
+    "variation": {
+      "mass_scale": [
+        0.4,
+        1.8
+      ],
+      "sliding_friction": [
+        0.2,
+        1.4
+      ],
+      "initial_offset_m": [
+        -0.15,
+        0.15
+      ]
+    }
+  },
+  "goal": {
+    "metric": "first_attempt_success_rate",
+    "comparison": "feedback > open_loop"
+  },
+  "candidate_plans": [
+    {
+      "method": "open_loop",
+      "summary": {
+        "method": "open_loop",
+        "success_count": 24,
+        "trial_count": 30,
+        "success_rate": 0.8,
+        "mean_final_distance": 0.07586999810347006,
+        "mean_score": 72.45991142657078
+      }
+    },
+    {
+      "method": "feedback",
+      "summary": {
+        "method": "feedback",
+        "success_count": 30,
+        "trial_count": 30,
+        "success_rate": 1.0,
+        "mean_final_distance": 0.03832773571516151,
+        "mean_score": 93.36245628858575
+      }
+    }
+  ],
+  "decision": {
+    "selected_plan_id": "pd_feedback",
+    "reason": "Higher first-attempt success rate across identical randomized scenarios.",
+    "predicted_evaluation": {
+      "method": "feedback",
+      "success_count": 30,
+      "trial_count": 30,
+      "success_rate": 1.0,
+      "mean_final_distance": 0.03832773571516151,
+      "mean_score": 93.36245628858575
+    }
+  },
+  "execution": {
+    "raw_result": "experiments/0002_v1_robustness.results.json"
+  },
+  "result": {
+    "final_state": {},
+    "objective_evaluation": {
+      "open_loop": {
+        "method": "open_loop",
+        "success_count": 24,
+        "trial_count": 30,
+        "success_rate": 0.8,
+        "mean_final_distance": 0.07586999810347006,
+        "mean_score": 72.45991142657078
+      },
+      "feedback": {
+        "method": "feedback",
+        "success_count": 30,
+        "trial_count": 30,
+        "success_rate": 1.0,
+        "mean_final_distance": 0.03832773571516151,
+        "mean_score": 93.36245628858575
+      }
+    },
+    "user_evaluation": null
+  },
+  "reflection": {
+    "success_factors": [
+      "Feedback corrected model and initial-state variation."
+    ],
+    "failure_causes": [
+      "Open-loop force could not correct changed dynamics."
+    ],
+    "learned": "Feedback is the default v1 control strategy under uncertainty.",
+    "next_experiment": "Add rotation and obstacle interaction, then begin fixed-robot reach.",
+    "confidence": 0.9,
+    "unresolved_questions": [
+      "How does feedback perform with observation noise and delay?"
+    ]
+  },
+  "sources": [
+    "research/research_20260917_mujoco_python_api.json"
+  ],
+  "skills_used": [
+    "v1.physics_push"
+  ]
+}

@@ -8,6 +8,7 @@ from fdb.memory import EpisodeStore
 from fdb.v1 import PhysicsDecisionLoop
 from fdb.v1.environment import MujocoPushEnvironment
 from fdb.v1.planner import PushCandidatePlanner
+from fdb.v1.robustness import RobustnessExperiment, generate_scenarios
 
 
 def test_candidates_are_evaluated_from_fresh_initial_state():
@@ -44,3 +45,13 @@ def test_loop_selects_successful_plan_and_records_physics_metrics(tmp_path):
     assert payload["decision"]["selected_plan_id"] == "balanced"
     assert payload["result"]["objective_evaluation"]["success"] is True
 
+
+def test_feedback_improves_first_attempt_success_under_variation():
+    result = RobustnessExperiment().run(generate_scenarios(count=30, seed=1701))
+
+    assert result.open_loop_summary.success_rate == pytest.approx(0.8)
+    assert result.feedback_summary.success_rate == pytest.approx(1.0)
+    assert (
+        result.feedback_summary.mean_final_distance
+        < result.open_loop_summary.mean_final_distance
+    )

@@ -1,0 +1,2154 @@
+{
+  "scenarios": [
+    {
+      "scenario_id": "scenario_000",
+      "mass_scale": 1.0887124145553617,
+      "sliding_friction": 0.7585888875438742,
+      "initial_offset_x": 0.02777502113335989,
+      "initial_offset_y": -0.0760111432664344
+    },
+    {
+      "scenario_id": "scenario_001",
+      "mass_scale": 0.4813275690547517,
+      "sliding_friction": 1.304709853334766,
+      "initial_offset_x": -0.10139064797597785,
+      "initial_offset_y": 0.10733827935557264
+    },
+    {
+      "scenario_id": "scenario_002",
+      "mass_scale": 1.7840772662000468,
+      "sliding_friction": 1.288426532075421,
+      "initial_offset_x": -0.03532327522613318,
+      "initial_offset_y": -0.1317113720368447
+    },
+    {
+      "scenario_id": "scenario_003",
+      "mass_scale": 0.6324035563624569,
+      "sliding_friction": 1.0530863905673171,
+      "initial_offset_x": -0.08740240804185162,
+      "initial_offset_y": 0.11187627669170294
+    },
+    {
+      "scenario_id": "scenario_004",
+      "mass_scale": 0.6547332230835397,
+      "sliding_friction": 0.4545021054884827,
+      "initial_offset_x": 0.08425563038098863,
+      "initial_offset_y": 0.08529725946320157
+    },
+    {
+      "scenario_id": "scenario_005",
+      "mass_scale": 0.6433913374894547,
+      "sliding_friction": 0.5580496334781744,
+      "initial_offset_x": 0.053974507338322625,
+      "initial_offset_y": -0.08274328101912932
+    },
+    {
+      "scenario_id": "scenario_006",
+      "mass_scale": 1.7605614489349541,
+      "sliding_friction": 0.3371848514811754,
+      "initial_offset_x": 0.03961626849681266,
+      "initial_offset_y": -0.09613602493979614
+    },
+    {
+      "scenario_id": "scenario_007",
+      "mass_scale": 0.7654126775640357,
+      "sliding_friction": 1.074511090359284,
+      "initial_offset_x": -0.09042872857148732,
+      "initial_offset_y": 0.14325174145718297
+    },
+    {
+      "scenario_id": "scenario_008",
+      "mass_scale": 1.4019416767475996,
+      "sliding_friction": 0.5479925215394528,
+      "initial_offset_x": -0.09479956662872985,
+      "initial_offset_y": -0.06201631946401734
+    },
+    {
+      "scenario_id": "scenario_009",
+      "mass_scale": 0.6361018032644975,
+      "sliding_friction": 1.1689508648353404,
+      "initial_offset_x": -0.0019823026175587732,
+      "initial_offset_y": -0.007614222554679473
+    },
+    {
+      "scenario_id": "scenario_010",
+      "mass_scale": 0.4053033876139478,
+      "sliding_friction": 0.7750042783995381,
+      "initial_offset_x": 0.06395091401591893,
+      "initial_offset_y": -0.04176098074919289
+    },
+    {
+      "scenario_id": "scenario_011",
+      "mass_scale": 0.7402276248573034,
+      "sliding_friction": 0.8629835137972173,
+      "initial_offset_x": 0.13722347529534026,
+      "initial_offset_y": -0.0070440301742362155
+    },
+    {
+      "scenario_id": "scenario_012",
+      "mass_scale": 1.0345308746290431,
+      "sliding_friction": 1.0120068948618925,
+      "initial_offset_x": -0.08607429611828826,
+      "initial_offset_y": 0.14249874797518994
+    },
+    {
+      "scenario_id": "scenario_013",
+      "mass_scale": 0.6602348894475975,
+      "sliding_friction": 0.6577450375417508,
+      "initial_offset_x": -0.12852056460985864,
+      "initial_offset_y": 0.0448366536967541
+    },
+    {
+      "scenario_id": "scenario_014",
+      "mass_scale": 1.3727073455193248,
+      "sliding_friction": 0.29805734017551544,
+      "initial_offset_x": -0.09981419463107614,
+      "initial_offset_y": -0.030148178179837642
+    },
+    {
+      "scenario_id": "scenario_015",
+      "mass_scale": 1.7514982536767914,
+      "sliding_friction": 1.2989714174439242,
+      "initial_offset_x": 0.07736714717405821,
+      "initial_offset_y": 0.06938259014027179
+    },
+    {
+      "scenario_id": "scenario_016",
+      "mass_scale": 1.727339497234055,
+      "sliding_friction": 0.8965325225384742,
+      "initial_offset_x": 0.1097265581063723,
+      "initial_offset_y": 0.0970081709898622
+    },
+    {
+      "scenario_id": "scenario_017",
+      "mass_scale": 0.6306248443188188,
+      "sliding_friction": 1.372397587677094,
+      "initial_offset_x": -0.03620174862468625,
+      "initial_offset_y": 0.03123236556502401
+    },
+    {
+      "scenario_id": "scenario_018",
+      "mass_scale": 0.7508854015139754,
+      "sliding_friction": 0.5021843539367858,
+      "initial_offset_x": -0.13498565126974846,
+      "initial_offset_y": 0.08205879730414037
+    },
+    {
+      "scenario_id": "scenario_019",
+      "mass_scale": 0.8627933407932873,
+      "sliding_friction": 0.72240062448347,
+      "initial_offset_x": -0.07881800833269156,
+      "initial_offset_y": 0.12559207891026988
+    },
+    {
+      "scenario_id": "scenario_020",
+      "mass_scale": 0.6109170155573238,
+      "sliding_friction": 0.49723613197412725,
+      "initial_offset_x": -0.009111563724125776,
+      "initial_offset_y": 0.13320945873719806
+    },
+    {
+      "scenario_id": "scenario_021",
+      "mass_scale": 1.7143126418293253,
+      "sliding_friction": 0.8647448402616169,
+      "initial_offset_x": 0.06950004213955246,
+      "initial_offset_y": 0.032795210358925464
+    },
+    {
+      "scenario_id": "scenario_022",
+      "mass_scale": 1.5196825359083026,
+      "sliding_friction": 0.7224929585813518,
+      "initial_offset_x": 0.11603557959836405,
+      "initial_offset_y": -0.13625010615384467
+    },
+    {
+      "scenario_id": "scenario_023",
+      "mass_scale": 0.7849972965298675,
+      "sliding_friction": 0.5875751652670358,
+      "initial_offset_x": 0.12981526192007523,
+      "initial_offset_y": -0.06984449021364048
+    },
+    {
+      "scenario_id": "scenario_024",
+      "mass_scale": 0.8124642410195025,
+      "sliding_friction": 1.1603892682954897,
+      "initial_offset_x": -0.12988300310883003,
+      "initial_offset_y": -0.0805524264307557
+    },
+    {
+      "scenario_id": "scenario_025",
+      "mass_scale": 0.9102872413008737,
+      "sliding_friction": 1.3673895321641418,
+      "initial_offset_x": 0.023851358925812388,
+      "initial_offset_y": -0.03478393108048476
+    },
+    {
+      "scenario_id": "scenario_026",
+      "mass_scale": 0.5919927679284377,
+      "sliding_friction": 1.0244275146909905,
+      "initial_offset_x": -0.12956800434775873,
+      "initial_offset_y": 0.047839690822432834
+    },
+    {
+      "scenario_id": "scenario_027",
+      "mass_scale": 0.5073114015053802,
+      "sliding_friction": 0.9097895930741382,
+      "initial_offset_x": -0.010606251975726233,
+      "initial_offset_y": -0.07171447456028429
+    },
+    {
+      "scenario_id": "scenario_028",
+      "mass_scale": 0.8560359810061589,
+      "sliding_friction": 0.49828784524454284,
+      "initial_offset_x": 0.14156025925986934,
+      "initial_offset_y": 0.09896360707221108
+    },
+    {
+      "scenario_id": "scenario_029",
+      "mass_scale": 0.6139458909552059,
+      "sliding_friction": 1.2460545347670466,
+      "initial_offset_x": 0.13023130152232712,
+      "initial_offset_y": 0.004941974658767001
+    }
+  ],
+  "open_loop_rollouts": [
+    {
+      "plan": {
+        "plan_id": "balanced",
+        "force_newtons": 4.0,
+        "force_steps": 120,
+        "settle_steps": 500,
+        "rationale": "Moderate force and duration for a balanced transfer."
+      },
+      "initial_position": [
+        -0.5222249788666402,
+        -0.32601114326643443
+      ],
+      "target_position": [
+        0.55,
+        0.25
+      ],
+      "final_position": [
+        0.5818402414970958,
+        0.2671049306517823
+      ],
+      "evaluation": {
+        "success": true,
+        "score": 94.4462176293457,
+        "final_distance": 0.036143874047971945,
+        "path_length": 1.2532943341278562,
+        "execution_time": 1.2400000000000009,
+        "unintended_contact_count": 0,
+        "out_of_bounds": false,
+        "stable": true
+      }
+    },
+    {
+      "plan": {
+        "plan_id": "balanced",
+        "force_newtons": 4.0,
+        "force_steps": 120,
+        "settle_steps": 500,
+        "rationale": "Moderate force and duration for a balanced transfer."
+      },
+      "initial_position": [
+        -0.6513906479759779,
+        -0.14266172064442736
+      ],
+      "target_position": [
+        0.55,
+        0.25
+      ],
+      "final_position": [
+        0.5398892189355724,
+        0.2466953990390171
+      ],
+      "evaluation": {
+        "success": true,
+        "score": 95.72155542728304,
+        "final_distance": 0.010637118089224996,
+        "path_length": 1.2532943341278582,
+        "execution_time": 1.2400000000000009,
+        "unintended_contact_count": 0,
+        "out_of_bounds": false,
+        "stable": true
+      }
+    },
+    {
+      "plan": {
+        "plan_id": "balanced",
+        "force_newtons": 4.0,
+        "force_steps": 120,
+        "settle_steps": 500,
+        "rationale": "Moderate force and duration for a balanced transfer."
+      },
+      "initial_position": [
+        -0.5853232752261333,
+        -0.3817113720368447
+      ],
+      "target_position": [
+        0.55,
+        0.25
+      ],
+      "final_position": [
+        0.5098530721287664,
+        0.2276616304430557
+      ],
+      "evaluation": {
+        "success": true,
+        "score": 93.9562508171303,
+        "final_distance": 0.04594321029227988,
+        "path_length": 1.2532943341278602,
+        "execution_time": 1.2400000000000009,
+        "unintended_contact_count": 0,
+        "out_of_bounds": false,
+        "stable": true
+      }
+    },
+    {
+      "plan": {
+        "plan_id": "balanced",
+        "force_newtons": 4.0,
+        "force_steps": 120,
+        "settle_steps": 500,
+        "rationale": "Moderate force and duration for a balanced transfer."
+      },
+      "initial_position": [
+        -0.6374024080418517,
+        -0.13812372330829706
+      ],
+      "target_position": [
+        0.55,
+        0.25
+      ],
+      "final_position": [
+        0.5538674125007448,
+        0.2512641329756379
+      ],
+      "evaluation": {
+        "success": true,
+        "score": 96.04997269461376,
+        "final_distance": 0.0040687727426106934,
+        "path_length": 1.2532943341278564,
+        "execution_time": 1.2400000000000009,
+        "unintended_contact_count": 0,
+        "out_of_bounds": false,
+        "stable": true
+      }
+    },
+    {
+      "plan": {
+        "plan_id": "balanced",
+        "force_newtons": 4.0,
+        "force_steps": 120,
+        "settle_steps": 500,
+        "rationale": "Moderate force and duration for a balanced transfer."
+      },
+      "initial_position": [
+        -0.46574436961901144,
+        -0.16470274053679843
+      ],
+      "target_position": [
+        0.55,
+        0.25
+      ],
+      "final_position": [
+        0.694569987508239,
+        0.3090242700941822
+      ],
+      "evaluation": {
+        "success": false,
+        "score": -11.554332540252817,
+        "final_distance": 0.15615487743994205,
+        "path_length": 1.253294334127857,
+        "execution_time": 1.2400000000000009,
+        "unintended_contact_count": 0,
+        "out_of_bounds": false,
+        "stable": true
+      }
+    },
+    {
+      "plan": {
+        "plan_id": "balanced",
+        "force_newtons": 4.0,
+        "force_steps": 120,
+        "settle_steps": 500,
+        "rationale": "Moderate force and duration for a balanced transfer."
+      },
+      "initial_position": [
+        -0.4960254926616774,
+        -0.3327432810191293
+      ],
+      "target_position": [
+        0.55,
+        0.25
+      ],
+      "final_position": [
+        0.5988311486366984,
+        0.2772039486342469
+      ],
+      "evaluation": {
+        "success": true,
+        "score": 93.45853392008824,
+        "final_distance": 0.05589754823312085,
+        "path_length": 1.2532943341278577,
+        "execution_time": 1.2400000000000009,
+        "unintended_contact_count": 0,
+        "out_of_bounds": false,
+        "stable": true
+      }
+    },
+    {
+      "plan": {
+        "plan_id": "balanced",
+        "force_newtons": 4.0,
+        "force_steps": 120,
+        "settle_steps": 500,
+        "rationale": "Moderate force and duration for a balanced transfer."
+      },
+      "initial_position": [
+        -0.5103837315031874,
+        -0.3461360249397961
+      ],
+      "target_position": [
+        0.55,
+        0.25
+      ],
+      "final_position": [
+        0.582102120785378,
+        0.2680474578292541
+      ],
+      "evaluation": {
+        "success": true,
+        "score": 94.41204166963288,
+        "final_distance": 0.036827393242228036,
+        "path_length": 1.2532943341278588,
+        "execution_time": 1.2400000000000009,
+        "unintended_contact_count": 0,
+        "out_of_bounds": false,
+        "stable": true
+      }
+    },
+    {
+      "plan": {
+        "plan_id": "balanced",
+        "force_newtons": 4.0,
+        "force_steps": 120,
+        "settle_steps": 500,
+        "rationale": "Moderate force and duration for a balanced transfer."
+      },
+      "initial_position": [
+        -0.6404287285714874,
+        -0.10674825854281703
+      ],
+      "target_position": [
+        0.55,
+        0.25
+      ],
+      "final_position": [
+        0.5601150519543874,
+        0.2530312836738463
+      ],
+      "evaluation": {
+        "success": true,
+        "score": 95.72543652943058,
+        "final_distance": 0.010559496046274281,
+        "path_length": 1.2532943341278588,
+        "execution_time": 1.2400000000000009,
+        "unintended_contact_count": 0,
+        "out_of_bounds": false,
+        "stable": true
+      }
+    },
+    {
+      "plan": {
+        "plan_id": "balanced",
+        "force_newtons": 4.0,
+        "force_steps": 120,
+        "settle_steps": 500,
+        "rationale": "Moderate force and duration for a balanced transfer."
+      },
+      "initial_position": [
+        -0.6447995666287298,
+        -0.3120163194640173
+      ],
+      "target_position": [
+        0.55,
+        0.25
+      ],
+      "final_position": [
+        0.48929317829922425,
+        0.22144439498342172
+      ],
+      "evaluation": {
+        "success": true,
+        "score": 92.89903330486933,
+        "final_distance": 0.06708756053749915,
+        "path_length": 1.2532943341278593,
+        "execution_time": 1.2400000000000009,
+        "unintended_contact_count": 0,
+        "out_of_bounds": false,
+        "stable": true
+      }
+    },
+    {
+      "plan": {
+        "plan_id": "balanced",
+        "force_newtons": 4.0,
+        "force_steps": 120,
+        "settle_steps": 500,
+        "rationale": "Moderate force and duration for a balanced transfer."
+      },
+      "initial_position": [
+        -0.5519823026175588,
+        -0.2576142225546795
+      ],
+      "target_position": [
+        0.55,
+        0.25
+      ],
+      "final_position": [
+        0.5863480196891542,
+        0.2667432559598162
+      ],
+      "evaluation": {
+        "success": true,
+        "score": 94.25246458366536,
+        "final_distance": 0.04001893496157858,
+        "path_length": 1.2532943341278557,
+        "execution_time": 1.2400000000000009,
+        "unintended_contact_count": 0,
+        "out_of_bounds": false,
+        "stable": true
+      }
+    },
+    {
+      "plan": {
+        "plan_id": "balanced",
+        "force_newtons": 4.0,
+        "force_steps": 120,
+        "settle_steps": 500,
+        "rationale": "Moderate force and duration for a balanced transfer."
+      },
+      "initial_position": [
+        -0.48604908598408114,
+        -0.2917609807491929
+      ],
+      "target_position": [
+        0.55,
+        0.25
+      ],
+      "final_position": [
+        0.6245686701231705,
+        0.28899274310996537
+      ],
+      "evaluation": {
+        "success": true,
+        "score": 92.04600102991432,
+        "final_distance": 0.08414820603659931,
+        "path_length": 1.2532943341278555,
+        "execution_time": 1.2400000000000009,
+        "unintended_contact_count": 0,
+        "out_of_bounds": false,
+        "stable": true
+      }
+    },
+    {
+      "plan": {
+        "plan_id": "balanced",
+        "force_newtons": 4.0,
+        "force_steps": 120,
+        "settle_steps": 500,
+        "rationale": "Moderate force and duration for a balanced transfer."
+      },
+      "initial_position": [
+        -0.41277652470465975,
+        -0.2570440301742362
+      ],
+      "target_position": [
+        0.55,
+        0.25
+      ],
+      "final_position": [
+        0.6961347431732674,
+        0.32696152453424177
+      ],
+      "evaluation": {
+        "success": false,
+        "score": -12.004681580809967,
+        "final_distance": 0.16516185825108504,
+        "path_length": 1.253294334127857,
+        "execution_time": 1.2400000000000009,
+        "unintended_contact_count": 0,
+        "out_of_bounds": false,
+        "stable": true
+      }
+    },
+    {
+      "plan": {
+        "plan_id": "balanced",
+        "force_newtons": 4.0,
+        "force_steps": 120,
+        "settle_steps": 500,
+        "rationale": "Moderate force and duration for a balanced transfer."
+      },
+      "initial_position": [
+        -0.6360742961182884,
+        -0.10750125202481006
+      ],
+      "target_position": [
+        0.55,
+        0.25
+      ],
+      "final_position": [
+        0.563895435018096,
+        0.2541883003726303
+      ],
+      "evaluation": {
+        "success": true,
+        "score": 95.527765112238,
+        "final_distance": 0.014512924390125621,
+        "path_length": 1.253294334127857,
+        "execution_time": 1.2400000000000009,
+        "unintended_contact_count": 0,
+        "out_of_bounds": false,
+        "stable": true
+      }
+    },
+    {
+      "plan": {
+        "plan_id": "balanced",
+        "force_newtons": 4.0,
+        "force_steps": 120,
+        "settle_steps": 500,
+        "rationale": "Moderate force and duration for a balanced transfer."
+      },
+      "initial_position": [
+        -0.6785205646098587,
+        -0.2051633463032459
+      ],
+      "target_position": [
+        0.55,
+        0.25
+      ],
+      "final_position": [
+        0.496706116814547,
+        0.23025476910442394
+      ],
+      "evaluation": {
+        "success": true,
+        "score": 93.41170756107064,
+        "final_distance": 0.0568340754134729,
+        "path_length": 1.2532943341278586,
+        "execution_time": 1.2400000000000009,
+        "unintended_contact_count": 0,
+        "out_of_bounds": false,
+        "stable": true
+      }
+    },
+    {
+      "plan": {
+        "plan_id": "balanced",
+        "force_newtons": 4.0,
+        "force_steps": 120,
+        "settle_steps": 500,
+        "rationale": "Moderate force and duration for a balanced transfer."
+      },
+      "initial_position": [
+        -0.6498141946310761,
+        -0.2801481781798376
+      ],
+      "target_position": [
+        0.55,
+        0.25
+      ],
+      "final_position": [
+        0.49655814908590434,
+        0.22638626044978605
+      ],
+      "evaluation": {
+        "success": true,
+        "score": 93.33209308278981,
+        "final_distance": 0.05842636497908945,
+        "path_length": 1.2532943341278582,
+        "execution_time": 1.2400000000000009,
+        "unintended_contact_count": 0,
+        "out_of_bounds": false,
+        "stable": true
+      }
+    },
+    {
+      "plan": {
+        "plan_id": "balanced",
+        "force_newtons": 4.0,
+        "force_steps": 120,
+        "settle_steps": 500,
+        "rationale": "Moderate force and duration for a balanced transfer."
+      },
+      "initial_position": [
+        -0.4726328528259418,
+        -0.1806174098597282
+      ],
+      "target_position": [
+        0.55,
+        0.25
+      ],
+      "final_position": [
+        0.6824333387286827,
+        0.305765958569421
+      ],
+      "evaluation": {
+        "success": false,
+        "score": -10.931369691709452,
+        "final_distance": 0.14369562046907478,
+        "path_length": 1.2532943341278566,
+        "execution_time": 1.2400000000000009,
+        "unintended_contact_count": 0,
+        "out_of_bounds": false,
+        "stable": true
+      }
+    },
+    {
+      "plan": {
+        "plan_id": "balanced",
+        "force_newtons": 4.0,
+        "force_steps": 120,
+        "settle_steps": 500,
+        "rationale": "Moderate force and duration for a balanced transfer."
+      },
+      "initial_position": [
+        -0.4402734418936277,
+        -0.1529918290101378
+      ],
+      "target_position": [
+        0.55,
+        0.25
+      ],
+      "final_position": [
+        0.7205782863565446,
+        0.31941684256097
+      ],
+      "evaluation": {
+        "success": false,
+        "score": -12.954689694997038,
+        "final_distance": 0.18416202053482641,
+        "path_length": 1.2532943341278586,
+        "execution_time": 1.2400000000000009,
+        "unintended_contact_count": 0,
+        "out_of_bounds": false,
+        "stable": true
+      }
+    },
+    {
+      "plan": {
+        "plan_id": "balanced",
+        "force_newtons": 4.0,
+        "force_steps": 120,
+        "settle_steps": 500,
+        "rationale": "Moderate force and duration for a balanced transfer."
+      },
+      "initial_position": [
+        -0.5862017486246863,
+        -0.218767634434976
+      ],
+      "target_position": [
+        0.55,
+        0.25
+      ],
+      "final_position": [
+        0.5723615673325755,
+        0.2592258078580133
+      ],
+      "evaluation": {
+        "success": true,
+        "score": 95.04391223686835,
+        "final_distance": 0.024189981897518753,
+        "path_length": 1.2532943341278573,
+        "execution_time": 1.2400000000000009,
+        "unintended_contact_count": 0,
+        "out_of_bounds": false,
+        "stable": true
+      }
+    },
+    {
+      "plan": {
+        "plan_id": "balanced",
+        "force_newtons": 4.0,
+        "force_steps": 120,
+        "settle_steps": 500,
+        "rationale": "Moderate force and duration for a balanced transfer."
+      },
+      "initial_position": [
+        -0.6849856512697485,
+        -0.16794120269585963
+      ],
+      "target_position": [
+        0.55,
+        0.25
+      ],
+      "final_position": [
+        0.5021705016978122,
+        0.23381364348306177
+      ],
+      "evaluation": {
+        "success": true,
+        "score": 93.72870390060875,
+        "final_distance": 0.05049414862271093,
+        "path_length": 1.2532943341278564,
+        "execution_time": 1.2400000000000009,
+        "unintended_contact_count": 0,
+        "out_of_bounds": false,
+        "stable": true
+      }
+    },
+    {
+      "plan": {
+        "plan_id": "balanced",
+        "force_newtons": 4.0,
+        "force_steps": 120,
+        "settle_steps": 500,
+        "rationale": "Moderate force and duration for a balanced transfer."
+      },
+      "initial_position": [
+        -0.6288180083326916,
+        -0.12440792108973012
+      ],
+      "target_position": [
+        0.55,
+        0.25
+      ],
+      "final_position": [
+        0.5656746277381082,
+        0.25497846550001446
+      ],
+      "evaluation": {
+        "success": true,
+        "score": 95.43109893146216,
+        "final_distance": 0.01644624800564259,
+        "path_length": 1.2532943341278577,
+        "execution_time": 1.2400000000000009,
+        "unintended_contact_count": 0,
+        "out_of_bounds": false,
+        "stable": true
+      }
+    },
+    {
+      "plan": {
+        "plan_id": "balanced",
+        "force_newtons": 4.0,
+        "force_steps": 120,
+        "settle_steps": 500,
+        "rationale": "Moderate force and duration for a balanced transfer."
+      },
+      "initial_position": [
+        -0.5591115637241258,
+        -0.11679054126280194
+      ],
+      "target_position": [
+        0.55,
+        0.25
+      ],
+      "final_position": [
+        0.6308021781012945,
+        0.27672181555971886
+      ],
+      "evaluation": {
+        "success": true,
+        "score": 91.99810657981378,
+        "final_distance": 0.08510609503861011,
+        "path_length": 1.2532943341278562,
+        "execution_time": 1.2400000000000009,
+        "unintended_contact_count": 0,
+        "out_of_bounds": false,
+        "stable": true
+      }
+    },
+    {
+      "plan": {
+        "plan_id": "balanced",
+        "force_newtons": 4.0,
+        "force_steps": 120,
+        "settle_steps": 500,
+        "rationale": "Moderate force and duration for a balanced transfer."
+      },
+      "initial_position": [
+        -0.4804999578604476,
+        -0.21720478964107454
+      ],
+      "target_position": [
+        0.55,
+        0.25
+      ],
+      "final_position": [
+        0.6609591713670668,
+        0.30030631580512757
+      ],
+      "evaluation": {
+        "success": true,
+        "score": 90.16188789331952,
+        "final_distance": 0.12183046876849535,
+        "path_length": 1.2532943341278557,
+        "execution_time": 1.2400000000000009,
+        "unintended_contact_count": 0,
+        "out_of_bounds": false,
+        "stable": true
+      }
+    },
+    {
+      "plan": {
+        "plan_id": "balanced",
+        "force_newtons": 4.0,
+        "force_steps": 120,
+        "settle_steps": 500,
+        "rationale": "Moderate force and duration for a balanced transfer."
+      },
+      "initial_position": [
+        -0.43396442040163596,
+        -0.3862501061538447
+      ],
+      "target_position": [
+        0.55,
+        0.25
+      ],
+      "final_position": [
+        0.6184751639271713,
+        0.29427734317850696
+      ],
+      "evaluation": {
+        "success": true,
+        "score": 92.17623976502054,
+        "final_distance": 0.08154343133447506,
+        "path_length": 1.2532943341278582,
+        "execution_time": 1.2400000000000009,
+        "unintended_contact_count": 0,
+        "out_of_bounds": false,
+        "stable": true
+      }
+    },
+    {
+      "plan": {
+        "plan_id": "balanced",
+        "force_newtons": 4.0,
+        "force_steps": 120,
+        "settle_steps": 500,
+        "rationale": "Moderate force and duration for a balanced transfer."
+      },
+      "initial_position": [
+        -0.42018473807992485,
+        -0.3198444902136405
+      ],
+      "target_position": [
+        0.55,
+        0.25
+      ],
+      "final_position": [
+        0.6604872439815319,
+        0.3148954212023276
+      ],
+      "evaluation": {
+        "success": true,
+        "score": 89.84660893591881,
+        "final_distance": 0.12813604791650968,
+        "path_length": 1.2532943341278562,
+        "execution_time": 1.2400000000000009,
+        "unintended_contact_count": 0,
+        "out_of_bounds": false,
+        "stable": true
+      }
+    },
+    {
+      "plan": {
+        "plan_id": "balanced",
+        "force_newtons": 4.0,
+        "force_steps": 120,
+        "settle_steps": 500,
+        "rationale": "Moderate force and duration for a balanced transfer."
+      },
+      "initial_position": [
+        -0.6798830031088301,
+        -0.3305524264307557
+      ],
+      "target_position": [
+        0.55,
+        0.25
+      ],
+      "final_position": [
+        0.45348698345265337,
+        0.20444211701675602
+      ],
+      "evaluation": {
+        "success": true,
+        "score": 90.91714787662343,
+        "final_distance": 0.10672526910241718,
+        "path_length": 1.2532943341278586,
+        "execution_time": 1.2400000000000009,
+        "unintended_contact_count": 0,
+        "out_of_bounds": false,
+        "stable": true
+      }
+    },
+    {
+      "plan": {
+        "plan_id": "balanced",
+        "force_newtons": 4.0,
+        "force_steps": 120,
+        "settle_steps": 500,
+        "rationale": "Moderate force and duration for a balanced transfer."
+      },
+      "initial_position": [
+        -0.5261486410741877,
+        -0.2847839310804848
+      ],
+      "target_position": [
+        0.55,
+        0.25
+      ],
+      "final_position": [
+        0.596201188947215,
+        0.2729593315484018
+      ],
+      "evaluation": {
+        "success": true,
+        "score": 93.67383735272873,
+        "final_distance": 0.05159147958031144,
+        "path_length": 1.253294334127854,
+        "execution_time": 1.2400000000000009,
+        "unintended_contact_count": 0,
+        "out_of_bounds": false,
+        "stable": true
+      }
+    },
+    {
+      "plan": {
+        "plan_id": "balanced",
+        "force_newtons": 4.0,
+        "force_steps": 120,
+        "settle_steps": 500,
+        "rationale": "Moderate force and duration for a balanced transfer."
+      },
+      "initial_position": [
+        -0.6795680043477588,
+        -0.20216030917756717
+      ],
+      "target_position": [
+        0.55,
+        0.25
+      ],
+      "final_position": [
+        0.4967120864523751,
+        0.23040394725633512
+      ],
+      "evaluation": {
+        "success": true,
+        "score": 93.41457045323787,
+        "final_distance": 0.056776817570128466,
+        "path_length": 1.253294334127857,
+        "execution_time": 1.2400000000000009,
+        "unintended_contact_count": 0,
+        "out_of_bounds": false,
+        "stable": true
+      }
+    },
+    {
+      "plan": {
+        "plan_id": "balanced",
+        "force_newtons": 4.0,
+        "force_steps": 120,
+        "settle_steps": 500,
+        "rationale": "Moderate force and duration for a balanced transfer."
+      },
+      "initial_position": [
+        -0.5606062519757262,
+        -0.3217144745602843
+      ],
+      "target_position": [
+        0.55,
+        0.25
+      ],
+      "final_position": [
+        0.5537104059553608,
+        0.2519100313791688
+      ],
+      "evaluation": {
+        "success": true,
+        "score": 96.04475292535369,
+        "final_distance": 0.004173168127812014,
+        "path_length": 1.2532943341278575,
+        "execution_time": 1.2400000000000009,
+        "unintended_contact_count": 0,
+        "out_of_bounds": false,
+        "stable": true
+      }
+    },
+    {
+      "plan": {
+        "plan_id": "balanced",
+        "force_newtons": 4.0,
+        "force_steps": 120,
+        "settle_steps": 500,
+        "rationale": "Moderate force and duration for a balanced transfer."
+      },
+      "initial_position": [
+        -0.4084397407401307,
+        -0.15103639292778892
+      ],
+      "target_position": [
+        0.55,
+        0.25
+      ],
+      "final_position": [
+        0.7477237582233185,
+        0.332732820253022
+      ],
+      "evaluation": {
+        "success": false,
+        "score": -14.463328390877994,
+        "final_distance": 0.21433479445244566,
+        "path_length": 1.2532943341278553,
+        "execution_time": 1.2400000000000009,
+        "unintended_contact_count": 0,
+        "out_of_bounds": false,
+        "stable": true
+      }
+    },
+    {
+      "plan": {
+        "plan_id": "balanced",
+        "force_newtons": 4.0,
+        "force_steps": 120,
+        "settle_steps": 500,
+        "rationale": "Moderate force and duration for a balanced transfer."
+      },
+      "initial_position": [
+        -0.41976869847767295,
+        -0.245058025341233
+      ],
+      "target_position": [
+        0.55,
+        0.25
+      ],
+      "final_position": [
+        0.6964884998053542,
+        0.32478103548060433
+      ],
+      "evaluation": {
+        "success": false,
+        "score": -11.970195517256741,
+        "final_distance": 0.16447213698002058,
+        "path_length": 1.2532943341278557,
+        "execution_time": 1.2400000000000009,
+        "unintended_contact_count": 0,
+        "out_of_bounds": false,
+        "stable": true
+      }
+    }
+  ],
+  "feedback_rollouts": [
+    {
+      "plan": {
+        "plan_id": "pd_feedback",
+        "kp": 18.0,
+        "kd": 5.0,
+        "max_force_newtons": 8.0,
+        "control_steps": 700,
+        "settle_steps": 300,
+        "rationale": "Closed-loop PD force corrects position and velocity every step."
+      },
+      "initial_position": [
+        -0.5222249788666402,
+        -0.32601114326643443
+      ],
+      "target_position": [
+        0.55,
+        0.25
+      ],
+      "final_position": [
+        0.5159174306306764,
+        0.23169046596113335
+      ],
+      "evaluation": {
+        "success": true,
+        "score": 93.32287648034107,
+        "final_distance": 0.038689282385890464,
+        "path_length": 1.371329700182208,
+        "execution_time": 2.0000000000000013,
+        "unintended_contact_count": 0,
+        "out_of_bounds": false,
+        "stable": true
+      }
+    },
+    {
+      "plan": {
+        "plan_id": "pd_feedback",
+        "kp": 18.0,
+        "kd": 5.0,
+        "max_force_newtons": 8.0,
+        "control_steps": 700,
+        "settle_steps": 300,
+        "rationale": "Closed-loop PD force corrects position and velocity every step."
+      },
+      "initial_position": [
+        -0.6513906479759779,
+        -0.14266172064442736
+      ],
+      "target_position": [
+        0.55,
+        0.25
+      ],
+      "final_position": [
+        0.5116049913280969,
+        0.2374510008924518
+      ],
+      "evaluation": {
+        "success": true,
+        "score": 93.1331854591742,
+        "final_distance": 0.04039373799881318,
+        "path_length": 1.4235638204425696,
+        "execution_time": 2.0000000000000013,
+        "unintended_contact_count": 0,
+        "out_of_bounds": false,
+        "stable": true
+      }
+    },
+    {
+      "plan": {
+        "plan_id": "pd_feedback",
+        "kp": 18.0,
+        "kd": 5.0,
+        "max_force_newtons": 8.0,
+        "control_steps": 700,
+        "settle_steps": 300,
+        "rationale": "Closed-loop PD force corrects position and velocity every step."
+      },
+      "initial_position": [
+        -0.5853232752261333,
+        -0.3817113720368447
+      ],
+      "target_position": [
+        0.55,
+        0.25
+      ],
+      "final_position": [
+        0.5135861275414293,
+        0.22973876002198929
+      ],
+      "evaluation": {
+        "success": true,
+        "score": 92.99056284810871,
+        "final_distance": 0.04167118852247434,
+        "path_length": 1.4629388628837858,
+        "execution_time": 2.0000000000000013,
+        "unintended_contact_count": 0,
+        "out_of_bounds": false,
+        "stable": true
+      }
+    },
+    {
+      "plan": {
+        "plan_id": "pd_feedback",
+        "kp": 18.0,
+        "kd": 5.0,
+        "max_force_newtons": 8.0,
+        "control_steps": 700,
+        "settle_steps": 300,
+        "rationale": "Closed-loop PD force corrects position and velocity every step."
+      },
+      "initial_position": [
+        -0.6374024080418517,
+        -0.13812372330829706
+      ],
+      "target_position": [
+        0.55,
+        0.25
+      ],
+      "final_position": [
+        0.5121134007213706,
+        0.23761608711931093
+      ],
+      "evaluation": {
+        "success": true,
+        "score": 93.19273852672552,
+        "final_distance": 0.03985919847583421,
+        "path_length": 1.4071507747413852,
+        "execution_time": 2.0000000000000013,
+        "unintended_contact_count": 0,
+        "out_of_bounds": false,
+        "stable": true
+      }
+    },
+    {
+      "plan": {
+        "plan_id": "pd_feedback",
+        "kp": 18.0,
+        "kd": 5.0,
+        "max_force_newtons": 8.0,
+        "control_steps": 700,
+        "settle_steps": 300,
+        "rationale": "Closed-loop PD force corrects position and velocity every step."
+      },
+      "initial_position": [
+        -0.46574436961901144,
+        -0.16470274053679843
+      ],
+      "target_position": [
+        0.55,
+        0.25
+      ],
+      "final_position": [
+        0.5182600969374771,
+        0.23704140020058545
+      ],
+      "evaluation": {
+        "success": true,
+        "score": 93.81174378146973,
+        "final_distance": 0.03428333057303126,
+        "path_length": 1.2370448449393556,
+        "execution_time": 2.0000000000000013,
+        "unintended_contact_count": 0,
+        "out_of_bounds": false,
+        "stable": true
+      }
+    },
+    {
+      "plan": {
+        "plan_id": "pd_feedback",
+        "kp": 18.0,
+        "kd": 5.0,
+        "max_force_newtons": 8.0,
+        "control_steps": 700,
+        "settle_steps": 300,
+        "rationale": "Closed-loop PD force corrects position and velocity every step."
+      },
+      "initial_position": [
+        -0.4960254926616774,
+        -0.3327432810191293
+      ],
+      "target_position": [
+        0.55,
+        0.25
+      ],
+      "final_position": [
+        0.5168331342914594,
+        0.23152266050903103
+      ],
+      "evaluation": {
+        "success": true,
+        "score": 93.40316608972061,
+        "final_distance": 0.037966472783139756,
+        "path_length": 1.349255135561198,
+        "execution_time": 2.0000000000000013,
+        "unintended_contact_count": 0,
+        "out_of_bounds": false,
+        "stable": true
+      }
+    },
+    {
+      "plan": {
+        "plan_id": "pd_feedback",
+        "kp": 18.0,
+        "kd": 5.0,
+        "max_force_newtons": 8.0,
+        "control_steps": 700,
+        "settle_steps": 300,
+        "rationale": "Closed-loop PD force corrects position and velocity every step."
+      },
+      "initial_position": [
+        -0.5103837315031874,
+        -0.3461360249397961
+      ],
+      "target_position": [
+        0.55,
+        0.25
+      ],
+      "final_position": [
+        0.5162966607059325,
+        0.23105235480604602
+      ],
+      "evaluation": {
+        "success": true,
+        "score": 93.32565299690522,
+        "final_distance": 0.038664303148602135,
+        "path_length": 1.3705659228323361,
+        "execution_time": 2.0000000000000013,
+        "unintended_contact_count": 0,
+        "out_of_bounds": false,
+        "stable": true
+      }
+    },
+    {
+      "plan": {
+        "plan_id": "pd_feedback",
+        "kp": 18.0,
+        "kd": 5.0,
+        "max_force_newtons": 8.0,
+        "control_steps": 700,
+        "settle_steps": 300,
+        "rationale": "Closed-loop PD force corrects position and velocity every step."
+      },
+      "initial_position": [
+        -0.6404287285714874,
+        -0.10674825854281703
+      ],
+      "target_position": [
+        0.55,
+        0.25
+      ],
+      "final_position": [
+        0.5120447731423912,
+        0.23862555921319428
+      ],
+      "evaluation": {
+        "success": true,
+        "score": 93.21904419553411,
+        "final_distance": 0.039622937157978384,
+        "path_length": 1.399904473283488,
+        "execution_time": 2.0000000000000013,
+        "unintended_contact_count": 0,
+        "out_of_bounds": false,
+        "stable": true
+      }
+    },
+    {
+      "plan": {
+        "plan_id": "pd_feedback",
+        "kp": 18.0,
+        "kd": 5.0,
+        "max_force_newtons": 8.0,
+        "control_steps": 700,
+        "settle_steps": 300,
+        "rationale": "Closed-loop PD force corrects position and velocity every step."
+      },
+      "initial_position": [
+        -0.6447995666287298,
+        -0.3120163194640173
+      ],
+      "target_position": [
+        0.55,
+        0.25
+      ],
+      "final_position": [
+        0.5116039510676906,
+        0.23193905764145373
+      ],
+      "evaluation": {
+        "success": true,
+        "score": 92.90540413053792,
+        "final_distance": 0.0424317594790863,
+        "path_length": 1.4865039477538815,
+        "execution_time": 2.0000000000000013,
+        "unintended_contact_count": 0,
+        "out_of_bounds": false,
+        "stable": true
+      }
+    },
+    {
+      "plan": {
+        "plan_id": "pd_feedback",
+        "kp": 18.0,
+        "kd": 5.0,
+        "max_force_newtons": 8.0,
+        "control_steps": 700,
+        "settle_steps": 300,
+        "rationale": "Closed-loop PD force corrects position and velocity every step."
+      },
+      "initial_position": [
+        -0.5519823026175588,
+        -0.2576142225546795
+      ],
+      "target_position": [
+        0.55,
+        0.25
+      ],
+      "final_position": [
+        0.5149883073169454,
+        0.23387230618911398
+      ],
+      "evaluation": {
+        "success": true,
+        "score": 93.33861555723429,
+        "final_distance": 0.03854764755715127,
+        "path_length": 1.3670010324540678,
+        "execution_time": 2.0000000000000013,
+        "unintended_contact_count": 0,
+        "out_of_bounds": false,
+        "stable": true
+      }
+    },
+    {
+      "plan": {
+        "plan_id": "pd_feedback",
+        "kp": 18.0,
+        "kd": 5.0,
+        "max_force_newtons": 8.0,
+        "control_steps": 700,
+        "settle_steps": 300,
+        "rationale": "Closed-loop PD force corrects position and velocity every step."
+      },
+      "initial_position": [
+        -0.48604908598408114,
+        -0.2917609807491929
+      ],
+      "target_position": [
+        0.55,
+        0.25
+      ],
+      "final_position": [
+        0.5172737789149675,
+        0.232887114258297
+      ],
+      "evaluation": {
+        "success": true,
+        "score": 93.51814923480002,
+        "final_distance": 0.03693042654661614,
+        "path_length": 1.3176647189345854,
+        "execution_time": 2.0000000000000013,
+        "unintended_contact_count": 0,
+        "out_of_bounds": false,
+        "stable": true
+      }
+    },
+    {
+      "plan": {
+        "plan_id": "pd_feedback",
+        "kp": 18.0,
+        "kd": 5.0,
+        "max_force_newtons": 8.0,
+        "control_steps": 700,
+        "settle_steps": 300,
+        "rationale": "Closed-loop PD force corrects position and velocity every step."
+      },
+      "initial_position": [
+        -0.41277652470465975,
+        -0.2570440301742362
+      ],
+      "target_position": [
+        0.55,
+        0.25
+      ],
+      "final_position": [
+        0.5199592615267687,
+        0.23417911455667328
+      ],
+      "evaluation": {
+        "success": true,
+        "score": 93.84849426717241,
+        "final_distance": 0.033952118994665804,
+        "path_length": 1.2269498915471477,
+        "execution_time": 2.0000000000000013,
+        "unintended_contact_count": 0,
+        "out_of_bounds": false,
+        "stable": true
+      }
+    },
+    {
+      "plan": {
+        "plan_id": "pd_feedback",
+        "kp": 18.0,
+        "kd": 5.0,
+        "max_force_newtons": 8.0,
+        "control_steps": 700,
+        "settle_steps": 300,
+        "rationale": "Closed-loop PD force corrects position and velocity every step."
+      },
+      "initial_position": [
+        -0.6360742961182884,
+        -0.10750125202481006
+      ],
+      "target_position": [
+        0.55,
+        0.25
+      ],
+      "final_position": [
+        0.5122009008573121,
+        0.23860676324143698
+      ],
+      "evaluation": {
+        "success": true,
+        "score": 93.23507805197625,
+        "final_distance": 0.03947882647490204,
+        "path_length": 1.3954903121393223,
+        "execution_time": 2.0000000000000013,
+        "unintended_contact_count": 0,
+        "out_of_bounds": false,
+        "stable": true
+      }
+    },
+    {
+      "plan": {
+        "plan_id": "pd_feedback",
+        "kp": 18.0,
+        "kd": 5.0,
+        "max_force_newtons": 8.0,
+        "control_steps": 700,
+        "settle_steps": 300,
+        "rationale": "Closed-loop PD force corrects position and velocity every step."
+      },
+      "initial_position": [
+        -0.6785205646098587,
+        -0.2051633463032459
+      ],
+      "target_position": [
+        0.55,
+        0.25
+      ],
+      "final_position": [
+        0.5105567254992951,
+        0.2353863799043518
+      ],
+      "evaluation": {
+        "success": true,
+        "score": 92.9466727772514,
+        "final_distance": 0.042063402093005915,
+        "path_length": 1.4750785590491529,
+        "execution_time": 2.0000000000000013,
+        "unintended_contact_count": 0,
+        "out_of_bounds": false,
+        "stable": true
+      }
+    },
+    {
+      "plan": {
+        "plan_id": "pd_feedback",
+        "kp": 18.0,
+        "kd": 5.0,
+        "max_force_newtons": 8.0,
+        "control_steps": 700,
+        "settle_steps": 300,
+        "rationale": "Closed-loop PD force corrects position and velocity every step."
+      },
+      "initial_position": [
+        -0.6498141946310761,
+        -0.2801481781798376
+      ],
+      "target_position": [
+        0.55,
+        0.25
+      ],
+      "final_position": [
+        0.5114727182366807,
+        0.2329763905707704
+      ],
+      "evaluation": {
+        "success": true,
+        "score": 92.94025800762181,
+        "final_distance": 0.04212071602037591,
+        "path_length": 1.4768530956797006,
+        "execution_time": 2.0000000000000013,
+        "unintended_contact_count": 0,
+        "out_of_bounds": false,
+        "stable": true
+      }
+    },
+    {
+      "plan": {
+        "plan_id": "pd_feedback",
+        "kp": 18.0,
+        "kd": 5.0,
+        "max_force_newtons": 8.0,
+        "control_steps": 700,
+        "settle_steps": 300,
+        "rationale": "Closed-loop PD force corrects position and velocity every step."
+      },
+      "initial_position": [
+        -0.4726328528259418,
+        -0.1806174098597282
+      ],
+      "target_position": [
+        0.55,
+        0.25
+      ],
+      "final_position": [
+        0.5179813394066286,
+        0.23651735796107592
+      ],
+      "evaluation": {
+        "success": true,
+        "score": 93.76091170721658,
+        "final_distance": 0.034741563904684546,
+        "path_length": 1.2510050487745963,
+        "execution_time": 2.0000000000000013,
+        "unintended_contact_count": 0,
+        "out_of_bounds": false,
+        "stable": true
+      }
+    },
+    {
+      "plan": {
+        "plan_id": "pd_feedback",
+        "kp": 18.0,
+        "kd": 5.0,
+        "max_force_newtons": 8.0,
+        "control_steps": 700,
+        "settle_steps": 300,
+        "rationale": "Closed-loop PD force corrects position and velocity every step."
+      },
+      "initial_position": [
+        -0.4402734418936277,
+        -0.1529918290101378
+      ],
+      "target_position": [
+        0.55,
+        0.25
+      ],
+      "final_position": [
+        0.5191990629996619,
+        0.23746555707557176
+      ],
+      "evaluation": {
+        "success": true,
+        "score": 93.92601407836854,
+        "final_distance": 0.03325372128836934,
+        "path_length": 1.2056499286064977,
+        "execution_time": 2.0000000000000013,
+        "unintended_contact_count": 0,
+        "out_of_bounds": false,
+        "stable": true
+      }
+    },
+    {
+      "plan": {
+        "plan_id": "pd_feedback",
+        "kp": 18.0,
+        "kd": 5.0,
+        "max_force_newtons": 8.0,
+        "control_steps": 700,
+        "settle_steps": 300,
+        "rationale": "Closed-loop PD force corrects position and velocity every step."
+      },
+      "initial_position": [
+        -0.5862017486246863,
+        -0.218767634434976
+      ],
+      "target_position": [
+        0.55,
+        0.25
+      ],
+      "final_position": [
+        0.5138314690784413,
+        0.23507779388510008
+      ],
+      "evaluation": {
+        "success": true,
+        "score": 93.27434079890838,
+        "final_distance": 0.03912588483803662,
+        "path_length": 1.3846824795948933,
+        "execution_time": 2.0000000000000013,
+        "unintended_contact_count": 0,
+        "out_of_bounds": false,
+        "stable": true
+      }
+    },
+    {
+      "plan": {
+        "plan_id": "pd_feedback",
+        "kp": 18.0,
+        "kd": 5.0,
+        "max_force_newtons": 8.0,
+        "control_steps": 700,
+        "settle_steps": 300,
+        "rationale": "Closed-loop PD force corrects position and velocity every step."
+      },
+      "initial_position": [
+        -0.6849856512697485,
+        -0.16794120269585963
+      ],
+      "target_position": [
+        0.55,
+        0.25
+      ],
+      "final_position": [
+        0.510372506258638,
+        0.2365893483239585
+      ],
+      "evaluation": {
+        "success": true,
+        "score": 92.97221409254331,
+        "final_distance": 0.04183519856051608,
+        "path_length": 1.468012989715439,
+        "execution_time": 2.0000000000000013,
+        "unintended_contact_count": 0,
+        "out_of_bounds": false,
+        "stable": true
+      }
+    },
+    {
+      "plan": {
+        "plan_id": "pd_feedback",
+        "kp": 18.0,
+        "kd": 5.0,
+        "max_force_newtons": 8.0,
+        "control_steps": 700,
+        "settle_steps": 300,
+        "rationale": "Closed-loop PD force corrects position and velocity every step."
+      },
+      "initial_position": [
+        -0.6288180083326916,
+        -0.12440792108973012
+      ],
+      "target_position": [
+        0.55,
+        0.25
+      ],
+      "final_position": [
+        0.5124405967946721,
+        0.23807064536503963
+      ],
+      "evaluation": {
+        "success": true,
+        "score": 93.24291900180805,
+        "final_distance": 0.0394083528093607,
+        "path_length": 1.3933316788619607,
+        "execution_time": 2.0000000000000013,
+        "unintended_contact_count": 0,
+        "out_of_bounds": false,
+        "stable": true
+      }
+    },
+    {
+      "plan": {
+        "plan_id": "pd_feedback",
+        "kp": 18.0,
+        "kd": 5.0,
+        "max_force_newtons": 8.0,
+        "control_steps": 700,
+        "settle_steps": 300,
+        "rationale": "Closed-loop PD force corrects position and velocity every step."
+      },
+      "initial_position": [
+        -0.5591115637241258,
+        -0.11679054126280194
+      ],
+      "target_position": [
+        0.55,
+        0.25
+      ],
+      "final_position": [
+        0.5149705734122039,
+        0.23841553658035913
+      ],
+      "evaluation": {
+        "success": true,
+        "score": 93.52204986314342,
+        "final_distance": 0.03689526419190949,
+        "path_length": 1.3165934636305558,
+        "execution_time": 2.0000000000000013,
+        "unintended_contact_count": 0,
+        "out_of_bounds": false,
+        "stable": true
+      }
+    },
+    {
+      "plan": {
+        "plan_id": "pd_feedback",
+        "kp": 18.0,
+        "kd": 5.0,
+        "max_force_newtons": 8.0,
+        "control_steps": 700,
+        "settle_steps": 300,
+        "rationale": "Closed-loop PD force corrects position and velocity every step."
+      },
+      "initial_position": [
+        -0.4804999578604476,
+        -0.21720478964107454
+      ],
+      "target_position": [
+        0.55,
+        0.25
+      ],
+      "final_position": [
+        0.5176261347858631,
+        0.23532244007205716
+      ],
+      "evaluation": {
+        "success": true,
+        "score": 93.67173071116646,
+        "final_distance": 0.03554571583667239,
+        "path_length": 1.2754917484999595,
+        "execution_time": 2.0000000000000013,
+        "unintended_contact_count": 0,
+        "out_of_bounds": false,
+        "stable": true
+      }
+    },
+    {
+      "plan": {
+        "plan_id": "pd_feedback",
+        "kp": 18.0,
+        "kd": 5.0,
+        "max_force_newtons": 8.0,
+        "control_steps": 700,
+        "settle_steps": 300,
+        "rationale": "Closed-loop PD force corrects position and velocity every step."
+      },
+      "initial_position": [
+        -0.43396442040163596,
+        -0.3862501061538447
+      ],
+      "target_position": [
+        0.55,
+        0.25
+      ],
+      "final_position": [
+        0.5189078037678343,
+        0.22989519464006997
+      ],
+      "evaluation": {
+        "success": true,
+        "score": 93.50754230851763,
+        "final_distance": 0.03702604306566087,
+        "path_length": 1.3205777690996674,
+        "execution_time": 2.0000000000000013,
+        "unintended_contact_count": 0,
+        "out_of_bounds": false,
+        "stable": true
+      }
+    },
+    {
+      "plan": {
+        "plan_id": "pd_feedback",
+        "kp": 18.0,
+        "kd": 5.0,
+        "max_force_newtons": 8.0,
+        "control_steps": 700,
+        "settle_steps": 300,
+        "rationale": "Closed-loop PD force corrects position and velocity every step."
+      },
+      "initial_position": [
+        -0.42018473807992485,
+        -0.3198444902136405
+      ],
+      "target_position": [
+        0.55,
+        0.25
+      ],
+      "final_position": [
+        0.5195501150304114,
+        0.23211505654902392
+      ],
+      "evaluation": {
+        "success": true,
+        "score": 93.6974442981718,
+        "final_distance": 0.03531383152400478,
+        "path_length": 1.2684320628139765,
+        "execution_time": 2.0000000000000013,
+        "unintended_contact_count": 0,
+        "out_of_bounds": false,
+        "stable": true
+      }
+    },
+    {
+      "plan": {
+        "plan_id": "pd_feedback",
+        "kp": 18.0,
+        "kd": 5.0,
+        "max_force_newtons": 8.0,
+        "control_steps": 700,
+        "settle_steps": 300,
+        "rationale": "Closed-loop PD force corrects position and velocity every step."
+      },
+      "initial_position": [
+        -0.6798830031088301,
+        -0.3305524264307557
+      ],
+      "target_position": [
+        0.55,
+        0.25
+      ],
+      "final_position": [
+        0.5103488418372155,
+        0.23128311715504057
+      ],
+      "evaluation": {
+        "success": true,
+        "score": 92.74638831994734,
+        "final_distance": 0.043846733596496,
+        "path_length": 1.5306375001139292,
+        "execution_time": 2.0000000000000013,
+        "unintended_contact_count": 0,
+        "out_of_bounds": false,
+        "stable": true
+      }
+    },
+    {
+      "plan": {
+        "plan_id": "pd_feedback",
+        "kp": 18.0,
+        "kd": 5.0,
+        "max_force_newtons": 8.0,
+        "control_steps": 700,
+        "settle_steps": 300,
+        "rationale": "Closed-loop PD force corrects position and velocity every step."
+      },
+      "initial_position": [
+        -0.5261486410741877,
+        -0.2847839310804848
+      ],
+      "target_position": [
+        0.55,
+        0.25
+      ],
+      "final_position": [
+        0.5158590532124643,
+        0.23303391461274037
+      ],
+      "evaluation": {
+        "success": true,
+        "score": 93.38565716597905,
+        "final_distance": 0.0381241695111793,
+        "path_length": 1.3540671792309893,
+        "execution_time": 2.0000000000000013,
+        "unintended_contact_count": 0,
+        "out_of_bounds": false,
+        "stable": true
+      }
+    },
+    {
+      "plan": {
+        "plan_id": "pd_feedback",
+        "kp": 18.0,
+        "kd": 5.0,
+        "max_force_newtons": 8.0,
+        "control_steps": 700,
+        "settle_steps": 300,
+        "rationale": "Closed-loop PD force corrects position and velocity every step."
+      },
+      "initial_position": [
+        -0.6795680043477588,
+        -0.20216030917756717
+      ],
+      "target_position": [
+        0.55,
+        0.25
+      ],
+      "final_position": [
+        0.5105233050209574,
+        0.23548287321732841
+      ],
+      "evaluation": {
+        "success": true,
+        "score": 92.94690344878418,
+        "final_distance": 0.042061341116190386,
+        "path_length": 1.4750147477031492,
+        "execution_time": 2.0000000000000013,
+        "unintended_contact_count": 0,
+        "out_of_bounds": false,
+        "stable": true
+      }
+    },
+    {
+      "plan": {
+        "plan_id": "pd_feedback",
+        "kp": 18.0,
+        "kd": 5.0,
+        "max_force_newtons": 8.0,
+        "control_steps": 700,
+        "settle_steps": 300,
+        "rationale": "Closed-loop PD force corrects position and velocity every step."
+      },
+      "initial_position": [
+        -0.5606062519757262,
+        -0.3217144745602843
+      ],
+      "target_position": [
+        0.55,
+        0.25
+      ],
+      "final_position": [
+        0.5145641623900725,
+        0.23175844837563048
+      ],
+      "evaluation": {
+        "success": true,
+        "score": 93.19316163579214,
+        "final_distance": 0.0398553985399932,
+        "path_length": 1.4070342186041067,
+        "execution_time": 2.0000000000000013,
+        "unintended_contact_count": 0,
+        "out_of_bounds": false,
+        "stable": true
+      }
+    },
+    {
+      "plan": {
+        "plan_id": "pd_feedback",
+        "kp": 18.0,
+        "kd": 5.0,
+        "max_force_newtons": 8.0,
+        "control_steps": 700,
+        "settle_steps": 300,
+        "rationale": "Closed-loop PD force corrects position and velocity every step."
+      },
+      "initial_position": [
+        -0.4084397407401307,
+        -0.15103639292778892
+      ],
+      "target_position": [
+        0.55,
+        0.25
+      ],
+      "final_position": [
+        0.5203453050802933,
+        0.23759169577548
+      ],
+      "evaluation": {
+        "success": true,
+        "score": 94.04908837698567,
+        "final_distance": 0.03214602532987743,
+        "path_length": 1.171805178260232,
+        "execution_time": 2.0000000000000013,
+        "unintended_contact_count": 0,
+        "out_of_bounds": false,
+        "stable": true
+      }
+    },
+    {
+      "plan": {
+        "plan_id": "pd_feedback",
+        "kp": 18.0,
+        "kd": 5.0,
+        "max_force_newtons": 8.0,
+        "control_steps": 700,
+        "settle_steps": 300,
+        "rationale": "Closed-loop PD force corrects position and velocity every step."
+      },
+      "initial_position": [
+        -0.41976869847767295,
+        -0.245058025341233
+      ],
+      "target_position": [
+        0.55,
+        0.25
+      ],
+      "final_position": [
+        0.5197376708519699,
+        0.23455135855202497
+      ],
+      "evaluation": {
+        "success": true,
+        "score": 93.84568044566653,
+        "final_distance": 0.03397747913032703,
+        "path_length": 1.2277227989085568,
+        "execution_time": 2.0000000000000013,
+        "unintended_contact_count": 0,
+        "out_of_bounds": false,
+        "stable": true
+      }
+    }
+  ],
+  "open_loop_summary": {
+    "method": "open_loop",
+    "success_count": 24,
+    "trial_count": 30,
+    "success_rate": 0.8,
+    "mean_final_distance": 0.07586999810347006,
+    "mean_score": 72.45991142657078
+  },
+  "feedback_summary": {
+    "method": "feedback",
+    "success_count": 30,
+    "trial_count": 30,
+    "success_rate": 1.0,
+    "mean_final_distance": 0.03832773571516151,
+    "mean_score": 93.36245628858575
+  }
+}

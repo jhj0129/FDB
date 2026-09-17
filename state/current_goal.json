@@ -1,16 +1,15 @@
 {
   "schema_version": "1.0",
   "stage": "v1",
-  "goal": "Validate physics-based candidate selection for planar object interaction in MuJoCo.",
+  "goal": "Complete v1 rotation evidence and begin fixed-robot reach and manipulation foundations.",
   "status": "implemented",
   "active_hypotheses": [
     "Fresh-state MuJoCo candidate rollouts can improve first-attempt physical task selection.",
-    "Open-loop force plans will degrade under mass and friction variation."
+    "Feedback control generalizes better than nominal open-loop control under moderate dynamics variation.",
+    "A fixed open-source robot model can reuse FDB candidate simulation and objective evaluation boundaries."
   ],
   "unresolved_questions": [
-    "Should feedback control or online system identification be introduced first?",
-    "What variation range should define robust v1 success?",
     "How should rotate be evaluated independently from translation?"
   ],
-  "next_gate": "Randomize mass and friction, measure first-attempt success, and compare open-loop selection with feedback."
+  "next_gate": "Select a maintained open-source robot model, verify its license and morphology, and establish a simulation-only reach baseline."
 }

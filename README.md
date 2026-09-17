@@ -46,6 +46,9 @@ v1 now adds the first MuJoCo physics task. FDB generates three open-loop force
 candidates, runs each from a fresh identical model, selects using objective success and
 quality metrics, repeats the selected plan as execution, and records prediction versus
 actual outcome. This is a planar push experiment, not yet a robot manipulation system.
+The robustness suite also compares the nominal open-loop plan with bounded PD feedback
+across 30 paired randomized scenarios. Feedback achieved 100% first-attempt success
+versus 80% for open-loop and is now the scoped default under dynamics uncertainty.
 
 ## Quick start
 
@@ -74,6 +77,8 @@ Install and run the optional v1 physics environment:
 ```bash
 python -m pip install -e '.[physics]'
 python -m fdb.v1.cli --task "빨간 물체를 파란 목표 구역으로 밀어라"
+python -m fdb.v1.robustness_cli \
+  --output experiments/local_robustness.results.json
 ```
 
 Each successful CLI run creates an `episodes/episode_*.json` file. Episode records

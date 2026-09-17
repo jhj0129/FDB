@@ -1,0 +1,47 @@
+{
+  "schema_version": "1.0",
+  "skill_id": "v1.feedback_push",
+  "version": "1.0.0",
+  "status": "validated",
+  "description": "Apply bounded planar PD force feedback to move a MuJoCo puck into a target region under moderate dynamics and initial-state variation.",
+  "prerequisites": [
+    "MuJoCo 3.13 or a compatible 3.x version is installed.",
+    "Puck x/y position and velocity and target x/y position are observable.",
+    "Mass scale is within 0.4–1.8 of nominal, sliding friction within 0.2–1.4, and initial offset within ±0.15 m.",
+    "Execution is in the packaged planar simulation environment."
+  ],
+  "inputs": {"scenario": "PhysicsScenario", "target": "MuJoCo site position"},
+  "outputs": {"rollout": "PhysicsRollout with objective metrics"},
+  "procedure": [
+    "Read position and velocity at every simulation step.",
+    "Compute PD force from target error and velocity.",
+    "Clamp the force magnitude to 8 N.",
+    "Apply the force at the puck center of mass for 700 steps, then settle for 300 steps.",
+    "Evaluate completion, error, path, time, contacts, bounds, and numerical stability."
+  ],
+  "acceptance_criteria": [
+    {"metric": "first_attempt_success_rate", "operator": "greater_than_or_equal", "threshold": 0.95},
+    {"metric": "final_distance_m", "operator": "less_than_or_equal", "threshold": 0.14},
+    {"metric": "unintended_contact_count", "operator": "equals", "threshold": 0},
+    {"metric": "stable", "operator": "equals", "threshold": true}
+  ],
+  "known_limits": [
+    "Validated only in the packaged planar MuJoCo model.",
+    "Observation noise, delay, obstacles, and actuation saturation beyond 8 N were not tested.",
+    "Not approved for physical hardware."
+  ],
+  "evidence": [
+    "experiments/0002_v1_robustness.md",
+    "experiments/0002_v1_robustness.results.json",
+    "episodes/episode_20260917T055606642605Z_dff95e12.json",
+    "tests/test_v1_physics_loop.py"
+  ],
+  "verification": {
+    "environment": "MuJoCo 3.13.0 randomized planar suite, seed 1701",
+    "success_count": 30,
+    "failure_count": 0,
+    "last_verified_at": "2026-09-17T05:56:06.642605+00:00"
+  },
+  "deprecation": null
+}
+

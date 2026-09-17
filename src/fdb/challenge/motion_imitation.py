@@ -26,6 +26,7 @@ STRIDE_LENGTH = 143
 @dataclass(frozen=True)
 class ImitationResult:
     controller: str
+    amplitude_scale: float
     source: str
     duration_s: float
     completed_duration_s: float
@@ -96,22 +97,24 @@ def _sample(values: np.ndarray, phase: float) -> float:
     return float(values[low] * (1.0 - fraction) + values[high] * fraction)
 
 
-def human_reference_ctrl(model, base: np.ndarray, time_s: float, stride: dict[str, np.ndarray]) -> np.ndarray:
+def human_reference_ctrl(
+    model, base: np.ndarray, time_s: float, stride: dict[str, np.ndarray], amplitude_scale: float = 1.0
+) -> np.ndarray:
     gait = GAIT_MAPS["unitree_g1"]
     target = base.copy()
     ramp = min(1.0, max(0.0, (time_s - 0.5) / 0.8))
     phase = ((time_s - 0.5) * 120.0 / STRIDE_LENGTH) % 1.0
     # 사람 파형은 유지하되 사람과 로봇의 질량/다리 비율 차이를 고려해 첫 파일럿은
     # 관절 진폭을 절반으로 제한한다. 이후 잔차 정책이 안전 범위 안에서 확대한다.
-    target[gait.hip_pitch[0]] += ramp * 0.020 * _sample(stride["left_hip"], phase)
-    target[gait.hip_pitch[1]] += ramp * 0.020 * _sample(stride["right_hip"], phase)
-    target[gait.knee[0]] += ramp * 0.080 * _sample(stride["left_knee"], phase)
-    target[gait.knee[1]] += ramp * 0.080 * _sample(stride["right_knee"], phase)
-    target[gait.ankle_pitch[0]] += ramp * 0.035 * _sample(stride["left_ankle"], phase)
-    target[gait.ankle_pitch[1]] += ramp * 0.035 * _sample(stride["right_ankle"], phase)
+    target[gait.hip_pitch[0]] += amplitude_scale * ramp * 0.020 * _sample(stride["left_hip"], phase)
+    target[gait.hip_pitch[1]] += amplitude_scale * ramp * 0.020 * _sample(stride["right_hip"], phase)
+    target[gait.knee[0]] += amplitude_scale * ramp * 0.080 * _sample(stride["left_knee"], phase)
+    target[gait.knee[1]] += amplitude_scale * ramp * 0.080 * _sample(stride["right_knee"], phase)
+    target[gait.ankle_pitch[0]] += amplitude_scale * ramp * 0.035 * _sample(stride["left_ankle"], phase)
+    target[gait.ankle_pitch[1]] += amplitude_scale * ramp * 0.035 * _sample(stride["right_ankle"], phase)
     if gait.shoulder_pitch is not None:
-        target[gait.shoulder_pitch[0]] += ramp * 0.10 * _sample(stride["left_arm"], phase)
-        target[gait.shoulder_pitch[1]] += ramp * 0.10 * _sample(stride["right_arm"], phase)
+        target[gait.shoulder_pitch[0]] += amplitude_scale * ramp * 0.10 * _sample(stride["left_arm"], phase)
+        target[gait.shoulder_pitch[1]] += amplitude_scale * ramp * 0.10 * _sample(stride["right_arm"], phase)
     return np.clip(target, model.actuator_ctrlrange[:, 0], model.actuator_ctrlrange[:, 1])
 
 
@@ -123,7 +126,10 @@ def _actual_positions(model, data, actuator_ids: list[int]) -> np.ndarray:
     return np.asarray(positions)
 
 
-def simulate(controller: str, path: Path = DEFAULT_AMC, duration_s: float = 4.0, frame_callback=None):
+def simulate(
+    controller: str, path: Path = DEFAULT_AMC, duration_s: float = 4.0,
+    frame_callback=None, amplitude_scale: float = 1.0,
+):
     import mujoco
     import mujoco_menagerie as menagerie
 
@@ -145,7 +151,7 @@ def simulate(controller: str, path: Path = DEFAULT_AMC, duration_s: float = 4.0,
     completed = 0.0
     for step in range(max(1, int(duration_s / model.opt.timestep))):
         time_s = step * model.opt.timestep
-        reference = human_reference_ctrl(model, base, time_s, stride)
+        reference = human_reference_ctrl(model, base, time_s, stride, amplitude_scale)
         if controller == "human_motion_imitation":
             data.ctrl[:] = reference
         else:
@@ -175,6 +181,7 @@ def simulate(controller: str, path: Path = DEFAULT_AMC, duration_s: float = 4.0,
     displacement = data.xpos[root] - initial
     result = ImitationResult(
         controller=controller,
+        amplitude_scale=amplitude_scale if controller == "human_motion_imitation" else 1.0,
         source="CMU subject 69 trial 01, frames 61-203",
         duration_s=duration_s,
         completed_duration_s=completed,
@@ -187,7 +194,10 @@ def simulate(controller: str, path: Path = DEFAULT_AMC, duration_s: float = 4.0,
     return result, model, data
 
 
-def render(output: Path, path: Path = DEFAULT_AMC, width: int = 960, height: int = 480, fps: int = 30):
+def render(
+    output: Path, path: Path = DEFAULT_AMC, width: int = 960, height: int = 480,
+    fps: int = 30, amplitude_scale: float = 1.15,
+):
     import mujoco
     import mujoco_menagerie as menagerie
 
@@ -217,7 +227,10 @@ def render(output: Path, path: Path = DEFAULT_AMC, width: int = 960, height: int
         for step in range(int(4.0 / 0.002)):
             time_s = step * 0.002
             for controller, model, data, root, base, _, _ in states:
-                reference = human_reference_ctrl(model, base, time_s, stride)
+                reference = human_reference_ctrl(
+                    model, base, time_s, stride,
+                    amplitude_scale if controller == "human_motion_imitation" else 1.0,
+                )
                 if controller == "human_motion_imitation":
                     data.ctrl[:] = reference
                 else:
@@ -253,11 +266,13 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="CMU 사람 보행과 절차식 보행 비교")
     parser.add_argument("--amc", type=Path, default=DEFAULT_AMC)
     parser.add_argument("--output", type=Path, default=Path("artifacts/fdb_motion_imitation.mp4"))
+    parser.add_argument("--amplitude-scale", type=float, default=1.15)
     args = parser.parse_args()
-    results = [simulate(name, args.amc)[0] for name in (
-        "procedural_gait_baseline", "human_motion_imitation"
-    )]
-    render(args.output, args.amc)
+    results = [
+        simulate(name, args.amc, amplitude_scale=(args.amplitude_scale if name == "human_motion_imitation" else 1.0))[0]
+        for name in ("procedural_gait_baseline", "human_motion_imitation")
+    ]
+    render(args.output, args.amc, amplitude_scale=args.amplitude_scale)
     payload = {
         "experiment": "CMU human motion imitation pilot",
         "robot": "unitree_g1",

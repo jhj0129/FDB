@@ -4,6 +4,7 @@
   "results": [
     {
       "controller": "procedural_gait_baseline",
+      "amplitude_scale": 1.0,
       "source": "CMU subject 69 trial 01, frames 61-203",
       "duration_s": 4.0,
       "completed_duration_s": 4.0,
@@ -15,17 +16,18 @@
     },
     {
       "controller": "human_motion_imitation",
+      "amplitude_scale": 1.15,
       "source": "CMU subject 69 trial 01, frames 61-203",
       "duration_s": 4.0,
       "completed_duration_s": 4.0,
-      "displacement_xy_m": 0.0342612553585489,
-      "minimum_height_ratio": 1.0,
-      "minimum_upright_cosine": 0.9973250251733776,
-      "normalized_human_reference_rmse": 0.005851531828685695,
+      "displacement_xy_m": 0.050979556079602376,
+      "minimum_height_ratio": 0.9995633983739416,
+      "minimum_upright_cosine": 0.9949278429031948,
+      "normalized_human_reference_rmse": 0.005833600242125979,
       "fallen": false
     }
   ],
-  "reference_error_improvement_fraction": 0.7965983277095547,
+  "reference_error_improvement_fraction": 0.7972216370924392,
   "video": "artifacts/fdb_motion_imitation.mp4",
   "layout": {
     "left_orange": "procedural gait baseline",

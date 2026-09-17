@@ -1,0 +1,52 @@
+{
+  "model_type": "PushDynamicsMLPEnsemble",
+  "parameter_count_per_member": 4930,
+  "ensemble_size": 5,
+  "train_count": 2400,
+  "validation_count": 500,
+  "best_validation_losses": [
+    0.00011430343874963,
+    0.00013088472769595683,
+    0.0001418369502061978,
+    0.00011601854930631816,
+    0.0001193842472275719
+  ],
+  "uncertainty_threshold_m": 0.01631160080432892,
+  "portable_model": "models/v5/push_dynamics_ensemble.npz",
+  "splits": {
+    "validation": {
+      "mae_m": 0.006932961288839579,
+      "rmse_m": 0.009809575051795002,
+      "mean_position_error_m": 0.010777074843645096,
+      "p95_position_error_m": 0.027164991945028305,
+      "success_classification_accuracy": 0.992,
+      "mean_uncertainty_m": 0.008483202196657658,
+      "fallback_rate": 0.05
+    },
+    "test": {
+      "mae_m": 0.006908021401613951,
+      "rmse_m": 0.010048072990348062,
+      "mean_position_error_m": 0.010717160068452358,
+      "p95_position_error_m": 0.024490786716341972,
+      "success_classification_accuracy": 0.994,
+      "mean_uncertainty_m": 0.008050712756812572,
+      "fallback_rate": 0.048
+    },
+    "ood": {
+      "mae_m": 0.012665413320064545,
+      "rmse_m": 0.021015190433330826,
+      "mean_position_error_m": 0.019824855029582977,
+      "p95_position_error_m": 0.06435639411211014,
+      "success_classification_accuracy": 0.986,
+      "mean_uncertainty_m": 0.020228123292326927,
+      "fallback_rate": 0.586
+    }
+  },
+  "constant_baseline_test": {
+    "mae_m": 0.810444712638855,
+    "rmse_m": 1.1024940826188014,
+    "mean_position_error_m": 1.233432412147522,
+    "p95_position_error_m": 3.132112979888916,
+    "success_classification_accuracy": 0.892
+  }
+}

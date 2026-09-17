@@ -1,0 +1,247 @@
+{
+  "schema_version": "1.0",
+  "episode_id": "episode_20260917T093043433344Z_5dfab6f6",
+  "created_at": "2026-09-17T09:30:43.433344+00:00",
+  "stage": "v5",
+  "task": "학습형 물리 예측과 인간적인 조작 안전 게이트를 결합한다.",
+  "observation": {
+    "dataset_samples": 3900,
+    "ensemble_size": 5,
+    "unsafe_manipulation_examples": 5
+  },
+  "goal": {
+    "test_mean_position_error_m_max": 0.03,
+    "ood_physics_fallback": true,
+    "robot_table_contact_steps": 0
+  },
+  "candidate_plans": [
+    {
+      "plan_id": "neural_ensemble",
+      "test_metrics": {
+        "mae_m": 0.006908021401613951,
+        "rmse_m": 0.010048072990348062,
+        "mean_position_error_m": 0.010717160068452358,
+        "p95_position_error_m": 0.024490786716341972,
+        "success_classification_accuracy": 0.994,
+        "mean_uncertainty_m": 0.008050712756812572,
+        "fallback_rate": 0.048
+      }
+    },
+    {
+      "plan_id": "constant_baseline",
+      "test_metrics": {
+        "mae_m": 0.810444712638855,
+        "rmse_m": 1.1024940826188014,
+        "mean_position_error_m": 1.233432412147522,
+        "p95_position_error_m": 3.132112979888916,
+        "success_classification_accuracy": 0.892
+      }
+    }
+  ],
+  "decision": {
+    "selected_plan_id": "safe_hybrid_neural_physics",
+    "reason": "분포 안에서는 앙상블 예측을 사용하고, 분포 밖 또는 불확실한 입력은 MuJoCo로 되돌린다. 조작 충돌은 학습 점수보다 우선하는 하드 게이트로 거절한다.",
+    "predicted_evaluation": {
+      "model_used": "PushDynamicsMLPEnsemble",
+      "selection_source": "neural_ensemble",
+      "selected_plan": "balanced",
+      "initial_position": [
+        -0.49000000000000005,
+        -0.29
+      ],
+      "target_position": [
+        0.55,
+        0.25
+      ],
+      "neural_predicted_final": [
+        0.6217421889305115,
+        0.2842656672000885
+      ],
+      "actual_final": [
+        0.6222938046163218,
+        0.2875371677815528
+      ],
+      "neural_to_physics_error_m": 0.003317679297242765,
+      "uncertainty_m": 0.005358613096177578,
+      "physics_success": true,
+      "fallback_used": false,
+      "visual_legend": {
+        "red": "actual puck",
+        "blue": "goal region",
+        "yellow": "neural predicted final position"
+      },
+      "video": "artifacts/fdb_v5_neural_prediction.mp4"
+    }
+  },
+  "execution": {
+    "neural_video": "artifacts/fdb_v5_neural_prediction.mp4",
+    "safe_manipulation_video": "artifacts/fdb_final_pick_place.mp4"
+  },
+  "result": {
+    "final_state": {
+      "model": "models/v5/push_dynamics_ensemble.npz"
+    },
+    "objective_evaluation": {
+      "test": {
+        "mae_m": 0.006908021401613951,
+        "rmse_m": 0.010048072990348062,
+        "mean_position_error_m": 0.010717160068452358,
+        "p95_position_error_m": 0.024490786716341972,
+        "success_classification_accuracy": 0.994,
+        "mean_uncertainty_m": 0.008050712756812572,
+        "fallback_rate": 0.048
+      },
+      "ood": {
+        "mae_m": 0.012665413320064545,
+        "rmse_m": 0.021015190433330826,
+        "mean_position_error_m": 0.019824855029582977,
+        "p95_position_error_m": 0.06435639411211014,
+        "success_classification_accuracy": 0.986,
+        "mean_uncertainty_m": 0.020228123292326927,
+        "fallback_rate": 0.586
+      },
+      "demonstration": {
+        "model_used": "PushDynamicsMLPEnsemble",
+        "selection_source": "neural_ensemble",
+        "selected_plan": "balanced",
+        "initial_position": [
+          -0.49000000000000005,
+          -0.29
+        ],
+        "target_position": [
+          0.55,
+          0.25
+        ],
+        "neural_predicted_final": [
+          0.6217421889305115,
+          0.2842656672000885
+        ],
+        "actual_final": [
+          0.6222938046163218,
+          0.2875371677815528
+        ],
+        "neural_to_physics_error_m": 0.003317679297242765,
+        "uncertainty_m": 0.005358613096177578,
+        "physics_success": true,
+        "fallback_used": false,
+        "visual_legend": {
+          "red": "actual puck",
+          "blue": "goal region",
+          "yellow": "neural predicted final position"
+        },
+        "video": "artifacts/fdb_v5_neural_prediction.mp4"
+      },
+      "safe_manipulation": {
+        "selected_plan": "place_low",
+        "candidate_results": [
+          {
+            "plan": {
+              "plan_id": "place_low",
+              "place_hand_z": 0.445
+            },
+            "pick_lift_height_m": 0.20158498934650876,
+            "final_xy_error_m": 0.002799002535600164,
+            "final_object_z": 0.3343628237831246,
+            "released": true,
+            "stable": true,
+            "robot_table_contact_steps": 0,
+            "deepest_robot_table_penetration_m": 0.0,
+            "max_robot_table_contact_force_n": 0.0,
+            "robot_table_contact_pairs": [],
+            "minimum_hand_table_clearance_m": 0.1197598329960678,
+            "stage_sequence_valid": true,
+            "stage_violations": [],
+            "success": true,
+            "score": 99.37648187119242
+          },
+          {
+            "plan": {
+              "plan_id": "place_centered",
+              "place_hand_z": 0.455
+            },
+            "pick_lift_height_m": 0.20158498934650876,
+            "final_xy_error_m": 0.0034227586484391562,
+            "final_object_z": 0.3343628237831244,
+            "released": true,
+            "stable": true,
+            "robot_table_contact_steps": 0,
+            "deepest_robot_table_penetration_m": 0.0,
+            "max_robot_table_contact_force_n": 0.0,
+            "robot_table_contact_pairs": [],
+            "minimum_hand_table_clearance_m": 0.1197598329960678,
+            "stage_sequence_valid": true,
+            "stage_violations": [],
+            "success": true,
+            "score": 99.25173064862462
+          },
+          {
+            "plan": {
+              "plan_id": "place_high",
+              "place_hand_z": 0.465
+            },
+            "pick_lift_height_m": 0.20158498934650876,
+            "final_xy_error_m": 0.003496730802558076,
+            "final_object_z": 0.3343628237831242,
+            "released": true,
+            "stable": true,
+            "robot_table_contact_steps": 0,
+            "deepest_robot_table_penetration_m": 0.0,
+            "max_robot_table_contact_force_n": 0.0,
+            "robot_table_contact_pairs": [],
+            "minimum_hand_table_clearance_m": 0.1197598329960678,
+            "stage_sequence_valid": true,
+            "stage_violations": [],
+            "success": true,
+            "score": 99.2369362178008
+          }
+        ],
+        "rendered_success": true,
+        "pick_lift_height_m": 0.20158498934650876,
+        "final_xy_error_m": 0.002799002535600164,
+        "final_object_z": 0.3343628237831246,
+        "released": true,
+        "stable": true,
+        "robot_table_contact_steps": 0,
+        "deepest_robot_table_penetration_m": 0.0,
+        "max_robot_table_contact_force_n": 0.0,
+        "minimum_hand_table_clearance_m": 0.1197598329960678,
+        "stage_sequence_valid": true,
+        "duration_s": 21.199999999999683,
+        "fps": 30,
+        "resolution": [
+          640,
+          360
+        ],
+        "video": "artifacts/fdb_final_pick_place.mp4"
+      },
+      "minimum_safe_grasp_clearance_m": 0.1,
+      "minimum_safe_place_hand_z_m": 0.445
+    },
+    "user_evaluation": null
+  },
+  "reflection": {
+    "success_factors": [
+      "앙상블 불확실성",
+      "분포 밖 하드 fallback",
+      "접촉 우선 안전 게이트",
+      "부드러운 5차 궤적"
+    ],
+    "failure_causes": [
+      "기존 궤적은 성공 판정 중에도 양쪽 손가락이 테이블을 관통했다."
+    ],
+    "learned": "작업 성공과 상식적인 안전 동작은 별도 지표로 검증해야 한다.",
+    "next_experiment": "카메라 관측 잡음과 온라인 같은 상태 복구를 추가한다.",
+    "confidence": 0.9,
+    "unresolved_questions": [
+      "학습형 세계모델이 Panda 접촉 동역학까지 확장될 때 필요한 데이터 규모는 얼마인가?"
+    ]
+  },
+  "sources": [
+    "experiments/0014_v5_neural_world_model.md",
+    "experiments/0015_v5_common_sense_safety.md"
+  ],
+  "skills_used": [
+    "v5.neural_push_world_model",
+    "v2.panda_pick_place"
+  ]
+}

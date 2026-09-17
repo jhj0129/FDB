@@ -1,0 +1,31 @@
+{
+  "model_used": "PushDynamicsMLPEnsemble",
+  "selection_source": "neural_ensemble",
+  "selected_plan": "balanced",
+  "initial_position": [
+    -0.49000000000000005,
+    -0.29
+  ],
+  "target_position": [
+    0.55,
+    0.25
+  ],
+  "neural_predicted_final": [
+    0.6217421889305115,
+    0.2842656672000885
+  ],
+  "actual_final": [
+    0.6222938046163218,
+    0.2875371677815528
+  ],
+  "neural_to_physics_error_m": 0.003317679297242765,
+  "uncertainty_m": 0.005358613096177578,
+  "physics_success": true,
+  "fallback_used": false,
+  "visual_legend": {
+    "red": "actual puck",
+    "blue": "goal region",
+    "yellow": "neural predicted final position"
+  },
+  "video": "artifacts/fdb_v5_neural_prediction.mp4"
+}

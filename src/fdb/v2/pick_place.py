@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import math
+from collections import Counter
 from dataclasses import dataclass
 
 from .inspector import load_robot
@@ -31,27 +32,42 @@ class PickPlaceResult:
     final_object_z: float
     released: bool
     stable: bool
+    robot_table_contact_steps: int
+    deepest_robot_table_penetration_m: float
+    max_robot_table_contact_force_n: float
+    robot_table_contact_pairs: tuple[tuple[str, int], ...]
+    minimum_hand_table_clearance_m: float
+    stage_sequence_valid: bool
+    stage_violations: tuple[str, ...]
     success: bool
     score: float
 
 
 class PandaPickPlaceExperiment:
-    def __init__(self, scenario: PickPlaceScenario | None = None) -> None:
+    def __init__(
+        self,
+        scenario: PickPlaceScenario | None = None,
+        *,
+        grasp_clearance_m: float = 0.10,
+    ) -> None:
         self.scenario = scenario or PickPlaceScenario()
         object_z = 0.31 + self.scenario.half_size[2]
         self.source = (*self.scenario.source_xy, object_z)
         self.target = (*self.scenario.target_xy, object_z)
-        self.grasp_hand_z = object_z + 0.04
+        # The original +0.04 m pose let the Panda finger collision meshes penetrate
+        # the table. Keep the fingertips in the object's upper half instead.
+        self.grasp_hand_z = object_z + grasp_clearance_m
 
     def candidates(self) -> tuple[PlaceCandidate, ...]:
         return (
-            PlaceCandidate("place_low", 0.365),
-            PlaceCandidate("place_centered", 0.375),
-            PlaceCandidate("place_high", 0.385),
+            PlaceCandidate("place_low", 0.445),
+            PlaceCandidate("place_centered", 0.455),
+            PlaceCandidate("place_high", 0.465),
         )
 
     def run_candidate(self, plan: PlaceCandidate) -> PickPlaceResult:
         import mujoco
+        import numpy as np
 
         record, _ = load_robot()
         spec = record.spec(record.default_model)
@@ -97,12 +113,55 @@ class PandaPickPlaceExperiment:
         )
         stable = True
         peak_z = sz
-        for target_qpos, gripper, steps in stages:
-            data.ctrl[:7] = target_qpos
-            data.ctrl[7] = gripper
-            for _ in range(steps):
+        table_id = model.geom("table").id
+        object_id = model.geom("object_geom").id
+        robot_table_contact_steps = 0
+        deepest_penetration = 0.0
+        max_contact_force = 0.0
+        contact_pairs: Counter[str] = Counter()
+        minimum_hand_clearance = math.inf
+        stage_sequence_valid = True
+        stage_violations: list[str] = []
+        stage_names = ("pregrasp", "descend", "grasp", "lift", "transfer", "lower", "release", "retreat")
+        for stage_name, (target_qpos, gripper, steps) in zip(stage_names, stages):
+            if stage_name == "transfer" and float(data.body("object").xpos[2]) - sz < 0.08:
+                stage_sequence_valid = False
+                stage_violations.append("안전 높이에 도달하기 전에 횡이동 시작")
+            if stage_name == "release" and abs(float(data.body("object").xpos[2]) - tz) > 0.04:
+                stage_sequence_valid = False
+                stage_violations.append("물체가 테이블 지지 높이에 도달하기 전에 그리퍼 개방")
+            if stage_name == "retreat" and float(data.joint("finger_joint1").qpos[0]) < 0.03:
+                stage_sequence_valid = False
+                stage_violations.append("그리퍼 개방 완료 전에 후퇴")
+            start_arm = data.ctrl[:7].copy()
+            start_gripper = float(data.ctrl[7])
+            for step in range(steps):
+                phase = (step + 1) / steps
+                blend = 10 * phase**3 - 15 * phase**4 + 6 * phase**5
+                data.ctrl[:7] = start_arm + blend * (target_qpos - start_arm)
+                data.ctrl[7] = start_gripper + blend * (gripper - start_gripper)
                 mujoco.mj_step(model, data)
                 peak_z = max(peak_z, float(data.body("object").xpos[2]))
+                minimum_hand_clearance = min(
+                    minimum_hand_clearance,
+                    float(data.body("hand").xpos[2]) - 0.31,
+                )
+                contacted_this_step = False
+                for contact_index in range(data.ncon):
+                    contact = data.contact[contact_index]
+                    pair = {int(contact.geom1), int(contact.geom2)}
+                    if table_id in pair and object_id not in pair:
+                        contacted_this_step = True
+                        other_id = int(contact.geom2) if int(contact.geom1) == table_id else int(contact.geom1)
+                        body_name = model.body(int(model.geom_bodyid[other_id])).name
+                        contact_name = model.geom(other_id).name or f"{body_name}/geom_{other_id}"
+                        contact_pairs[contact_name] += 1
+                        deepest_penetration = max(deepest_penetration, max(0.0, -float(contact.dist)))
+                        force = np.zeros(6)
+                        mujoco.mj_contactForce(model, data, contact_index, force)
+                        max_contact_force = max(max_contact_force, abs(float(force[0])))
+                if contacted_this_step:
+                    robot_table_contact_steps += 1
                 if not all(math.isfinite(float(value)) for value in data.qpos):
                     stable = False
                     break
@@ -112,8 +171,16 @@ class PandaPickPlaceExperiment:
         success = (
             stable and peak_z - sz >= 0.08 and xy_error <= 0.05
             and abs(float(final[2]) - tz) <= 0.02 and released
+            and robot_table_contact_steps == 0
+            and minimum_hand_clearance >= 0.055
+            and stage_sequence_valid
         )
-        score = (100.0 if success else 0.0) - 200.0 * xy_error - 100.0 * abs(float(final[2]) - tz)
+        score = (
+            (100.0 if success else 0.0)
+            - 200.0 * xy_error
+            - 100.0 * abs(float(final[2]) - tz)
+            - 500.0 * robot_table_contact_steps
+        )
         return PickPlaceResult(
             plan=plan,
             pick_lift_height_m=peak_z - sz,
@@ -121,10 +188,25 @@ class PandaPickPlaceExperiment:
             final_object_z=float(final[2]),
             released=released,
             stable=stable,
+            robot_table_contact_steps=robot_table_contact_steps,
+            deepest_robot_table_penetration_m=deepest_penetration,
+            max_robot_table_contact_force_n=max_contact_force,
+            robot_table_contact_pairs=tuple(contact_pairs.most_common()),
+            minimum_hand_table_clearance_m=minimum_hand_clearance,
+            stage_sequence_valid=stage_sequence_valid,
+            stage_violations=tuple(stage_violations),
             success=success,
             score=score,
         )
 
     def run(self) -> tuple[PickPlaceResult, tuple[PickPlaceResult, ...]]:
         results = tuple(self.run_candidate(candidate) for candidate in self.candidates())
-        return max(results, key=lambda item: (item.success, item.score)), results
+        return max(
+            results,
+            key=lambda item: (
+                item.robot_table_contact_steps == 0,
+                item.stage_sequence_valid,
+                item.success,
+                item.score,
+            ),
+        ), results

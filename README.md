@@ -1,5 +1,7 @@
 # FDB — Fly Decision Brain
 
+한국어 설명은 [README.ko.md](README.ko.md)를 먼저 읽어 주세요.
+
 FDB is a research project for a connectome-inspired decision system. Its purpose is
 not to replace conventional robot control, inverse kinematics, or motion planning.
 FDB is the layer that integrates context and memory, selects actions, identifies

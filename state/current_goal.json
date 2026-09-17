@@ -1,8 +1,8 @@
 {
   "schema_version": "1.0",
-  "stage": "v4",
-  "goal": "Render and verify the integrated Panda pick-and-place demonstration.",
-  "status": "completed",
+  "stage": "v5",
+  "goal": "학습형 세계모델과 인간적인 조작 안전 게이트를 검증한다.",
+  "status": "implemented",
   "active_hypotheses": [
     "Fresh-state MuJoCo candidate rollouts can improve first-attempt physical task selection.",
     "Feedback control generalizes better than nominal open-loop control under moderate dynamics variation.",
@@ -12,5 +12,5 @@
     "How should rotate be evaluated independently from translation?",
     "Which orientation representation and collision metric should gate pre-grasp reach?"
   ],
-  "next_gate": "User review of the final simulation artifact; future work should add perception noise and online same-state recovery."
+  "next_gate": "전체 회귀검사와 기록 검증 후 v5 범위를 확정한다."
 }

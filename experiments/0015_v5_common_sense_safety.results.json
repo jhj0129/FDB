@@ -1,0 +1,370 @@
+{
+  "label_policy": "비의도 로봇-테이블 접촉 0, 관통 0, 올바른 단계 순서일 때만 안전",
+  "grasp_trials": [
+    {
+      "grasp_clearance_m": 0.04,
+      "plan": {
+        "plan_id": "안전_배치",
+        "place_hand_z": 0.465
+      },
+      "pick_lift_height_m": 0.1466833099849837,
+      "final_xy_error_m": 0.010483010882439012,
+      "final_object_z": 0.33436282378312426,
+      "released": true,
+      "stable": true,
+      "robot_table_contact_steps": 2237,
+      "deepest_robot_table_penetration_m": 0.0029786546819229875,
+      "max_robot_table_contact_force_n": 49.31777370275046,
+      "robot_table_contact_pairs": [
+        [
+          "right_finger/geom_77",
+          8742
+        ],
+        [
+          "right_finger/geom_78",
+          8736
+        ],
+        [
+          "right_finger/geom_79",
+          8723
+        ],
+        [
+          "right_finger/geom_76",
+          5021
+        ],
+        [
+          "left_finger/geom_68",
+          224
+        ],
+        [
+          "left_finger/geom_70",
+          177
+        ],
+        [
+          "left_finger/geom_71",
+          177
+        ],
+        [
+          "left_finger/geom_69",
+          175
+        ]
+      ],
+      "minimum_hand_table_clearance_m": 0.11114408215628979,
+      "stage_sequence_valid": true,
+      "stage_violations": [],
+      "success": false,
+      "score": -1118502.1603197982
+    },
+    {
+      "grasp_clearance_m": 0.06,
+      "plan": {
+        "plan_id": "안전_배치",
+        "place_hand_z": 0.465
+      },
+      "pick_lift_height_m": 0.16692301793775038,
+      "final_xy_error_m": 0.0032028040679524814,
+      "final_object_z": 0.33436282378312415,
+      "released": true,
+      "stable": true,
+      "robot_table_contact_steps": 2064,
+      "deepest_robot_table_penetration_m": 0.0023846566705684746,
+      "max_robot_table_contact_force_n": 39.59888844997539,
+      "robot_table_contact_pairs": [
+        [
+          "right_finger/geom_77",
+          7988
+        ],
+        [
+          "right_finger/geom_78",
+          7986
+        ],
+        [
+          "right_finger/geom_79",
+          7980
+        ],
+        [
+          "right_finger/geom_76",
+          6156
+        ],
+        [
+          "left_finger/geom_68",
+          359
+        ],
+        [
+          "left_finger/geom_70",
+          190
+        ],
+        [
+          "left_finger/geom_71",
+          190
+        ],
+        [
+          "left_finger/geom_69",
+          189
+        ]
+      ],
+      "minimum_hand_table_clearance_m": 0.11124517711261145,
+      "stage_sequence_valid": true,
+      "stage_violations": [],
+      "success": false,
+      "score": -1032000.7042784353
+    },
+    {
+      "grasp_clearance_m": 0.08,
+      "plan": {
+        "plan_id": "안전_배치",
+        "place_hand_z": 0.465
+      },
+      "pick_lift_height_m": 0.18663268779808678,
+      "final_xy_error_m": 0.004301119050523448,
+      "final_object_z": 0.3343628237831242,
+      "released": true,
+      "stable": true,
+      "robot_table_contact_steps": 1801,
+      "deepest_robot_table_penetration_m": 0.0014398572589683356,
+      "max_robot_table_contact_force_n": 23.863723963281135,
+      "robot_table_contact_pairs": [
+        [
+          "right_finger/geom_77",
+          6581
+        ],
+        [
+          "right_finger/geom_78",
+          6573
+        ],
+        [
+          "right_finger/geom_79",
+          6568
+        ],
+        [
+          "right_finger/geom_76",
+          5276
+        ],
+        [
+          "left_finger/geom_68",
+          1390
+        ],
+        [
+          "left_finger/geom_69",
+          26
+        ]
+      ],
+      "minimum_hand_table_clearance_m": 0.11139419465797301,
+      "stage_sequence_valid": true,
+      "stage_violations": [],
+      "success": false,
+      "score": -900500.9239414318
+    },
+    {
+      "grasp_clearance_m": 0.1,
+      "plan": {
+        "plan_id": "안전_배치",
+        "place_hand_z": 0.465
+      },
+      "pick_lift_height_m": 0.20158498934650876,
+      "final_xy_error_m": 0.003496730802558076,
+      "final_object_z": 0.3343628237831242,
+      "released": true,
+      "stable": true,
+      "robot_table_contact_steps": 0,
+      "deepest_robot_table_penetration_m": 0.0,
+      "max_robot_table_contact_force_n": 0.0,
+      "robot_table_contact_pairs": [],
+      "minimum_hand_table_clearance_m": 0.1197598329960678,
+      "stage_sequence_valid": true,
+      "stage_violations": [],
+      "success": true,
+      "score": 99.2369362178008
+    }
+  ],
+  "place_trials": [
+    {
+      "place_hand_z_m": 0.385,
+      "plan": {
+        "plan_id": "배치_높이_탐색",
+        "place_hand_z": 0.385
+      },
+      "pick_lift_height_m": 0.20158498934650876,
+      "final_xy_error_m": 0.005392896558831344,
+      "final_object_z": 0.3343628237831244,
+      "released": true,
+      "stable": true,
+      "robot_table_contact_steps": 1806,
+      "deepest_robot_table_penetration_m": 0.002336466795816061,
+      "max_robot_table_contact_force_n": 38.68275200578887,
+      "robot_table_contact_pairs": [
+        [
+          "right_finger/geom_77",
+          7038
+        ],
+        [
+          "right_finger/geom_79",
+          7032
+        ],
+        [
+          "right_finger/geom_78",
+          7022
+        ],
+        [
+          "right_finger/geom_76",
+          5402
+        ],
+        [
+          "left_finger/geom_68",
+          310
+        ],
+        [
+          "left_finger/geom_70",
+          215
+        ],
+        [
+          "left_finger/geom_71",
+          209
+        ],
+        [
+          "left_finger/geom_69",
+          205
+        ]
+      ],
+      "minimum_hand_table_clearance_m": 0.11111190479037497,
+      "stage_sequence_valid": false,
+      "stage_violations": [
+        "그리퍼 개방 완료 전에 후퇴"
+      ],
+      "success": false,
+      "score": -903001.1422969335
+    },
+    {
+      "place_hand_z_m": 0.405,
+      "plan": {
+        "plan_id": "배치_높이_탐색",
+        "place_hand_z": 0.405
+      },
+      "pick_lift_height_m": 0.20158498934650876,
+      "final_xy_error_m": 0.002370838345537527,
+      "final_object_z": 0.3343628237831243,
+      "released": true,
+      "stable": true,
+      "robot_table_contact_steps": 1649,
+      "deepest_robot_table_penetration_m": 0.0018282960088712996,
+      "max_robot_table_contact_force_n": 30.305906628254363,
+      "robot_table_contact_pairs": [
+        [
+          "right_finger/geom_77",
+          6203
+        ],
+        [
+          "right_finger/geom_79",
+          6196
+        ],
+        [
+          "right_finger/geom_78",
+          6182
+        ],
+        [
+          "right_finger/geom_76",
+          4919
+        ],
+        [
+          "left_finger/geom_68",
+          811
+        ],
+        [
+          "left_finger/geom_70",
+          215
+        ],
+        [
+          "left_finger/geom_69",
+          213
+        ],
+        [
+          "left_finger/geom_71",
+          211
+        ]
+      ],
+      "minimum_hand_table_clearance_m": 0.11129475202216993,
+      "stage_sequence_valid": false,
+      "stage_violations": [
+        "그리퍼 개방 완료 전에 후퇴"
+      ],
+      "success": false,
+      "score": -824500.5378852908
+    },
+    {
+      "place_hand_z_m": 0.425,
+      "plan": {
+        "plan_id": "배치_높이_탐색",
+        "place_hand_z": 0.425
+      },
+      "pick_lift_height_m": 0.20158498934650876,
+      "final_xy_error_m": 0.0015653319238703612,
+      "final_object_z": 0.3343628237831244,
+      "released": true,
+      "stable": true,
+      "robot_table_contact_steps": 1355,
+      "deepest_robot_table_penetration_m": 0.0006320034046006784,
+      "max_robot_table_contact_force_n": 8.141675753650176,
+      "robot_table_contact_pairs": [
+        [
+          "left_finger/geom_68",
+          4063
+        ],
+        [
+          "right_finger/geom_76",
+          3640
+        ]
+      ],
+      "minimum_hand_table_clearance_m": 0.1118101711381021,
+      "stage_sequence_valid": false,
+      "stage_violations": [
+        "그리퍼 개방 완료 전에 후퇴"
+      ],
+      "success": false,
+      "score": -677500.3767840065
+    },
+    {
+      "place_hand_z_m": 0.445,
+      "plan": {
+        "plan_id": "배치_높이_탐색",
+        "place_hand_z": 0.445
+      },
+      "pick_lift_height_m": 0.20158498934650876,
+      "final_xy_error_m": 0.002799002535600164,
+      "final_object_z": 0.3343628237831246,
+      "released": true,
+      "stable": true,
+      "robot_table_contact_steps": 0,
+      "deepest_robot_table_penetration_m": 0.0,
+      "max_robot_table_contact_force_n": 0.0,
+      "robot_table_contact_pairs": [],
+      "minimum_hand_table_clearance_m": 0.1197598329960678,
+      "stage_sequence_valid": true,
+      "stage_violations": [],
+      "success": true,
+      "score": 99.37648187119242
+    },
+    {
+      "place_hand_z_m": 0.465,
+      "plan": {
+        "plan_id": "배치_높이_탐색",
+        "place_hand_z": 0.465
+      },
+      "pick_lift_height_m": 0.20158498934650876,
+      "final_xy_error_m": 0.003496730802558076,
+      "final_object_z": 0.3343628237831242,
+      "released": true,
+      "stable": true,
+      "robot_table_contact_steps": 0,
+      "deepest_robot_table_penetration_m": 0.0,
+      "max_robot_table_contact_force_n": 0.0,
+      "robot_table_contact_pairs": [],
+      "minimum_hand_table_clearance_m": 0.1197598329960678,
+      "stage_sequence_valid": true,
+      "stage_violations": [],
+      "success": true,
+      "score": 99.2369362178008
+    }
+  ],
+  "minimum_observed_safe_grasp_clearance_m": 0.1,
+  "minimum_observed_safe_place_hand_z_m": 0.445
+}

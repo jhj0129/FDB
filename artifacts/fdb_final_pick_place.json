@@ -1,52 +1,78 @@
 {
-  "selected_plan": "place_high",
+  "selected_plan": "place_low",
   "candidate_results": [
     {
       "plan": {
         "plan_id": "place_low",
-        "place_hand_z": 0.365
+        "place_hand_z": 0.445
       },
-      "pick_lift_height_m": 0.14665145432927845,
-      "final_xy_error_m": 0.019475809358444066,
-      "final_object_z": 0.33436282378312415,
+      "pick_lift_height_m": 0.20158498934650876,
+      "final_xy_error_m": 0.002799002535600164,
+      "final_object_z": 0.3343628237831246,
       "released": true,
       "stable": true,
+      "robot_table_contact_steps": 0,
+      "deepest_robot_table_penetration_m": 0.0,
+      "max_robot_table_contact_force_n": 0.0,
+      "robot_table_contact_pairs": [],
+      "minimum_hand_table_clearance_m": 0.1197598329960678,
+      "stage_sequence_valid": true,
+      "stage_violations": [],
       "success": true,
-      "score": 96.0411205066236
+      "score": 99.37648187119242
     },
     {
       "plan": {
         "plan_id": "place_centered",
-        "place_hand_z": 0.375
+        "place_hand_z": 0.455
       },
-      "pick_lift_height_m": 0.14665145432927845,
-      "final_xy_error_m": 0.006033272372043441,
-      "final_object_z": 0.3343628237831242,
+      "pick_lift_height_m": 0.20158498934650876,
+      "final_xy_error_m": 0.0034227586484391562,
+      "final_object_z": 0.3343628237831244,
       "released": true,
       "stable": true,
+      "robot_table_contact_steps": 0,
+      "deepest_robot_table_penetration_m": 0.0,
+      "max_robot_table_contact_force_n": 0.0,
+      "robot_table_contact_pairs": [],
+      "minimum_hand_table_clearance_m": 0.1197598329960678,
+      "stage_sequence_valid": true,
+      "stage_violations": [],
       "success": true,
-      "score": 98.72962790390372
+      "score": 99.25173064862462
     },
     {
       "plan": {
         "plan_id": "place_high",
-        "place_hand_z": 0.385
+        "place_hand_z": 0.465
       },
-      "pick_lift_height_m": 0.14665145432927845,
-      "final_xy_error_m": 0.005581072961868724,
+      "pick_lift_height_m": 0.20158498934650876,
+      "final_xy_error_m": 0.003496730802558076,
       "final_object_z": 0.3343628237831242,
       "released": true,
       "stable": true,
+      "robot_table_contact_steps": 0,
+      "deepest_robot_table_penetration_m": 0.0,
+      "max_robot_table_contact_force_n": 0.0,
+      "robot_table_contact_pairs": [],
+      "minimum_hand_table_clearance_m": 0.1197598329960678,
+      "stage_sequence_valid": true,
+      "stage_violations": [],
       "success": true,
-      "score": 98.82006778593866
+      "score": 99.2369362178008
     }
   ],
   "rendered_success": true,
-  "pick_lift_height_m": 0.14665145432927845,
-  "final_xy_error_m": 0.005581072961868724,
-  "final_object_z": 0.3343628237831242,
+  "pick_lift_height_m": 0.20158498934650876,
+  "final_xy_error_m": 0.002799002535600164,
+  "final_object_z": 0.3343628237831246,
   "released": true,
   "stable": true,
+  "robot_table_contact_steps": 0,
+  "deepest_robot_table_penetration_m": 0.0,
+  "max_robot_table_contact_force_n": 0.0,
+  "minimum_hand_table_clearance_m": 0.1197598329960678,
+  "stage_sequence_valid": true,
   "duration_s": 21.199999999999683,
   "fps": 30,
   "resolution": [

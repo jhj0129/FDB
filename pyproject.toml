@@ -15,6 +15,7 @@ dependencies = []
 [project.optional-dependencies]
 physics = ["mujoco>=3.13,<4"]
 robot = ["mujoco>=3.13,<4", "mujoco-menagerie==2026.9.0", "imageio-ffmpeg>=0.6,<1"]
+neural = ["mujoco>=3.13,<4", "numpy>=2,<3", "torch>=2.5,<3", "imageio-ffmpeg>=0.6,<1"]
 dev = ["pytest>=7", "jsonschema>=4"]
 
 [project.scripts]
@@ -32,6 +33,12 @@ fdb-v2-recovery = "fdb.v2.recovery_cli:main"
 fdb-v3-inspect = "fdb.v3.cli:main"
 fdb-v4-probe = "fdb.v4.cli:main"
 fdb-render-final = "fdb.v2.render_final:main"
+fdb-v5-data = "fdb.v5.data_cli:main"
+fdb-v5-train = "fdb.v5.train_cli:main"
+fdb-v5-hybrid = "fdb.v5.hybrid_cli:main"
+fdb-v5-render = "fdb.v5.render_neural:main"
+fdb-v5-safety-envelope = "fdb.v5.safety_envelope:main"
+fdb-v5-report = "fdb.v5.report_cli:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]

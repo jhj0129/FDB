@@ -28,6 +28,7 @@ def _ffmpeg_executable() -> str:
 def render(output: Path, width: int = 640, height: int = 360, fps: int = 30) -> dict[str, object]:
     """Render the selected Panda pick-and-place future and return verified metrics."""
     import mujoco
+    import numpy as np
 
     experiment = PandaPickPlaceExperiment()
     selected, candidates = experiment.run()
@@ -103,6 +104,13 @@ def render(output: Path, width: int = 640, height: int = 360, fps: int = 30) -> 
     renderer = mujoco.Renderer(model, height=height, width=width)
     peak_z = sz
     stable = True
+    table_id = model.geom("table").id
+    object_id = model.geom("object_geom").id
+    robot_table_contact_steps = 0
+    deepest_penetration = 0.0
+    max_contact_force = 0.0
+    minimum_hand_clearance = math.inf
+    stage_sequence_valid = True
     frame_interval = 1.0 / fps
     next_frame_time = 0.0
 
@@ -113,12 +121,38 @@ def render(output: Path, width: int = 640, height: int = 360, fps: int = 30) -> 
     try:
         write_frame()
         next_frame_time += frame_interval
-        for _name, target_qpos, gripper, steps in stages:
-            data.ctrl[:7] = target_qpos
-            data.ctrl[7] = gripper
-            for _ in range(steps):
+        for stage_name, target_qpos, gripper, steps in stages:
+            if stage_name == "transfer" and float(data.body("object").xpos[2]) - sz < 0.08:
+                stage_sequence_valid = False
+            if stage_name == "release" and abs(float(data.body("object").xpos[2]) - tz) > 0.04:
+                stage_sequence_valid = False
+            if stage_name == "retreat" and float(data.joint("finger_joint1").qpos[0]) < 0.03:
+                stage_sequence_valid = False
+            start_arm = data.ctrl[:7].copy()
+            start_gripper = float(data.ctrl[7])
+            for step in range(steps):
+                phase = (step + 1) / steps
+                blend = 10 * phase**3 - 15 * phase**4 + 6 * phase**5
+                data.ctrl[:7] = start_arm + blend * (target_qpos - start_arm)
+                data.ctrl[7] = start_gripper + blend * (gripper - start_gripper)
                 mujoco.mj_step(model, data)
                 peak_z = max(peak_z, float(data.body("object").xpos[2]))
+                minimum_hand_clearance = min(
+                    minimum_hand_clearance,
+                    float(data.body("hand").xpos[2]) - 0.31,
+                )
+                contacted_this_step = False
+                for contact_index in range(data.ncon):
+                    contact = data.contact[contact_index]
+                    pair = {int(contact.geom1), int(contact.geom2)}
+                    if table_id in pair and object_id not in pair:
+                        contacted_this_step = True
+                        deepest_penetration = max(deepest_penetration, max(0.0, -float(contact.dist)))
+                        force = np.zeros(6)
+                        mujoco.mj_contactForce(model, data, contact_index, force)
+                        max_contact_force = max(max_contact_force, abs(float(force[0])))
+                if contacted_this_step:
+                    robot_table_contact_steps += 1
                 if not all(math.isfinite(float(value)) for value in data.qpos):
                     stable = False
                     break
@@ -141,6 +175,10 @@ def render(output: Path, width: int = 640, height: int = 360, fps: int = 30) -> 
     success = (
         stable and peak_z - sz >= 0.08 and xy_error <= 0.05
         and abs(float(final[2]) - tz) <= 0.02 and released
+        and robot_table_contact_steps == 0
+        and deepest_penetration == 0.0
+        and minimum_hand_clearance >= 0.055
+        and stage_sequence_valid
     )
     metrics: dict[str, object] = {
         "selected_plan": selected.plan.plan_id,
@@ -151,6 +189,11 @@ def render(output: Path, width: int = 640, height: int = 360, fps: int = 30) -> 
         "final_object_z": float(final[2]),
         "released": released,
         "stable": stable,
+        "robot_table_contact_steps": robot_table_contact_steps,
+        "deepest_robot_table_penetration_m": deepest_penetration,
+        "max_robot_table_contact_force_n": max_contact_force,
+        "minimum_hand_table_clearance_m": minimum_hand_clearance,
+        "stage_sequence_valid": stage_sequence_valid,
         "duration_s": float(data.time) + 1.0,
         "fps": fps,
         "resolution": [width, height],

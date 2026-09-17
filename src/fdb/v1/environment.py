@@ -49,6 +49,19 @@ class MujocoPushEnvironment:
         mujoco.mj_forward(model, data)
         return model, data, puck_id, puck_geom_id, floor_geom_id
 
+    def observe_initial(
+        self, scenario: PhysicsScenario | None = None
+    ) -> tuple[tuple[float, float], tuple[float, float]]:
+        """Return the physical initial and target positions without advancing time."""
+        scenario = scenario or PhysicsScenario()
+        _, data, _, _, _ = self._create_simulation(scenario)
+        initial = data.body("puck").xpos[:2]
+        target = data.site("target").xpos[:2]
+        return (
+            (float(initial[0]), float(initial[1])),
+            (float(target[0]), float(target[1])),
+        )
+
     def simulate(
         self, plan: PushCandidate, scenario: PhysicsScenario | None = None
     ) -> PhysicsRollout:

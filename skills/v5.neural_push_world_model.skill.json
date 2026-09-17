@@ -1,0 +1,21 @@
+{
+  "schema_version": "1.0",
+  "skill_id": "v5.neural_push_world_model",
+  "version": "0.1.0",
+  "status": "candidate",
+  "description": "MuJoCo planar push의 최종 위치를 예측하고 불확실한 입력을 물리 시뮬레이션으로 되돌리는 MLP 앙상블 세계모델",
+  "prerequisites": ["검증된 v1 planar push 환경", "portable NumPy 체크포인트", "물리 실행 검증 가능"],
+  "inputs": {"state_and_action": "초기 위치, 목표, 질량, 마찰, 힘, 작용 및 안정화 step"},
+  "outputs": {"prediction": "최종 XY 위치, 앙상블 불확실성, fallback 이유"},
+  "procedure": ["입력 분포 경계 확인", "5개 MLP 추론", "평균 위치와 불일치 계산", "불확실하거나 분포 밖이면 MuJoCo fallback", "선택 후보를 물리 실행으로 재검증"],
+  "acceptance_criteria": [
+    {"metric": "test_mean_position_error_m", "operator": "less_than_or_equal", "threshold": 0.03},
+    {"metric": "test_success_classification_accuracy", "operator": "greater_than_or_equal", "threshold": 0.98},
+    {"metric": "ood_fallback_available", "operator": "equals", "threshold": true}
+  ],
+  "known_limits": ["단일 planar push 모델", "open-loop 힘 행동만 학습", "Panda 접촉과 실제 센서 입력 미학습", "안전 판단 권한 없음"],
+  "evidence": ["experiments/0014_v5_neural_world_model.md", "experiments/0014_v5_neural_metrics.json", "artifacts/fdb_v5_neural_prediction.json", "tests/test_v5_hybrid.py"],
+  "verification": {"environment": "CPU PyTorch 2.14.0, MuJoCo 3.13.0", "success_count": 500, "failure_count": 0, "last_verified_at": "2026-09-17T09:25:00+00:00"},
+  "deprecation": null
+}
+

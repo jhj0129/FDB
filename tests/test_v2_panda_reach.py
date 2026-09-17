@@ -68,6 +68,9 @@ def test_pick_place_selects_a_stable_released_placement():
     assert selected.pick_lift_height_m >= 0.08
     assert selected.final_xy_error_m <= 0.05
     assert selected.released is True
+    assert selected.robot_table_contact_steps == 0
+    assert selected.deepest_robot_table_penetration_m == 0.0
+    assert selected.stage_sequence_valid is True
 
 
 def test_pick_place_generalizes_across_declared_object_suite():
@@ -75,6 +78,8 @@ def test_pick_place_generalizes_across_declared_object_suite():
     assert result.trial_count == len(SCENARIOS) == 6
     assert result.success_rate >= 5 / 6
     assert result.max_final_xy_error_m <= 0.05
+    assert all(trial.selected.robot_table_contact_steps == 0 for trial in result.trials)
+    assert all(trial.selected.stage_sequence_valid for trial in result.trials)
 
 
 def test_missed_grasp_is_diagnosed_and_recovers_from_reset():

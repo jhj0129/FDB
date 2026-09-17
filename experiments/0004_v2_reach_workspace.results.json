@@ -1,0 +1,371 @@
+{
+  "trials": [
+    {
+      "target": [
+        0.45,
+        0.15,
+        0.55
+      ],
+      "selected": {
+        "plan": {
+          "plan_id": "high_damping",
+          "damping": 0.15,
+          "max_iterations": 200
+        },
+        "converged": true,
+        "ik_iterations": 8,
+        "ik_error_m": 5.5137986613931426e-05,
+        "execution_error_m": 0.005291511852936574,
+        "joint_limit_violations": 0,
+        "contact_count": 0,
+        "score": 97.35424407353172,
+        "target_qpos": [
+          0.15095369867039932,
+          -0.14337965395996657,
+          0.15414932020210978,
+          -1.8641159802395086,
+          0.03158821767245949,
+          1.3665541894758986,
+          -0.7853
+        ]
+      }
+    },
+    {
+      "target": [
+        0.45,
+        -0.15,
+        0.55
+      ],
+      "selected": {
+        "plan": {
+          "plan_id": "high_damping",
+          "damping": 0.15,
+          "max_iterations": 200
+        },
+        "converged": true,
+        "ik_iterations": 8,
+        "ik_error_m": 5.5137986613979314e-05,
+        "execution_error_m": 0.00531836201196866,
+        "joint_limit_violations": 0,
+        "contact_count": 0,
+        "score": 97.34081899401568,
+        "target_qpos": [
+          -0.15095369867039934,
+          -0.14337965395996646,
+          -0.1541493202021098,
+          -1.864115980239508,
+          -0.0315882176724595,
+          1.3665541894758986,
+          -0.7853
+        ]
+      }
+    },
+    {
+      "target": [
+        0.5,
+        0.2,
+        0.65
+      ],
+      "selected": {
+        "plan": {
+          "plan_id": "low_damping",
+          "damping": 0.005,
+          "max_iterations": 200
+        },
+        "converged": true,
+        "ik_iterations": 5,
+        "ik_error_m": 2.9220130924069174e-06,
+        "execution_error_m": 0.006471470716053625,
+        "joint_limit_violations": 0,
+        "contact_count": 0,
+        "score": 96.76426464197318,
+        "target_qpos": [
+          0.18191668581120343,
+          -0.048813040016636465,
+          0.18601350365301356,
+          -1.569779117625401,
+          0.037226753787623704,
+          1.5571262581534502,
+          -0.7853
+        ]
+      }
+    },
+    {
+      "target": [
+        0.5,
+        -0.2,
+        0.65
+      ],
+      "selected": {
+        "plan": {
+          "plan_id": "low_damping",
+          "damping": 0.005,
+          "max_iterations": 200
+        },
+        "converged": true,
+        "ik_iterations": 5,
+        "ik_error_m": 2.9220130924721736e-06,
+        "execution_error_m": 0.006513243029000116,
+        "joint_limit_violations": 0,
+        "contact_count": 0,
+        "score": 96.74337848549995,
+        "target_qpos": [
+          -0.18191668581120343,
+          -0.04881304001663658,
+          -0.18601350365301358,
+          -1.5697791176254012,
+          -0.037226753787623704,
+          1.55712625815345,
+          -0.7853
+        ]
+      }
+    },
+    {
+      "target": [
+        0.6,
+        0.1,
+        0.5
+      ],
+      "selected": {
+        "plan": {
+          "plan_id": "balanced_damping",
+          "damping": 0.03,
+          "max_iterations": 200
+        },
+        "converged": true,
+        "ik_iterations": 5,
+        "ik_error_m": 2.4527972805439996e-06,
+        "execution_error_m": 0.007961709431082006,
+        "joint_limit_violations": 0,
+        "contact_count": 0,
+        "score": 96.019145284459,
+        "target_qpos": [
+          0.08562843027819031,
+          0.21016652092060625,
+          0.0834068585552597,
+          -1.5854437677350814,
+          0.016225995479980704,
+          1.629114054918395,
+          -0.7853
+        ]
+      }
+    },
+    {
+      "target": [
+        0.6,
+        -0.1,
+        0.5
+      ],
+      "selected": {
+        "plan": {
+          "plan_id": "high_damping",
+          "damping": 0.15,
+          "max_iterations": 200
+        },
+        "converged": true,
+        "ik_iterations": 7,
+        "ik_error_m": 7.530718577778719e-05,
+        "execution_error_m": 0.007975587627235653,
+        "joint_limit_violations": 0,
+        "contact_count": 0,
+        "score": 96.01220618638217,
+        "target_qpos": [
+          -0.08558621322638443,
+          0.21002230903567548,
+          -0.08343027211535398,
+          -1.585609691882412,
+          -0.016307345612812253,
+          1.6288816397333654,
+          -0.7853
+        ]
+      }
+    },
+    {
+      "target": [
+        0.35,
+        0.15,
+        0.7
+      ],
+      "selected": {
+        "plan": {
+          "plan_id": "high_damping",
+          "damping": 0.15,
+          "max_iterations": 200
+        },
+        "converged": true,
+        "ik_iterations": 9,
+        "ik_error_m": 9.024018643868666e-05,
+        "execution_error_m": 0.003833992289523375,
+        "joint_limit_violations": 0,
+        "contact_count": 0,
+        "score": 98.08300385523832,
+        "target_qpos": [
+          0.16354696484115558,
+          -0.44513790230423106,
+          0.1736435144333684,
+          -1.8022331530963154,
+          0.03692993404443765,
+          1.2951092512685771,
+          -0.7853
+        ]
+      }
+    },
+    {
+      "target": [
+        0.35,
+        -0.15,
+        0.7
+      ],
+      "selected": {
+        "plan": {
+          "plan_id": "high_damping",
+          "damping": 0.15,
+          "max_iterations": 200
+        },
+        "converged": true,
+        "ik_iterations": 9,
+        "ik_error_m": 9.024018643862397e-05,
+        "execution_error_m": 0.003862314485063407,
+        "joint_limit_violations": 0,
+        "contact_count": 0,
+        "score": 98.0688427574683,
+        "target_qpos": [
+          -0.16354696484115572,
+          -0.44513790230423095,
+          -0.1736435144333686,
+          -1.8022331530963152,
+          -0.0369299340444377,
+          1.2951092512685776,
+          -0.7853
+        ]
+      }
+    },
+    {
+      "target": [
+        0.5,
+        0.0,
+        0.75
+      ],
+      "selected": {
+        "plan": {
+          "plan_id": "low_damping",
+          "damping": 0.005,
+          "max_iterations": 200
+        },
+        "converged": true,
+        "ik_iterations": 4,
+        "ik_error_m": 6.449801053299559e-06,
+        "execution_error_m": 0.006028479193202101,
+        "joint_limit_violations": 0,
+        "contact_count": 0,
+        "score": 96.98576040339896,
+        "target_qpos": [
+          -6.435662270092262e-18,
+          -0.14659783474040863,
+          -7.463532491893617e-18,
+          -1.4712605425539336,
+          -1.4672148240859273e-18,
+          1.5805344994414443,
+          -0.7853
+        ]
+      }
+    },
+    {
+      "target": [
+        0.35,
+        0.0,
+        0.45
+      ],
+      "selected": {
+        "plan": {
+          "plan_id": "high_damping",
+          "damping": 0.15,
+          "max_iterations": 200
+        },
+        "converged": true,
+        "ik_iterations": 12,
+        "ik_error_m": 3.614229396852864e-05,
+        "execution_error_m": 0.003616079414269428,
+        "joint_limit_violations": 0,
+        "contact_count": 0,
+        "score": 98.19196029286529,
+        "target_qpos": [
+          1.5210302417071792e-17,
+          -0.29821349407644526,
+          1.1332366678909178e-17,
+          -2.266331431830631,
+          8.072413026258136e-19,
+          1.1204601313742062,
+          -0.7853
+        ]
+      }
+    },
+    {
+      "target": [
+        0.65,
+        0.2,
+        0.6
+      ],
+      "selected": {
+        "plan": {
+          "plan_id": "high_damping",
+          "damping": 0.15,
+          "max_iterations": 200
+        },
+        "converged": true,
+        "ik_iterations": 11,
+        "ik_error_m": 7.82602448921913e-05,
+        "execution_error_m": 0.009652977524412324,
+        "joint_limit_violations": 0,
+        "contact_count": 0,
+        "score": 95.17351123779383,
+        "target_qpos": [
+          0.16837887985711597,
+          0.33616935374612317,
+          0.15535454921726932,
+          -1.2575214465034164,
+          0.029766356229909603,
+          1.8591705241689984,
+          -0.7853
+        ]
+      }
+    },
+    {
+      "target": [
+        0.65,
+        -0.2,
+        0.6
+      ],
+      "selected": {
+        "plan": {
+          "plan_id": "high_damping",
+          "damping": 0.15,
+          "max_iterations": 200
+        },
+        "converged": true,
+        "ik_iterations": 11,
+        "ik_error_m": 7.826024489225747e-05,
+        "execution_error_m": 0.009680853068276601,
+        "joint_limit_violations": 0,
+        "contact_count": 0,
+        "score": 95.1595734658617,
+        "target_qpos": [
+          -0.16837887985711583,
+          0.33616935374612295,
+          -0.15535454921726932,
+          -1.2575214465034166,
+          -0.029766356229909592,
+          1.8591705241689984,
+          -0.7853
+        ]
+      }
+    }
+  ],
+  "success_count": 12,
+  "trial_count": 12,
+  "success_rate": 1.0,
+  "mean_execution_error_m": 0.006350548386918656,
+  "max_execution_error_m": 0.009680853068276601,
+  "joint_limit_violations": 0,
+  "contact_count": 0
+}

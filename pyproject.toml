@@ -22,6 +22,7 @@ fdb = "fdb.cli:main"
 fdb-v1 = "fdb.v1.cli:main"
 fdb-v1-robustness = "fdb.v1.robustness_cli:main"
 fdb-v2 = "fdb.v2.cli:main"
+fdb-v2-reach-suite = "fdb.v2.reach_suite_cli:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]

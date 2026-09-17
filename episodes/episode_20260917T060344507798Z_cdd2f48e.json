@@ -1,0 +1,155 @@
+{
+  "schema_version": "1.0",
+  "episode_id": "episode_20260917T060344507798Z_cdd2f48e",
+  "created_at": "2026-09-17T06:03:44.507798+00:00",
+  "stage": "v2",
+  "task": "Evaluate Panda position-only reach across a workspace target suite.",
+  "observation": {
+    "robot": "franka_emika_panda",
+    "target_count": 12
+  },
+  "goal": {
+    "success_rate_min": 0.95,
+    "execution_error_m_max": 0.02
+  },
+  "candidate_plans": [
+    {
+      "target": [
+        0.45,
+        0.15,
+        0.55
+      ],
+      "selected": "high_damping"
+    },
+    {
+      "target": [
+        0.45,
+        -0.15,
+        0.55
+      ],
+      "selected": "high_damping"
+    },
+    {
+      "target": [
+        0.5,
+        0.2,
+        0.65
+      ],
+      "selected": "low_damping"
+    },
+    {
+      "target": [
+        0.5,
+        -0.2,
+        0.65
+      ],
+      "selected": "low_damping"
+    },
+    {
+      "target": [
+        0.6,
+        0.1,
+        0.5
+      ],
+      "selected": "balanced_damping"
+    },
+    {
+      "target": [
+        0.6,
+        -0.1,
+        0.5
+      ],
+      "selected": "high_damping"
+    },
+    {
+      "target": [
+        0.35,
+        0.15,
+        0.7
+      ],
+      "selected": "high_damping"
+    },
+    {
+      "target": [
+        0.35,
+        -0.15,
+        0.7
+      ],
+      "selected": "high_damping"
+    },
+    {
+      "target": [
+        0.5,
+        0.0,
+        0.75
+      ],
+      "selected": "low_damping"
+    },
+    {
+      "target": [
+        0.35,
+        0.0,
+        0.45
+      ],
+      "selected": "high_damping"
+    },
+    {
+      "target": [
+        0.65,
+        0.2,
+        0.6
+      ],
+      "selected": "high_damping"
+    },
+    {
+      "target": [
+        0.65,
+        -0.2,
+        0.6
+      ],
+      "selected": "high_damping"
+    }
+  ],
+  "decision": {
+    "selected_plan_id": "per-target-dls-selection",
+    "reason": "Select damping independently for each target using execution score.",
+    "predicted_evaluation": {
+      "success_rate": 1.0,
+      "max_execution_error_m": 0.009680853068276601
+    }
+  },
+  "execution": {
+    "raw_result": "experiments/0004_v2_reach_workspace.results.json"
+  },
+  "result": {
+    "final_state": {},
+    "objective_evaluation": {
+      "success_count": 12,
+      "trial_count": 12,
+      "success_rate": 1.0,
+      "mean_execution_error_m": 0.006350548386918656,
+      "max_execution_error_m": 0.009680853068276601,
+      "joint_limit_violations": 0,
+      "contact_count": 0
+    },
+    "user_evaluation": null
+  },
+  "reflection": {
+    "success_factors": [
+      "Per-target candidate simulation and model-derived joint limits."
+    ],
+    "failure_causes": [],
+    "learned": "Position-only reach generalizes across the declared target suite.",
+    "next_experiment": "Add orientation objectives and collision-aware scene objects.",
+    "confidence": 0.9,
+    "unresolved_questions": [
+      "How does the solver behave near singularities and obstacles?"
+    ]
+  },
+  "sources": [
+    "research/research_20260917_panda_model.json"
+  ],
+  "skills_used": [
+    "v2.panda_reach"
+  ]
+}

@@ -54,6 +54,8 @@ v2 has begun with a pinned, Apache-2.0 Franka Panda model from MuJoCo Menagerie.
 derives a robot self-model from compiled MJCF data and compares joint-limit-aware DLS
 reach candidates using MuJoCo body Jacobians. The first position-only reach baseline
 executes within 5.3 mm of its target; generalized reach and grasp remain unvalidated.
+The follow-up workspace suite reached 12/12 declared targets with a maximum error below
+9.7 mm, validating position-only reach within that explicit envelope.
 
 ## Quick start
 
@@ -86,6 +88,7 @@ python -m fdb.v1.robustness_cli \
   --output experiments/local_robustness.results.json
 python -m pip install -e '.[robot]'
 python -m fdb.v2.cli
+python -m fdb.v2.reach_suite_cli
 ```
 
 Each successful CLI run creates an `episodes/episode_*.json` file. Episode records

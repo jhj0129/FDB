@@ -194,6 +194,7 @@ def run_insertion(
     model_path: Path = DEFAULT_VISION_MODEL,
     object_yaw: float = OBJECT_YAW,
     hole_yaw: float = HOLE_YAW,
+    rotation_bias_rad: float = 0.0,
 ) -> tuple[InsertionResult, object, object]:
     import mujoco
 
@@ -202,7 +203,7 @@ def run_insertion(
         raise RuntimeError(f"시각 안전 게이트가 삽입을 거부했습니다: {perception}")
     # 상단 카메라의 영상 x축은 작업대 월드 x축과 반사 관계다. 이는 물체 정답이 아니라
     # 고정 카메라 외부 파라미터 보정이며, 영상에서 읽은 상대 회전의 부호만 월드로 변환한다.
-    planned_rotation = -float(perception["rotation_rad"])
+    planned_rotation = -float(perception["rotation_rad"]) + rotation_bias_rad
     planned_yaw = object_yaw + planned_rotation
     source_quat = _hand_quaternion(object_yaw)
     target_quat = _hand_quaternion(planned_yaw)
@@ -285,7 +286,10 @@ def run_insertion(
     return result, model, data
 
 
-def render(output: Path, width: int = 960, height: int = 540, fps: int = 30) -> InsertionResult:
+def render(
+    output: Path, width: int = 960, height: int = 540, fps: int = 30,
+    rotation_bias_rad: float = 0.0,
+) -> InsertionResult:
     import mujoco
 
     process = subprocess.Popen([
@@ -316,7 +320,7 @@ def render(output: Path, width: int = 960, height: int = 540, fps: int = 30) -> 
         process.stdin.write(frame.tobytes())
         next_frame += 1.0 / fps
 
-    result, _, _ = run_insertion(callback)
+    result, _, _ = run_insertion(callback, rotation_bias_rad=rotation_bias_rad)
     if renderer is not None:
         renderer.close()
     process.stdin.close()

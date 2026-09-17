@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "stage": "visual_affordance_and_behavioral_gait",
+  "stage": "visual_recovery_and_neural_gait_skill",
   "goal": "카메라에서 물체와 수용구의 형상·크기·방향·삽입 가능성을 이해해 명령대로 조작하고, 최소 10걸음 연속 교대 보행을 학습 정책으로 재현한다.",
   "status": "in_progress",
   "active_hypotheses": [
@@ -11,7 +11,8 @@
     "Human motion reference tracking will produce more human-like gait than procedural sinusoidal targets.",
     "Ordered manipulation with OOD rejection and retry recovery can compose existing FDB skills.",
     "A two-tower visual network can learn object-receptacle compatibility and rotation from pixels.",
-    "Ten-step alternating human reference motion can supervise a contact-aware neural gait policy."
+    "Ten-step alternating human reference motion can supervise a contact-aware neural gait policy.",
+    "Fresh-state candidate simulation can recover moderate visual rotation errors before retrying insertion."
   ],
   "unresolved_questions": [
     "How should rotate be evaluated independently from translation?",
@@ -22,5 +23,5 @@
     "How much real-camera domain randomization is needed before physical hardware transfer?",
     "Can a learned residual policy reproduce all ten alternating steps under physics instead of kinematic playback?"
   ],
-  "next_gate": "10걸음 H1 사람 궤적을 교사로 접촉 인식 모방 정책을 학습하고, 조작은 여러 형상·수용구와 실패 재시도로 확장한다."
+  "next_gate": "10걸음 신경망 기술을 교사로 접촉·관성 입력 동역학 정책을 학습하고, 조작은 원·삼각형·직사각형 수용구와 접촉 기반 재시도로 확장한다."
 }

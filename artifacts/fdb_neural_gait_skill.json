@@ -1,0 +1,111 @@
+{
+  "experiment": "phase-conditioned neural compression of a ten-step human gait skill",
+  "source": "LAFAN1 walk1_subject1 retargeted by LocoMuJoCo",
+  "training_frames": 291,
+  "frequency_hz": 50.0,
+  "parameter_count": 69338,
+  "final_loss": 5.5766842706361786e-05,
+  "joint_pose_rmse_rad": 0.001376470667310059,
+  "root_position_rmse_m": 0.005916134919971228,
+  "generated_behavior": {
+    "source": "LAFAN1 walk1_subject1 retargeted by LocoMuJoCo",
+    "robot": "Unitree H1",
+    "start_frame": 0,
+    "end_frame": 290,
+    "duration_s": 5.8,
+    "alternating_touchdowns": 10,
+    "completed_strides": 5,
+    "left_touchdowns": 5,
+    "right_touchdowns": 5,
+    "minimum_swing_clearance_m": 0.12692638099170633,
+    "minimum_forward_placement_m": 1.6494228577957413,
+    "pelvis_path_length_m": 10.524873733520508,
+    "net_pelvis_displacement_m": 9.540318489074707,
+    "success": true
+  },
+  "generated_touchdowns": [
+    {
+      "frame": 49,
+      "side": "right",
+      "lift_frame": 20,
+      "air_time_s": 0.58,
+      "maximum_foot_height_m": 0.20533613266063708,
+      "forward_placement_m": 1.814283194167356
+    },
+    {
+      "frame": 73,
+      "side": "left",
+      "lift_frame": 44,
+      "air_time_s": 0.58,
+      "maximum_foot_height_m": 0.18192638099170633,
+      "forward_placement_m": 1.6494228577957413
+    },
+    {
+      "frame": 99,
+      "side": "right",
+      "lift_frame": 68,
+      "air_time_s": 0.62,
+      "maximum_foot_height_m": 0.2183961442838761,
+      "forward_placement_m": 1.919592310817804
+    },
+    {
+      "frame": 125,
+      "side": "left",
+      "lift_frame": 95,
+      "air_time_s": 0.6,
+      "maximum_foot_height_m": 0.1890995971707378,
+      "forward_placement_m": 1.8003442393039444
+    },
+    {
+      "frame": 149,
+      "side": "right",
+      "lift_frame": 120,
+      "air_time_s": 0.58,
+      "maximum_foot_height_m": 0.20832557093593748,
+      "forward_placement_m": 1.9111959328786254
+    },
+    {
+      "frame": 173,
+      "side": "left",
+      "lift_frame": 143,
+      "air_time_s": 0.6,
+      "maximum_foot_height_m": 0.19711177701122048,
+      "forward_placement_m": 1.9423610405091543
+    },
+    {
+      "frame": 197,
+      "side": "right",
+      "lift_frame": 168,
+      "air_time_s": 0.58,
+      "maximum_foot_height_m": 0.20869936450316073,
+      "forward_placement_m": 1.9299330764817237
+    },
+    {
+      "frame": 222,
+      "side": "left",
+      "lift_frame": 192,
+      "air_time_s": 0.6,
+      "maximum_foot_height_m": 0.19930399767006488,
+      "forward_placement_m": 1.9213653696446116
+    },
+    {
+      "frame": 246,
+      "side": "right",
+      "lift_frame": 216,
+      "air_time_s": 0.6,
+      "maximum_foot_height_m": 0.2051200784490117,
+      "forward_placement_m": 1.8884767469495496
+    },
+    {
+      "frame": 271,
+      "side": "left",
+      "lift_frame": 240,
+      "air_time_s": 0.62,
+      "maximum_foot_height_m": 0.20028889596922966,
+      "forward_placement_m": 1.7633893069899604
+    }
+  ],
+  "scope_limit": "사람 궤적을 압축 생성한 kinematic skill이며 물리 외란 대응 정책은 아님",
+  "video": "artifacts/fdb_neural_gait_skill.mp4",
+  "preview": "artifacts/fdb_neural_gait_skill.png"
+}

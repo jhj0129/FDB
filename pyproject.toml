@@ -57,6 +57,8 @@ fdb-behavioral-gait = "fdb.challenge.behavioral_gait:main"
 fdb-shape-fit-train = "fdb.challenge.shape_fit_learning:main"
 fdb-shape-insertion = "fdb.challenge.shape_insertion:main"
 fdb-shape-command = "fdb.challenge.shape_command:main"
+fdb-insertion-recovery = "fdb.challenge.insertion_recovery:main"
+fdb-gait-skill-train = "fdb.challenge.gait_skill_learning:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]

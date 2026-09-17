@@ -1,0 +1,32 @@
+{
+  "task": "detect failed insertion and recover by candidate simulation",
+  "result": {
+    "injected_initial_error_deg": 40.0,
+    "initial_success": false,
+    "attempted_biases_deg": [
+      40.0,
+      0.0,
+      -10.0,
+      10.0,
+      -20.0,
+      20.0
+    ],
+    "selected_bias_deg": -20.0,
+    "recovered_success": true,
+    "final_result": {
+      "perceived_object": "square",
+      "perceived_hole": "square",
+      "fit_decision": true,
+      "planned_rotation_deg": -54.19061746324982,
+      "final_xy_error_m": 0.0031442327332295464,
+      "final_height_error_m": 0.0006371762169058992,
+      "final_yaw_error_deg": 2.5026833018597485,
+      "peak_peg_height_m": 0.47322818500856717,
+      "frame_contact_steps": 1452,
+      "robot_table_contact_steps": 0,
+      "released": true,
+      "success": true
+    }
+  },
+  "video": "artifacts/fdb_insertion_recovery.mp4"
+}

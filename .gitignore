@@ -9,3 +9,8 @@ build/
 # LAFAN1은 CC BY-NC-ND 4.0이므로 재표적화 영상은 로컬 검증용으로만 둔다.
 artifacts/fdb_behavioral_walk.mp4
 artifacts/fdb_behavioral_walk.png
+artifacts/fdb_neural_gait_skill.mp4
+artifacts/fdb_neural_gait_skill.png
+artifacts/fdb_cognitive_showcase.mp4
+artifacts/fdb_cognitive_showcase.png
+models/local/

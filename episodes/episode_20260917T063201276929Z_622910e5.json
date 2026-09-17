@@ -1,0 +1,74 @@
+{
+  "schema_version": "1.0",
+  "episode_id": "episode_20260917T063201276929Z_622910e5",
+  "created_at": "2026-09-17T06:32:01.276929+00:00",
+  "stage": "v4",
+  "task": "Verify inferred robot body trees with bounded joint motion probes.",
+  "observation": {
+    "robots": [
+      "franka_emika_panda",
+      "universal_robots_ur5e",
+      "kuka_iiwa_14"
+    ],
+    "delta_rad": 0.02
+  },
+  "goal": {
+    "unexpected_affected_bodies": 0,
+    "probe_success_rate": 1.0
+  },
+  "candidate_plans": [
+    {
+      "robot": "franka_emika_panda",
+      "probe_count": 7
+    },
+    {
+      "robot": "universal_robots_ur5e",
+      "probe_count": 6
+    },
+    {
+      "robot": "kuka_iiwa_14",
+      "probe_count": 7
+    }
+  ],
+  "decision": {
+    "selected_plan_id": "bounded-per-joint-probe",
+    "reason": "Small limit-respecting motions isolate causal downstream effects.",
+    "predicted_evaluation": {
+      "probe_count": 20
+    }
+  },
+  "execution": {
+    "outputs": [
+      "robots/franka_emika_panda/motion_probe.json",
+      "robots/universal_robots_ur5e/motion_probe.json",
+      "robots/kuka_iiwa_14/motion_probe.json"
+    ]
+  },
+  "result": {
+    "final_state": {},
+    "objective_evaluation": {
+      "verified": 20,
+      "total": 20,
+      "success_rate": 1.0
+    },
+    "user_evaluation": null
+  },
+  "reflection": {
+    "success_factors": [
+      "Compared both translation and orientation changes against the compiled tree."
+    ],
+    "failure_causes": [],
+    "learned": "Small motion probes verify structural downstream predictions for the tested serial arms.",
+    "next_experiment": "Use probes to identify capability and end-effector sensitivity automatically.",
+    "confidence": 0.9,
+    "unresolved_questions": [
+      "How should coupled, closed-chain, and mobile joints be probed?"
+    ]
+  },
+  "sources": [
+    "experiments/0011_v3_generic_morphology.md"
+  ],
+  "skills_used": [
+    "v3.generic_morphology_inspection"
+  ]
+}

@@ -75,6 +75,9 @@ online same-state recovery skill.
 v3 has begun with a generic compiled-model inspector. The same code produces sourced
 self-models for Panda, UR5e, and KUKA iiwa 14, preferring explicit tool sites and then
 structural gripper/leaf evidence instead of guessed robot-specific dimensions.
+v4 now behaviorally checks those inferred body trees using bounded joint interventions.
+All 20 actuator-driven hinge probes across the three serial arms moved exactly the
+predicted downstream bodies, with no unexpected body motion.
 
 ## Quick start
 
@@ -115,6 +118,7 @@ python -m fdb.v2.pick_place_cli
 python -m fdb.v2.manipulation_suite_cli
 python -m fdb.v2.recovery_cli
 python -m fdb.v3.cli
+python -m fdb.v4.cli
 ```
 
 Each successful CLI run creates an `episodes/episode_*.json` file. Episode records

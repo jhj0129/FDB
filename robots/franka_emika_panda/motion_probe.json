@@ -1,0 +1,176 @@
+{
+  "robot": "franka_emika_panda",
+  "joint_results": [
+    {
+      "joint": "joint1",
+      "delta_rad": 0.02,
+      "predicted_downstream_bodies": [
+        "link1",
+        "link2",
+        "link3",
+        "link4",
+        "link5",
+        "link6",
+        "link7",
+        "hand",
+        "left_finger",
+        "right_finger"
+      ],
+      "observed_affected_bodies": [
+        "link1",
+        "link2",
+        "link3",
+        "link4",
+        "link5",
+        "link6",
+        "link7",
+        "hand",
+        "left_finger",
+        "right_finger"
+      ],
+      "unexpected_affected_bodies": [],
+      "verified": true
+    },
+    {
+      "joint": "joint2",
+      "delta_rad": 0.02,
+      "predicted_downstream_bodies": [
+        "link2",
+        "link3",
+        "link4",
+        "link5",
+        "link6",
+        "link7",
+        "hand",
+        "left_finger",
+        "right_finger"
+      ],
+      "observed_affected_bodies": [
+        "link2",
+        "link3",
+        "link4",
+        "link5",
+        "link6",
+        "link7",
+        "hand",
+        "left_finger",
+        "right_finger"
+      ],
+      "unexpected_affected_bodies": [],
+      "verified": true
+    },
+    {
+      "joint": "joint3",
+      "delta_rad": 0.02,
+      "predicted_downstream_bodies": [
+        "link3",
+        "link4",
+        "link5",
+        "link6",
+        "link7",
+        "hand",
+        "left_finger",
+        "right_finger"
+      ],
+      "observed_affected_bodies": [
+        "link3",
+        "link4",
+        "link5",
+        "link6",
+        "link7",
+        "hand",
+        "left_finger",
+        "right_finger"
+      ],
+      "unexpected_affected_bodies": [],
+      "verified": true
+    },
+    {
+      "joint": "joint4",
+      "delta_rad": 0.02,
+      "predicted_downstream_bodies": [
+        "link4",
+        "link5",
+        "link6",
+        "link7",
+        "hand",
+        "left_finger",
+        "right_finger"
+      ],
+      "observed_affected_bodies": [
+        "link4",
+        "link5",
+        "link6",
+        "link7",
+        "hand",
+        "left_finger",
+        "right_finger"
+      ],
+      "unexpected_affected_bodies": [],
+      "verified": true
+    },
+    {
+      "joint": "joint5",
+      "delta_rad": 0.02,
+      "predicted_downstream_bodies": [
+        "link5",
+        "link6",
+        "link7",
+        "hand",
+        "left_finger",
+        "right_finger"
+      ],
+      "observed_affected_bodies": [
+        "link5",
+        "link6",
+        "link7",
+        "hand",
+        "left_finger",
+        "right_finger"
+      ],
+      "unexpected_affected_bodies": [],
+      "verified": true
+    },
+    {
+      "joint": "joint6",
+      "delta_rad": 0.02,
+      "predicted_downstream_bodies": [
+        "link6",
+        "link7",
+        "hand",
+        "left_finger",
+        "right_finger"
+      ],
+      "observed_affected_bodies": [
+        "link6",
+        "link7",
+        "hand",
+        "left_finger",
+        "right_finger"
+      ],
+      "unexpected_affected_bodies": [],
+      "verified": true
+    },
+    {
+      "joint": "joint7",
+      "delta_rad": 0.02,
+      "predicted_downstream_bodies": [
+        "link7",
+        "hand",
+        "left_finger",
+        "right_finger"
+      ],
+      "observed_affected_bodies": [
+        "link7",
+        "hand",
+        "left_finger",
+        "right_finger"
+      ],
+      "unexpected_affected_bodies": [],
+      "verified": true
+    }
+  ],
+  "verified_count": 7,
+  "probe_count": 7,
+  "success_rate": 1.0
+}

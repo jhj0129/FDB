@@ -1,0 +1,20 @@
+{
+  "schema_version": "1.0",
+  "skill_id": "v4.motion_probe",
+  "version": "1.0.0",
+  "status": "validated",
+  "description": "Behaviorally verify an inferred serial-arm body tree using bounded per-joint MuJoCo interventions.",
+  "prerequisites": ["Compilable MuJoCo model", "Actuator-to-joint transmissions", "Inferred body tree"],
+  "inputs": {"model_name": "Menagerie registry name", "delta_rad": "Small positive joint perturbation"},
+  "outputs": {"motion_probe": "Per-joint predicted and observed affected bodies"},
+  "procedure": ["Reset model", "Select actuator-driven hinge joints", "Apply a limit-respecting perturbation", "Observe body translation and rotation", "Compare affected bodies with inferred descendants"],
+  "acceptance_criteria": [
+    {"metric": "unexpected_affected_body_count", "operator": "equals", "threshold": 0},
+    {"metric": "probe_success_rate", "operator": "equals", "threshold": 1.0}
+  ],
+  "known_limits": ["Validated on three open-chain serial arms", "Does not identify dynamic parameters", "Mobile, coupled, and closed-chain mechanisms untested"],
+  "evidence": ["experiments/0012_v4_motion_probe.md", "episodes/episode_20260917T063201276929Z_622910e5.json", "tests/test_v4_motion_probe.py"],
+  "verification": {"environment": "MuJoCo Menagerie 2026.9.0", "success_count": 20, "failure_count": 0, "last_verified_at": "2026-09-17T06:32:01.276929+00:00"},
+  "deprecation": null
+}
+

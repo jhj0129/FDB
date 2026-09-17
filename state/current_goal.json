@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0",
-  "stage": "v3",
-  "goal": "Verify generic robot morphology hypotheses through small simulation motions.",
+  "stage": "v4",
+  "goal": "Render and verify the integrated Panda pick-and-place demonstration.",
   "status": "implemented",
   "active_hypotheses": [
     "Fresh-state MuJoCo candidate rollouts can improve first-attempt physical task selection.",
@@ -12,5 +12,5 @@
     "How should rotate be evaluated independently from translation?",
     "Which orientation representation and collision metric should gate pre-grasp reach?"
   ],
-  "next_gate": "Move each actuated joint by a bounded amount in simulation and compare observed downstream body motion with the inferred kinematic tree."
+  "next_gate": "Produce a reproducible final simulation artifact and verify its task metrics."
 }

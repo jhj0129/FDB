@@ -1,8 +1,8 @@
 {
   "schema_version": "1.0",
   "skill_id": "v3.generic_morphology_inspection",
-  "version": "0.1.0",
-  "status": "candidate",
+  "version": "1.0.0",
+  "status": "validated",
   "description": "Derive a conservative robot self-model from compiled MuJoCo structure without robot-specific link names.",
   "prerequisites": ["Compilable sourced MuJoCo model", "Recorded artifact provenance and license"],
   "inputs": {"model_name": "Menagerie registry name"},
@@ -13,9 +13,8 @@
     {"metric": "provenance_recorded", "operator": "equals", "threshold": true},
     {"metric": "end_effector_candidates_nonempty", "operator": "equals", "threshold": true}
   ],
-  "known_limits": ["Three serial arms tested", "Behavioral verification pending", "Mobile and branched bodies untested"],
-  "evidence": ["experiments/0011_v3_generic_morphology.md", "episodes/episode_20260917T062823086346Z_652207a5.json", "tests/test_v3_morphology.py"],
-  "verification": {"environment": "Menagerie 2026.9.0", "success_count": 3, "failure_count": 1, "last_verified_at": "2026-09-17T06:28:23.086346+00:00"},
+  "known_limits": ["Validated on three serial arms", "Mobile, closed-chain, and deformable bodies untested", "End-effector identity remains heuristic when no explicit tool site exists"],
+  "evidence": ["experiments/0011_v3_generic_morphology.md", "experiments/0012_v4_motion_probe.md", "episodes/episode_20260917T062823086346Z_652207a5.json", "episodes/episode_20260917T063201276929Z_622910e5.json", "tests/test_v3_morphology.py", "tests/test_v4_motion_probe.py"],
+  "verification": {"environment": "Menagerie 2026.9.0", "success_count": 23, "failure_count": 1, "last_verified_at": "2026-09-17T06:32:01.276929+00:00"},
   "deprecation": null
 }
-

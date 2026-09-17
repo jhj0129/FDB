@@ -1,0 +1,110 @@
+{
+  "robot": "universal_robots_ur5e",
+  "joint_results": [
+    {
+      "joint": "shoulder_pan_joint",
+      "delta_rad": 0.02,
+      "predicted_downstream_bodies": [
+        "shoulder_link",
+        "upper_arm_link",
+        "forearm_link",
+        "wrist_1_link",
+        "wrist_2_link",
+        "wrist_3_link"
+      ],
+      "observed_affected_bodies": [
+        "shoulder_link",
+        "upper_arm_link",
+        "forearm_link",
+        "wrist_1_link",
+        "wrist_2_link",
+        "wrist_3_link"
+      ],
+      "unexpected_affected_bodies": [],
+      "verified": true
+    },
+    {
+      "joint": "shoulder_lift_joint",
+      "delta_rad": 0.02,
+      "predicted_downstream_bodies": [
+        "upper_arm_link",
+        "forearm_link",
+        "wrist_1_link",
+        "wrist_2_link",
+        "wrist_3_link"
+      ],
+      "observed_affected_bodies": [
+        "upper_arm_link",
+        "forearm_link",
+        "wrist_1_link",
+        "wrist_2_link",
+        "wrist_3_link"
+      ],
+      "unexpected_affected_bodies": [],
+      "verified": true
+    },
+    {
+      "joint": "elbow_joint",
+      "delta_rad": 0.02,
+      "predicted_downstream_bodies": [
+        "forearm_link",
+        "wrist_1_link",
+        "wrist_2_link",
+        "wrist_3_link"
+      ],
+      "observed_affected_bodies": [
+        "forearm_link",
+        "wrist_1_link",
+        "wrist_2_link",
+        "wrist_3_link"
+      ],
+      "unexpected_affected_bodies": [],
+      "verified": true
+    },
+    {
+      "joint": "wrist_1_joint",
+      "delta_rad": 0.02,
+      "predicted_downstream_bodies": [
+        "wrist_1_link",
+        "wrist_2_link",
+        "wrist_3_link"
+      ],
+      "observed_affected_bodies": [
+        "wrist_1_link",
+        "wrist_2_link",
+        "wrist_3_link"
+      ],
+      "unexpected_affected_bodies": [],
+      "verified": true
+    },
+    {
+      "joint": "wrist_2_joint",
+      "delta_rad": 0.02,
+      "predicted_downstream_bodies": [
+        "wrist_2_link",
+        "wrist_3_link"
+      ],
+      "observed_affected_bodies": [
+        "wrist_2_link",
+        "wrist_3_link"
+      ],
+      "unexpected_affected_bodies": [],
+      "verified": true
+    },
+    {
+      "joint": "wrist_3_joint",
+      "delta_rad": 0.02,
+      "predicted_downstream_bodies": [
+        "wrist_3_link"
+      ],
+      "observed_affected_bodies": [
+        "wrist_3_link"
+      ],
+      "unexpected_affected_bodies": [],
+      "verified": true
+    }
+  ],
+  "verified_count": 6,
+  "probe_count": 6,
+  "success_rate": 1.0
+}

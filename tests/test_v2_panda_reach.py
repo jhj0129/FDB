@@ -9,6 +9,7 @@ from fdb.v2.reach_suite import WORKSPACE_TARGETS, run_reach_suite
 from fdb.v2.pose_reach import PandaPoseReachExperiment
 from fdb.v2.pregrasp import CollisionAwarePregraspExperiment
 from fdb.v2.grasp_lift import PandaGraspLiftExperiment
+from fdb.v2.pick_place import PandaPickPlaceExperiment
 
 
 def test_inspector_builds_sourced_panda_self_model():
@@ -56,6 +57,15 @@ def test_grasp_candidates_select_a_retained_lift():
     assert selected.lift_height_m >= 0.08
     assert selected.final_object_to_hand_distance_m <= 0.16
     assert selected.forbidden_contact_steps == 0
+
+
+def test_pick_place_selects_a_stable_released_placement():
+    selected, candidates = PandaPickPlaceExperiment().run()
+    assert any(candidate.success for candidate in candidates)
+    assert selected.success is True
+    assert selected.pick_lift_height_m >= 0.08
+    assert selected.final_xy_error_m <= 0.05
+    assert selected.released is True
 
 
 def test_pregrasp_rejects_colliding_candidates_before_score():

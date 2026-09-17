@@ -1,0 +1,129 @@
+{
+  "schema_version": "1.0",
+  "episode_id": "episode_20260917T061758856095Z_795c019e",
+  "created_at": "2026-09-17T06:17:58.856095+00:00",
+  "stage": "v2",
+  "task": "Pick a box and place it in a target region.",
+  "observation": {
+    "source": [
+      0.45,
+      0.15,
+      0.335
+    ],
+    "target": [
+      0.58,
+      -0.12,
+      0.335
+    ]
+  },
+  "goal": {
+    "final_xy_error_m_max": 0.05,
+    "released": true
+  },
+  "candidate_plans": [
+    {
+      "plan": {
+        "plan_id": "place_low",
+        "place_hand_z": 0.365
+      },
+      "pick_lift_height_m": 0.14665145432927845,
+      "final_xy_error_m": 0.019475809358444066,
+      "final_object_z": 0.33436282378312415,
+      "released": true,
+      "stable": true,
+      "success": true,
+      "score": 96.0411205066236
+    },
+    {
+      "plan": {
+        "plan_id": "place_centered",
+        "place_hand_z": 0.375
+      },
+      "pick_lift_height_m": 0.14665145432927845,
+      "final_xy_error_m": 0.006033272372043441,
+      "final_object_z": 0.3343628237831242,
+      "released": true,
+      "stable": true,
+      "success": true,
+      "score": 98.72962790390372
+    },
+    {
+      "plan": {
+        "plan_id": "place_high",
+        "place_hand_z": 0.385
+      },
+      "pick_lift_height_m": 0.14665145432927845,
+      "final_xy_error_m": 0.005581072961868724,
+      "final_object_z": 0.3343628237831242,
+      "released": true,
+      "stable": true,
+      "success": true,
+      "score": 98.82006778593866
+    }
+  ],
+  "decision": {
+    "selected_plan_id": "place_high",
+    "reason": "Task completion first, then final placement error.",
+    "predicted_evaluation": {
+      "plan": {
+        "plan_id": "place_high",
+        "place_hand_z": 0.385
+      },
+      "pick_lift_height_m": 0.14665145432927845,
+      "final_xy_error_m": 0.005581072961868724,
+      "final_object_z": 0.3343628237831242,
+      "released": true,
+      "stable": true,
+      "success": true,
+      "score": 98.82006778593866
+    }
+  },
+  "execution": {
+    "sequence": [
+      "pregrasp",
+      "grasp",
+      "lift",
+      "transfer",
+      "lower",
+      "release",
+      "retreat"
+    ]
+  },
+  "result": {
+    "final_state": {
+      "object_z": 0.3343628237831242
+    },
+    "objective_evaluation": {
+      "plan": {
+        "plan_id": "place_high",
+        "place_hand_z": 0.385
+      },
+      "pick_lift_height_m": 0.14665145432927845,
+      "final_xy_error_m": 0.005581072961868724,
+      "final_object_z": 0.3343628237831242,
+      "released": true,
+      "stable": true,
+      "success": true,
+      "score": 98.82006778593866
+    },
+    "user_evaluation": null
+  },
+  "reflection": {
+    "success_factors": [
+      "Reused pose reach and grasp-height evidence."
+    ],
+    "failure_causes": [],
+    "learned": "Place height can be selected through full candidate futures.",
+    "next_experiment": "Randomize object and target properties.",
+    "confidence": 0.8,
+    "unresolved_questions": [
+      "What object variation envelope preserves first-attempt success?"
+    ]
+  },
+  "sources": [
+    "research/research_20260917_panda_model.json"
+  ],
+  "skills_used": [
+    "v2.panda_pick_place"
+  ]
+}

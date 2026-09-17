@@ -64,6 +64,8 @@ zero contact steps.
 The first complete `approach → close → lift` baseline raises a box by 0.136 m and retains
 it in the gripper. It is intentionally still a candidate pending place/release and object
 variation tests.
+The first full pick-and-place loop now lifts, transfers, places, releases, and retreats;
+its selected candidate finishes 5.6 mm from the target center.
 
 ## Quick start
 
@@ -100,6 +102,7 @@ python -m fdb.v2.reach_suite_cli
 python -m fdb.v2.pose_reach_cli
 python -m fdb.v2.pregrasp_cli
 python -m fdb.v2.grasp_lift_cli
+python -m fdb.v2.pick_place_cli
 ```
 
 Each successful CLI run creates an `episodes/episode_*.json` file. Episode records

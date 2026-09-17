@@ -6,6 +6,7 @@ pytest.importorskip("mujoco_menagerie")
 from fdb.v2.inspector import inspect_robot
 from fdb.v2.reach import PandaReachExperiment
 from fdb.v2.reach_suite import WORKSPACE_TARGETS, run_reach_suite
+from fdb.v2.pose_reach import PandaPoseReachExperiment
 
 
 def test_inspector_builds_sourced_panda_self_model():
@@ -36,3 +37,11 @@ def test_reach_generalizes_across_declared_workspace_suite():
     assert result.max_execution_error_m < 0.01
     assert result.joint_limit_violations == 0
     assert result.contact_count == 0
+
+
+def test_pose_reach_preserves_home_hand_orientation():
+    selected, candidates = PandaPoseReachExperiment().run()
+    assert any(candidate.converged for candidate in candidates)
+    assert selected.position_error_m <= 0.02
+    assert selected.orientation_error_rad <= 0.03
+    assert selected.joint_limit_violations == 0

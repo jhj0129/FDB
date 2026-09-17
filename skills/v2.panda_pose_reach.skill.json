@@ -1,0 +1,32 @@
+{
+  "schema_version": "1.0",
+  "skill_id": "v2.panda_pose_reach",
+  "version": "0.1.0",
+  "status": "candidate",
+  "description": "Reach a Panda hand position and orientation using a world-frame 6D error and MuJoCo Jacobians.",
+  "prerequisites": ["Pinned Menagerie Panda model", "Simulation-only execution", "Collision-free scene"],
+  "inputs": {"position": "length-3 tuple", "quaternion": "normalized wxyz tuple"},
+  "outputs": {"joint_position_target": "7 values", "evaluation": "PoseReachResult"},
+  "procedure": [
+    "Compute translation error in world coordinates.",
+    "Compute orientation error in the world frame from rotation-matrix columns.",
+    "Stack MuJoCo position and rotation Jacobians.",
+    "Apply damped least squares with bounded updates and model joint limits.",
+    "Execute through the model position actuators and evaluate both errors."
+  ],
+  "acceptance_criteria": [
+    {"metric": "position_error_m", "operator": "less_than_or_equal", "threshold": 0.02},
+    {"metric": "orientation_error_rad", "operator": "less_than_or_equal", "threshold": 0.03},
+    {"metric": "joint_limit_violations", "operator": "equals", "threshold": 0}
+  ],
+  "known_limits": ["One pose tested", "No obstacles", "No grasp contact", "No hardware approval"],
+  "evidence": ["experiments/0005_v2_pose_reach.md", "episodes/episode_20260917T060718354486Z_9a476163.json", "tests/test_v2_panda_reach.py"],
+  "verification": {
+    "environment": "MuJoCo 3.13.0, Menagerie Panda 2026.9.0",
+    "success_count": 4,
+    "failure_count": 1,
+    "last_verified_at": "2026-09-17T06:07:18.354486+00:00"
+  },
+  "deprecation": null
+}
+

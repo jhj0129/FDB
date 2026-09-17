@@ -56,6 +56,8 @@ reach candidates using MuJoCo body Jacobians. The first position-only reach base
 executes within 5.3 mm of its target; generalized reach and grasp remain unvalidated.
 The follow-up workspace suite reached 12/12 declared targets with a maximum error below
 9.7 mm, validating position-only reach within that explicit envelope.
+The first 6D pose-reach baseline also preserves hand orientation within 0.0122 rad while
+reaching within 5.4 mm, but remains a candidate until multi-pose and obstacle tests pass.
 
 ## Quick start
 
@@ -89,6 +91,7 @@ python -m fdb.v1.robustness_cli \
 python -m pip install -e '.[robot]'
 python -m fdb.v2.cli
 python -m fdb.v2.reach_suite_cli
+python -m fdb.v2.pose_reach_cli
 ```
 
 Each successful CLI run creates an `episodes/episode_*.json` file. Episode records

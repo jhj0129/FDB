@@ -1,0 +1,100 @@
+{
+  "schema_version": "1.0",
+  "default_language": "en",
+  "principles": {
+    "preserve_raw_evidence": true,
+    "store_hidden_chain_of_thought": false,
+    "separate_objective_and_critic_scores": true,
+    "prefer_archive_or_deprecate_over_delete": true,
+    "external_information_requires_validation": true
+  },
+  "write": {
+    "episode_when": [
+      "a task is attempted",
+      "a candidate is simulated",
+      "an execution changes state",
+      "a material failure or recovery occurs"
+    ],
+    "required_content": [
+      "observations",
+      "sources",
+      "decision_summary",
+      "selected_plan",
+      "selection_reason",
+      "simulation_or_execution_result",
+      "objective_metrics",
+      "failure_or_success_factors",
+      "confidence",
+      "unresolved_questions"
+    ]
+  },
+  "summarize": {
+    "triggers": [
+      "20 related episodes exist",
+      "working-memory budget is exceeded",
+      "a milestone or experiment series closes",
+      "the same pattern occurs at least 3 times"
+    ],
+    "requirements": [
+      "retain source episode IDs",
+      "retain exceptions and failures",
+      "state the covered time range",
+      "do not delete source episodes"
+    ]
+  },
+  "promote": {
+    "long_term_memory": {
+      "minimum_independent_successes": 3,
+      "requirements": [
+        "reproducible evidence",
+        "known applicability scope",
+        "no unresolved safety contradiction",
+        "objective metrics outperform or match baseline"
+      ]
+    },
+    "skill": {
+      "minimum_independent_successes": 5,
+      "requirements": [
+        "versioned interface",
+        "prerequisites and limits",
+        "automated test or reproducible protocol",
+        "simulation evidence",
+        "baseline comparison",
+        "rollback or safe failure behavior"
+      ],
+      "physical_execution_requires_separate_approval": true
+    }
+  },
+  "deprecate": {
+    "triggers": [
+      "contradicted by stronger evidence",
+      "unsafe outside recorded limits",
+      "replaced by a demonstrably better method",
+      "source or dependency is no longer valid"
+    ],
+    "requirements": [
+      "retain the old record",
+      "set status to deprecated",
+      "state the reason and effective date",
+      "link evidence and replacement when available",
+      "write an audit event"
+    ]
+  },
+  "archive": {
+    "triggers": [
+      "not retrieved for 180 days",
+      "superseded and no longer used by an active skill",
+      "milestone data has been summarized"
+    ],
+    "restore_on_relevance": true
+  },
+  "delete": {
+    "allowed_only_for": [
+      "secrets or personal data",
+      "malicious or legally restricted content",
+      "exact accidental duplicates after audit"
+    ],
+    "requires_audit_record": true
+  }
+}
+

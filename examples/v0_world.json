@@ -1,0 +1,11 @@
+{
+  "width": 10,
+  "height": 10,
+  "objects": [
+    {"object_id": "object-1", "color": "red", "position": {"x": 1, "y": 2}}
+  ],
+  "zones": [
+    {"zone_id": "zone-1", "color": "blue", "position": {"x": 7, "y": 8}}
+  ]
+}
+

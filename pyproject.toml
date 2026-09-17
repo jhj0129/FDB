@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "fly-decision-brain"
+version = "0.1.0"
+description = "A connectome-inspired decision system, starting with a deterministic 2D decision loop."
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [{name = "FDB contributors"}]
+dependencies = []
+
+[project.scripts]
+fdb = "fdb.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+

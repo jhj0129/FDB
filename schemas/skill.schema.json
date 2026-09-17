@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/jhj0129/FDB/schemas/skill.schema.json",
+  "title": "FDB Reusable Skill",
+  "type": "object",
+  "required": [
+    "schema_version", "skill_id", "version", "status", "description",
+    "prerequisites", "inputs", "outputs", "procedure", "acceptance_criteria",
+    "known_limits", "evidence", "verification"
+  ],
+  "properties": {
+    "schema_version": {"type": "string"},
+    "skill_id": {"type": "string", "pattern": "^[a-z0-9_.-]+$"},
+    "version": {"type": "string"},
+    "status": {"enum": ["candidate", "validated", "deprecated", "archived"]},
+    "description": {"type": "string"},
+    "prerequisites": {"type": "array"},
+    "inputs": {"type": "object"},
+    "outputs": {"type": "object"},
+    "procedure": {"type": "array", "items": {"type": "string"}},
+    "acceptance_criteria": {"type": "array", "items": {"type": "object"}},
+    "known_limits": {"type": "array", "items": {"type": "string"}},
+    "evidence": {"type": "array", "items": {"type": "string"}},
+    "verification": {
+      "type": "object",
+      "required": ["environment", "success_count", "failure_count", "last_verified_at"]
+    },
+    "deprecation": {"type": ["object", "null"]}
+  },
+  "additionalProperties": false
+}
+

@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/jhj0129/FDB/schemas/episode.schema.json",
+  "title": "FDB Episode",
+  "type": "object",
+  "required": [
+    "schema_version", "episode_id", "created_at", "stage", "task",
+    "observation", "goal", "candidate_plans", "decision", "execution",
+    "result", "reflection", "sources", "skills_used"
+  ],
+  "properties": {
+    "schema_version": {"type": "string"},
+    "episode_id": {"type": "string", "pattern": "^episode_"},
+    "created_at": {"type": "string", "format": "date-time"},
+    "stage": {"type": "string"},
+    "task": {"type": "string", "minLength": 1},
+    "observation": {"type": "object"},
+    "goal": {"type": "object"},
+    "candidate_plans": {"type": "array", "items": {"type": "object"}},
+    "decision": {
+      "type": "object",
+      "required": ["selected_plan_id", "reason", "predicted_evaluation"]
+    },
+    "execution": {"type": "object"},
+    "result": {
+      "type": "object",
+      "required": ["final_state", "objective_evaluation", "user_evaluation"]
+    },
+    "reflection": {
+      "type": "object",
+      "required": [
+        "success_factors", "failure_causes", "learned", "next_experiment",
+        "confidence", "unresolved_questions"
+      ]
+    },
+    "sources": {"type": "array"},
+    "skills_used": {"type": "array", "items": {"type": "string"}}
+  },
+  "additionalProperties": true
+}
+

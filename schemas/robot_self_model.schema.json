@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/jhj0129/FDB/schemas/robot_self_model.schema.json",
+  "title": "FDB Robot Self-model",
+  "type": "object",
+  "required": [
+    "schema_version", "robot_id", "model_version", "source_artifacts", "links",
+    "joints", "end_effector_candidates", "grippers", "confirmed_facts",
+    "inferences", "capabilities", "discovered_behaviors", "safety_constraints",
+    "unresolved_questions"
+  ],
+  "properties": {
+    "schema_version": {"type": "string"},
+    "robot_id": {"type": "string"},
+    "model_version": {"type": "string"},
+    "source_artifacts": {"type": "array"},
+    "links": {"type": "array"},
+    "joints": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "type", "parent", "child", "limits", "source"]
+      }
+    },
+    "end_effector_candidates": {"type": "array"},
+    "grippers": {"type": "array"},
+    "confirmed_facts": {"type": "array"},
+    "inferences": {"type": "array"},
+    "capabilities": {"type": "array"},
+    "discovered_behaviors": {"type": "array"},
+    "safety_constraints": {"type": "array"},
+    "unresolved_questions": {"type": "array"}
+  },
+  "additionalProperties": false
+}
+

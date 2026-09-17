@@ -1,0 +1,187 @@
+{
+  "schema_version": "1.0",
+  "episode_id": "episode_20260917T040958674229Z_349be948",
+  "created_at": "2026-09-17T04:09:58.674229+00:00",
+  "stage": "v0",
+  "task": "빨간 물체를 파란 영역으로 이동",
+  "observation": {
+    "width": 10,
+    "height": 10,
+    "objects": [
+      {
+        "object_id": "object-1",
+        "color": "red",
+        "position": {
+          "x": 1,
+          "y": 2
+        }
+      }
+    ],
+    "zones": [
+      {
+        "zone_id": "zone-1",
+        "color": "blue",
+        "position": {
+          "x": 7,
+          "y": 8
+        }
+      }
+    ]
+  },
+  "goal": {
+    "object_color": "red",
+    "target_color": "blue"
+  },
+  "candidate_plans": [
+    {
+      "plan": {
+        "plan_id": "direct",
+        "actions": [
+          {
+            "object_id": "object-1",
+            "destination": {
+              "x": 7,
+              "y": 8
+            }
+          }
+        ],
+        "rationale": "Move directly to the target in one state transition."
+      },
+      "predicted_evaluation": {
+        "success": true,
+        "score": 87.0,
+        "path_length": 12,
+        "action_count": 1,
+        "violations": []
+      }
+    },
+    {
+      "plan": {
+        "plan_id": "x_then_y",
+        "actions": [
+          {
+            "object_id": "object-1",
+            "destination": {
+              "x": 7,
+              "y": 2
+            }
+          },
+          {
+            "object_id": "object-1",
+            "destination": {
+              "x": 7,
+              "y": 8
+            }
+          }
+        ],
+        "rationale": "Reach the target through an x-axis-aligned waypoint."
+      },
+      "predicted_evaluation": {
+        "success": true,
+        "score": 86.0,
+        "path_length": 12,
+        "action_count": 2,
+        "violations": []
+      }
+    },
+    {
+      "plan": {
+        "plan_id": "y_then_x",
+        "actions": [
+          {
+            "object_id": "object-1",
+            "destination": {
+              "x": 1,
+              "y": 8
+            }
+          },
+          {
+            "object_id": "object-1",
+            "destination": {
+              "x": 7,
+              "y": 8
+            }
+          }
+        ],
+        "rationale": "Reach the target through a y-axis-aligned waypoint."
+      },
+      "predicted_evaluation": {
+        "success": true,
+        "score": 86.0,
+        "path_length": 12,
+        "action_count": 2,
+        "violations": []
+      }
+    }
+  ],
+  "decision": {
+    "selected_plan_id": "direct",
+    "reason": "Highest objective simulation score with fewer actions as tie-breaker.",
+    "predicted_evaluation": {
+      "success": true,
+      "score": 87.0,
+      "path_length": 12,
+      "action_count": 1,
+      "violations": []
+    }
+  },
+  "execution": {
+    "actions": [
+      {
+        "object_id": "object-1",
+        "destination": {
+          "x": 7,
+          "y": 8
+        }
+      }
+    ]
+  },
+  "result": {
+    "final_state": {
+      "width": 10,
+      "height": 10,
+      "objects": [
+        {
+          "object_id": "object-1",
+          "color": "red",
+          "position": {
+            "x": 7,
+            "y": 8
+          }
+        }
+      ],
+      "zones": [
+        {
+          "zone_id": "zone-1",
+          "color": "blue",
+          "position": {
+            "x": 7,
+            "y": 8
+          }
+        }
+      ]
+    },
+    "objective_evaluation": {
+      "success": true,
+      "score": 87.0,
+      "path_length": 12,
+      "action_count": 1,
+      "violations": []
+    },
+    "user_evaluation": null
+  },
+  "reflection": {
+    "success_factors": [
+      "Candidate was validated before execution"
+    ],
+    "failure_causes": [],
+    "learned": "v0 records evidence but does not auto-promote a skill.",
+    "next_experiment": "Add obstacles and collision-aware planning in v1.",
+    "confidence": 1.0,
+    "unresolved_questions": []
+  },
+  "sources": [],
+  "skills_used": [
+    "v0.object_relocation"
+  ]
+}

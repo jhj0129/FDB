@@ -1,0 +1,41 @@
+{
+  "schema_version": "1.0",
+  "skill_id": "v0.object_relocation",
+  "version": "0.1.0",
+  "status": "candidate",
+  "description": "Relocate one uniquely colored symbolic object to one uniquely colored target zone.",
+  "prerequisites": [
+    "The world is a bounded 2D grid.",
+    "Object and target colors are unambiguous.",
+    "No physical dynamics or obstacles are present."
+  ],
+  "inputs": {"task": "string", "world_state": "WorldState"},
+  "outputs": {"decision_result": "DecisionResult", "episode": "episode JSON when storage is configured"},
+  "procedure": [
+    "Interpret the source and target colors.",
+    "Generate direct and axis-aligned candidate plans.",
+    "Simulate and objectively score every candidate.",
+    "Execute the highest-scoring candidate in the symbolic world.",
+    "Record the evidence as an episode."
+  ],
+  "acceptance_criteria": [
+    {"metric": "task_completion", "operator": "equals", "threshold": true},
+    {"metric": "violations", "operator": "equals", "threshold": 0}
+  ],
+  "known_limits": [
+    "Not valid for physical robots.",
+    "Does not model obstacles, collisions, geometry, or dynamics.",
+    "Requires one matching object and one matching zone."
+  ],
+  "evidence": [
+    "tests/test_v0_decision_loop.py",
+    "episodes/episode_20260917T040958674229Z_349be948.json"
+  ],
+  "verification": {
+    "environment": "symbolic-v0",
+    "success_count": 2,
+    "failure_count": 0,
+    "last_verified_at": "2026-09-17T04:11:00.479483+00:00"
+  },
+  "deprecation": null
+}

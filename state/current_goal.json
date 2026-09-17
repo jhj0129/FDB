@@ -1,0 +1,15 @@
+{
+  "schema_version": "1.0",
+  "stage": "v0",
+  "goal": "Move an object of a specified color to a target zone of a specified color using the minimum decision loop.",
+  "status": "implemented",
+  "active_hypotheses": [
+    "A deterministic symbolic environment is sufficient to validate the first Task-to-Evaluation loop."
+  ],
+  "unresolved_questions": [
+    "What obstacle representation and physics interface should v1 standardize?",
+    "Which MuJoCo task suite provides the best first baseline?"
+  ],
+  "next_gate": "Run v0 tests and establish a repeatable v1 experiment design."
+}
+

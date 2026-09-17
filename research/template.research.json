@@ -1,0 +1,15 @@
+{
+  "schema_version": "1.0",
+  "research_id": "research_YYYYMMDD_topic",
+  "created_at": "1970-01-01T00:00:00Z",
+  "question": "Replace with the research question.",
+  "search_queries": [],
+  "sources": [],
+  "cross_checks": [],
+  "interpretation": "Pending research.",
+  "hypotheses": [],
+  "validation": {"environment": "", "protocol": "", "result": null},
+  "confidence": 0,
+  "unresolved_questions": [],
+  "status": "open"
+}

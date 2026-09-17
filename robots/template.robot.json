@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.0",
+  "robot_id": "replace-me",
+  "model_version": "0.0.0",
+  "source_artifacts": [],
+  "links": [],
+  "joints": [],
+  "end_effector_candidates": [],
+  "grippers": [],
+  "confirmed_facts": [],
+  "inferences": [],
+  "capabilities": [],
+  "discovered_behaviors": [],
+  "safety_constraints": [],
+  "unresolved_questions": []
+}
+

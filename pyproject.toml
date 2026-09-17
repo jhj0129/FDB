@@ -41,6 +41,8 @@ fdb-v5-safety-envelope = "fdb.v5.safety_envelope:main"
 fdb-v5-report = "fdb.v5.report_cli:main"
 fdb-v5-safety-data = "fdb.v5.safety_data:main"
 fdb-v5-safety-train = "fdb.v5.safety_training:main"
+fdb-humanoid-challenge = "fdb.challenge.humanoid_suite:main"
+fdb-render-humanoids = "fdb.challenge.render_humanoids:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]

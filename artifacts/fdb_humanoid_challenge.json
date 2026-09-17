@@ -1,0 +1,43 @@
+{
+  "video": "artifacts/fdb_humanoid_challenge.mp4",
+  "duration_s": 6.0,
+  "fps": 30,
+  "resolution": [
+    960,
+    540
+  ],
+  "layout": {
+    "top_left_blue": "unitree_g1",
+    "top_right_orange": "booster_t1",
+    "bottom_left_green": "robotis_op3",
+    "bottom_right_red": "berkeley_humanoid"
+  },
+  "timeline": {
+    "0_to_1s": "stand baseline",
+    "1_to_2_5s": "robot-specific arm, head, or knee task",
+    "3_to_3_15s": "mass-scaled horizontal push",
+    "3_15_to_6s": "recovery observation"
+  },
+  "final_states": {
+    "unitree_g1": {
+      "height_ratio": 1.002026477138764,
+      "upright_cosine": 0.9999485683827639,
+      "fallen": false
+    },
+    "booster_t1": {
+      "height_ratio": 0.2055405517497915,
+      "upright_cosine": -0.006338395404251084,
+      "fallen": true
+    },
+    "robotis_op3": {
+      "height_ratio": 0.3440058196833126,
+      "upright_cosine": 0.012999684728179875,
+      "fallen": true
+    },
+    "berkeley_humanoid": {
+      "height_ratio": 0.13571445321377165,
+      "upright_cosine": -1.1473350211268612e-05,
+      "fallen": true
+    }
+  }
+}

@@ -13,6 +13,7 @@ FDB는 초파리 connectome에서 영감을 받은 검증 중심 의사결정 �
 - v4 20개 관절의 행동 기반 body schema 검증
 - v5 5개 MLP 앙상블 세계모델과 안전한 MuJoCo fallback
 - v5 Panda 테이블 충돌을 실행 전에 거부하는 학습형 안전 앙상블
+- 다중 로봇 기준선: G1, Booster T1, Robotis OP3, Berkeley Humanoid의 5개 과제
 
 v5는 3,900개의 MuJoCo rollout으로 학습했다. 독립 시험 500개에서 평균 최종 위치
 오차 10.72mm와 성공 판정 정확도 99.4%를 기록했다. 분포 밖 또는 불확실한 입력은
@@ -27,10 +28,16 @@ Panda 조작에는 비의도 로봇 테이블 접촉 0과 관통 0을 하드 게
 자세도 물리 접촉 하드 게이트를 생략할 수 없으며, 현재 결과는 Panda 작업영역의
 `candidate`이다.
 
+한 조작 과제에만 과적합하지 않도록 네 휴머노이드에 서기, 질량 비례 외란, 팔 올리기,
+웅크리기 후보, 머리 회전을 적용했다. 적용 가능한 17회 중 9회를 통과했다. 구조상 팔이나
+머리가 없는 모델은 실패가 아니라 `해당 없음`으로 분리한다. 이 결과는 보행 정책이 아니라
+휴머노이드 챌린지 개발을 위한 정직한 공통 기준선이다.
+
 ## 주요 결과물
 
 - `artifacts/fdb_v5_neural_prediction.mp4` 신경망 예측과 실제 물리 결과 비교
 - `artifacts/fdb_final_pick_place.mp4` 접촉 0 Panda pick and place
+- `artifacts/fdb_humanoid_challenge.mp4` 네 휴머노이드의 연속 과제와 외란 비교
 - `models/v5/push_dynamics_ensemble.pt` PyTorch 학습 체크포인트
 - `models/v5/push_dynamics_ensemble.npz` MuJoCo 환경용 portable 추론 모델
 - `models/v5/panda_table_safety.pt` Panda 자세 안전 PyTorch 체크포인트
@@ -51,6 +58,8 @@ PYTHONPATH=src ~/venvs/robot_ai/bin/python -m fdb.v5.safety_training
 .venv/bin/python -m fdb.v5.hybrid_cli
 MUJOCO_GL=egl .venv/bin/python -m fdb.v5.render_neural
 MUJOCO_GL=egl .venv/bin/python -m fdb.v2.render_final
+.venv/bin/python -m fdb.challenge.humanoid_suite
+MUJOCO_GL=egl .venv/bin/python -m fdb.challenge.render_humanoids
 ```
 
 현재 결과는 시뮬레이션 연구 증거이며 실제 로봇 실행 승인이 아니다. 실제 적용 전에는

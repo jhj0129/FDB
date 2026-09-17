@@ -1,0 +1,641 @@
+{
+  "schema_version": "1.0",
+  "robot_id": "robotis_op3",
+  "model_version": "menagerie-2026.9.0-c0b2a52ecc84",
+  "source_artifacts": [
+    {
+      "repository": "https://github.com/google-deepmind/mujoco_menagerie",
+      "object_id": "c0b2a52ecc849d86bce884872d377b6267d18480",
+      "entry": "op3",
+      "license": "Apache-2.0"
+    }
+  ],
+  "links": [
+    {
+      "name": "body_link",
+      "parent": "world",
+      "child_count": 5,
+      "mass": 1.34928
+    },
+    {
+      "name": "head_pan_link",
+      "parent": "body_link",
+      "child_count": 1,
+      "mass": 0.01176
+    },
+    {
+      "name": "head_tilt_link",
+      "parent": "head_pan_link",
+      "child_count": 0,
+      "mass": 0.13631
+    },
+    {
+      "name": "l_sho_pitch_link",
+      "parent": "body_link",
+      "child_count": 1,
+      "mass": 0.01176
+    },
+    {
+      "name": "l_sho_roll_link",
+      "parent": "l_sho_pitch_link",
+      "child_count": 1,
+      "mass": 0.17758
+    },
+    {
+      "name": "l_el_link",
+      "parent": "l_sho_roll_link",
+      "child_count": 0,
+      "mass": 0.04127
+    },
+    {
+      "name": "r_sho_pitch_link",
+      "parent": "body_link",
+      "child_count": 1,
+      "mass": 0.01176
+    },
+    {
+      "name": "r_sho_roll_link",
+      "parent": "r_sho_pitch_link",
+      "child_count": 1,
+      "mass": 0.17758
+    },
+    {
+      "name": "r_el_link",
+      "parent": "r_sho_roll_link",
+      "child_count": 0,
+      "mass": 0.04127
+    },
+    {
+      "name": "l_hip_yaw_link",
+      "parent": "body_link",
+      "child_count": 1,
+      "mass": 0.01181
+    },
+    {
+      "name": "l_hip_roll_link",
+      "parent": "l_hip_yaw_link",
+      "child_count": 1,
+      "mass": 0.17886
+    },
+    {
+      "name": "l_hip_pitch_link",
+      "parent": "l_hip_roll_link",
+      "child_count": 1,
+      "mass": 0.11543
+    },
+    {
+      "name": "l_knee_link",
+      "parent": "l_hip_pitch_link",
+      "child_count": 1,
+      "mass": 0.04015
+    },
+    {
+      "name": "l_ank_pitch_link",
+      "parent": "l_knee_link",
+      "child_count": 1,
+      "mass": 0.17886
+    },
+    {
+      "name": "l_ank_roll_link",
+      "parent": "l_ank_pitch_link",
+      "child_count": 0,
+      "mass": 0.06934
+    },
+    {
+      "name": "r_hip_yaw_link",
+      "parent": "body_link",
+      "child_count": 1,
+      "mass": 0.01181
+    },
+    {
+      "name": "r_hip_roll_link",
+      "parent": "r_hip_yaw_link",
+      "child_count": 1,
+      "mass": 0.17886
+    },
+    {
+      "name": "r_hip_pitch_link",
+      "parent": "r_hip_roll_link",
+      "child_count": 1,
+      "mass": 0.11543
+    },
+    {
+      "name": "r_knee_link",
+      "parent": "r_hip_pitch_link",
+      "child_count": 1,
+      "mass": 0.04015
+    },
+    {
+      "name": "r_ank_pitch_link",
+      "parent": "r_knee_link",
+      "child_count": 1,
+      "mass": 0.17886
+    },
+    {
+      "name": "r_ank_roll_link",
+      "parent": "r_ank_pitch_link",
+      "child_count": 0,
+      "mass": 0.06934
+    }
+  ],
+  "joints": [
+    {
+      "name": "",
+      "type": "free",
+      "parent": "world",
+      "child": "body_link",
+      "limits": null,
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "source": "compiled Menagerie MJCF"
+    },
+    {
+      "name": "head_pan",
+      "type": "hinge",
+      "parent": "body_link",
+      "child": "head_pan_link",
+      "limits": null,
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "source": "compiled Menagerie MJCF"
+    },
+    {
+      "name": "head_tilt",
+      "type": "hinge",
+      "parent": "head_pan_link",
+      "child": "head_tilt_link",
+      "limits": null,
+      "axis": [
+        0.0,
+        -1.0,
+        0.0
+      ],
+      "source": "compiled Menagerie MJCF"
+    },
+    {
+      "name": "l_sho_pitch",
+      "type": "hinge",
+      "parent": "body_link",
+      "child": "l_sho_pitch_link",
+      "limits": null,
+      "axis": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "source": "compiled Menagerie MJCF"
+    },
+    {
+      "name": "l_sho_roll",
+      "type": "hinge",
+      "parent": "l_sho_pitch_link",
+      "child": "l_sho_roll_link",
+      "limits": null,
+      "axis": [
+        -1.0,
+        0.0,
+        0.0
+      ],
+      "source": "compiled Menagerie MJCF"
+    },
+    {
+      "name": "l_el",
+      "type": "hinge",
+      "parent": "l_sho_roll_link",
+      "child": "l_el_link",
+      "limits": null,
+      "axis": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "source": "compiled Menagerie MJCF"
+    },
+    {
+      "name": "r_sho_pitch",
+      "type": "hinge",
+      "parent": "body_link",
+      "child": "r_sho_pitch_link",
+      "limits": null,
+      "axis": [
+        0.0,
+        -1.0,
+        0.0
+      ],
+      "source": "compiled Menagerie MJCF"
+    },
+    {
+      "name": "r_sho_roll",
+      "type": "hinge",
+      "parent": "r_sho_pitch_link",
+      "child": "r_sho_roll_link",
+      "limits": null,
+      "axis": [
+        -1.0,
+        0.0,
+        0.0
+      ],
+      "source": "compiled Menagerie MJCF"
+    },
+    {
+      "name": "r_el",
+      "type": "hinge",
+      "parent": "r_sho_roll_link",
+      "child": "r_el_link",
+      "limits": null,
+      "axis": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "source": "compiled Menagerie MJCF"
+    },
+    {
+      "name": "l_hip_yaw",
+      "type": "hinge",
+      "parent": "body_link",
+      "child": "l_hip_yaw_link",
+      "limits": null,
+      "axis": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "source": "compiled Menagerie MJCF"
+    },
+    {
+      "name": "l_hip_roll",
+      "type": "hinge",
+      "parent": "l_hip_yaw_link",
+      "child": "l_hip_roll_link",
+      "limits": null,
+      "axis": [
+        -1.0,
+        0.0,
+        0.0
+      ],
+      "source": "compiled Menagerie MJCF"
+    },
+    {
+      "name": "l_hip_pitch",
+      "type": "hinge",
+      "parent": "l_hip_roll_link",
+      "child": "l_hip_pitch_link",
+      "limits": null,
+      "axis": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "source": "compiled Menagerie MJCF"
+    },
+    {
+      "name": "l_knee",
+      "type": "hinge",
+      "parent": "l_hip_pitch_link",
+      "child": "l_knee_link",
+      "limits": null,
+      "axis": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "source": "compiled Menagerie MJCF"
+    },
+    {
+      "name": "l_ank_pitch",
+      "type": "hinge",
+      "parent": "l_knee_link",
+      "child": "l_ank_pitch_link",
+      "limits": null,
+      "axis": [
+        0.0,
+        -1.0,
+        0.0
+      ],
+      "source": "compiled Menagerie MJCF"
+    },
+    {
+      "name": "l_ank_roll",
+      "type": "hinge",
+      "parent": "l_ank_pitch_link",
+      "child": "l_ank_roll_link",
+      "limits": null,
+      "axis": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "source": "compiled Menagerie MJCF"
+    },
+    {
+      "name": "r_hip_yaw",
+      "type": "hinge",
+      "parent": "body_link",
+      "child": "r_hip_yaw_link",
+      "limits": null,
+      "axis": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "source": "compiled Menagerie MJCF"
+    },
+    {
+      "name": "r_hip_roll",
+      "type": "hinge",
+      "parent": "r_hip_yaw_link",
+      "child": "r_hip_roll_link",
+      "limits": null,
+      "axis": [
+        -1.0,
+        0.0,
+        0.0
+      ],
+      "source": "compiled Menagerie MJCF"
+    },
+    {
+      "name": "r_hip_pitch",
+      "type": "hinge",
+      "parent": "r_hip_roll_link",
+      "child": "r_hip_pitch_link",
+      "limits": null,
+      "axis": [
+        0.0,
+        -1.0,
+        0.0
+      ],
+      "source": "compiled Menagerie MJCF"
+    },
+    {
+      "name": "r_knee",
+      "type": "hinge",
+      "parent": "r_hip_pitch_link",
+      "child": "r_knee_link",
+      "limits": null,
+      "axis": [
+        0.0,
+        -1.0,
+        0.0
+      ],
+      "source": "compiled Menagerie MJCF"
+    },
+    {
+      "name": "r_ank_pitch",
+      "type": "hinge",
+      "parent": "r_knee_link",
+      "child": "r_ank_pitch_link",
+      "limits": null,
+      "axis": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "source": "compiled Menagerie MJCF"
+    },
+    {
+      "name": "r_ank_roll",
+      "type": "hinge",
+      "parent": "r_ank_pitch_link",
+      "child": "r_ank_roll_link",
+      "limits": null,
+      "axis": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "source": "compiled Menagerie MJCF"
+    }
+  ],
+  "end_effector_candidates": [
+    {
+      "site": "torso",
+      "body": "body_link",
+      "confidence": 0.65,
+      "reason": "Terminal/tool site from compiled model."
+    }
+  ],
+  "grippers": [],
+  "confirmed_facts": [
+    {
+      "joint_count": 21,
+      "actuator_count": 20,
+      "actuated_hinge_count": 20,
+      "actuators": [
+        {
+          "name": "head_pan_act",
+          "transmission": "joint",
+          "target_id": 1,
+          "control_range": [
+            -3.141592,
+            3.141592
+          ]
+        },
+        {
+          "name": "head_tilt_act",
+          "transmission": "joint",
+          "target_id": 2,
+          "control_range": [
+            -3.141592,
+            3.141592
+          ]
+        },
+        {
+          "name": "l_sho_pitch_act",
+          "transmission": "joint",
+          "target_id": 3,
+          "control_range": [
+            -3.141592,
+            3.141592
+          ]
+        },
+        {
+          "name": "l_sho_roll_act",
+          "transmission": "joint",
+          "target_id": 4,
+          "control_range": [
+            -3.141592,
+            3.141592
+          ]
+        },
+        {
+          "name": "l_el_act",
+          "transmission": "joint",
+          "target_id": 5,
+          "control_range": [
+            -3.141592,
+            3.141592
+          ]
+        },
+        {
+          "name": "r_sho_pitch_act",
+          "transmission": "joint",
+          "target_id": 6,
+          "control_range": [
+            -3.141592,
+            3.141592
+          ]
+        },
+        {
+          "name": "r_sho_roll_act",
+          "transmission": "joint",
+          "target_id": 7,
+          "control_range": [
+            -3.141592,
+            3.141592
+          ]
+        },
+        {
+          "name": "r_el_act",
+          "transmission": "joint",
+          "target_id": 8,
+          "control_range": [
+            -3.141592,
+            3.141592
+          ]
+        },
+        {
+          "name": "l_hip_yaw_act",
+          "transmission": "joint",
+          "target_id": 9,
+          "control_range": [
+            -3.141592,
+            3.141592
+          ]
+        },
+        {
+          "name": "l_hip_roll_act",
+          "transmission": "joint",
+          "target_id": 10,
+          "control_range": [
+            -3.141592,
+            3.141592
+          ]
+        },
+        {
+          "name": "l_hip_pitch_act",
+          "transmission": "joint",
+          "target_id": 11,
+          "control_range": [
+            -3.141592,
+            3.141592
+          ]
+        },
+        {
+          "name": "l_knee_act",
+          "transmission": "joint",
+          "target_id": 12,
+          "control_range": [
+            -3.141592,
+            3.141592
+          ]
+        },
+        {
+          "name": "l_ank_pitch_act",
+          "transmission": "joint",
+          "target_id": 13,
+          "control_range": [
+            -3.141592,
+            3.141592
+          ]
+        },
+        {
+          "name": "l_ank_roll_act",
+          "transmission": "joint",
+          "target_id": 14,
+          "control_range": [
+            -3.141592,
+            3.141592
+          ]
+        },
+        {
+          "name": "r_hip_yaw_act",
+          "transmission": "joint",
+          "target_id": 15,
+          "control_range": [
+            -3.141592,
+            3.141592
+          ]
+        },
+        {
+          "name": "r_hip_roll_act",
+          "transmission": "joint",
+          "target_id": 16,
+          "control_range": [
+            -3.141592,
+            3.141592
+          ]
+        },
+        {
+          "name": "r_hip_pitch_act",
+          "transmission": "joint",
+          "target_id": 17,
+          "control_range": [
+            -3.141592,
+            3.141592
+          ]
+        },
+        {
+          "name": "r_knee_act",
+          "transmission": "joint",
+          "target_id": 18,
+          "control_range": [
+            -3.141592,
+            3.141592
+          ]
+        },
+        {
+          "name": "r_ank_pitch_act",
+          "transmission": "joint",
+          "target_id": 19,
+          "control_range": [
+            -3.141592,
+            3.141592
+          ]
+        },
+        {
+          "name": "r_ank_roll_act",
+          "transmission": "joint",
+          "target_id": 20,
+          "control_range": [
+            -3.141592,
+            3.141592
+          ]
+        }
+      ]
+    }
+  ],
+  "inferences": [
+    {
+      "claim": "serial_arm_candidate",
+      "confidence": 0.9
+    }
+  ],
+  "capabilities": [
+    {
+      "name": "position_reach_candidate",
+      "status": "unverified"
+    }
+  ],
+  "discovered_behaviors": [],
+  "safety_constraints": [
+    {
+      "type": "joint_limits",
+      "source": "compiled model"
+    },
+    {
+      "type": "simulation_only",
+      "value": true
+    }
+  ],
+  "unresolved_questions": [
+    "Verify end-effector behavior with small simulation motions.",
+    "Determine collision-safe home configuration."
+  ]
+}

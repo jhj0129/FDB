@@ -1,0 +1,428 @@
+{
+  "schema_version": "1.0",
+  "suite": "FDB humanoid challenge baseline",
+  "created_at": "2026-09-17T09:53:04.883845+00:00",
+  "robot_count": 4,
+  "task_definition_count": 5,
+  "applicable_run_count": 17,
+  "success_count": 9,
+  "results": [
+    {
+      "robot": "unitree_g1",
+      "source": {
+        "repository": "https://github.com/google-deepmind/mujoco_menagerie",
+        "object_id": "57c00d310bfd8ae7d5676c64b959c86fbdd61d20",
+        "license": "BSD-3-Clause",
+        "entry": "scene.xml"
+      },
+      "morphology": {
+        "body_count": 30,
+        "joint_count": 30,
+        "hinge_count": 29,
+        "actuator_count": 29,
+        "total_mass_kg": 33.341142000000005,
+        "has_free_base": true,
+        "has_left_arm": true,
+        "has_head_yaw": false
+      },
+      "tasks": [
+        {
+          "task": "stand_2s",
+          "applicable": true,
+          "success": true,
+          "score": 1.0020428275887727,
+          "metrics": {
+            "root_height_m": 0.7916142961808004,
+            "height_ratio": 1.002043412887089,
+            "upright_cosine": 0.9999994158952509,
+            "fallen": false
+          },
+          "reason": "2초 동안 초기 자세 유지"
+        },
+        {
+          "task": "scaled_push_recovery",
+          "applicable": true,
+          "success": true,
+          "score": 1.0020445229263355,
+          "metrics": {
+            "root_height_m": 0.7916152558194361,
+            "height_ratio": 1.0020446276195394,
+            "upright_cosine": 0.999999895520418,
+            "fallen": false,
+            "push_force_n": 49.061490453000005,
+            "push_duration_s": 0.15
+          },
+          "reason": "체중 비례 외란 후 직립 유지"
+        },
+        {
+          "task": "left_arm_raise",
+          "applicable": true,
+          "success": true,
+          "score": 0.03584891382516042,
+          "metrics": {
+            "root_height_m": 0.7915774434074254,
+            "height_ratio": 1.0019967638068676,
+            "upright_cosine": 0.999894542209889,
+            "fallen": false,
+            "selected_delta_rad": 0.45,
+            "target_rad": 0.65,
+            "hand_displacement_m": [
+              -0.13201102047106844,
+              -0.011627838081659042,
+              0.03584891382516042
+            ],
+            "vertical_gain_m": 0.03584891382516042,
+            "candidate_scores": [
+              0.017091696610178286,
+              0.03584891382516042
+            ]
+          },
+          "reason": "두 방향 후보 중 손을 가장 높인 동작"
+        },
+        {
+          "task": "crouch_candidates",
+          "applicable": true,
+          "success": false,
+          "score": 0.00013412605319107485,
+          "metrics": {
+            "root_height_m": 0.7898940404179791,
+            "height_ratio": 0.9998658739468089,
+            "upright_cosine": 0.9959285032393147,
+            "fallen": false,
+            "selected_delta_rad": -0.35,
+            "target_rad": [
+              -0.0872670000000002,
+              -0.0872670000000002
+            ],
+            "height_reduction_ratio": 0.00013412605319107485,
+            "candidate_scores": [
+              0.00013412605319107485,
+              -1.0
+            ]
+          },
+          "reason": "안전한 굽힘 범위 미달"
+        },
+        {
+          "task": "head_turn",
+          "applicable": false,
+          "success": null,
+          "score": null,
+          "metrics": {},
+          "reason": "머리 yaw 구동축 없음"
+        }
+      ]
+    },
+    {
+      "robot": "booster_t1",
+      "source": {
+        "repository": "https://github.com/google-deepmind/mujoco_menagerie",
+        "object_id": "c0462e68226cd67351270236e8650355e3dc5eb0",
+        "license": "Apache-2.0",
+        "entry": "scene.xml"
+      },
+      "morphology": {
+        "body_count": 24,
+        "joint_count": 24,
+        "hinge_count": 23,
+        "actuator_count": 23,
+        "total_mass_kg": 31.614357,
+        "has_free_base": true,
+        "has_left_arm": true,
+        "has_head_yaw": true
+      },
+      "tasks": [
+        {
+          "task": "stand_2s",
+          "applicable": true,
+          "success": true,
+          "score": 0.7465459707222863,
+          "metrics": {
+            "root_height_m": 0.6244841745947632,
+            "height_ratio": 0.9390739467590424,
+            "upright_cosine": 0.7949810271052521,
+            "fallen": false
+          },
+          "reason": "2초 동안 초기 자세 유지"
+        },
+        {
+          "task": "scaled_push_recovery",
+          "applicable": true,
+          "success": false,
+          "score": 0.0,
+          "metrics": {
+            "root_height_m": 0.13684153587033296,
+            "height_ratio": 0.2057767456696736,
+            "upright_cosine": -0.0069410093347259,
+            "fallen": true,
+            "push_force_n": 46.52052632549999,
+            "push_duration_s": 0.15
+          },
+          "reason": "외란 뒤 쓰러짐"
+        },
+        {
+          "task": "left_arm_raise",
+          "applicable": true,
+          "success": false,
+          "score": 0.021768416170068305,
+          "metrics": {
+            "root_height_m": 0.6643893200942915,
+            "height_ratio": 0.999081684352318,
+            "upright_cosine": 0.9916470705133265,
+            "fallen": false,
+            "selected_delta_rad": 0.45,
+            "target_rad": 0.45,
+            "hand_displacement_m": [
+              3.305310458410343e-05,
+              -0.0011103117546509278,
+              0.021768416170068305
+            ],
+            "vertical_gain_m": 0.021768416170068305,
+            "candidate_scores": [
+              -0.02695710184347877,
+              0.021768416170068305
+            ]
+          },
+          "reason": "안전한 30mm 상승 미달"
+        },
+        {
+          "task": "crouch_candidates",
+          "applicable": true,
+          "success": false,
+          "score": 0.0,
+          "metrics": {
+            "root_height_m": 0.12495812104347556,
+            "height_ratio": 0.18790694893755722,
+            "upright_cosine": 0.032819896032996565,
+            "fallen": true,
+            "selected_delta_rad": -0.35,
+            "target_rad": [
+              0.050000000000000044,
+              0.050000000000000044
+            ],
+            "height_reduction_ratio": 0.8120930510624428,
+            "candidate_scores": [
+              -1.0,
+              -1.0
+            ]
+          },
+          "reason": "안전한 굽힘 범위 미달"
+        },
+        {
+          "task": "head_turn",
+          "applicable": true,
+          "success": true,
+          "score": 0.9991132984496277,
+          "metrics": {
+            "root_height_m": 0.6641890739437124,
+            "height_ratio": 0.998780562321372,
+            "upright_cosine": 0.9962892872952902,
+            "fallen": false,
+            "command_rad": 0.35,
+            "achieved_rad": 0.34968965445736966
+          },
+          "reason": "머리 회전 목표 도달"
+        }
+      ]
+    },
+    {
+      "robot": "robotis_op3",
+      "source": {
+        "repository": "https://github.com/google-deepmind/mujoco_menagerie",
+        "object_id": "c0b2a52ecc849d86bce884872d377b6267d18480",
+        "license": "Apache-2.0",
+        "entry": "scene.xml"
+      },
+      "morphology": {
+        "body_count": 21,
+        "joint_count": 21,
+        "hinge_count": 20,
+        "actuator_count": 20,
+        "total_mass_kg": 3.1474699999999998,
+        "has_free_base": true,
+        "has_left_arm": true,
+        "has_head_yaw": true
+      },
+      "tasks": [
+        {
+          "task": "stand_2s",
+          "applicable": true,
+          "success": true,
+          "score": 0.9300290301033249,
+          "metrics": {
+            "root_height_m": 0.2791056425547293,
+            "height_ratio": 0.9303521418490978,
+            "upright_cosine": 0.999652699519635,
+            "fallen": false
+          },
+          "reason": "2초 동안 초기 자세 유지"
+        },
+        {
+          "task": "scaled_push_recovery",
+          "applicable": true,
+          "success": true,
+          "score": 0.9300876307026801,
+          "metrics": {
+            "root_height_m": 0.2791126297305424,
+            "height_ratio": 0.9303754324351414,
+            "upright_cosine": 0.999690660648994,
+            "fallen": false,
+            "push_force_n": 4.631502105,
+            "push_duration_s": 0.15
+          },
+          "reason": "체중 비례 외란 후 직립 유지"
+        },
+        {
+          "task": "left_arm_raise",
+          "applicable": true,
+          "success": false,
+          "score": 0.0,
+          "metrics": {
+            "root_height_m": 0.2791057009496338,
+            "height_ratio": 0.9303523364987792,
+            "upright_cosine": 0.9996554315503895,
+            "fallen": false,
+            "selected_delta_rad": -0.45,
+            "target_rad": -0.45,
+            "hand_displacement_m": [
+              -0.003930284234550467,
+              -3.841712279573084e-06,
+              -0.011703943189250943
+            ],
+            "vertical_gain_m": -0.011703943189250943,
+            "candidate_scores": [
+              -0.011703943189250943,
+              -0.028477891958998414
+            ]
+          },
+          "reason": "안전한 30mm 상승 미달"
+        },
+        {
+          "task": "crouch_candidates",
+          "applicable": true,
+          "success": true,
+          "score": 0.08033995576577302,
+          "metrics": {
+            "root_height_m": 0.2758980132702681,
+            "height_ratio": 0.919660044234227,
+            "upright_cosine": 0.931682484710282,
+            "fallen": false,
+            "selected_delta_rad": 0.35,
+            "target_rad": [
+              0.35,
+              0.35
+            ],
+            "height_reduction_ratio": 0.08033995576577302,
+            "candidate_scores": [
+              0.07797248762624609,
+              0.08033995576577302
+            ]
+          },
+          "reason": "양방향 후보 중 직립하며 몸을 낮춘 동작"
+        },
+        {
+          "task": "head_turn",
+          "applicable": true,
+          "success": true,
+          "score": 1.0,
+          "metrics": {
+            "root_height_m": 0.27910361191513455,
+            "height_ratio": 0.9303453730504485,
+            "upright_cosine": 0.9996400857446137,
+            "fallen": false,
+            "command_rad": 0.35,
+            "achieved_rad": 0.350989217172163
+          },
+          "reason": "머리 회전 목표 도달"
+        }
+      ]
+    },
+    {
+      "robot": "berkeley_humanoid",
+      "source": {
+        "repository": "https://github.com/google-deepmind/mujoco_menagerie",
+        "object_id": "c29239060f5107160613a07ffe3bbda96fc9adf7",
+        "license": "BSD-3-Clause",
+        "entry": "scene.xml"
+      },
+      "morphology": {
+        "body_count": 13,
+        "joint_count": 13,
+        "hinge_count": 12,
+        "actuator_count": 12,
+        "total_mass_kg": 16.056765100000003,
+        "has_free_base": true,
+        "has_left_arm": false,
+        "has_head_yaw": false
+      },
+      "tasks": [
+        {
+          "task": "stand_2s",
+          "applicable": true,
+          "success": false,
+          "score": 0.0,
+          "metrics": {
+            "root_height_m": 0.06991561816430884,
+            "height_ratio": 0.13575848187244435,
+            "upright_cosine": -0.00014256479281824825,
+            "fallen": true
+          },
+          "reason": "높이 또는 직립 기준 이탈"
+        },
+        {
+          "task": "scaled_push_recovery",
+          "applicable": true,
+          "success": false,
+          "score": 0.0,
+          "metrics": {
+            "root_height_m": 0.0699157672135188,
+            "height_ratio": 0.135758771288386,
+            "upright_cosine": -0.00014290377546012157,
+            "fallen": true,
+            "push_force_n": 23.627529844650006,
+            "push_duration_s": 0.15
+          },
+          "reason": "외란 뒤 쓰러짐"
+        },
+        {
+          "task": "left_arm_raise",
+          "applicable": false,
+          "success": null,
+          "score": null,
+          "metrics": {},
+          "reason": "왼팔 또는 어깨 구동축 없음"
+        },
+        {
+          "task": "crouch_candidates",
+          "applicable": true,
+          "success": false,
+          "score": 0.0,
+          "metrics": {
+            "root_height_m": 0.06992007863346796,
+            "height_ratio": 0.13576714297760767,
+            "upright_cosine": -0.00017132302547046913,
+            "fallen": true,
+            "selected_delta_rad": -0.35,
+            "target_rad": [
+              0.633,
+              0.633
+            ],
+            "height_reduction_ratio": 0.8642328570223923,
+            "candidate_scores": [
+              -1.0,
+              -1.0
+            ]
+          },
+          "reason": "안전한 굽힘 범위 미달"
+        },
+        {
+          "task": "head_turn",
+          "applicable": false,
+          "success": null,
+          "score": null,
+          "metrics": {},
+          "reason": "머리 yaw 구동축 없음"
+        }
+      ]
+    }
+  ]
+}

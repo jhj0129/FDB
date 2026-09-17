@@ -1,0 +1,20 @@
+{
+  "schema_version": "1.0",
+  "skill_id": "v5.multi_humanoid_challenge",
+  "version": "0.1.0",
+  "status": "candidate",
+  "description": "서로 다른 오픈소스 휴머노이드에 공통 과제와 적용 가능성 판정을 실행하는 기준선",
+  "prerequisites": ["MuJoCo Menagerie scene 모델", "free-base humanoid", "position actuator"],
+  "inputs": {"robots": "Menagerie robot ID 목록", "tasks": "서기, 외란, 팔, 무릎, 머리 과제"},
+  "outputs": {"report": "로봇별 morphology, 적용 가능성, 성공, 점수, 실패 이유"},
+  "procedure": ["고정 object ID 모델 로드", "형태와 capability 확인", "과제 적용 가능성 분리", "후보 행동 물리 실행", "객관 지표 기록", "개별 및 연속 결과 비교"],
+  "acceptance_criteria": [
+    {"metric": "robot_count", "operator": "greater_than_or_equal", "threshold": 4},
+    {"metric": "task_definition_count", "operator": "greater_than_or_equal", "threshold": 5},
+    {"metric": "source_provenance_recorded", "operator": "equals", "threshold": true}
+  ],
+  "known_limits": ["보행 정책 없음", "단순 position hold", "과제별 점수 정규화 미완성", "실제 하드웨어 승인 없음"],
+  "evidence": ["research/research_20260917_humanoid_models.json", "experiments/0017_humanoid_challenge.md", "experiments/0017_humanoid_challenge.results.json", "artifacts/fdb_humanoid_challenge.mp4", "tests/test_humanoid_challenge.py"],
+  "verification": {"environment": "MuJoCo 3.13.0, Menagerie 2026.9.0", "success_count": 9, "failure_count": 8, "last_verified_at": "2026-09-17T09:50:00+00:00"},
+  "deprecation": null
+}

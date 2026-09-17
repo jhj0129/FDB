@@ -1,0 +1,794 @@
+{
+  "schema_version": "1.0",
+  "robot_id": "booster_t1",
+  "model_version": "menagerie-2026.9.0-c0462e68226c",
+  "source_artifacts": [
+    {
+      "repository": "https://github.com/google-deepmind/mujoco_menagerie",
+      "object_id": "c0462e68226cd67351270236e8650355e3dc5eb0",
+      "entry": "t1",
+      "license": "Apache-2.0"
+    }
+  ],
+  "links": [
+    {
+      "name": "Trunk",
+      "parent": "world",
+      "child_count": 4,
+      "mass": 11.7
+    },
+    {
+      "name": "H1",
+      "parent": "Trunk",
+      "child_count": 1,
+      "mass": 0.44391
+    },
+    {
+      "name": "H2",
+      "parent": "H1",
+      "child_count": 0,
+      "mass": 0.631019
+    },
+    {
+      "name": "AL1",
+      "parent": "Trunk",
+      "child_count": 1,
+      "mass": 0.53
+    },
+    {
+      "name": "AL2",
+      "parent": "AL1",
+      "child_count": 1,
+      "mass": 0.16
+    },
+    {
+      "name": "AL3",
+      "parent": "AL2",
+      "child_count": 1,
+      "mass": 1.02
+    },
+    {
+      "name": "left_hand_link",
+      "parent": "AL3",
+      "child_count": 0,
+      "mass": 0.327214
+    },
+    {
+      "name": "AR1",
+      "parent": "Trunk",
+      "child_count": 1,
+      "mass": 0.53
+    },
+    {
+      "name": "AR2",
+      "parent": "AR1",
+      "child_count": 1,
+      "mass": 0.16
+    },
+    {
+      "name": "AR3",
+      "parent": "AR2",
+      "child_count": 1,
+      "mass": 1.02
+    },
+    {
+      "name": "right_hand_link",
+      "parent": "AR3",
+      "child_count": 0,
+      "mass": 0.327214
+    },
+    {
+      "name": "Waist",
+      "parent": "Trunk",
+      "child_count": 2,
+      "mass": 2.581
+    },
+    {
+      "name": "Hip_Pitch_Left",
+      "parent": "Waist",
+      "child_count": 1,
+      "mass": 1.021
+    },
+    {
+      "name": "Hip_Roll_Left",
+      "parent": "Hip_Pitch_Left",
+      "child_count": 1,
+      "mass": 0.385
+    },
+    {
+      "name": "Hip_Yaw_Left",
+      "parent": "Hip_Roll_Left",
+      "child_count": 1,
+      "mass": 2.166
+    },
+    {
+      "name": "Shank_Left",
+      "parent": "Hip_Yaw_Left",
+      "child_count": 1,
+      "mass": 1.73
+    },
+    {
+      "name": "Ankle_Cross_Left",
+      "parent": "Shank_Left",
+      "child_count": 1,
+      "mass": 0.073
+    },
+    {
+      "name": "left_foot_link",
+      "parent": "Ankle_Cross_Left",
+      "child_count": 0,
+      "mass": 0.685
+    },
+    {
+      "name": "Hip_Pitch_Right",
+      "parent": "Waist",
+      "child_count": 1,
+      "mass": 1.021
+    },
+    {
+      "name": "Hip_Roll_Right",
+      "parent": "Hip_Pitch_Right",
+      "child_count": 1,
+      "mass": 0.385
+    },
+    {
+      "name": "Hip_Yaw_Right",
+      "parent": "Hip_Roll_Right",
+      "child_count": 1,
+      "mass": 2.17
+    },
+    {
+      "name": "Shank_Right",
+      "parent": "Hip_Yaw_Right",
+      "child_count": 1,
+      "mass": 1.79
+    },
+    {
+      "name": "Ankle_Cross_Right",
+      "parent": "Shank_Right",
+      "child_count": 1,
+      "mass": 0.073
+    },
+    {
+      "name": "right_foot_link",
+      "parent": "Ankle_Cross_Right",
+      "child_count": 0,
+      "mass": 0.685
+    }
+  ],
+  "joints": [
+    {
+      "name": "",
+      "type": "free",
+      "parent": "world",
+      "child": "Trunk",
+      "limits": null,
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "source": "compiled Menagerie MJCF"
+    },
+    {
+      "name": "AAHead_yaw",
+      "type": "hinge",
+      "parent": "Trunk",
+      "child": "H1",
+      "limits": [
+        -1.57,
+        1.57
+      ],
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "source": "compiled Menagerie MJCF"
+    },
+    {
+      "name": "Head_pitch",
+      "type": "hinge",
+      "parent": "H1",
+      "child": "H2",
+      "limits": [
+        -0.35,
+        1.22
+      ],
+      "axis": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "source": "compiled Menagerie MJCF"
+    },
+    {
+      "name": "Left_Shoulder_Pitch",
+      "type": "hinge",
+      "parent": "Trunk",
+      "child": "AL1",
+      "limits": [
+        -3.31,
+        1.22
+      ],
+      "axis": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "source": "compiled Menagerie MJCF"
+    },
+    {
+      "name": "Left_Shoulder_Roll",
+      "type": "hinge",
+      "parent": "AL1",
+      "child": "AL2",
+      "limits": [
+        -1.74,
+        1.57
+      ],
+      "axis": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "source": "compiled Menagerie MJCF"
+    },
+    {
+      "name": "Left_Elbow_Pitch",
+      "type": "hinge",
+      "parent": "AL2",
+      "child": "AL3",
+      "limits": [
+        -2.27,
+        2.27
+      ],
+      "axis": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "source": "compiled Menagerie MJCF"
+    },
+    {
+      "name": "Left_Elbow_Yaw",
+      "type": "hinge",
+      "parent": "AL3",
+      "child": "left_hand_link",
+      "limits": [
+        -2.44,
+        0.0
+      ],
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "source": "compiled Menagerie MJCF"
+    },
+    {
+      "name": "Right_Shoulder_Pitch",
+      "type": "hinge",
+      "parent": "Trunk",
+      "child": "AR1",
+      "limits": [
+        -3.31,
+        1.22
+      ],
+      "axis": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "source": "compiled Menagerie MJCF"
+    },
+    {
+      "name": "Right_Shoulder_Roll",
+      "type": "hinge",
+      "parent": "AR1",
+      "child": "AR2",
+      "limits": [
+        -1.57,
+        1.74
+      ],
+      "axis": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "source": "compiled Menagerie MJCF"
+    },
+    {
+      "name": "Right_Elbow_Pitch",
+      "type": "hinge",
+      "parent": "AR2",
+      "child": "AR3",
+      "limits": [
+        -2.27,
+        2.27
+      ],
+      "axis": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "source": "compiled Menagerie MJCF"
+    },
+    {
+      "name": "Right_Elbow_Yaw",
+      "type": "hinge",
+      "parent": "AR3",
+      "child": "right_hand_link",
+      "limits": [
+        0.0,
+        2.44
+      ],
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "source": "compiled Menagerie MJCF"
+    },
+    {
+      "name": "Waist",
+      "type": "hinge",
+      "parent": "Trunk",
+      "child": "Waist",
+      "limits": [
+        -1.57,
+        1.57
+      ],
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "source": "compiled Menagerie MJCF"
+    },
+    {
+      "name": "Left_Hip_Pitch",
+      "type": "hinge",
+      "parent": "Waist",
+      "child": "Hip_Pitch_Left",
+      "limits": [
+        -1.8,
+        1.57
+      ],
+      "axis": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "source": "compiled Menagerie MJCF"
+    },
+    {
+      "name": "Left_Hip_Roll",
+      "type": "hinge",
+      "parent": "Hip_Pitch_Left",
+      "child": "Hip_Roll_Left",
+      "limits": [
+        -0.2,
+        1.57
+      ],
+      "axis": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "source": "compiled Menagerie MJCF"
+    },
+    {
+      "name": "Left_Hip_Yaw",
+      "type": "hinge",
+      "parent": "Hip_Roll_Left",
+      "child": "Hip_Yaw_Left",
+      "limits": [
+        -1.0,
+        1.0
+      ],
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "source": "compiled Menagerie MJCF"
+    },
+    {
+      "name": "Left_Knee_Pitch",
+      "type": "hinge",
+      "parent": "Hip_Yaw_Left",
+      "child": "Shank_Left",
+      "limits": [
+        0.0,
+        2.34
+      ],
+      "axis": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "source": "compiled Menagerie MJCF"
+    },
+    {
+      "name": "Left_Ankle_Pitch",
+      "type": "hinge",
+      "parent": "Shank_Left",
+      "child": "Ankle_Cross_Left",
+      "limits": [
+        -0.87,
+        0.35
+      ],
+      "axis": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "source": "compiled Menagerie MJCF"
+    },
+    {
+      "name": "Left_Ankle_Roll",
+      "type": "hinge",
+      "parent": "Ankle_Cross_Left",
+      "child": "left_foot_link",
+      "limits": [
+        -0.44,
+        0.44
+      ],
+      "axis": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "source": "compiled Menagerie MJCF"
+    },
+    {
+      "name": "Right_Hip_Pitch",
+      "type": "hinge",
+      "parent": "Waist",
+      "child": "Hip_Pitch_Right",
+      "limits": [
+        -1.8,
+        1.57
+      ],
+      "axis": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "source": "compiled Menagerie MJCF"
+    },
+    {
+      "name": "Right_Hip_Roll",
+      "type": "hinge",
+      "parent": "Hip_Pitch_Right",
+      "child": "Hip_Roll_Right",
+      "limits": [
+        -1.57,
+        0.2
+      ],
+      "axis": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "source": "compiled Menagerie MJCF"
+    },
+    {
+      "name": "Right_Hip_Yaw",
+      "type": "hinge",
+      "parent": "Hip_Roll_Right",
+      "child": "Hip_Yaw_Right",
+      "limits": [
+        -1.0,
+        1.0
+      ],
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "source": "compiled Menagerie MJCF"
+    },
+    {
+      "name": "Right_Knee_Pitch",
+      "type": "hinge",
+      "parent": "Hip_Yaw_Right",
+      "child": "Shank_Right",
+      "limits": [
+        0.0,
+        2.34
+      ],
+      "axis": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "source": "compiled Menagerie MJCF"
+    },
+    {
+      "name": "Right_Ankle_Pitch",
+      "type": "hinge",
+      "parent": "Shank_Right",
+      "child": "Ankle_Cross_Right",
+      "limits": [
+        -0.87,
+        0.35
+      ],
+      "axis": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "source": "compiled Menagerie MJCF"
+    },
+    {
+      "name": "Right_Ankle_Roll",
+      "type": "hinge",
+      "parent": "Ankle_Cross_Right",
+      "child": "right_foot_link",
+      "limits": [
+        -0.44,
+        0.44
+      ],
+      "axis": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "source": "compiled Menagerie MJCF"
+    }
+  ],
+  "end_effector_candidates": [
+    {
+      "site": "imu",
+      "body": "Trunk",
+      "confidence": 0.65,
+      "reason": "Terminal/tool site from compiled model."
+    }
+  ],
+  "grippers": [],
+  "confirmed_facts": [
+    {
+      "joint_count": 24,
+      "actuator_count": 23,
+      "actuated_hinge_count": 23,
+      "actuators": [
+        {
+          "name": "AAHead_yaw",
+          "transmission": "joint",
+          "target_id": 1,
+          "control_range": [
+            -1.57,
+            1.57
+          ]
+        },
+        {
+          "name": "Head_pitch",
+          "transmission": "joint",
+          "target_id": 2,
+          "control_range": [
+            -0.3499999999999999,
+            1.22
+          ]
+        },
+        {
+          "name": "Left_Shoulder_Pitch",
+          "transmission": "joint",
+          "target_id": 3,
+          "control_range": [
+            -3.31,
+            1.2200000000000002
+          ]
+        },
+        {
+          "name": "Left_Shoulder_Roll",
+          "transmission": "joint",
+          "target_id": 4,
+          "control_range": [
+            -1.74,
+            1.57
+          ]
+        },
+        {
+          "name": "Left_Elbow_Pitch",
+          "transmission": "joint",
+          "target_id": 5,
+          "control_range": [
+            -2.27,
+            2.27
+          ]
+        },
+        {
+          "name": "Left_Elbow_Yaw",
+          "transmission": "joint",
+          "target_id": 6,
+          "control_range": [
+            -2.44,
+            0.0
+          ]
+        },
+        {
+          "name": "Right_Shoulder_Pitch",
+          "transmission": "joint",
+          "target_id": 7,
+          "control_range": [
+            -3.31,
+            1.2200000000000002
+          ]
+        },
+        {
+          "name": "Right_Shoulder_Roll",
+          "transmission": "joint",
+          "target_id": 8,
+          "control_range": [
+            -1.57,
+            1.74
+          ]
+        },
+        {
+          "name": "Right_Elbow_Pitch",
+          "transmission": "joint",
+          "target_id": 9,
+          "control_range": [
+            -2.27,
+            2.27
+          ]
+        },
+        {
+          "name": "Right_Elbow_Yaw",
+          "transmission": "joint",
+          "target_id": 10,
+          "control_range": [
+            0.0,
+            2.44
+          ]
+        },
+        {
+          "name": "Waist",
+          "transmission": "joint",
+          "target_id": 11,
+          "control_range": [
+            -1.57,
+            1.57
+          ]
+        },
+        {
+          "name": "Left_Hip_Pitch",
+          "transmission": "joint",
+          "target_id": 12,
+          "control_range": [
+            -1.8,
+            1.57
+          ]
+        },
+        {
+          "name": "Left_Hip_Roll",
+          "transmission": "joint",
+          "target_id": 13,
+          "control_range": [
+            -0.19999999999999996,
+            1.57
+          ]
+        },
+        {
+          "name": "Left_Hip_Yaw",
+          "transmission": "joint",
+          "target_id": 14,
+          "control_range": [
+            -1.0,
+            1.0
+          ]
+        },
+        {
+          "name": "Left_Knee_Pitch",
+          "transmission": "joint",
+          "target_id": 15,
+          "control_range": [
+            0.0,
+            2.34
+          ]
+        },
+        {
+          "name": "Left_Ankle_Pitch",
+          "transmission": "joint",
+          "target_id": 16,
+          "control_range": [
+            -0.87,
+            0.35
+          ]
+        },
+        {
+          "name": "Left_Ankle_Roll",
+          "transmission": "joint",
+          "target_id": 17,
+          "control_range": [
+            -0.44,
+            0.44
+          ]
+        },
+        {
+          "name": "Right_Hip_Pitch",
+          "transmission": "joint",
+          "target_id": 18,
+          "control_range": [
+            -1.8,
+            1.57
+          ]
+        },
+        {
+          "name": "Right_Hip_Roll",
+          "transmission": "joint",
+          "target_id": 19,
+          "control_range": [
+            -1.57,
+            0.19999999999999996
+          ]
+        },
+        {
+          "name": "Right_Hip_Yaw",
+          "transmission": "joint",
+          "target_id": 20,
+          "control_range": [
+            -1.0,
+            1.0
+          ]
+        },
+        {
+          "name": "Right_Knee_Pitch",
+          "transmission": "joint",
+          "target_id": 21,
+          "control_range": [
+            0.0,
+            2.34
+          ]
+        },
+        {
+          "name": "Right_Ankle_Pitch",
+          "transmission": "joint",
+          "target_id": 22,
+          "control_range": [
+            -0.87,
+            0.35
+          ]
+        },
+        {
+          "name": "Right_Ankle_Roll",
+          "transmission": "joint",
+          "target_id": 23,
+          "control_range": [
+            -0.44,
+            0.44
+          ]
+        }
+      ]
+    }
+  ],
+  "inferences": [
+    {
+      "claim": "serial_arm_candidate",
+      "confidence": 0.9
+    }
+  ],
+  "capabilities": [
+    {
+      "name": "position_reach_candidate",
+      "status": "unverified"
+    }
+  ],
+  "discovered_behaviors": [],
+  "safety_constraints": [
+    {
+      "type": "joint_limits",
+      "source": "compiled model"
+    },
+    {
+      "type": "simulation_only",
+      "value": true
+    }
+  ],
+  "unresolved_questions": [
+    "Verify end-effector behavior with small simulation motions.",
+    "Determine collision-safe home configuration."
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "schema_version": "1.0",
+  "research_id": "research_20260917_humanoid_models",
+  "created_at": "2026-09-17T09:45:00Z",
+  "question": "한 로봇 최적화에서 벗어나 휴머노이드 챌린지형 다중 과제를 시작할 때 어떤 오픈소스 모델을 사용할 것인가?",
+  "search_queries": [
+    "MuJoCo Menagerie humanoids Unitree G1 Booster T1 Robotis OP3 Berkeley Humanoid"
+  ],
+  "sources": [
+    {
+      "title": "Google DeepMind MuJoCo Menagerie",
+      "locator": "https://github.com/google-deepmind/mujoco_menagerie",
+      "retrieved_at": "2026-09-17T09:45:00Z",
+      "claims": [
+        "Menagerie는 MuJoCo용 로봇 모델을 관리하며 humanoid 목록, 자유도와 라이선스를 공개한다.",
+        "Unitree G1, Booster T1, Robotis OP3, Berkeley Humanoid 모델을 포함한다."
+      ]
+    }
+  ],
+  "cross_checks": [
+    "설치된 mujoco-menagerie 2026.9.0 registry의 object ID와 라이선스를 각 결과에 기록했다.",
+    "scene.xml 네 개를 MuJoCo 3.13.0으로 직접 compile하고 body, joint, actuator를 읽었다.",
+    "G1 29축 BSD-3-Clause, T1 23축 Apache-2.0, OP3 20축 Apache-2.0, Berkeley 12축 BSD-3-Clause를 확인했다."
+  ],
+  "interpretation": "서로 다른 크기와 상체 구성을 가진 네 모델은 공통 의사결정 경계와 과제 적용 가능성 판단을 시험하기에 적합하다. 모델이 없는 기능은 실패가 아니라 해당 없음으로 분리해야 한다.",
+  "hypotheses": [
+    "질량에 비례한 외란을 사용하면 크기가 다른 로봇의 기준선을 더 공정하게 비교할 수 있다.",
+    "행동 후보를 양방향으로 시험하면 로봇별 관절 부호 지식을 추측하지 않고도 일부 과제를 선택할 수 있다."
+  ],
+  "validation": {
+    "environment": "MuJoCo 3.13.0, mujoco-menagerie 2026.9.0",
+    "protocol": "4개 모델에 서기, 체중 비례 외란, 왼팔 올리기, 무릎 굽힘 후보, 머리 회전을 실행",
+    "result": "적용 가능한 17회 중 9회 성공. 결과와 실패 원인을 0017 실험에 보존."
+  },
+  "confidence": 0.9,
+  "unresolved_questions": [
+    "보행과 계단 과제를 위한 균형 제어 정책을 어떤 공통 관측 공간으로 학습할 것인가?",
+    "양팔 손이 있는 모델과 하체 전용 모델의 점수를 어떻게 별도 리그로 정규화할 것인가?"
+  ],
+  "status": "validated"
+}

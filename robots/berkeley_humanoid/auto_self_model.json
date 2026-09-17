@@ -1,0 +1,465 @@
+{
+  "schema_version": "1.0",
+  "robot_id": "berkeley_humanoid",
+  "model_version": "menagerie-2026.9.0-c29239060f51",
+  "source_artifacts": [
+    {
+      "repository": "https://github.com/google-deepmind/mujoco_menagerie",
+      "object_id": "c29239060f5107160613a07ffe3bbda96fc9adf7",
+      "entry": "berkeley_humanoid",
+      "license": "BSD-3-Clause"
+    }
+  ],
+  "links": [
+    {
+      "name": "torso",
+      "parent": "world",
+      "child_count": 2,
+      "mass": 5.37812
+    },
+    {
+      "name": "ll_hr",
+      "parent": "torso",
+      "child_count": 1,
+      "mass": 0.797
+    },
+    {
+      "name": "ll_haa",
+      "parent": "ll_hr",
+      "child_count": 1,
+      "mass": 0.897
+    },
+    {
+      "name": "ll_hfe",
+      "parent": "ll_haa",
+      "child_count": 1,
+      "mass": 2.689
+    },
+    {
+      "name": "ll_kfe",
+      "parent": "ll_hfe",
+      "child_count": 1,
+      "mass": 0.35
+    },
+    {
+      "name": "ll_ffe",
+      "parent": "ll_kfe",
+      "child_count": 1,
+      "mass": 0.0993228
+    },
+    {
+      "name": "ll_faa",
+      "parent": "ll_ffe",
+      "child_count": 0,
+      "mass": 0.507
+    },
+    {
+      "name": "lr_hr",
+      "parent": "torso",
+      "child_count": 1,
+      "mass": 0.797
+    },
+    {
+      "name": "lr_haa",
+      "parent": "lr_hr",
+      "child_count": 1,
+      "mass": 0.897
+    },
+    {
+      "name": "lr_hfe",
+      "parent": "lr_haa",
+      "child_count": 1,
+      "mass": 2.689
+    },
+    {
+      "name": "lr_kfe",
+      "parent": "lr_hfe",
+      "child_count": 1,
+      "mass": 0.35
+    },
+    {
+      "name": "lr_ffe",
+      "parent": "lr_kfe",
+      "child_count": 1,
+      "mass": 0.0993223
+    },
+    {
+      "name": "lr_faa",
+      "parent": "lr_ffe",
+      "child_count": 0,
+      "mass": 0.507
+    }
+  ],
+  "joints": [
+    {
+      "name": "",
+      "type": "free",
+      "parent": "world",
+      "child": "torso",
+      "limits": null,
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "source": "compiled Menagerie MJCF"
+    },
+    {
+      "name": "LL_HR",
+      "type": "hinge",
+      "parent": "torso",
+      "child": "ll_hr",
+      "limits": [
+        -0.610865,
+        0.610865
+      ],
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "source": "compiled Menagerie MJCF"
+    },
+    {
+      "name": "LL_HAA",
+      "type": "hinge",
+      "parent": "ll_hr",
+      "child": "ll_haa",
+      "limits": [
+        -0.610865,
+        0.610865
+      ],
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "source": "compiled Menagerie MJCF"
+    },
+    {
+      "name": "LL_HFE",
+      "type": "hinge",
+      "parent": "ll_haa",
+      "child": "ll_hfe",
+      "limits": [
+        -1.74533,
+        0.523599
+      ],
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "source": "compiled Menagerie MJCF"
+    },
+    {
+      "name": "LL_KFE",
+      "type": "hinge",
+      "parent": "ll_hfe",
+      "child": "ll_kfe",
+      "limits": [
+        0.0,
+        2.0944
+      ],
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "source": "compiled Menagerie MJCF"
+    },
+    {
+      "name": "LL_FFE",
+      "type": "hinge",
+      "parent": "ll_kfe",
+      "child": "ll_ffe",
+      "limits": [
+        -0.523599,
+        0.698132
+      ],
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "source": "compiled Menagerie MJCF"
+    },
+    {
+      "name": "LL_FAA",
+      "type": "hinge",
+      "parent": "ll_ffe",
+      "child": "ll_faa",
+      "limits": [
+        -0.523599,
+        0.523599
+      ],
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "source": "compiled Menagerie MJCF"
+    },
+    {
+      "name": "LR_HR",
+      "type": "hinge",
+      "parent": "torso",
+      "child": "lr_hr",
+      "limits": [
+        -0.610865,
+        0.610865
+      ],
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "source": "compiled Menagerie MJCF"
+    },
+    {
+      "name": "LR_HAA",
+      "type": "hinge",
+      "parent": "lr_hr",
+      "child": "lr_haa",
+      "limits": [
+        -0.610865,
+        0.610865
+      ],
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "source": "compiled Menagerie MJCF"
+    },
+    {
+      "name": "LR_HFE",
+      "type": "hinge",
+      "parent": "lr_haa",
+      "child": "lr_hfe",
+      "limits": [
+        -1.74533,
+        0.523599
+      ],
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "source": "compiled Menagerie MJCF"
+    },
+    {
+      "name": "LR_KFE",
+      "type": "hinge",
+      "parent": "lr_hfe",
+      "child": "lr_kfe",
+      "limits": [
+        0.0,
+        2.0944
+      ],
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "source": "compiled Menagerie MJCF"
+    },
+    {
+      "name": "LR_FFE",
+      "type": "hinge",
+      "parent": "lr_kfe",
+      "child": "lr_ffe",
+      "limits": [
+        -0.523599,
+        0.698132
+      ],
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "source": "compiled Menagerie MJCF"
+    },
+    {
+      "name": "LR_FAA",
+      "type": "hinge",
+      "parent": "lr_ffe",
+      "child": "lr_faa",
+      "limits": [
+        -0.523599,
+        0.523599
+      ],
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "source": "compiled Menagerie MJCF"
+    }
+  ],
+  "end_effector_candidates": [
+    {
+      "site": "imu",
+      "body": "torso",
+      "confidence": 0.65,
+      "reason": "Terminal/tool site from compiled model."
+    },
+    {
+      "site": "LL_FOOT",
+      "body": "ll_faa",
+      "confidence": 0.65,
+      "reason": "Terminal/tool site from compiled model."
+    },
+    {
+      "site": "LR_FOOT",
+      "body": "lr_faa",
+      "confidence": 0.65,
+      "reason": "Terminal/tool site from compiled model."
+    }
+  ],
+  "grippers": [],
+  "confirmed_facts": [
+    {
+      "joint_count": 13,
+      "actuator_count": 12,
+      "actuated_hinge_count": 12,
+      "actuators": [
+        {
+          "name": "LL_HR",
+          "transmission": "joint",
+          "target_id": 1,
+          "control_range": [
+            -0.610865,
+            0.610865
+          ]
+        },
+        {
+          "name": "LL_HAA",
+          "transmission": "joint",
+          "target_id": 2,
+          "control_range": [
+            -0.610865,
+            0.610865
+          ]
+        },
+        {
+          "name": "LL_HFE",
+          "transmission": "joint",
+          "target_id": 3,
+          "control_range": [
+            -1.74533,
+            0.5235989999999999
+          ]
+        },
+        {
+          "name": "LL_KFE",
+          "transmission": "joint",
+          "target_id": 4,
+          "control_range": [
+            0.0,
+            2.0944
+          ]
+        },
+        {
+          "name": "LL_FFE",
+          "transmission": "joint",
+          "target_id": 5,
+          "control_range": [
+            -0.5235990000000001,
+            0.698132
+          ]
+        },
+        {
+          "name": "LL_FAA",
+          "transmission": "joint",
+          "target_id": 6,
+          "control_range": [
+            -0.523599,
+            0.523599
+          ]
+        },
+        {
+          "name": "LR_HR",
+          "transmission": "joint",
+          "target_id": 7,
+          "control_range": [
+            -0.610865,
+            0.610865
+          ]
+        },
+        {
+          "name": "LR_HAA",
+          "transmission": "joint",
+          "target_id": 8,
+          "control_range": [
+            -0.610865,
+            0.610865
+          ]
+        },
+        {
+          "name": "LR_HFE",
+          "transmission": "joint",
+          "target_id": 9,
+          "control_range": [
+            -1.74533,
+            0.5235989999999999
+          ]
+        },
+        {
+          "name": "LR_KFE",
+          "transmission": "joint",
+          "target_id": 10,
+          "control_range": [
+            0.0,
+            2.0944
+          ]
+        },
+        {
+          "name": "LR_FFE",
+          "transmission": "joint",
+          "target_id": 11,
+          "control_range": [
+            -0.5235990000000001,
+            0.698132
+          ]
+        },
+        {
+          "name": "LR_FAA",
+          "transmission": "joint",
+          "target_id": 12,
+          "control_range": [
+            -0.523599,
+            0.523599
+          ]
+        }
+      ]
+    }
+  ],
+  "inferences": [
+    {
+      "claim": "serial_arm_candidate",
+      "confidence": 0.9
+    }
+  ],
+  "capabilities": [
+    {
+      "name": "position_reach_candidate",
+      "status": "unverified"
+    }
+  ],
+  "discovered_behaviors": [],
+  "safety_constraints": [
+    {
+      "type": "joint_limits",
+      "source": "compiled model"
+    },
+    {
+      "type": "simulation_only",
+      "value": true
+    }
+  ],
+  "unresolved_questions": [
+    "Verify end-effector behavior with small simulation motions.",
+    "Determine collision-safe home configuration."
+  ]
+}

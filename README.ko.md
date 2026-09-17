@@ -12,6 +12,7 @@ FDB는 초파리 connectome에서 영감을 받은 검증 중심 의사결정 �
 - v3 Panda UR5e KUKA iiwa 자기 신체 구조 분석
 - v4 20개 관절의 행동 기반 body schema 검증
 - v5 5개 MLP 앙상블 세계모델과 안전한 MuJoCo fallback
+- v5 Panda 테이블 충돌을 실행 전에 거부하는 학습형 안전 앙상블
 
 v5는 3,900개의 MuJoCo rollout으로 학습했다. 독립 시험 500개에서 평균 최종 위치
 오차 10.72mm와 성공 판정 정확도 99.4%를 기록했다. 분포 밖 또는 불확실한 입력은
@@ -21,14 +22,22 @@ Panda 조작에는 비의도 로봇 테이블 접촉 0과 관통 0을 하드 게
 낮은 궤적이 손가락을 최대 2.979mm 관통시키는 문제를 발견하고, 파지 및 배치 높이와
 부드러운 단계별 궤적을 교정했다.
 
+추가로 MuJoCo 자세 180개에서 안전 117개와 충돌 63개를 학습한 5개 MLP 안전
+앙상블을 만들었다. 독립 시험에서는 위험 자세 11개를 모두 거부했다. 신경망이 허용한
+자세도 물리 접촉 하드 게이트를 생략할 수 없으며, 현재 결과는 Panda 작업영역의
+`candidate`이다.
+
 ## 주요 결과물
 
 - `artifacts/fdb_v5_neural_prediction.mp4` 신경망 예측과 실제 물리 결과 비교
 - `artifacts/fdb_final_pick_place.mp4` 접촉 0 Panda pick and place
 - `models/v5/push_dynamics_ensemble.pt` PyTorch 학습 체크포인트
 - `models/v5/push_dynamics_ensemble.npz` MuJoCo 환경용 portable 추론 모델
+- `models/v5/panda_table_safety.pt` Panda 자세 안전 PyTorch 체크포인트
+- `models/v5/panda_table_safety.npz` PyTorch 없는 환경용 안전 추론 모델
 - `experiments/0014_v5_neural_metrics.json` 학습 및 시험 지표
 - `experiments/0015_v5_common_sense_safety.results.json` 조작 안전 경계 데이터
+- `experiments/0016_v5_safety_classifier.metrics.json` 학습형 안전 정책 시험 지표
 
 ## 실행 환경
 
@@ -38,6 +47,7 @@ Panda 조작에는 비의도 로봇 테이블 접촉 0과 관통 0을 하드 게
 ```bash
 .venv/bin/python -m fdb.v5.data_cli
 PYTHONPATH=src ~/venvs/robot_ai/bin/python -m fdb.v5.train_cli
+PYTHONPATH=src ~/venvs/robot_ai/bin/python -m fdb.v5.safety_training
 .venv/bin/python -m fdb.v5.hybrid_cli
 MUJOCO_GL=egl .venv/bin/python -m fdb.v5.render_neural
 MUJOCO_GL=egl .venv/bin/python -m fdb.v2.render_final
@@ -45,4 +55,3 @@ MUJOCO_GL=egl .venv/bin/python -m fdb.v2.render_final
 
 현재 결과는 시뮬레이션 연구 증거이며 실제 로봇 실행 승인이 아니다. 실제 적용 전에는
 센서 잡음, 지연, calibration, 비상 정지, 힘 제한과 하드웨어별 안전 검증이 필요하다.
-

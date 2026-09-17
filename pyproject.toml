@@ -39,6 +39,8 @@ fdb-v5-hybrid = "fdb.v5.hybrid_cli:main"
 fdb-v5-render = "fdb.v5.render_neural:main"
 fdb-v5-safety-envelope = "fdb.v5.safety_envelope:main"
 fdb-v5-report = "fdb.v5.report_cli:main"
+fdb-v5-safety-data = "fdb.v5.safety_data:main"
+fdb-v5-safety-train = "fdb.v5.safety_training:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]

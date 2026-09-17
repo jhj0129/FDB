@@ -1,0 +1,19 @@
+{
+  "schema_version": "1.0",
+  "skill_id": "v5.learned_table_safety",
+  "version": "0.1.0",
+  "status": "candidate",
+  "description": "Panda hand 자세의 테이블 충돌 가능성을 앙상블 확률과 불확실성으로 사전 거부하는 조언기",
+  "prerequisites": ["MuJoCo Panda 테이블 장면", "portable NumPy 체크포인트", "접촉 하드 게이트"],
+  "inputs": {"pose": "hand x, y, z와 gripper open 상태"},
+  "outputs": {"advice": "안전 확률, 불확실성, 분포 여부, 조기 거부 이유"},
+  "procedure": ["학습 분포 확인", "5개 MLP 추론", "확률과 모델 불일치 평가", "위험 또는 불확실 후보 조기 거부", "허용 후보를 MuJoCo 접촉 하드 게이트로 재검증"],
+  "acceptance_criteria": [
+    {"metric": "test_false_safe_count", "operator": "equals", "threshold": 0},
+    {"metric": "physics_hard_gate_required", "operator": "equals", "threshold": true}
+  ],
+  "known_limits": ["Panda와 고정 테이블 작업영역 180개 표본", "실제 센서 입력과 동역학 미검증", "최종 안전 승인 권한 없음"],
+  "evidence": ["experiments/0016_v5_learned_table_safety.md", "experiments/0016_v5_safety_classifier.metrics.json", "tests/test_v5_safety_advisor.py"],
+  "verification": {"environment": "CPU PyTorch 2.14.0, MuJoCo 3.13.0", "success_count": 11, "failure_count": 0, "last_verified_at": "2026-09-17T09:40:00+00:00"},
+  "deprecation": null
+}

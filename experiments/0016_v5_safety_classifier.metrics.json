@@ -1,0 +1,119 @@
+{
+  "model_type": "TableSafetyMLPEnsemble",
+  "dataset_count": 180,
+  "safe_count": 117,
+  "unsafe_count": 63,
+  "parameter_count_per_member": 1249,
+  "ensemble_size": 5,
+  "best_validation_losses": [
+    0.05610023811459541,
+    0.04489442706108093,
+    0.052965499460697174,
+    0.03315211087465286,
+    0.025894347578287125
+  ],
+  "safe_probability_threshold": 0.5,
+  "uncertainty_threshold": 0.16860535740852356,
+  "policy": "학습망은 사전 거부만 조언하며 MuJoCo 접촉 하드 게이트를 대체하지 않음",
+  "splits": {
+    "train": {
+      "count": 117,
+      "accuracy": 0.9743589743589743,
+      "safe_precision": 1.0,
+      "safe_recall": 0.958904109589041,
+      "false_safe_count": 0,
+      "false_safe_rate": 0.0,
+      "false_unsafe_count": 3,
+      "confusion": {
+        "true_safe": 70,
+        "false_safe": 0,
+        "false_unsafe": 3,
+        "true_unsafe": 44
+      },
+      "raw_probability_gate": {
+        "count": 117,
+        "accuracy": 0.9914529914529915,
+        "safe_precision": 1.0,
+        "safe_recall": 0.9863013698630136,
+        "false_safe_count": 0,
+        "false_safe_rate": 0.0,
+        "false_unsafe_count": 1,
+        "confusion": {
+          "true_safe": 72,
+          "false_safe": 0,
+          "false_unsafe": 1,
+          "true_unsafe": 44
+        }
+      },
+      "mean_probability": 0.6127910017967224,
+      "mean_uncertainty": 0.021945158019661903,
+      "uncertainty_fallback_rate": 0.042735042735042736
+    },
+    "validation": {
+      "count": 31,
+      "accuracy": 0.9032258064516129,
+      "safe_precision": 1.0,
+      "safe_recall": 0.8695652173913043,
+      "false_safe_count": 0,
+      "false_safe_rate": 0.0,
+      "false_unsafe_count": 3,
+      "confusion": {
+        "true_safe": 20,
+        "false_safe": 0,
+        "false_unsafe": 3,
+        "true_unsafe": 8
+      },
+      "raw_probability_gate": {
+        "count": 31,
+        "accuracy": 1.0,
+        "safe_precision": 1.0,
+        "safe_recall": 1.0,
+        "false_safe_count": 0,
+        "false_safe_rate": 0.0,
+        "false_unsafe_count": 0,
+        "confusion": {
+          "true_safe": 23,
+          "false_safe": 0,
+          "false_unsafe": 0,
+          "true_unsafe": 8
+        }
+      },
+      "mean_probability": 0.7423631548881531,
+      "mean_uncertainty": 0.03816160559654236,
+      "uncertainty_fallback_rate": 0.06451612903225806
+    },
+    "test": {
+      "count": 32,
+      "accuracy": 0.90625,
+      "safe_precision": 1.0,
+      "safe_recall": 0.8571428571428571,
+      "false_safe_count": 0,
+      "false_safe_rate": 0.0,
+      "false_unsafe_count": 3,
+      "confusion": {
+        "true_safe": 18,
+        "false_safe": 0,
+        "false_unsafe": 3,
+        "true_unsafe": 11
+      },
+      "raw_probability_gate": {
+        "count": 32,
+        "accuracy": 0.9375,
+        "safe_precision": 0.9523809523809523,
+        "safe_recall": 0.9523809523809523,
+        "false_safe_count": 1,
+        "false_safe_rate": 0.09090909090909091,
+        "false_unsafe_count": 1,
+        "confusion": {
+          "true_safe": 20,
+          "false_safe": 1,
+          "false_unsafe": 1,
+          "true_unsafe": 10
+        }
+      },
+      "mean_probability": 0.6497122049331665,
+      "mean_uncertainty": 0.05546186864376068,
+      "uncertainty_fallback_rate": 0.15625
+    }
+  }
+}

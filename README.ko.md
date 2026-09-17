@@ -33,6 +33,11 @@ Panda 조작에는 비의도 로봇 테이블 접촉 0과 관통 0을 하드 게
 머리가 없는 모델은 실패가 아니라 `해당 없음`으로 분리한다. 이 결과는 보행 정책이 아니라
 휴머노이드 챌린지 개발을 위한 정직한 공통 기준선이다.
 
+네 로봇의 무작위 관절 상태와 외란 192회를 추가로 생성해 다음 1초 낙상을 예측하는
+5개 MLP 앙상블도 학습했다. 독립 시험에서 낙상을 안정으로 통과시킨 오류는 0이지만,
+안정 recall은 41.2%로 보수적이다. 따라서 현재는 물리 rollout 앞의 `candidate` screen이며
+처음 보는 로봇에 일반화됐다는 주장은 하지 않는다.
+
 ## 주요 결과물
 
 - `artifacts/fdb_v5_neural_prediction.mp4` 신경망 예측과 실제 물리 결과 비교
@@ -42,6 +47,7 @@ Panda 조작에는 비의도 로봇 테이블 접촉 0과 관통 0을 하드 게
 - `models/v5/push_dynamics_ensemble.npz` MuJoCo 환경용 portable 추론 모델
 - `models/v5/panda_table_safety.pt` Panda 자세 안전 PyTorch 체크포인트
 - `models/v5/panda_table_safety.npz` PyTorch 없는 환경용 안전 추론 모델
+- `models/v5/humanoid_balance_ensemble.npz` 다중 휴머노이드 단기 낙상 screen
 - `experiments/0014_v5_neural_metrics.json` 학습 및 시험 지표
 - `experiments/0015_v5_common_sense_safety.results.json` 조작 안전 경계 데이터
 - `experiments/0016_v5_safety_classifier.metrics.json` 학습형 안전 정책 시험 지표
@@ -60,6 +66,8 @@ MUJOCO_GL=egl .venv/bin/python -m fdb.v5.render_neural
 MUJOCO_GL=egl .venv/bin/python -m fdb.v2.render_final
 .venv/bin/python -m fdb.challenge.humanoid_suite
 MUJOCO_GL=egl .venv/bin/python -m fdb.challenge.render_humanoids
+.venv/bin/python -m fdb.challenge.balance_data
+PYTHONPATH=src ~/venvs/robot_ai/bin/python -m fdb.challenge.balance_training
 ```
 
 현재 결과는 시뮬레이션 연구 증거이며 실제 로봇 실행 승인이 아니다. 실제 적용 전에는

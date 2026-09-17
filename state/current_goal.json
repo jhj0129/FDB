@@ -2,7 +2,7 @@
   "schema_version": "1.0",
   "stage": "multi_robot_challenge",
   "goal": "학습형 세계모델과 안전 게이트를 유지하며 여러 휴머노이드와 다양한 챌린지 과제로 일반화한다.",
-  "status": "active",
+  "status": "implemented",
   "active_hypotheses": [
     "Fresh-state MuJoCo candidate rollouts can improve first-attempt physical task selection.",
     "Feedback control generalizes better than nominal open-loop control under moderate dynamics variation.",
@@ -14,5 +14,5 @@
     "Which orientation representation and collision metric should gate pre-grasp reach?",
     "How should balance observations and task scores be normalized across humanoids of different size and capability?"
   ],
-  "next_gate": "네 휴머노이드 공통 균형 관측을 정의하고 recovery 후보 또는 학습 정책 기준선을 비교한다."
+  "next_gate": "로봇 하나를 통째로 제외한 균형 예측 일반화와 recovery 행동 후보를 비교한다."
 }

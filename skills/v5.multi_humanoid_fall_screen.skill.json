@@ -1,0 +1,20 @@
+{
+  "schema_version": "1.0",
+  "skill_id": "v5.multi_humanoid_fall_screen",
+  "version": "0.1.0",
+  "status": "candidate",
+  "description": "네 휴머노이드의 형태, 현재 자세와 외란으로 다음 1초 낙상 위험을 보수적으로 사전 거부하는 MLP 앙상블",
+  "prerequisites": ["12개 균형 feature", "portable NumPy 체크포인트", "최종 MuJoCo rollout"],
+  "inputs": {"state_and_disturbance": "형태 4개, 현재 자세 2개, 외란 4개, 사전 동작 2개"},
+  "outputs": {"screen": "안정 확률, 앙상블 불확실성, 물리 fallback"},
+  "procedure": ["입력 정규화", "5개 MLP 추론", "90% 안정 합의 확인", "불확실 후보 거부", "통과 후보도 MuJoCo 재검증"],
+  "acceptance_criteria": [
+    {"metric": "test_false_stable_count", "operator": "equals", "threshold": 0},
+    {"metric": "test_stable_precision", "operator": "equals", "threshold": 1.0},
+    {"metric": "physics_verification_required", "operator": "equals", "threshold": true}
+  ],
+  "known_limits": ["학습에 포함된 네 로봇", "1초 예측창", "테스트 안정 recall 41.2%", "recovery 행동을 생성하지 않음", "처음 보는 로봇 일반화 미검증"],
+  "evidence": ["experiments/0018_multi_humanoid_balance_model.md", "experiments/0018_humanoid_balance.metrics.json", "data/v5/humanoid_balance.npz", "models/v5/humanoid_balance_ensemble.npz"],
+  "verification": {"environment": "CPU PyTorch 2.14.0, MuJoCo 3.13.0", "success_count": 15, "failure_count": 0, "last_verified_at": "2026-09-17T10:05:00+00:00"},
+  "deprecation": null
+}

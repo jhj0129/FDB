@@ -1,0 +1,71 @@
+{
+  "model_type": "MultiHumanoidBalanceMLPEnsemble",
+  "ensemble_size": 5,
+  "parameter_count_per_member": 1505,
+  "stable_probability_threshold": 0.9,
+  "uncertainty_threshold": 0.36384153366088867,
+  "policy": "90% 안정 합의와 불확실성 gate를 모두 통과해야 하며, 허용 후에도 물리 검증 필요",
+  "splits": {
+    "train": {
+      "count": 140,
+      "accuracy": 0.8571428571428571,
+      "false_stable_count": 0,
+      "false_fall_count": 20,
+      "stable_precision": 1.0,
+      "stable_recall": 0.7142857142857143,
+      "fallback_rate": 0.6428571428571429
+    },
+    "validation": {
+      "count": 20,
+      "accuracy": 0.8,
+      "false_stable_count": 0,
+      "false_fall_count": 4,
+      "stable_precision": 1.0,
+      "stable_recall": 0.5,
+      "fallback_rate": 0.8
+    },
+    "test": {
+      "count": 32,
+      "accuracy": 0.6875,
+      "false_stable_count": 0,
+      "false_fall_count": 10,
+      "stable_precision": 1.0,
+      "stable_recall": 0.4117647058823529,
+      "fallback_rate": 0.78125
+    }
+  },
+  "test_by_robot": {
+    "berkeley_humanoid": {
+      "count": 8,
+      "accuracy": 1.0,
+      "false_stable_count": 0,
+      "false_fall_count": 0,
+      "stable_precision": 0.0,
+      "stable_recall": 0.0
+    },
+    "booster_t1": {
+      "count": 8,
+      "accuracy": 0.75,
+      "false_stable_count": 0,
+      "false_fall_count": 2,
+      "stable_precision": 1.0,
+      "stable_recall": 0.3333333333333333
+    },
+    "robotis_op3": {
+      "count": 8,
+      "accuracy": 0.5,
+      "false_stable_count": 0,
+      "false_fall_count": 4,
+      "stable_precision": 1.0,
+      "stable_recall": 0.3333333333333333
+    },
+    "unitree_g1": {
+      "count": 8,
+      "accuracy": 0.5,
+      "false_stable_count": 0,
+      "false_fall_count": 4,
+      "stable_precision": 1.0,
+      "stable_recall": 0.5
+    }
+  }
+}

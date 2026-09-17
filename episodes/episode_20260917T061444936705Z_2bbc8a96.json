@@ -1,0 +1,128 @@
+{
+  "schema_version": "1.0",
+  "episode_id": "episode_20260917T061444936705Z_2bbc8a96",
+  "created_at": "2026-09-17T06:14:44.936705+00:00",
+  "stage": "v2",
+  "task": "Approach, grasp, and lift a box with the Panda gripper.",
+  "observation": {
+    "object_position": [
+      0.45,
+      0.15,
+      0.335
+    ]
+  },
+  "goal": {
+    "lift_height_m_min": 0.08,
+    "retain_object": true
+  },
+  "candidate_plans": [
+    {
+      "plan": {
+        "plan_id": "grasp_low",
+        "grasp_hand_z": 0.375
+      },
+      "initial_object_z": 0.335,
+      "final_object_z": 0.47129926482280476,
+      "lift_height_m": 0.13629926482280474,
+      "final_object_to_hand_distance_m": 0.09839807696707702,
+      "forbidden_contact_steps": 16,
+      "stable": true,
+      "success": false,
+      "score": -20.338035057061067
+    },
+    {
+      "plan": {
+        "plan_id": "grasp_centered",
+        "grasp_hand_z": 0.385
+      },
+      "initial_object_z": 0.335,
+      "final_object_z": 0.4490554184628979,
+      "lift_height_m": 0.1140554184628979,
+      "final_object_to_hand_distance_m": 0.13065623247882005,
+      "forbidden_contact_steps": 29,
+      "stable": true,
+      "success": false,
+      "score": -49.20758280328661
+    },
+    {
+      "plan": {
+        "plan_id": "grasp_high",
+        "grasp_hand_z": 0.395
+      },
+      "initial_object_z": 0.335,
+      "final_object_z": 0.33136282378312426,
+      "lift_height_m": -0.0036371762168757593,
+      "final_object_to_hand_distance_m": 0.25946843250340174,
+      "forbidden_contact_steps": 5628,
+      "stable": true,
+      "success": false,
+      "score": -11261.553086271755
+    }
+  ],
+  "decision": {
+    "selected_plan_id": "grasp_low",
+    "reason": "Task success first, then lift and retention score.",
+    "predicted_evaluation": {
+      "plan": {
+        "plan_id": "grasp_low",
+        "grasp_hand_z": 0.375
+      },
+      "initial_object_z": 0.335,
+      "final_object_z": 0.47129926482280476,
+      "lift_height_m": 0.13629926482280474,
+      "final_object_to_hand_distance_m": 0.09839807696707702,
+      "forbidden_contact_steps": 16,
+      "stable": true,
+      "success": false,
+      "score": -20.338035057061067
+    }
+  },
+  "execution": {
+    "sequence": [
+      "pregrasp",
+      "descend",
+      "close",
+      "lift"
+    ]
+  },
+  "result": {
+    "final_state": {
+      "object_z": 0.47129926482280476
+    },
+    "objective_evaluation": {
+      "plan": {
+        "plan_id": "grasp_low",
+        "grasp_hand_z": 0.375
+      },
+      "initial_object_z": 0.335,
+      "final_object_z": 0.47129926482280476,
+      "lift_height_m": 0.13629926482280474,
+      "final_object_to_hand_distance_m": 0.09839807696707702,
+      "forbidden_contact_steps": 16,
+      "stable": true,
+      "success": false,
+      "score": -20.338035057061067
+    },
+    "user_evaluation": null
+  },
+  "reflection": {
+    "success_factors": [
+      "Compared grasp-height candidates and preserved the free object's initial pose."
+    ],
+    "failure_causes": [
+      "Initial sphere slipped; unextended keyframe reset misplaced the free object."
+    ],
+    "learned": "Added free joints require explicit qpos initialization when reusing an older keyframe.",
+    "next_experiment": "Place the lifted object into a target region and release it.",
+    "confidence": 0.75,
+    "unresolved_questions": [
+      "How robust is grasp to object size, mass, and pose?"
+    ]
+  },
+  "sources": [
+    "research/research_20260917_panda_model.json"
+  ],
+  "skills_used": [
+    "v2.panda_grasp_lift"
+  ]
+}

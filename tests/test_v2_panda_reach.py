@@ -8,6 +8,7 @@ from fdb.v2.reach import PandaReachExperiment
 from fdb.v2.reach_suite import WORKSPACE_TARGETS, run_reach_suite
 from fdb.v2.pose_reach import PandaPoseReachExperiment
 from fdb.v2.pregrasp import CollisionAwarePregraspExperiment
+from fdb.v2.grasp_lift import PandaGraspLiftExperiment
 
 
 def test_inspector_builds_sourced_panda_self_model():
@@ -46,6 +47,15 @@ def test_pose_reach_preserves_home_hand_orientation():
     assert selected.position_error_m <= 0.02
     assert selected.orientation_error_rad <= 0.03
     assert selected.joint_limit_violations == 0
+
+
+def test_grasp_candidates_select_a_retained_lift():
+    selected, candidates = PandaGraspLiftExperiment().run()
+    assert any(candidate.success for candidate in candidates)
+    assert selected.plan.plan_id == "grasp_low"
+    assert selected.lift_height_m >= 0.08
+    assert selected.final_object_to_hand_distance_m <= 0.16
+    assert selected.forbidden_contact_steps == 0
 
 
 def test_pregrasp_rejects_colliding_candidates_before_score():

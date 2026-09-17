@@ -1,0 +1,22 @@
+{
+  "schema_version": "1.0",
+  "skill_id": "v2.panda_grasp_lift",
+  "version": "0.1.0",
+  "status": "candidate",
+  "description": "Approach, close the Panda parallel gripper on a box, and lift while retaining the object.",
+  "prerequisites": ["Validated Panda pose reach", "Known box pose and size", "Simulation-only table scene"],
+  "inputs": {"object_pose": "world position", "grasp_height_candidates": "hand z positions"},
+  "outputs": {"selected_plan": "GraspCandidate", "evaluation": "GraspLiftResult"},
+  "procedure": ["Move to pre-grasp", "Descend with open gripper", "Compare closure-height candidates", "Close gripper", "Lift 0.20 m", "Evaluate object lift, retention, stability, and table recontact"],
+  "acceptance_criteria": [
+    {"metric": "lift_height_m", "operator": "greater_than_or_equal", "threshold": 0.08},
+    {"metric": "final_object_to_hand_distance_m", "operator": "less_than_or_equal", "threshold": 0.16},
+    {"metric": "forbidden_contact_steps", "operator": "equals", "threshold": 0},
+    {"metric": "stable", "operator": "equals", "threshold": true}
+  ],
+  "known_limits": ["One box size, mass, friction, and pose", "No placement or release", "No hardware approval"],
+  "evidence": ["experiments/0007_v2_grasp_lift.md", "episodes/episode_20260917T061516003558Z_30544a4f.json", "tests/test_v2_panda_reach.py"],
+  "verification": {"environment": "MuJoCo 3.13.0, Menagerie Panda 2026.9.0", "success_count": 3, "failure_count": 3, "last_verified_at": "2026-09-17T06:15:16.003558+00:00"},
+  "deprecation": null
+}
+

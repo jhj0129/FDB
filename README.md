@@ -61,6 +61,9 @@ reaching within 5.4 mm, but remains a candidate until multi-pose and obstacle te
 Collision-aware pre-grasp selection now rejects candidates with any obstacle contact
 before comparing endpoint score; the first safe candidate reached within 7.4 mm with
 zero contact steps.
+The first complete `approach → close → lift` baseline raises a box by 0.136 m and retains
+it in the gripper. It is intentionally still a candidate pending place/release and object
+variation tests.
 
 ## Quick start
 
@@ -96,6 +99,7 @@ python -m fdb.v2.cli
 python -m fdb.v2.reach_suite_cli
 python -m fdb.v2.pose_reach_cli
 python -m fdb.v2.pregrasp_cli
+python -m fdb.v2.grasp_lift_cli
 ```
 
 Each successful CLI run creates an `episodes/episode_*.json` file. Episode records

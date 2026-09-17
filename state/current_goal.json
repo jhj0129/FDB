@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0",
   "stage": "v1",
-  "goal": "Extend validated Panda position reach to orientation-aware, collision-aware pre-grasp planning.",
+  "goal": "Extend the Panda grasp-lift baseline to place, release, and object-variation validation.",
   "status": "implemented",
   "active_hypotheses": [
     "Fresh-state MuJoCo candidate rollouts can improve first-attempt physical task selection.",
@@ -12,5 +12,5 @@
     "How should rotate be evaluated independently from translation?",
     "Which orientation representation and collision metric should gate pre-grasp reach?"
   ],
-  "next_gate": "Add 6D hand pose objectives, obstacle contacts, and collision-aware candidate rejection before grasping."
+  "next_gate": "Carry the grasped object to a target region, release it stably, then test object mass, size, friction, and pose variation."
 }

@@ -1,0 +1,1416 @@
+{
+  "experiment": "contact-gated gait robustness",
+  "robots": [
+    "unitree_g1",
+    "robotis_op3",
+    "booster_t1"
+  ],
+  "development_scenario_count_per_robot": 6,
+  "holdout_scenario_count_per_robot": 7,
+  "success_definition": "human_gait.py의 접촉 기반 보행 gate",
+  "summary": {
+    "unitree_g1": {
+      "development": {
+        "walking_successes": 6,
+        "upright_completions": 6,
+        "total": 6
+      },
+      "holdout": {
+        "walking_successes": 7,
+        "upright_completions": 7,
+        "total": 7
+      }
+    },
+    "robotis_op3": {
+      "development": {
+        "walking_successes": 6,
+        "upright_completions": 6,
+        "total": 6
+      },
+      "holdout": {
+        "walking_successes": 3,
+        "upright_completions": 4,
+        "total": 7
+      }
+    },
+    "booster_t1": {
+      "development": {
+        "walking_successes": 0,
+        "upright_completions": 6,
+        "total": 6
+      },
+      "holdout": {
+        "walking_successes": 0,
+        "upright_completions": 7,
+        "total": 7
+      }
+    }
+  },
+  "runs": [
+    {
+      "split": "development",
+      "scenario": {
+        "name": "nominal",
+        "friction_scale": 1.0,
+        "push_xy_fraction": [
+          0.0,
+          0.0
+        ]
+      },
+      "result": {
+        "robot": "unitree_g1",
+        "variant": "pitch_feedback",
+        "completed_duration_s": 4.0,
+        "displacement_xy_m": 0.17010746166821028,
+        "signed_x_m": 0.13135779565963457,
+        "lateral_drift_m": 0.10808181176610301,
+        "average_speed_mps": 0.04252686541705257,
+        "minimum_height_ratio": 0.99927283383119,
+        "minimum_upright_cosine": 0.9783345178357816,
+        "left_foot_vertical_excursion_m": 0.011053762140235221,
+        "right_foot_vertical_excursion_m": 0.0468010017486664,
+        "minimum_com_support_margin_m": -0.04307889548244927,
+        "single_support_fraction": 0.34685714285714286,
+        "double_support_fraction": 0.6531428571428571,
+        "no_support_fraction": 0.0,
+        "support_phase_transition_count": 35,
+        "arm_swing_available": true,
+        "arm_swing_amplitude_rad": 0.22,
+        "ankle_pitch_feedback_gain": 0.15,
+        "fallen": false,
+        "upright_complete": true,
+        "success": true
+      }
+    },
+    {
+      "split": "development",
+      "scenario": {
+        "name": "low_friction_50pct",
+        "friction_scale": 0.5,
+        "push_xy_fraction": [
+          0.0,
+          0.0
+        ]
+      },
+      "result": {
+        "robot": "unitree_g1",
+        "variant": "pitch_feedback",
+        "completed_duration_s": 4.0,
+        "displacement_xy_m": 0.17010746166821028,
+        "signed_x_m": 0.13135779565963457,
+        "lateral_drift_m": 0.10808181176610301,
+        "average_speed_mps": 0.04252686541705257,
+        "minimum_height_ratio": 0.99927283383119,
+        "minimum_upright_cosine": 0.9783345178357816,
+        "left_foot_vertical_excursion_m": 0.011053762140235221,
+        "right_foot_vertical_excursion_m": 0.0468010017486664,
+        "minimum_com_support_margin_m": -0.04307889548244927,
+        "single_support_fraction": 0.34685714285714286,
+        "double_support_fraction": 0.6531428571428571,
+        "no_support_fraction": 0.0,
+        "support_phase_transition_count": 35,
+        "arm_swing_available": true,
+        "arm_swing_amplitude_rad": 0.22,
+        "ankle_pitch_feedback_gain": 0.15,
+        "fallen": false,
+        "upright_complete": true,
+        "success": true
+      }
+    },
+    {
+      "split": "development",
+      "scenario": {
+        "name": "low_friction_80pct",
+        "friction_scale": 0.8,
+        "push_xy_fraction": [
+          0.0,
+          0.0
+        ]
+      },
+      "result": {
+        "robot": "unitree_g1",
+        "variant": "pitch_feedback",
+        "completed_duration_s": 4.0,
+        "displacement_xy_m": 0.17010746166821028,
+        "signed_x_m": 0.13135779565963457,
+        "lateral_drift_m": 0.10808181176610301,
+        "average_speed_mps": 0.04252686541705257,
+        "minimum_height_ratio": 0.99927283383119,
+        "minimum_upright_cosine": 0.9783345178357816,
+        "left_foot_vertical_excursion_m": 0.011053762140235221,
+        "right_foot_vertical_excursion_m": 0.0468010017486664,
+        "minimum_com_support_margin_m": -0.04307889548244927,
+        "single_support_fraction": 0.34685714285714286,
+        "double_support_fraction": 0.6531428571428571,
+        "no_support_fraction": 0.0,
+        "support_phase_transition_count": 35,
+        "arm_swing_available": true,
+        "arm_swing_amplitude_rad": 0.22,
+        "ankle_pitch_feedback_gain": 0.15,
+        "fallen": false,
+        "upright_complete": true,
+        "success": true
+      }
+    },
+    {
+      "split": "development",
+      "scenario": {
+        "name": "high_friction_120pct",
+        "friction_scale": 1.2,
+        "push_xy_fraction": [
+          0.0,
+          0.0
+        ]
+      },
+      "result": {
+        "robot": "unitree_g1",
+        "variant": "pitch_feedback",
+        "completed_duration_s": 4.0,
+        "displacement_xy_m": 0.17010746166821028,
+        "signed_x_m": 0.13135779565963457,
+        "lateral_drift_m": 0.10808181176610301,
+        "average_speed_mps": 0.04252686541705257,
+        "minimum_height_ratio": 0.99927283383119,
+        "minimum_upright_cosine": 0.9783345178357816,
+        "left_foot_vertical_excursion_m": 0.011053762140235221,
+        "right_foot_vertical_excursion_m": 0.0468010017486664,
+        "minimum_com_support_margin_m": -0.04307889548244927,
+        "single_support_fraction": 0.34685714285714286,
+        "double_support_fraction": 0.6531428571428571,
+        "no_support_fraction": 0.0,
+        "support_phase_transition_count": 35,
+        "arm_swing_available": true,
+        "arm_swing_amplitude_rad": 0.22,
+        "ankle_pitch_feedback_gain": 0.15,
+        "fallen": false,
+        "upright_complete": true,
+        "success": true
+      }
+    },
+    {
+      "split": "development",
+      "scenario": {
+        "name": "forward_push_5pct_weight",
+        "friction_scale": 1.0,
+        "push_xy_fraction": [
+          0.05,
+          0.0
+        ]
+      },
+      "result": {
+        "robot": "unitree_g1",
+        "variant": "pitch_feedback",
+        "completed_duration_s": 4.0,
+        "displacement_xy_m": 0.20217880892077147,
+        "signed_x_m": -0.05821886278855774,
+        "lateral_drift_m": 0.19361517190610067,
+        "average_speed_mps": 0.05054470223019287,
+        "minimum_height_ratio": 0.9948319146253456,
+        "minimum_upright_cosine": 0.9178181120088486,
+        "left_foot_vertical_excursion_m": 0.016588211002707826,
+        "right_foot_vertical_excursion_m": 0.08602422588897805,
+        "minimum_com_support_margin_m": -0.04307889548244927,
+        "single_support_fraction": 0.368,
+        "double_support_fraction": 0.632,
+        "no_support_fraction": 0.0,
+        "support_phase_transition_count": 31,
+        "arm_swing_available": true,
+        "arm_swing_amplitude_rad": 0.22,
+        "ankle_pitch_feedback_gain": 0.15,
+        "fallen": false,
+        "upright_complete": true,
+        "success": true
+      }
+    },
+    {
+      "split": "development",
+      "scenario": {
+        "name": "lateral_push_5pct_weight",
+        "friction_scale": 1.0,
+        "push_xy_fraction": [
+          0.0,
+          0.05
+        ]
+      },
+      "result": {
+        "robot": "unitree_g1",
+        "variant": "pitch_feedback",
+        "completed_duration_s": 4.0,
+        "displacement_xy_m": 0.09141439858358398,
+        "signed_x_m": 0.08737251155511336,
+        "lateral_drift_m": 0.026881898983329745,
+        "average_speed_mps": 0.022853599645895995,
+        "minimum_height_ratio": 0.9995115338665936,
+        "minimum_upright_cosine": 0.9844745236248363,
+        "left_foot_vertical_excursion_m": 0.009556660136949294,
+        "right_foot_vertical_excursion_m": 0.0390213087574849,
+        "minimum_com_support_margin_m": -0.04307889548244927,
+        "single_support_fraction": 0.3177142857142857,
+        "double_support_fraction": 0.6822857142857143,
+        "no_support_fraction": 0.0,
+        "support_phase_transition_count": 37,
+        "arm_swing_available": true,
+        "arm_swing_amplitude_rad": 0.22,
+        "ankle_pitch_feedback_gain": 0.15,
+        "fallen": false,
+        "upright_complete": true,
+        "success": true
+      }
+    },
+    {
+      "split": "holdout",
+      "scenario": {
+        "name": "holdout_friction_35pct",
+        "friction_scale": 0.35,
+        "push_xy_fraction": [
+          0.0,
+          0.0
+        ]
+      },
+      "result": {
+        "robot": "unitree_g1",
+        "variant": "pitch_feedback",
+        "completed_duration_s": 4.0,
+        "displacement_xy_m": 0.17010746166821028,
+        "signed_x_m": 0.13135779565963457,
+        "lateral_drift_m": 0.10808181176610301,
+        "average_speed_mps": 0.04252686541705257,
+        "minimum_height_ratio": 0.99927283383119,
+        "minimum_upright_cosine": 0.9783345178357816,
+        "left_foot_vertical_excursion_m": 0.011053762140235221,
+        "right_foot_vertical_excursion_m": 0.0468010017486664,
+        "minimum_com_support_margin_m": -0.04307889548244927,
+        "single_support_fraction": 0.34685714285714286,
+        "double_support_fraction": 0.6531428571428571,
+        "no_support_fraction": 0.0,
+        "support_phase_transition_count": 35,
+        "arm_swing_available": true,
+        "arm_swing_amplitude_rad": 0.22,
+        "ankle_pitch_feedback_gain": 0.15,
+        "fallen": false,
+        "upright_complete": true,
+        "success": true
+      }
+    },
+    {
+      "split": "holdout",
+      "scenario": {
+        "name": "holdout_friction_65pct",
+        "friction_scale": 0.65,
+        "push_xy_fraction": [
+          0.0,
+          0.0
+        ]
+      },
+      "result": {
+        "robot": "unitree_g1",
+        "variant": "pitch_feedback",
+        "completed_duration_s": 4.0,
+        "displacement_xy_m": 0.17010746166821028,
+        "signed_x_m": 0.13135779565963457,
+        "lateral_drift_m": 0.10808181176610301,
+        "average_speed_mps": 0.04252686541705257,
+        "minimum_height_ratio": 0.99927283383119,
+        "minimum_upright_cosine": 0.9783345178357816,
+        "left_foot_vertical_excursion_m": 0.011053762140235221,
+        "right_foot_vertical_excursion_m": 0.0468010017486664,
+        "minimum_com_support_margin_m": -0.04307889548244927,
+        "single_support_fraction": 0.34685714285714286,
+        "double_support_fraction": 0.6531428571428571,
+        "no_support_fraction": 0.0,
+        "support_phase_transition_count": 35,
+        "arm_swing_available": true,
+        "arm_swing_amplitude_rad": 0.22,
+        "ankle_pitch_feedback_gain": 0.15,
+        "fallen": false,
+        "upright_complete": true,
+        "success": true
+      }
+    },
+    {
+      "split": "holdout",
+      "scenario": {
+        "name": "holdout_friction_140pct",
+        "friction_scale": 1.4,
+        "push_xy_fraction": [
+          0.0,
+          0.0
+        ]
+      },
+      "result": {
+        "robot": "unitree_g1",
+        "variant": "pitch_feedback",
+        "completed_duration_s": 4.0,
+        "displacement_xy_m": 0.17010746166821028,
+        "signed_x_m": 0.13135779565963457,
+        "lateral_drift_m": 0.10808181176610301,
+        "average_speed_mps": 0.04252686541705257,
+        "minimum_height_ratio": 0.99927283383119,
+        "minimum_upright_cosine": 0.9783345178357816,
+        "left_foot_vertical_excursion_m": 0.011053762140235221,
+        "right_foot_vertical_excursion_m": 0.0468010017486664,
+        "minimum_com_support_margin_m": -0.04307889548244927,
+        "single_support_fraction": 0.34685714285714286,
+        "double_support_fraction": 0.6531428571428571,
+        "no_support_fraction": 0.0,
+        "support_phase_transition_count": 35,
+        "arm_swing_available": true,
+        "arm_swing_amplitude_rad": 0.22,
+        "ankle_pitch_feedback_gain": 0.15,
+        "fallen": false,
+        "upright_complete": true,
+        "success": true
+      }
+    },
+    {
+      "split": "holdout",
+      "scenario": {
+        "name": "holdout_diagonal_push_3pct",
+        "friction_scale": 1.0,
+        "push_xy_fraction": [
+          0.03,
+          0.03
+        ]
+      },
+      "result": {
+        "robot": "unitree_g1",
+        "variant": "pitch_feedback",
+        "completed_duration_s": 4.0,
+        "displacement_xy_m": 0.12636785950403995,
+        "signed_x_m": 0.12178104346771679,
+        "lateral_drift_m": 0.03373741791463677,
+        "average_speed_mps": 0.03159196487600999,
+        "minimum_height_ratio": 0.9989836063390233,
+        "minimum_upright_cosine": 0.9858221439008291,
+        "left_foot_vertical_excursion_m": 0.010334282284451171,
+        "right_foot_vertical_excursion_m": 0.03742829653561712,
+        "minimum_com_support_margin_m": -0.04307889548244927,
+        "single_support_fraction": 0.332,
+        "double_support_fraction": 0.668,
+        "no_support_fraction": 0.0,
+        "support_phase_transition_count": 29,
+        "arm_swing_available": true,
+        "arm_swing_amplitude_rad": 0.22,
+        "ankle_pitch_feedback_gain": 0.15,
+        "fallen": false,
+        "upright_complete": true,
+        "success": true
+      }
+    },
+    {
+      "split": "holdout",
+      "scenario": {
+        "name": "holdout_forward_push_7pct",
+        "friction_scale": 1.0,
+        "push_xy_fraction": [
+          0.07,
+          0.0
+        ]
+      },
+      "result": {
+        "robot": "unitree_g1",
+        "variant": "pitch_feedback",
+        "completed_duration_s": 4.0,
+        "displacement_xy_m": 0.2520277264466494,
+        "signed_x_m": -0.1491306474577109,
+        "lateral_drift_m": 0.2031699409034493,
+        "average_speed_mps": 0.06300693161166235,
+        "minimum_height_ratio": 0.9674726894242951,
+        "minimum_upright_cosine": 0.878871957772673,
+        "left_foot_vertical_excursion_m": 0.02208028100101976,
+        "right_foot_vertical_excursion_m": 0.09506297293690623,
+        "minimum_com_support_margin_m": -0.04307889548244927,
+        "single_support_fraction": 0.3702857142857143,
+        "double_support_fraction": 0.6297142857142857,
+        "no_support_fraction": 0.0,
+        "support_phase_transition_count": 29,
+        "arm_swing_available": true,
+        "arm_swing_amplitude_rad": 0.22,
+        "ankle_pitch_feedback_gain": 0.15,
+        "fallen": false,
+        "upright_complete": true,
+        "success": true
+      }
+    },
+    {
+      "split": "holdout",
+      "scenario": {
+        "name": "holdout_lateral_push_7pct",
+        "friction_scale": 1.0,
+        "push_xy_fraction": [
+          0.0,
+          0.07
+        ]
+      },
+      "result": {
+        "robot": "unitree_g1",
+        "variant": "pitch_feedback",
+        "completed_duration_s": 4.0,
+        "displacement_xy_m": 0.08475209815310342,
+        "signed_x_m": 0.08437848862916177,
+        "lateral_drift_m": 0.007949138193017824,
+        "average_speed_mps": 0.021188024538275854,
+        "minimum_height_ratio": 0.9995384381290451,
+        "minimum_upright_cosine": 0.9860260477502061,
+        "left_foot_vertical_excursion_m": 0.009202489648277704,
+        "right_foot_vertical_excursion_m": 0.036822672202103585,
+        "minimum_com_support_margin_m": -0.04307889548244927,
+        "single_support_fraction": 0.31314285714285717,
+        "double_support_fraction": 0.6868571428571428,
+        "no_support_fraction": 0.0,
+        "support_phase_transition_count": 33,
+        "arm_swing_available": true,
+        "arm_swing_amplitude_rad": 0.22,
+        "ankle_pitch_feedback_gain": 0.15,
+        "fallen": false,
+        "upright_complete": true,
+        "success": true
+      }
+    },
+    {
+      "split": "holdout",
+      "scenario": {
+        "name": "holdout_diagonal_push_5pct",
+        "friction_scale": 1.0,
+        "push_xy_fraction": [
+          0.05,
+          0.05
+        ]
+      },
+      "result": {
+        "robot": "unitree_g1",
+        "variant": "pitch_feedback",
+        "completed_duration_s": 4.0,
+        "displacement_xy_m": 0.1368314278316051,
+        "signed_x_m": 0.13553371597483121,
+        "lateral_drift_m": 0.018800305223307865,
+        "average_speed_mps": 0.034207856957901274,
+        "minimum_height_ratio": 0.9988171838110137,
+        "minimum_upright_cosine": 0.9854106132867245,
+        "left_foot_vertical_excursion_m": 0.010373706535092148,
+        "right_foot_vertical_excursion_m": 0.03677841644462136,
+        "minimum_com_support_margin_m": -0.04307889548244927,
+        "single_support_fraction": 0.3354285714285714,
+        "double_support_fraction": 0.6645714285714286,
+        "no_support_fraction": 0.0,
+        "support_phase_transition_count": 27,
+        "arm_swing_available": true,
+        "arm_swing_amplitude_rad": 0.22,
+        "ankle_pitch_feedback_gain": 0.15,
+        "fallen": false,
+        "upright_complete": true,
+        "success": true
+      }
+    },
+    {
+      "split": "development",
+      "scenario": {
+        "name": "nominal",
+        "friction_scale": 1.0,
+        "push_xy_fraction": [
+          0.0,
+          0.0
+        ]
+      },
+      "result": {
+        "robot": "robotis_op3",
+        "variant": "pitch_feedback",
+        "completed_duration_s": 4.0,
+        "displacement_xy_m": 0.021000047603643462,
+        "signed_x_m": 0.009807316784493458,
+        "lateral_drift_m": 0.018569290154550454,
+        "average_speed_mps": 0.005250011900910866,
+        "minimum_height_ratio": 0.9266212000000001,
+        "minimum_upright_cosine": 0.9851927857101082,
+        "left_foot_vertical_excursion_m": 0.022013639999999918,
+        "right_foot_vertical_excursion_m": 0.022013639999999918,
+        "minimum_com_support_margin_m": -0.060294297336962385,
+        "single_support_fraction": 0.04914285714285714,
+        "double_support_fraction": 0.9508571428571428,
+        "no_support_fraction": 0.0,
+        "support_phase_transition_count": 24,
+        "arm_swing_available": true,
+        "arm_swing_amplitude_rad": 0.22,
+        "ankle_pitch_feedback_gain": 0.28,
+        "fallen": false,
+        "upright_complete": true,
+        "success": true
+      }
+    },
+    {
+      "split": "development",
+      "scenario": {
+        "name": "low_friction_50pct",
+        "friction_scale": 0.5,
+        "push_xy_fraction": [
+          0.0,
+          0.0
+        ]
+      },
+      "result": {
+        "robot": "robotis_op3",
+        "variant": "pitch_feedback",
+        "completed_duration_s": 4.0,
+        "displacement_xy_m": 0.021000047603643462,
+        "signed_x_m": 0.009807316784493458,
+        "lateral_drift_m": 0.018569290154550454,
+        "average_speed_mps": 0.005250011900910866,
+        "minimum_height_ratio": 0.9266212000000001,
+        "minimum_upright_cosine": 0.9851927857101082,
+        "left_foot_vertical_excursion_m": 0.022013639999999918,
+        "right_foot_vertical_excursion_m": 0.022013639999999918,
+        "minimum_com_support_margin_m": -0.060294297336962385,
+        "single_support_fraction": 0.04914285714285714,
+        "double_support_fraction": 0.9508571428571428,
+        "no_support_fraction": 0.0,
+        "support_phase_transition_count": 24,
+        "arm_swing_available": true,
+        "arm_swing_amplitude_rad": 0.22,
+        "ankle_pitch_feedback_gain": 0.28,
+        "fallen": false,
+        "upright_complete": true,
+        "success": true
+      }
+    },
+    {
+      "split": "development",
+      "scenario": {
+        "name": "low_friction_80pct",
+        "friction_scale": 0.8,
+        "push_xy_fraction": [
+          0.0,
+          0.0
+        ]
+      },
+      "result": {
+        "robot": "robotis_op3",
+        "variant": "pitch_feedback",
+        "completed_duration_s": 4.0,
+        "displacement_xy_m": 0.021000047603643462,
+        "signed_x_m": 0.009807316784493458,
+        "lateral_drift_m": 0.018569290154550454,
+        "average_speed_mps": 0.005250011900910866,
+        "minimum_height_ratio": 0.9266212000000001,
+        "minimum_upright_cosine": 0.9851927857101082,
+        "left_foot_vertical_excursion_m": 0.022013639999999918,
+        "right_foot_vertical_excursion_m": 0.022013639999999918,
+        "minimum_com_support_margin_m": -0.060294297336962385,
+        "single_support_fraction": 0.04914285714285714,
+        "double_support_fraction": 0.9508571428571428,
+        "no_support_fraction": 0.0,
+        "support_phase_transition_count": 24,
+        "arm_swing_available": true,
+        "arm_swing_amplitude_rad": 0.22,
+        "ankle_pitch_feedback_gain": 0.28,
+        "fallen": false,
+        "upright_complete": true,
+        "success": true
+      }
+    },
+    {
+      "split": "development",
+      "scenario": {
+        "name": "high_friction_120pct",
+        "friction_scale": 1.2,
+        "push_xy_fraction": [
+          0.0,
+          0.0
+        ]
+      },
+      "result": {
+        "robot": "robotis_op3",
+        "variant": "pitch_feedback",
+        "completed_duration_s": 4.0,
+        "displacement_xy_m": 0.01808067985118229,
+        "signed_x_m": 0.005686541722662218,
+        "lateral_drift_m": 0.017163164833950965,
+        "average_speed_mps": 0.0045201699627955725,
+        "minimum_height_ratio": 0.9266212000000001,
+        "minimum_upright_cosine": 0.984521379226065,
+        "left_foot_vertical_excursion_m": 0.022013639999999918,
+        "right_foot_vertical_excursion_m": 0.022013639999999918,
+        "minimum_com_support_margin_m": -0.048923642974966555,
+        "single_support_fraction": 0.048,
+        "double_support_fraction": 0.952,
+        "no_support_fraction": 0.0,
+        "support_phase_transition_count": 20,
+        "arm_swing_available": true,
+        "arm_swing_amplitude_rad": 0.22,
+        "ankle_pitch_feedback_gain": 0.28,
+        "fallen": false,
+        "upright_complete": true,
+        "success": true
+      }
+    },
+    {
+      "split": "development",
+      "scenario": {
+        "name": "forward_push_5pct_weight",
+        "friction_scale": 1.0,
+        "push_xy_fraction": [
+          0.05,
+          0.0
+        ]
+      },
+      "result": {
+        "robot": "robotis_op3",
+        "variant": "pitch_feedback",
+        "completed_duration_s": 4.0,
+        "displacement_xy_m": 0.26660343934678055,
+        "signed_x_m": -0.26624549642194417,
+        "lateral_drift_m": -0.013810485384845143,
+        "average_speed_mps": 0.06665085983669514,
+        "minimum_height_ratio": 0.7406641114031012,
+        "minimum_upright_cosine": 0.5658172664821223,
+        "left_foot_vertical_excursion_m": 0.03159801073272617,
+        "right_foot_vertical_excursion_m": 0.02335066444057552,
+        "minimum_com_support_margin_m": -0.037253062727941405,
+        "single_support_fraction": 0.06342857142857143,
+        "double_support_fraction": 0.9268571428571428,
+        "no_support_fraction": 0.009714285714285713,
+        "support_phase_transition_count": 35,
+        "arm_swing_available": true,
+        "arm_swing_amplitude_rad": 0.22,
+        "ankle_pitch_feedback_gain": 0.28,
+        "fallen": false,
+        "upright_complete": true,
+        "success": true
+      }
+    },
+    {
+      "split": "development",
+      "scenario": {
+        "name": "lateral_push_5pct_weight",
+        "friction_scale": 1.0,
+        "push_xy_fraction": [
+          0.0,
+          0.05
+        ]
+      },
+      "result": {
+        "robot": "robotis_op3",
+        "variant": "pitch_feedback",
+        "completed_duration_s": 4.0,
+        "displacement_xy_m": 0.24719945439371643,
+        "signed_x_m": -0.2464254801659568,
+        "lateral_drift_m": -0.019546175521792514,
+        "average_speed_mps": 0.06179986359842911,
+        "minimum_height_ratio": 0.7858490433224087,
+        "minimum_upright_cosine": 0.6273669214763405,
+        "left_foot_vertical_excursion_m": 0.030228497503312968,
+        "right_foot_vertical_excursion_m": 0.022645735058951066,
+        "minimum_com_support_margin_m": -0.037268204925791186,
+        "single_support_fraction": 0.06971428571428571,
+        "double_support_fraction": 0.924,
+        "no_support_fraction": 0.006285714285714286,
+        "support_phase_transition_count": 30,
+        "arm_swing_available": true,
+        "arm_swing_amplitude_rad": 0.22,
+        "ankle_pitch_feedback_gain": 0.28,
+        "fallen": false,
+        "upright_complete": true,
+        "success": true
+      }
+    },
+    {
+      "split": "holdout",
+      "scenario": {
+        "name": "holdout_friction_35pct",
+        "friction_scale": 0.35,
+        "push_xy_fraction": [
+          0.0,
+          0.0
+        ]
+      },
+      "result": {
+        "robot": "robotis_op3",
+        "variant": "pitch_feedback",
+        "completed_duration_s": 4.0,
+        "displacement_xy_m": 0.021000047603643462,
+        "signed_x_m": 0.009807316784493458,
+        "lateral_drift_m": 0.018569290154550454,
+        "average_speed_mps": 0.005250011900910866,
+        "minimum_height_ratio": 0.9266212000000001,
+        "minimum_upright_cosine": 0.9851927857101082,
+        "left_foot_vertical_excursion_m": 0.022013639999999918,
+        "right_foot_vertical_excursion_m": 0.022013639999999918,
+        "minimum_com_support_margin_m": -0.060294297336962385,
+        "single_support_fraction": 0.04914285714285714,
+        "double_support_fraction": 0.9508571428571428,
+        "no_support_fraction": 0.0,
+        "support_phase_transition_count": 24,
+        "arm_swing_available": true,
+        "arm_swing_amplitude_rad": 0.22,
+        "ankle_pitch_feedback_gain": 0.28,
+        "fallen": false,
+        "upright_complete": true,
+        "success": true
+      }
+    },
+    {
+      "split": "holdout",
+      "scenario": {
+        "name": "holdout_friction_65pct",
+        "friction_scale": 0.65,
+        "push_xy_fraction": [
+          0.0,
+          0.0
+        ]
+      },
+      "result": {
+        "robot": "robotis_op3",
+        "variant": "pitch_feedback",
+        "completed_duration_s": 4.0,
+        "displacement_xy_m": 0.021000047603643462,
+        "signed_x_m": 0.009807316784493458,
+        "lateral_drift_m": 0.018569290154550454,
+        "average_speed_mps": 0.005250011900910866,
+        "minimum_height_ratio": 0.9266212000000001,
+        "minimum_upright_cosine": 0.9851927857101082,
+        "left_foot_vertical_excursion_m": 0.022013639999999918,
+        "right_foot_vertical_excursion_m": 0.022013639999999918,
+        "minimum_com_support_margin_m": -0.060294297336962385,
+        "single_support_fraction": 0.04914285714285714,
+        "double_support_fraction": 0.9508571428571428,
+        "no_support_fraction": 0.0,
+        "support_phase_transition_count": 24,
+        "arm_swing_available": true,
+        "arm_swing_amplitude_rad": 0.22,
+        "ankle_pitch_feedback_gain": 0.28,
+        "fallen": false,
+        "upright_complete": true,
+        "success": true
+      }
+    },
+    {
+      "split": "holdout",
+      "scenario": {
+        "name": "holdout_friction_140pct",
+        "friction_scale": 1.4,
+        "push_xy_fraction": [
+          0.0,
+          0.0
+        ]
+      },
+      "result": {
+        "robot": "robotis_op3",
+        "variant": "pitch_feedback",
+        "completed_duration_s": 4.0,
+        "displacement_xy_m": 0.01493824996904964,
+        "signed_x_m": 0.0017037748614982834,
+        "lateral_drift_m": 0.014840770308819487,
+        "average_speed_mps": 0.00373456249226241,
+        "minimum_height_ratio": 0.9266212000000001,
+        "minimum_upright_cosine": 0.984136942528967,
+        "left_foot_vertical_excursion_m": 0.022013639999999918,
+        "right_foot_vertical_excursion_m": 0.022013639999999918,
+        "minimum_com_support_margin_m": -0.047873042671956134,
+        "single_support_fraction": 0.04857142857142857,
+        "double_support_fraction": 0.9514285714285714,
+        "no_support_fraction": 0.0,
+        "support_phase_transition_count": 22,
+        "arm_swing_available": true,
+        "arm_swing_amplitude_rad": 0.22,
+        "ankle_pitch_feedback_gain": 0.28,
+        "fallen": false,
+        "upright_complete": true,
+        "success": true
+      }
+    },
+    {
+      "split": "holdout",
+      "scenario": {
+        "name": "holdout_diagonal_push_3pct",
+        "friction_scale": 1.0,
+        "push_xy_fraction": [
+          0.03,
+          0.03
+        ]
+      },
+      "result": {
+        "robot": "robotis_op3",
+        "variant": "pitch_feedback",
+        "completed_duration_s": 3.968,
+        "displacement_xy_m": 0.2811649074580603,
+        "signed_x_m": -0.2811633604534389,
+        "lateral_drift_m": 0.0009326973942064895,
+        "average_speed_mps": 0.07085809159729342,
+        "minimum_height_ratio": 0.6904448974008657,
+        "minimum_upright_cosine": 0.49816665682415573,
+        "left_foot_vertical_excursion_m": 0.03204187491107612,
+        "right_foot_vertical_excursion_m": 0.023869191276633346,
+        "minimum_com_support_margin_m": -0.037253062727941405,
+        "single_support_fraction": 0.06805074971164937,
+        "double_support_fraction": 0.9256055363321799,
+        "no_support_fraction": 0.006343713956170703,
+        "support_phase_transition_count": 36,
+        "arm_swing_available": true,
+        "arm_swing_amplitude_rad": 0.22,
+        "ankle_pitch_feedback_gain": 0.28,
+        "fallen": true,
+        "upright_complete": false,
+        "success": false
+      }
+    },
+    {
+      "split": "holdout",
+      "scenario": {
+        "name": "holdout_forward_push_7pct",
+        "friction_scale": 1.0,
+        "push_xy_fraction": [
+          0.07,
+          0.0
+        ]
+      },
+      "result": {
+        "robot": "robotis_op3",
+        "variant": "pitch_feedback",
+        "completed_duration_s": 3.958,
+        "displacement_xy_m": 0.2819173985935431,
+        "signed_x_m": -0.2819107256121237,
+        "lateral_drift_m": 0.0019396944595847351,
+        "average_speed_mps": 0.0712272356224212,
+        "minimum_height_ratio": 0.690353473187443,
+        "minimum_upright_cosine": 0.4959674114281463,
+        "left_foot_vertical_excursion_m": 0.032020039390728894,
+        "right_foot_vertical_excursion_m": 0.0236033960229428,
+        "minimum_com_support_margin_m": -0.037253062727941405,
+        "single_support_fraction": 0.06593406593406594,
+        "double_support_fraction": 0.9277038750722961,
+        "no_support_fraction": 0.006362058993637941,
+        "support_phase_transition_count": 29,
+        "arm_swing_available": true,
+        "arm_swing_amplitude_rad": 0.22,
+        "ankle_pitch_feedback_gain": 0.28,
+        "fallen": true,
+        "upright_complete": false,
+        "success": false
+      }
+    },
+    {
+      "split": "holdout",
+      "scenario": {
+        "name": "holdout_lateral_push_7pct",
+        "friction_scale": 1.0,
+        "push_xy_fraction": [
+          0.0,
+          0.07
+        ]
+      },
+      "result": {
+        "robot": "robotis_op3",
+        "variant": "pitch_feedback",
+        "completed_duration_s": 3.976,
+        "displacement_xy_m": 0.2808010427235988,
+        "signed_x_m": -0.2807963326633382,
+        "lateral_drift_m": -0.0016263940113856999,
+        "average_speed_mps": 0.07062400470915463,
+        "minimum_height_ratio": 0.6918633971835746,
+        "minimum_upright_cosine": 0.49990262884724357,
+        "left_foot_vertical_excursion_m": 0.03205822287613823,
+        "right_foot_vertical_excursion_m": 0.023823173519427907,
+        "minimum_com_support_margin_m": -0.05050065020603655,
+        "single_support_fraction": 0.07192174913693901,
+        "double_support_fraction": 0.9200230149597238,
+        "no_support_fraction": 0.00805523590333717,
+        "support_phase_transition_count": 38,
+        "arm_swing_available": true,
+        "arm_swing_amplitude_rad": 0.22,
+        "ankle_pitch_feedback_gain": 0.28,
+        "fallen": true,
+        "upright_complete": false,
+        "success": false
+      }
+    },
+    {
+      "split": "holdout",
+      "scenario": {
+        "name": "holdout_diagonal_push_5pct",
+        "friction_scale": 1.0,
+        "push_xy_fraction": [
+          0.05,
+          0.05
+        ]
+      },
+      "result": {
+        "robot": "robotis_op3",
+        "variant": "pitch_feedback",
+        "completed_duration_s": 4.0,
+        "displacement_xy_m": 0.01824793824936466,
+        "signed_x_m": 0.016713695515078546,
+        "lateral_drift_m": 0.007323908286008841,
+        "average_speed_mps": 0.004561984562341165,
+        "minimum_height_ratio": 0.9266212000000001,
+        "minimum_upright_cosine": 0.9781631638069711,
+        "left_foot_vertical_excursion_m": 0.022013639999999918,
+        "right_foot_vertical_excursion_m": 0.022013639999999918,
+        "minimum_com_support_margin_m": -0.041819605957897785,
+        "single_support_fraction": 0.038285714285714284,
+        "double_support_fraction": 0.9617142857142857,
+        "no_support_fraction": 0.0,
+        "support_phase_transition_count": 22,
+        "arm_swing_available": true,
+        "arm_swing_amplitude_rad": 0.22,
+        "ankle_pitch_feedback_gain": 0.28,
+        "fallen": false,
+        "upright_complete": true,
+        "success": false
+      }
+    },
+    {
+      "split": "development",
+      "scenario": {
+        "name": "nominal",
+        "friction_scale": 1.0,
+        "push_xy_fraction": [
+          0.0,
+          0.0
+        ]
+      },
+      "result": {
+        "robot": "booster_t1",
+        "variant": "pitch_feedback",
+        "completed_duration_s": 4.0,
+        "displacement_xy_m": 0.05991553980118951,
+        "signed_x_m": 0.04631596419710571,
+        "lateral_drift_m": 0.038009253743796996,
+        "average_speed_mps": 0.014978884950297377,
+        "minimum_height_ratio": 0.9763788441860887,
+        "minimum_upright_cosine": 0.9953670493159203,
+        "left_foot_vertical_excursion_m": 0.002382441848613543,
+        "right_foot_vertical_excursion_m": 0.0019401089409710227,
+        "minimum_com_support_margin_m": 0.0200728096736992,
+        "single_support_fraction": 0.0,
+        "double_support_fraction": 1.0,
+        "no_support_fraction": 0.0,
+        "support_phase_transition_count": 0,
+        "arm_swing_available": true,
+        "arm_swing_amplitude_rad": 0.22,
+        "ankle_pitch_feedback_gain": 1.0,
+        "fallen": false,
+        "upright_complete": true,
+        "success": false
+      }
+    },
+    {
+      "split": "development",
+      "scenario": {
+        "name": "low_friction_50pct",
+        "friction_scale": 0.5,
+        "push_xy_fraction": [
+          0.0,
+          0.0
+        ]
+      },
+      "result": {
+        "robot": "booster_t1",
+        "variant": "pitch_feedback",
+        "completed_duration_s": 4.0,
+        "displacement_xy_m": 0.05991553980118951,
+        "signed_x_m": 0.04631596419710571,
+        "lateral_drift_m": 0.038009253743796996,
+        "average_speed_mps": 0.014978884950297377,
+        "minimum_height_ratio": 0.9763788441860887,
+        "minimum_upright_cosine": 0.9953670493159203,
+        "left_foot_vertical_excursion_m": 0.002382441848613543,
+        "right_foot_vertical_excursion_m": 0.0019401089409710227,
+        "minimum_com_support_margin_m": 0.0200728096736992,
+        "single_support_fraction": 0.0,
+        "double_support_fraction": 1.0,
+        "no_support_fraction": 0.0,
+        "support_phase_transition_count": 0,
+        "arm_swing_available": true,
+        "arm_swing_amplitude_rad": 0.22,
+        "ankle_pitch_feedback_gain": 1.0,
+        "fallen": false,
+        "upright_complete": true,
+        "success": false
+      }
+    },
+    {
+      "split": "development",
+      "scenario": {
+        "name": "low_friction_80pct",
+        "friction_scale": 0.8,
+        "push_xy_fraction": [
+          0.0,
+          0.0
+        ]
+      },
+      "result": {
+        "robot": "booster_t1",
+        "variant": "pitch_feedback",
+        "completed_duration_s": 4.0,
+        "displacement_xy_m": 0.05991553980118951,
+        "signed_x_m": 0.04631596419710571,
+        "lateral_drift_m": 0.038009253743796996,
+        "average_speed_mps": 0.014978884950297377,
+        "minimum_height_ratio": 0.9763788441860887,
+        "minimum_upright_cosine": 0.9953670493159203,
+        "left_foot_vertical_excursion_m": 0.002382441848613543,
+        "right_foot_vertical_excursion_m": 0.0019401089409710227,
+        "minimum_com_support_margin_m": 0.0200728096736992,
+        "single_support_fraction": 0.0,
+        "double_support_fraction": 1.0,
+        "no_support_fraction": 0.0,
+        "support_phase_transition_count": 0,
+        "arm_swing_available": true,
+        "arm_swing_amplitude_rad": 0.22,
+        "ankle_pitch_feedback_gain": 1.0,
+        "fallen": false,
+        "upright_complete": true,
+        "success": false
+      }
+    },
+    {
+      "split": "development",
+      "scenario": {
+        "name": "high_friction_120pct",
+        "friction_scale": 1.2,
+        "push_xy_fraction": [
+          0.0,
+          0.0
+        ]
+      },
+      "result": {
+        "robot": "booster_t1",
+        "variant": "pitch_feedback",
+        "completed_duration_s": 4.0,
+        "displacement_xy_m": 0.05788952782382198,
+        "signed_x_m": 0.046238421485030476,
+        "lateral_drift_m": 0.03483110406285926,
+        "average_speed_mps": 0.014472381955955495,
+        "minimum_height_ratio": 0.9763753978205456,
+        "minimum_upright_cosine": 0.9953061315331185,
+        "left_foot_vertical_excursion_m": 0.0021150218672620034,
+        "right_foot_vertical_excursion_m": 0.0018664004752018543,
+        "minimum_com_support_margin_m": 0.021067276436107736,
+        "single_support_fraction": 0.0,
+        "double_support_fraction": 1.0,
+        "no_support_fraction": 0.0,
+        "support_phase_transition_count": 0,
+        "arm_swing_available": true,
+        "arm_swing_amplitude_rad": 0.22,
+        "ankle_pitch_feedback_gain": 1.0,
+        "fallen": false,
+        "upright_complete": true,
+        "success": false
+      }
+    },
+    {
+      "split": "development",
+      "scenario": {
+        "name": "forward_push_5pct_weight",
+        "friction_scale": 1.0,
+        "push_xy_fraction": [
+          0.05,
+          0.0
+        ]
+      },
+      "result": {
+        "robot": "booster_t1",
+        "variant": "pitch_feedback",
+        "completed_duration_s": 4.0,
+        "displacement_xy_m": 0.05467087957163182,
+        "signed_x_m": 0.0445193916662298,
+        "lateral_drift_m": 0.03173214204564037,
+        "average_speed_mps": 0.013667719892907954,
+        "minimum_height_ratio": 0.9763788441860887,
+        "minimum_upright_cosine": 0.9895755625051691,
+        "left_foot_vertical_excursion_m": 0.0021709917227810717,
+        "right_foot_vertical_excursion_m": 0.007120784241137868,
+        "minimum_com_support_margin_m": 0.02258272133038847,
+        "single_support_fraction": 0.0,
+        "double_support_fraction": 1.0,
+        "no_support_fraction": 0.0,
+        "support_phase_transition_count": 0,
+        "arm_swing_available": true,
+        "arm_swing_amplitude_rad": 0.22,
+        "ankle_pitch_feedback_gain": 1.0,
+        "fallen": false,
+        "upright_complete": true,
+        "success": false
+      }
+    },
+    {
+      "split": "development",
+      "scenario": {
+        "name": "lateral_push_5pct_weight",
+        "friction_scale": 1.0,
+        "push_xy_fraction": [
+          0.0,
+          0.05
+        ]
+      },
+      "result": {
+        "robot": "booster_t1",
+        "variant": "pitch_feedback",
+        "completed_duration_s": 4.0,
+        "displacement_xy_m": 0.056273783037128204,
+        "signed_x_m": 0.044535591873485915,
+        "lateral_drift_m": 0.03439941443961035,
+        "average_speed_mps": 0.014068445759282051,
+        "minimum_height_ratio": 0.9763788441860887,
+        "minimum_upright_cosine": 0.9953670493159203,
+        "left_foot_vertical_excursion_m": 0.0026307843273732333,
+        "right_foot_vertical_excursion_m": 0.0032981275413968385,
+        "minimum_com_support_margin_m": 0.018124480781087946,
+        "single_support_fraction": 0.0,
+        "double_support_fraction": 1.0,
+        "no_support_fraction": 0.0,
+        "support_phase_transition_count": 0,
+        "arm_swing_available": true,
+        "arm_swing_amplitude_rad": 0.22,
+        "ankle_pitch_feedback_gain": 1.0,
+        "fallen": false,
+        "upright_complete": true,
+        "success": false
+      }
+    },
+    {
+      "split": "holdout",
+      "scenario": {
+        "name": "holdout_friction_35pct",
+        "friction_scale": 0.35,
+        "push_xy_fraction": [
+          0.0,
+          0.0
+        ]
+      },
+      "result": {
+        "robot": "booster_t1",
+        "variant": "pitch_feedback",
+        "completed_duration_s": 4.0,
+        "displacement_xy_m": 0.05991553980118951,
+        "signed_x_m": 0.04631596419710571,
+        "lateral_drift_m": 0.038009253743796996,
+        "average_speed_mps": 0.014978884950297377,
+        "minimum_height_ratio": 0.9763788441860887,
+        "minimum_upright_cosine": 0.9953670493159203,
+        "left_foot_vertical_excursion_m": 0.002382441848613543,
+        "right_foot_vertical_excursion_m": 0.0019401089409710227,
+        "minimum_com_support_margin_m": 0.0200728096736992,
+        "single_support_fraction": 0.0,
+        "double_support_fraction": 1.0,
+        "no_support_fraction": 0.0,
+        "support_phase_transition_count": 0,
+        "arm_swing_available": true,
+        "arm_swing_amplitude_rad": 0.22,
+        "ankle_pitch_feedback_gain": 1.0,
+        "fallen": false,
+        "upright_complete": true,
+        "success": false
+      }
+    },
+    {
+      "split": "holdout",
+      "scenario": {
+        "name": "holdout_friction_65pct",
+        "friction_scale": 0.65,
+        "push_xy_fraction": [
+          0.0,
+          0.0
+        ]
+      },
+      "result": {
+        "robot": "booster_t1",
+        "variant": "pitch_feedback",
+        "completed_duration_s": 4.0,
+        "displacement_xy_m": 0.05991553980118951,
+        "signed_x_m": 0.04631596419710571,
+        "lateral_drift_m": 0.038009253743796996,
+        "average_speed_mps": 0.014978884950297377,
+        "minimum_height_ratio": 0.9763788441860887,
+        "minimum_upright_cosine": 0.9953670493159203,
+        "left_foot_vertical_excursion_m": 0.002382441848613543,
+        "right_foot_vertical_excursion_m": 0.0019401089409710227,
+        "minimum_com_support_margin_m": 0.0200728096736992,
+        "single_support_fraction": 0.0,
+        "double_support_fraction": 1.0,
+        "no_support_fraction": 0.0,
+        "support_phase_transition_count": 0,
+        "arm_swing_available": true,
+        "arm_swing_amplitude_rad": 0.22,
+        "ankle_pitch_feedback_gain": 1.0,
+        "fallen": false,
+        "upright_complete": true,
+        "success": false
+      }
+    },
+    {
+      "split": "holdout",
+      "scenario": {
+        "name": "holdout_friction_140pct",
+        "friction_scale": 1.4,
+        "push_xy_fraction": [
+          0.0,
+          0.0
+        ]
+      },
+      "result": {
+        "robot": "booster_t1",
+        "variant": "pitch_feedback",
+        "completed_duration_s": 4.0,
+        "displacement_xy_m": 0.054611093057011485,
+        "signed_x_m": 0.04624346116475734,
+        "lateral_drift_m": 0.029050194222847246,
+        "average_speed_mps": 0.013652773264252871,
+        "minimum_height_ratio": 0.9766930596907119,
+        "minimum_upright_cosine": 0.9950929011386028,
+        "left_foot_vertical_excursion_m": 0.0020880551760591344,
+        "right_foot_vertical_excursion_m": 0.0022854976982403796,
+        "minimum_com_support_margin_m": 0.021496870689364025,
+        "single_support_fraction": 0.0,
+        "double_support_fraction": 1.0,
+        "no_support_fraction": 0.0,
+        "support_phase_transition_count": 0,
+        "arm_swing_available": true,
+        "arm_swing_amplitude_rad": 0.22,
+        "ankle_pitch_feedback_gain": 1.0,
+        "fallen": false,
+        "upright_complete": true,
+        "success": false
+      }
+    },
+    {
+      "split": "holdout",
+      "scenario": {
+        "name": "holdout_diagonal_push_3pct",
+        "friction_scale": 1.0,
+        "push_xy_fraction": [
+          0.03,
+          0.03
+        ]
+      },
+      "result": {
+        "robot": "booster_t1",
+        "variant": "pitch_feedback",
+        "completed_duration_s": 4.0,
+        "displacement_xy_m": 0.05574367710199416,
+        "signed_x_m": 0.04518232482047558,
+        "lateral_drift_m": 0.03264835463952854,
+        "average_speed_mps": 0.01393591927549854,
+        "minimum_height_ratio": 0.9763788441860887,
+        "minimum_upright_cosine": 0.9925473962233482,
+        "left_foot_vertical_excursion_m": 0.0024642780139511634,
+        "right_foot_vertical_excursion_m": 0.005577656349003552,
+        "minimum_com_support_margin_m": 0.021914577981796544,
+        "single_support_fraction": 0.0,
+        "double_support_fraction": 1.0,
+        "no_support_fraction": 0.0,
+        "support_phase_transition_count": 0,
+        "arm_swing_available": true,
+        "arm_swing_amplitude_rad": 0.22,
+        "ankle_pitch_feedback_gain": 1.0,
+        "fallen": false,
+        "upright_complete": true,
+        "success": false
+      }
+    },
+    {
+      "split": "holdout",
+      "scenario": {
+        "name": "holdout_forward_push_7pct",
+        "friction_scale": 1.0,
+        "push_xy_fraction": [
+          0.07,
+          0.0
+        ]
+      },
+      "result": {
+        "robot": "booster_t1",
+        "variant": "pitch_feedback",
+        "completed_duration_s": 4.0,
+        "displacement_xy_m": 0.043891899737162926,
+        "signed_x_m": 0.03528215519834112,
+        "lateral_drift_m": 0.026108779885267212,
+        "average_speed_mps": 0.010972974934290732,
+        "minimum_height_ratio": 0.9715007438398774,
+        "minimum_upright_cosine": 0.984579954834222,
+        "left_foot_vertical_excursion_m": 0.0015918625728158046,
+        "right_foot_vertical_excursion_m": 0.011280301318216088,
+        "minimum_com_support_margin_m": 0.02829481135003397,
+        "single_support_fraction": 0.0,
+        "double_support_fraction": 1.0,
+        "no_support_fraction": 0.0,
+        "support_phase_transition_count": 0,
+        "arm_swing_available": true,
+        "arm_swing_amplitude_rad": 0.22,
+        "ankle_pitch_feedback_gain": 1.0,
+        "fallen": false,
+        "upright_complete": true,
+        "success": false
+      }
+    },
+    {
+      "split": "holdout",
+      "scenario": {
+        "name": "holdout_lateral_push_7pct",
+        "friction_scale": 1.0,
+        "push_xy_fraction": [
+          0.0,
+          0.07
+        ]
+      },
+      "result": {
+        "robot": "booster_t1",
+        "variant": "pitch_feedback",
+        "completed_duration_s": 4.0,
+        "displacement_xy_m": 0.053141749615039424,
+        "signed_x_m": 0.043439598421074366,
+        "lateral_drift_m": 0.03061122083751865,
+        "average_speed_mps": 0.013285437403759856,
+        "minimum_height_ratio": 0.9763788441860887,
+        "minimum_upright_cosine": 0.9953670493159203,
+        "left_foot_vertical_excursion_m": 0.002692382023943795,
+        "right_foot_vertical_excursion_m": 0.004526858737977004,
+        "minimum_com_support_margin_m": 0.029591578339134905,
+        "single_support_fraction": 0.0,
+        "double_support_fraction": 1.0,
+        "no_support_fraction": 0.0,
+        "support_phase_transition_count": 0,
+        "arm_swing_available": true,
+        "arm_swing_amplitude_rad": 0.22,
+        "ankle_pitch_feedback_gain": 1.0,
+        "fallen": false,
+        "upright_complete": true,
+        "success": false
+      }
+    },
+    {
+      "split": "holdout",
+      "scenario": {
+        "name": "holdout_diagonal_push_5pct",
+        "friction_scale": 1.0,
+        "push_xy_fraction": [
+          0.05,
+          0.05
+        ]
+      },
+      "result": {
+        "robot": "booster_t1",
+        "variant": "pitch_feedback",
+        "completed_duration_s": 4.0,
+        "displacement_xy_m": 0.04168631564515824,
+        "signed_x_m": 0.03444123326325147,
+        "lateral_drift_m": 0.023485109396680803,
+        "average_speed_mps": 0.01042157891128956,
+        "minimum_height_ratio": 0.972398814535963,
+        "minimum_upright_cosine": 0.9872583886417615,
+        "left_foot_vertical_excursion_m": 0.0017782752657948021,
+        "right_foot_vertical_excursion_m": 0.011680429138900442,
+        "minimum_com_support_margin_m": 0.028252829400343238,
+        "single_support_fraction": 0.0,
+        "double_support_fraction": 1.0,
+        "no_support_fraction": 0.0,
+        "support_phase_transition_count": 0,
+        "arm_swing_available": true,
+        "arm_swing_amplitude_rad": 0.22,
+        "ankle_pitch_feedback_gain": 1.0,
+        "fallen": false,
+        "upright_complete": true,
+        "success": false
+      }
+    }
+  ]
+}

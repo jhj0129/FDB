@@ -25,19 +25,21 @@ class GaitMap:
     hip_amplitude: float
     knee_amplitude: float
     knee_sign: float = 1.0
+    hip_roll: tuple[int, int] | None = None
+    hip_roll_amplitude: float = 0.0
 
 
 GAIT_MAPS = {
-    "unitree_g1": GaitMap((0, 6), (3, 9), (4, 10), (15, 22), ("left_ankle_roll_link", "right_ankle_roll_link"), 0.06, 0.05),
+    "unitree_g1": GaitMap((0, 6), (3, 9), (4, 10), (15, 22), ("left_ankle_roll_link", "right_ankle_roll_link"), 0.04, 0.16, hip_roll=(1, 7), hip_roll_amplitude=0.08),
     "booster_t1": GaitMap((11, 17), (14, 20), (15, 21), (2, 6), ("left_foot_link", "right_foot_link"), 0.08, 0.20),
     "robotis_op3": GaitMap((10, 16), (11, 17), (12, 18), (2, 5), ("l_ank_roll_link", "r_ank_roll_link"), 0.12, 0.28, -1.0),
     "berkeley_humanoid": GaitMap((2, 8), (3, 9), (4, 10), None, ("ll_faa", "lr_faa"), 0.05, 0.05),
 }
 
 PITCH_FEEDBACK_GAINS = {
-    "unitree_g1": 0.2,
+    "unitree_g1": 0.15,
     "booster_t1": 1.0,
-    "robotis_op3": 0.2,
+    "robotis_op3": 0.28,
     "berkeley_humanoid": 1.0,
 }
 
@@ -55,12 +57,62 @@ class GaitResult:
     minimum_upright_cosine: float
     left_foot_vertical_excursion_m: float
     right_foot_vertical_excursion_m: float
+    minimum_com_support_margin_m: float | None
+    single_support_fraction: float
+    double_support_fraction: float
+    no_support_fraction: float
+    support_phase_transition_count: int
     arm_swing_available: bool
     arm_swing_amplitude_rad: float
     ankle_pitch_feedback_gain: float
     fallen: bool
     upright_complete: bool
     success: bool
+
+
+def _convex_hull(points: list[tuple[float, float]]) -> list[tuple[float, float]]:
+    unique = sorted(set(points))
+    if len(unique) <= 1:
+        return unique
+
+    def cross(origin, a, b):
+        return (a[0] - origin[0]) * (b[1] - origin[1]) - (a[1] - origin[1]) * (b[0] - origin[0])
+
+    lower: list[tuple[float, float]] = []
+    for point in unique:
+        while len(lower) >= 2 and cross(lower[-2], lower[-1], point) <= 0:
+            lower.pop()
+        lower.append(point)
+    upper: list[tuple[float, float]] = []
+    for point in reversed(unique):
+        while len(upper) >= 2 and cross(upper[-2], upper[-1], point) <= 0:
+            upper.pop()
+        upper.append(point)
+    return lower[:-1] + upper[:-1]
+
+
+def _support_snapshot(model: object, data: object, foot_ids: tuple[int, int]) -> tuple[int, float | None]:
+    active: set[int] = set()
+    points: list[tuple[float, float]] = []
+    for contact_index in range(data.ncon):
+        contact = data.contact[contact_index]
+        geom_ids = (int(contact.geom1), int(contact.geom2))
+        body_ids = tuple(int(model.geom_bodyid[geom_id]) for geom_id in geom_ids)
+        for side, foot_id in enumerate(foot_ids):
+            if foot_id in body_ids and 0 in body_ids:
+                active.add(side)
+                points.append((float(contact.pos[0]), float(contact.pos[1])))
+    hull = _convex_hull(points)
+    if len(hull) < 3:
+        return len(active), None
+    total_mass = float(np.sum(model.body_mass))
+    com = np.sum(model.body_mass[:, None] * data.xpos, axis=0) / max(total_mass, 1e-9)
+    margins = []
+    for start, end in zip(hull, hull[1:] + hull[:1]):
+        edge_x, edge_y = end[0] - start[0], end[1] - start[1]
+        length = math.hypot(edge_x, edge_y)
+        margins.append((edge_x * (float(com[1]) - start[1]) - edge_y * (float(com[0]) - start[0])) / max(length, 1e-9))
+    return len(active), min(margins)
 
 
 def _apply_gait(
@@ -87,6 +139,10 @@ def _apply_gait(
     data.ctrl[gait.knee[1]] += gait.knee_sign * ramp * knee * right_swing
     data.ctrl[gait.ankle_pitch[0]] -= ramp * hip * 0.55 * wave + gait.knee_sign * ramp * knee * 0.4 * left_swing
     data.ctrl[gait.ankle_pitch[1]] += ramp * hip * 0.55 * wave - gait.knee_sign * ramp * knee * 0.4 * right_swing
+    if gait.hip_roll is not None:
+        shift = ramp * gait.hip_roll_amplitude * wave
+        data.ctrl[gait.hip_roll[0]] += shift
+        data.ctrl[gait.hip_roll[1]] += shift
     if gait.shoulder_pitch is not None:
         # 사람처럼 반대쪽 다리와 팔을 함께 전진시켜 몸통의 yaw 운동량을 상쇄한다.
         data.ctrl[gait.shoulder_pitch[0]] -= arm_scale * ramp * 0.22 * wave
@@ -98,6 +154,8 @@ def simulate_gait(
     robot_name: str,
     variant: str = "human_like",
     duration_s: float = 4.0,
+    floor_friction_scale: float = 1.0,
+    push_xy_fraction: tuple[float, float] = (0.0, 0.0),
     step_callback: Callable[[object, object, float], None] | None = None,
 ) -> tuple[GaitResult, object, object]:
     import mujoco
@@ -106,6 +164,9 @@ def simulate_gait(
     if variant not in {"human_like", "pitch_feedback", "static_arms", "low_clearance"}:
         raise ValueError(f"unknown gait variant: {variant}")
     model = menagerie.get(robot_name).model("scene")
+    plane_ids = np.flatnonzero(model.geom_type == mujoco.mjtGeom.mjGEOM_PLANE)
+    for plane_id in plane_ids:
+        model.geom_friction[plane_id, 0] *= floor_friction_scale
     data = _reset(model)
     gait = GAIT_MAPS[robot_name]
     root_id = _root_body_id(model)
@@ -114,12 +175,21 @@ def simulate_gait(
     base = data.ctrl.copy()
     feet = [model.body(name).id for name in gait.foot_bodies]
     foot_z = [[float(data.xpos[body_id, 2])] for body_id in feet]
+    support_counts = [0, 0, 0]
+    support_phase_transition_count = 0
+    last_support: int | None = None
+    support_margins: list[float] = []
     minimum_height_ratio = 1.0
     minimum_upright = 1.0
     fallen = False
     completed = 0.0
     for step in range(max(1, int(duration_s / model.opt.timestep))):
         time_s = step * model.opt.timestep
+        data.xfrc_applied[:] = 0.0
+        if 2.0 <= time_s < 2.15:
+            total_mass = float(np.sum(model.body_mass))
+            data.xfrc_applied[root_id, 0] = push_xy_fraction[0] * total_mass * 9.81
+            data.xfrc_applied[root_id, 1] = push_xy_fraction[1] * total_mass * 9.81
         _apply_gait(data, model, gait, base, time_s, variant)
         if variant == "pitch_feedback":
             root_rotation = data.xmat[root_id].reshape(3, 3)
@@ -142,6 +212,14 @@ def simulate_gait(
         minimum_upright = min(minimum_upright, upright)
         if step_callback is not None:
             step_callback(model, data, time_s)
+        if time_s >= 0.5:
+            support, margin = _support_snapshot(model, data, (feet[0], feet[1]))
+            support_counts[min(2, support)] += 1
+            if margin is not None:
+                support_margins.append(margin)
+            if last_support is not None and support != last_support:
+                support_phase_transition_count += 1
+            last_support = support
         if height_ratio < 0.55 or upright < 0.5:
             fallen = True
             break
@@ -149,7 +227,12 @@ def simulate_gait(
     distance = math.hypot(float(displacement[0]), float(displacement[1]))
     upright_complete = not fallen and completed >= duration_s - model.opt.timestep
     foot_excursions = (max(foot_z[0]) - min(foot_z[0]), max(foot_z[1]) - min(foot_z[1]))
-    success = upright_complete and distance >= 0.01 and max(foot_excursions) >= 0.005
+    support_total = max(1, sum(support_counts))
+    single_support_fraction = support_counts[1] / support_total
+    success = (
+        upright_complete and distance >= 0.01 and max(foot_excursions) >= 0.005
+        and single_support_fraction >= 0.045
+    )
     result = GaitResult(
         robot=robot_name,
         variant=variant,
@@ -162,6 +245,11 @@ def simulate_gait(
         minimum_upright_cosine=minimum_upright,
         left_foot_vertical_excursion_m=foot_excursions[0],
         right_foot_vertical_excursion_m=foot_excursions[1],
+        minimum_com_support_margin_m=min(support_margins) if support_margins else None,
+        single_support_fraction=single_support_fraction,
+        double_support_fraction=support_counts[2] / support_total,
+        no_support_fraction=support_counts[0] / support_total,
+        support_phase_transition_count=support_phase_transition_count,
         arm_swing_available=gait.shoulder_pitch is not None,
         arm_swing_amplitude_rad=0.22 if gait.shoulder_pitch is not None and variant != "static_arms" else 0.0,
         ankle_pitch_feedback_gain=PITCH_FEEDBACK_GAINS[robot_name] if variant == "pitch_feedback" else 0.0,
@@ -186,7 +274,7 @@ def run_gait_experiment() -> dict[str, object]:
         "created_at": datetime.now(timezone.utc).isoformat(),
         "robots": list(DEFAULT_ROBOTS),
         "variants": ["human_like", "pitch_feedback", "static_arms", "low_clearance"],
-        "success_definition": "4초 완주, 낙상 없음, 수평 이동거리 10mm 이상, 한쪽 발 수직 변위 5mm 이상",
+        "success_definition": "4초 완주, 낙상 없음, 수평 이동거리 10mm 이상, 한쪽 발 수직 변위 5mm 이상, 단일 지지 4.5% 이상",
         "human_like_success_count": sum(item.success for item in human_like),
         "human_like_robot_count": len(human_like),
         "pitch_feedback_success_count": sum(item.success for item in stabilized),

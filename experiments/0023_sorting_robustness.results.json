@@ -1,0 +1,410 @@
+{
+  "experiment": "multi-object sorting position robustness",
+  "scenario_count": 3,
+  "all_objects_sorted": true,
+  "all_hard_safety_passed": true,
+  "runs": [
+    {
+      "scenario": "nominal",
+      "objects": [
+        {
+          "object_id": "red_cube",
+          "shape": "box",
+          "color": "red",
+          "size_class": "small",
+          "source_xy": [
+            0.4,
+            0.17
+          ],
+          "target_xy": [
+            0.55,
+            -0.16
+          ],
+          "half_size": [
+            0.018,
+            0.018,
+            0.022
+          ],
+          "rgba": [
+            0.95,
+            0.08,
+            0.04,
+            1.0
+          ]
+        },
+        {
+          "object_id": "green_wide",
+          "shape": "box",
+          "color": "green",
+          "size_class": "wide",
+          "source_xy": [
+            0.49,
+            0.17
+          ],
+          "target_xy": [
+            0.58,
+            0.0
+          ],
+          "half_size": [
+            0.023,
+            0.017,
+            0.022
+          ],
+          "rgba": [
+            0.08,
+            0.85,
+            0.15,
+            1.0
+          ]
+        },
+        {
+          "object_id": "blue_tall",
+          "shape": "box",
+          "color": "blue",
+          "size_class": "tall",
+          "source_xy": [
+            0.58,
+            0.17
+          ],
+          "target_xy": [
+            0.55,
+            0.16
+          ],
+          "half_size": [
+            0.017,
+            0.017,
+            0.029
+          ],
+          "rgba": [
+            0.08,
+            0.25,
+            0.95,
+            1.0
+          ]
+        }
+      ],
+      "metrics": {
+        "task": "multi_object_classify_pick_sort",
+        "object_count": 3,
+        "classification_accuracy": 1.0,
+        "classification_method": "five_member_mlp_ensemble",
+        "minimum_classification_confidence": 0.9997979402542114,
+        "sorting_success_count": 3,
+        "sorting_success_rate": 1.0,
+        "robot_table_contact_steps": 0,
+        "deepest_robot_table_penetration_m": 0.0,
+        "minimum_hand_table_clearance_m": 0.1161890892248485,
+        "hard_safety_pass": true,
+        "results": [
+          {
+            "object_id": "red_cube",
+            "predicted_class": "red_small",
+            "expected_class": "red_small",
+            "classification_method": "five_member_mlp_ensemble",
+            "classification_confidence": 0.9998577237129211,
+            "classification_correct": true,
+            "final_xy_error_m": 0.002245120323001563,
+            "final_z_error_m": 0.0006371762168758122,
+            "lifted_m": 0.20781157593698713,
+            "released": true,
+            "success": true
+          },
+          {
+            "object_id": "green_wide",
+            "predicted_class": "green_wide",
+            "expected_class": "green_wide",
+            "classification_method": "five_member_mlp_ensemble",
+            "classification_confidence": 0.9997979402542114,
+            "classification_correct": true,
+            "final_xy_error_m": 0.002528426700992914,
+            "final_z_error_m": 0.0006371762168758122,
+            "lifted_m": 0.19926383641615725,
+            "released": true,
+            "success": true
+          },
+          {
+            "object_id": "blue_tall",
+            "predicted_class": "blue_tall",
+            "expected_class": "blue_tall",
+            "classification_method": "five_member_mlp_ensemble",
+            "classification_confidence": 0.9998030662536621,
+            "classification_correct": true,
+            "final_xy_error_m": 0.0031468971532889185,
+            "final_z_error_m": 0.0006371762168758122,
+            "lifted_m": 0.19556196574502888,
+            "released": true,
+            "success": true
+          }
+        ]
+      }
+    },
+    {
+      "scenario": "source_target_jitter_a",
+      "objects": [
+        {
+          "object_id": "red_cube",
+          "shape": "box",
+          "color": "red",
+          "size_class": "small",
+          "source_xy": [
+            0.42,
+            0.14
+          ],
+          "target_xy": [
+            0.56,
+            -0.17
+          ],
+          "half_size": [
+            0.018,
+            0.018,
+            0.022
+          ],
+          "rgba": [
+            0.95,
+            0.08,
+            0.04,
+            1.0
+          ]
+        },
+        {
+          "object_id": "green_wide",
+          "shape": "box",
+          "color": "green",
+          "size_class": "wide",
+          "source_xy": [
+            0.5,
+            0.18
+          ],
+          "target_xy": [
+            0.59,
+            0.01
+          ],
+          "half_size": [
+            0.023,
+            0.017,
+            0.022
+          ],
+          "rgba": [
+            0.08,
+            0.85,
+            0.15,
+            1.0
+          ]
+        },
+        {
+          "object_id": "blue_tall",
+          "shape": "box",
+          "color": "blue",
+          "size_class": "tall",
+          "source_xy": [
+            0.56,
+            0.2
+          ],
+          "target_xy": [
+            0.54,
+            0.17
+          ],
+          "half_size": [
+            0.017,
+            0.017,
+            0.029
+          ],
+          "rgba": [
+            0.08,
+            0.25,
+            0.95,
+            1.0
+          ]
+        }
+      ],
+      "metrics": {
+        "task": "multi_object_classify_pick_sort",
+        "object_count": 3,
+        "classification_accuracy": 1.0,
+        "classification_method": "five_member_mlp_ensemble",
+        "minimum_classification_confidence": 0.9997979402542114,
+        "sorting_success_count": 3,
+        "sorting_success_rate": 1.0,
+        "robot_table_contact_steps": 0,
+        "deepest_robot_table_penetration_m": 0.0,
+        "minimum_hand_table_clearance_m": 0.11580036031868463,
+        "hard_safety_pass": true,
+        "results": [
+          {
+            "object_id": "red_cube",
+            "predicted_class": "red_small",
+            "expected_class": "red_small",
+            "classification_method": "five_member_mlp_ensemble",
+            "classification_confidence": 0.9998577237129211,
+            "classification_correct": true,
+            "final_xy_error_m": 0.0022167771768188517,
+            "final_z_error_m": 0.0006371762168757567,
+            "lifted_m": 0.20752467668210844,
+            "released": true,
+            "success": true
+          },
+          {
+            "object_id": "green_wide",
+            "predicted_class": "green_wide",
+            "expected_class": "green_wide",
+            "classification_method": "five_member_mlp_ensemble",
+            "classification_confidence": 0.9997979402542114,
+            "classification_correct": true,
+            "final_xy_error_m": 0.00282165646775379,
+            "final_z_error_m": 0.0006371762168758122,
+            "lifted_m": 0.19926106486687128,
+            "released": true,
+            "success": true
+          },
+          {
+            "object_id": "blue_tall",
+            "predicted_class": "blue_tall",
+            "expected_class": "blue_tall",
+            "classification_method": "five_member_mlp_ensemble",
+            "classification_confidence": 0.9998030662536621,
+            "classification_correct": true,
+            "final_xy_error_m": 0.04240008712118189,
+            "final_z_error_m": 0.0126371762168756,
+            "lifted_m": 0.17745902622522308,
+            "released": true,
+            "success": true
+          }
+        ]
+      }
+    },
+    {
+      "scenario": "source_target_jitter_b",
+      "objects": [
+        {
+          "object_id": "red_cube",
+          "shape": "box",
+          "color": "red",
+          "size_class": "small",
+          "source_xy": [
+            0.38,
+            0.19
+          ],
+          "target_xy": [
+            0.54,
+            -0.15
+          ],
+          "half_size": [
+            0.018,
+            0.018,
+            0.022
+          ],
+          "rgba": [
+            0.95,
+            0.08,
+            0.04,
+            1.0
+          ]
+        },
+        {
+          "object_id": "green_wide",
+          "shape": "box",
+          "color": "green",
+          "size_class": "wide",
+          "source_xy": [
+            0.47,
+            0.14
+          ],
+          "target_xy": [
+            0.57,
+            -0.01
+          ],
+          "half_size": [
+            0.023,
+            0.017,
+            0.022
+          ],
+          "rgba": [
+            0.08,
+            0.85,
+            0.15,
+            1.0
+          ]
+        },
+        {
+          "object_id": "blue_tall",
+          "shape": "box",
+          "color": "blue",
+          "size_class": "tall",
+          "source_xy": [
+            0.6,
+            0.16
+          ],
+          "target_xy": [
+            0.56,
+            0.15
+          ],
+          "half_size": [
+            0.017,
+            0.017,
+            0.029
+          ],
+          "rgba": [
+            0.08,
+            0.25,
+            0.95,
+            1.0
+          ]
+        }
+      ],
+      "metrics": {
+        "task": "multi_object_classify_pick_sort",
+        "object_count": 3,
+        "classification_accuracy": 1.0,
+        "classification_method": "five_member_mlp_ensemble",
+        "minimum_classification_confidence": 0.9997979402542114,
+        "sorting_success_count": 3,
+        "sorting_success_rate": 1.0,
+        "robot_table_contact_steps": 0,
+        "deepest_robot_table_penetration_m": 0.0,
+        "minimum_hand_table_clearance_m": 0.11648238778041303,
+        "hard_safety_pass": true,
+        "results": [
+          {
+            "object_id": "red_cube",
+            "predicted_class": "red_small",
+            "expected_class": "red_small",
+            "classification_method": "five_member_mlp_ensemble",
+            "classification_confidence": 0.9998577237129211,
+            "classification_correct": true,
+            "final_xy_error_m": 0.0023228892129735367,
+            "final_z_error_m": 0.0006371762168758122,
+            "lifted_m": 0.2083661564492842,
+            "released": true,
+            "success": true
+          },
+          {
+            "object_id": "green_wide",
+            "predicted_class": "green_wide",
+            "expected_class": "green_wide",
+            "classification_method": "five_member_mlp_ensemble",
+            "classification_confidence": 0.9997979402542114,
+            "classification_correct": true,
+            "final_xy_error_m": 0.0029821032137510137,
+            "final_z_error_m": 0.0006371762168758122,
+            "lifted_m": 0.20058988931849592,
+            "released": true,
+            "success": true
+          },
+          {
+            "object_id": "blue_tall",
+            "predicted_class": "blue_tall",
+            "expected_class": "blue_tall",
+            "classification_method": "five_member_mlp_ensemble",
+            "classification_confidence": 0.9998030662536621,
+            "classification_correct": true,
+            "final_xy_error_m": 0.0030287585980184623,
+            "final_z_error_m": 0.0006371762168757567,
+            "lifted_m": 0.19541312144225526,
+            "released": true,
+            "success": true
+          }
+        ]
+      }
+    }
+  ]
+}

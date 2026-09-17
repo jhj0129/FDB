@@ -48,6 +48,8 @@ fdb-humanoid-balance-train = "fdb.challenge.balance_training:main"
 fdb-multi-object-sort = "fdb.challenge.multi_object_sorting:main"
 fdb-human-gait = "fdb.challenge.human_gait:main"
 fdb-object-sort-train = "fdb.challenge.object_sort_training:main"
+fdb-gait-robustness = "fdb.challenge.gait_robustness:main"
+fdb-sorting-robustness = "fdb.challenge.sorting_robustness:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]

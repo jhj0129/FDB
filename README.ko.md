@@ -43,13 +43,20 @@ Panda 조작에는 비의도 로봇 테이블 접촉 0과 관통 0을 하드 게
 물체 분류에는 RGB와 세 축 크기를 입력으로 받는 5개 MLP 앙상블 후보를 추가했다.
 합성 잡음 독립 시험 144개에서는 100%였지만 색으로 크게 분리된 세 클래스 결과이므로
 일반 물체 인식 성능이 아니다. 실제 Panda 장면에서는 세 물체를 각 구역에 모두 옮겼고
-최대 XY 오차는 3.15mm, 비의도 테이블 접촉은 0회였다.
+portable MLP 앙상블의 최소 신뢰도는 0.9998, 최대 XY 오차는 3.15mm, 비의도 테이블
+접촉은 0회였다.
+source와 target 위치를 바꾼 두 장면까지 포함하면 9/9 배치와 전 장면 접촉 0을 유지했다.
 
-사람 보행의 지지/유각 전환, 유각기 무릎 굽힘, 발목 보상, 반대쪽 팔 흔들기를 네 모델에
-적용했다. G1은 367.0mm, OP3는 212.2mm 이동하며 4초를 완주했다. T1은 2.34초,
-Berkeley는 0.45초에 낙상했다. 현재는 open-loop 가설 검증이며 다음 단계는 지지 다각형,
-CoM/ZMP 및 capture step을 쓰는 폐루프 제어다. 첫 몸통 pitch-발목 되먹임은 T1의 낙상을
-막았지만 발 수직 변위가 2.4mm에 그쳐 보행 성공이 아닌 직립 안정화로 기록했다.
+사람 보행의 지지/유각 전환, 유각기 무릎 굽힘, 발목 보상, 반대쪽 팔 흔들기와 hip roll
+무게 이동을 네 모델에 적용했다. 발 접촉을 직접 계측한 폐루프 후보에서 G1은 170.1mm와
+단일 지지 34.7%, OP3는 25.5mm와 단일 지지 7.0%로 4초 보행 기준을 통과했다. T1은
+pitch-발목 되먹임으로 4초 직립했지만 단일 지지 0%, 발 수직 변위 2.4mm라 보행이 아닌
+안정화로 기록했다. Berkeley는 0.45초에 낙상했다. 다음 단계는 CoM/ZMP와 capture step을
+쓰는 지지면 기반 폐루프 제어다.
+
+개발용 마찰·체중 5% 외란 6조건에서 G1과 OP3가 6/6을 통과한 뒤 더 넓은 마찰과 새로운
+외란 7조건을 고정 정책으로 시험했다. G1은 독립 7/7, OP3는 3/7 보행과 4/7 직립이었다.
+T1은 독립 7/7 직립했지만 단일 지지 0%였다. 다음 우선순위는 OP3의 capture step 생성이다.
 
 ## 주요 결과물
 
@@ -63,6 +70,7 @@ CoM/ZMP 및 capture step을 쓰는 폐루프 제어다. 첫 몸통 pitch-발목 
 - `models/v5/panda_table_safety.pt` Panda 자세 안전 PyTorch 체크포인트
 - `models/v5/panda_table_safety.npz` PyTorch 없는 환경용 안전 추론 모델
 - `models/v5/humanoid_balance_ensemble.npz` 다중 휴머노이드 단기 낙상 screen
+- `models/v5/object_sort_ensemble.npz` PyTorch 없이 실행하는 물체 분류 MLP 앙상블
 - `experiments/0014_v5_neural_metrics.json` 학습 및 시험 지표
 - `experiments/0015_v5_common_sense_safety.results.json` 조작 안전 경계 데이터
 - `experiments/0016_v5_safety_classifier.metrics.json` 학습형 안전 정책 시험 지표
@@ -86,6 +94,8 @@ PYTHONPATH=src ~/venvs/robot_ai/bin/python -m fdb.challenge.balance_training
 PYTHONPATH=src ~/venvs/robot_ai/bin/python -m fdb.challenge.object_sort_training
 MUJOCO_GL=egl .venv/bin/python -m fdb.challenge.multi_object_sorting
 MUJOCO_GL=egl .venv/bin/python -m fdb.challenge.human_gait
+.venv/bin/python -m fdb.challenge.gait_robustness
+.venv/bin/python -m fdb.challenge.sorting_robustness
 ```
 
 현재 결과는 시뮬레이션 연구 증거이며 실제 로봇 실행 승인이 아니다. 실제 적용 전에는

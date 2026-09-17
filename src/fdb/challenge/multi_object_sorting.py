@@ -39,6 +39,8 @@ class ObjectSortResult:
     object_id: str
     predicted_class: str
     expected_class: str
+    classification_method: str
+    classification_confidence: float
     classification_correct: bool
     final_xy_error_m: float
     final_z_error_m: float
@@ -62,6 +64,27 @@ def _expected_class(obj: SortObject) -> str:
     return f"{obj.color}_{obj.size_class}"
 
 
+def classify_object_neural(
+    obj: SortObject,
+    model_path: Path | None = None,
+) -> tuple[str, float]:
+    path = model_path or Path(__file__).resolve().parents[3] / "models/v5/object_sort_ensemble.npz"
+    archive = np.load(path)
+    features = np.asarray([*obj.rgba[:3], *obj.half_size], dtype=np.float32)
+    hidden_input = (features - archive["mean"]) / archive["std"]
+    probabilities = []
+    for member in range(5):
+        first = np.tanh(archive[f"member_{member}_0_weight"] @ hidden_input + archive[f"member_{member}_0_bias"])
+        second = np.tanh(archive[f"member_{member}_2_weight"] @ first + archive[f"member_{member}_2_bias"])
+        logits = archive[f"member_{member}_4_weight"] @ second + archive[f"member_{member}_4_bias"]
+        shifted = logits - np.max(logits)
+        exp = np.exp(shifted)
+        probabilities.append(exp / np.sum(exp))
+    mean_probability = np.mean(probabilities, axis=0)
+    index = int(np.argmax(mean_probability))
+    return str(archive["labels"][index]), float(mean_probability[index])
+
+
 def _ffmpeg_executable() -> str:
     executable = shutil.which("ffmpeg")
     if executable:
@@ -70,7 +93,7 @@ def _ffmpeg_executable() -> str:
     return imageio_ffmpeg.get_ffmpeg_exe()
 
 
-def _build_scene():
+def _build_scene(objects: tuple[SortObject, ...] = OBJECTS):
     import mujoco
 
     record, _ = load_robot()
@@ -81,7 +104,7 @@ def _build_scene():
         rgba=[0.38, 0.29, 0.21, 1.0],
     )
     zone_colors = ((0.95, 0.08, 0.04, 0.55), (0.08, 0.85, 0.15, 0.55), (0.08, 0.25, 0.95, 0.55))
-    for obj, color in zip(OBJECTS, zone_colors):
+    for obj, color in zip(objects, zone_colors):
         spec.worldbody.add_geom(
             name=f"zone_{obj.object_id}", type=mujoco.mjtGeom.mjGEOM_CYLINDER,
             pos=[*obj.target_xy, 0.312], size=[0.045, 0.002, 0.0],
@@ -108,18 +131,19 @@ def _build_scene():
 
 def run_sorting(
     frame_callback: Callable[[object, object, str], None] | None = None,
+    objects: tuple[SortObject, ...] = OBJECTS,
 ) -> dict[str, object]:
     import mujoco
 
-    model, data = _build_scene()
+    model, data = _build_scene(objects)
     table_id = model.geom("table").id
-    object_geom_ids = {model.geom(f"{obj.object_id}_geom").id for obj in OBJECTS}
+    object_geom_ids = {model.geom(f"{obj.object_id}_geom").id for obj in objects}
     robot_table_contact_steps = 0
     deepest_penetration_m = 0.0
     minimum_hand_clearance_m = math.inf
-    peaks = {obj.object_id: float(data.body(obj.object_id).xpos[2]) for obj in OBJECTS}
+    peaks = {obj.object_id: float(data.body(obj.object_id).xpos[2]) for obj in objects}
 
-    for obj in OBJECTS:
+    for obj in objects:
         sx, sy = obj.source_xy
         tx, ty = obj.target_xy
         grasp_z = 0.31 + obj.half_size[2] + 0.10
@@ -151,7 +175,7 @@ def run_sorting(
                     minimum_hand_clearance_m,
                     float(data.body("hand").xpos[2]) - 0.31,
                 )
-                for tracked in OBJECTS:
+                for tracked in objects:
                     peaks[tracked.object_id] = max(
                         peaks[tracked.object_id], float(data.body(tracked.object_id).xpos[2])
                     )
@@ -168,25 +192,32 @@ def run_sorting(
                     frame_callback(model, data, f"{obj.object_id}:{stage_name}")
 
     results = []
-    for obj in OBJECTS:
+    for obj in objects:
         final = data.body(obj.object_id).xpos
         target_z = 0.31 + obj.half_size[2]
         xy_error = math.hypot(float(final[0]) - obj.target_xy[0], float(final[1]) - obj.target_xy[1])
         z_error = abs(float(final[2]) - target_z)
-        predicted = classify_object(obj)
+        try:
+            predicted, confidence = classify_object_neural(obj)
+            classification_method = "five_member_mlp_ensemble"
+        except FileNotFoundError:
+            predicted, confidence = classify_object(obj), 1.0
+            classification_method = "deterministic_fallback"
         expected = _expected_class(obj)
         released = float(data.joint("finger_joint1").qpos[0]) >= 0.035
         lifted = peaks[obj.object_id] - target_z
         success = predicted == expected and xy_error <= 0.055 and z_error <= 0.022 and lifted >= 0.07 and released
         results.append(ObjectSortResult(
-            obj.object_id, predicted, expected, predicted == expected,
+            obj.object_id, predicted, expected, classification_method, confidence, predicted == expected,
             xy_error, z_error, lifted, released, success,
         ))
     success_count = sum(item.success for item in results)
     return {
         "task": "multi_object_classify_pick_sort",
-        "object_count": len(OBJECTS),
+        "object_count": len(objects),
         "classification_accuracy": sum(item.classification_correct for item in results) / len(results),
+        "classification_method": results[0].classification_method,
+        "minimum_classification_confidence": min(item.classification_confidence for item in results),
         "sorting_success_count": success_count,
         "sorting_success_rate": success_count / len(results),
         "robot_table_contact_steps": robot_table_contact_steps,

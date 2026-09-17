@@ -78,18 +78,30 @@ def train(seed: int = 17) -> tuple[dict[str, object], dict[str, object]]:
 
 
 def main() -> None:
+    import numpy as np
     import torch
 
     parser = argparse.ArgumentParser(description="다중 물체 색·형상 MLP 앙상블 학습")
     parser.add_argument("--model", type=Path, default=Path("models/v5/object_sort_ensemble.pt"))
+    parser.add_argument("--portable", type=Path, default=Path("models/v5/object_sort_ensemble.npz"))
     parser.add_argument("--metrics", type=Path, default=Path("experiments/0019_object_sort_classifier.metrics.json"))
     args = parser.parse_args()
     metrics, checkpoint = train()
     args.model.parent.mkdir(parents=True, exist_ok=True)
     args.metrics.parent.mkdir(parents=True, exist_ok=True)
     torch.save(checkpoint, args.model)
+    arrays: dict[str, object] = {
+        "mean": checkpoint["mean"].numpy(),
+        "std": checkpoint["std"].numpy(),
+        "labels": np.asarray(checkpoint["labels"]),
+    }
+    for member, state in enumerate(checkpoint["state_dicts"]):
+        for key, value in state.items():
+            arrays[f"member_{member}_{key.replace('.', '_')}"] = value.detach().numpy()
+    args.portable.parent.mkdir(parents=True, exist_ok=True)
+    np.savez_compressed(args.portable, **arrays)
     args.metrics.write_text(json.dumps(metrics, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    print(json.dumps({**metrics, "model": str(args.model), "metrics": str(args.metrics)}, ensure_ascii=False, indent=2))
+    print(json.dumps({**metrics, "model": str(args.model), "portable": str(args.portable), "metrics": str(args.metrics)}, ensure_ascii=False, indent=2))
 
 
 if __name__ == "__main__":

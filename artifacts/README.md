@@ -1,7 +1,8 @@
 # 시연 결과물
 
-`fdb_multi_object_sorting.mp4`는 Panda가 세 물체를 색과 크기 비율로 분류해 각 색상
-구역으로 옮기는 시연이다. JSON에는 3/3 성공, 최종 위치 오차와 접촉 안전 지표가 있다.
+`fdb_multi_object_sorting.mp4`는 Panda가 5개 MLP portable 앙상블로 세 물체를 분류해
+각 색상 구역으로 옮기는 시연이다. JSON에는 3/3 성공, 신뢰도, 최종 위치 오차와 접촉
+안전 지표가 있다.
 
 `fdb_human_gait.mp4`는 네 휴머노이드에 반대 위상 다리, 유각기 무릎 굽힘, 발목 보상과
 반대쪽 팔 흔들기를 적용한 4분할 비교다. G1과 OP3의 완주 및 T1과 Berkeley의 낙상을

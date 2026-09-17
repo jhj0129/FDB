@@ -15,7 +15,7 @@
     {"metric": "stable", "operator": "equals", "threshold": true}
   ],
   "known_limits": ["Six declared box/scene scenarios", "Fixed grasp family", "No perception error or hardware approval"],
-  "evidence": ["experiments/0008_v2_pick_place.md", "experiments/0009_v2_manipulation_variation.md", "experiments/0009_v2_manipulation_variation.results.json", "episodes/episode_20260917T061758856095Z_795c019e.json", "episodes/episode_20260917T062218862297Z_e44594ea.json", "tests/test_v2_panda_reach.py"],
-  "verification": {"environment": "MuJoCo 3.13.0, Menagerie Panda 2026.9.0", "success_count": 10, "failure_count": 0, "last_verified_at": "2026-09-17T06:22:18.862297+00:00"},
+  "evidence": ["experiments/0008_v2_pick_place.md", "experiments/0009_v2_manipulation_variation.md", "experiments/0009_v2_manipulation_variation.results.json", "experiments/0013_final_pick_place_render.md", "artifacts/fdb_final_pick_place.json", "artifacts/fdb_final_pick_place.mp4", "episodes/episode_20260917T061758856095Z_795c019e.json", "episodes/episode_20260917T062218862297Z_e44594ea.json", "tests/test_v2_panda_reach.py"],
+  "verification": {"environment": "MuJoCo 3.13.0, Menagerie Panda 2026.9.0", "success_count": 11, "failure_count": 0, "last_verified_at": "2026-09-17T06:35:00+00:00"},
   "deprecation": null
 }

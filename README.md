@@ -78,6 +78,9 @@ structural gripper/leaf evidence instead of guessed robot-specific dimensions.
 v4 now behaviorally checks those inferred body trees using bounded joint interventions.
 All 20 actuator-driven hinge probes across the three serial arms moved exactly the
 predicted downstream bodies, with no unexpected body motion.
+The integrated final Panda demonstration is stored at
+`artifacts/fdb_final_pick_place.mp4`; its filmed trajectory lifts the object 0.1467 m,
+places it 5.58 mm from the target center, releases it, and remains stable.
 
 ## Quick start
 
@@ -119,6 +122,7 @@ python -m fdb.v2.manipulation_suite_cli
 python -m fdb.v2.recovery_cli
 python -m fdb.v3.cli
 python -m fdb.v4.cli
+MUJOCO_GL=egl python -m fdb.v2.render_final
 ```
 
 Each successful CLI run creates an `episodes/episode_*.json` file. Episode records

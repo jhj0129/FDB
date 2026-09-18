@@ -144,6 +144,8 @@ MUJOCO_GL=egl python -m fdb.challenge.drok_arm_sorting \
 기본 영상은 `artifacts/fdb_drok_arm_sorting.mp4`, 회전 물체·중앙 장애물 영상은
 `artifacts/fdb_drok_arm_hard.mp4`이며, 구조 분석과 모델 교정 근거는
 `DROK_ARM_ANALYSIS_KO.md`에 기록되어 있다.
+로봇 외형 보존과 눈으로 확인하는 성공 판정 기준은
+`policies/robot_visual_integrity.md`를 따른다.
 
 Each successful CLI run creates an `episodes/episode_*.json` file. Episode records
 include observations, candidate plans, predicted scores, the selected plan, execution

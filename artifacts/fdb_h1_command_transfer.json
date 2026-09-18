@@ -1,0 +1,12 @@
+{
+  "duration_s": 15.0,
+  "phase_period_s": 1.0,
+  "cases": [
+    {"name": "stop", "command": [0.0, 0.0, 0.0], "upright": true, "alternating_steps": 3, "displacement_m": 1.184, "success": false},
+    {"name": "slow_forward", "command": [0.3, 0.0, 0.0], "upright": true, "alternating_steps": 30, "displacement_xy_m": [2.636, 0.606], "success": true},
+    {"name": "lateral_left", "command": [0.0, 0.3, 0.0], "upright": true, "alternating_steps": 29, "displacement_xy_m": [-0.949, 3.911], "success": true},
+    {"name": "turn_left", "command": [0.4, 0.0, 0.4], "upright": true, "alternating_steps": 15, "yaw_deg": 292.11, "success": false},
+    {"name": "turn_right", "command": [0.4, 0.0, -0.4], "upright": true, "alternating_steps": 14, "yaw_deg": -306.97, "success": false}
+  ],
+  "conclusion": "전진·측면 보행은 전이되지만 정지와 목표 각도 회전에는 별도 폐루프 상태 전환이 필요"
+}

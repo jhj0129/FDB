@@ -21,7 +21,7 @@ def goal(shape: str):
 def runtime(tmp_path: Path, environment: PhysicalPersistentShapeEnvironment):
     skills = build_shape_manipulation_skills()
     return PhysicalAtomicRuntime(
-        environment, skills, AtomicSkillWorldModel(skills), PhysicalSafetyGate(),
+        environment, skills, AtomicSkillWorldModel(skills), PhysicalSafetyGate(environment),
         EpisodeStore(tmp_path / "episodes"),
     )
 

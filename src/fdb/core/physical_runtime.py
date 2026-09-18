@@ -51,6 +51,9 @@ class AtomicSkillWorldModel:
 class PhysicalSafetyGate:
     """Final deterministic gate. Learned predictions cannot override these checks."""
 
+    def __init__(self, environment=None) -> None:
+        self.environment = environment
+
     def check(self, observation, prediction: Prediction):
         from .models import SafetyDecision
         import math
@@ -70,6 +73,8 @@ class PhysicalSafetyGate:
             reasons.append("INSUFFICIENT_TABLE_CLEARANCE")
         if prediction.predicted_collision:
             reasons.append("PREDICTED_COLLISION")
+        if self.environment is not None:
+            reasons.extend(self.environment.preview_safety(prediction.candidate))
         return SafetyDecision(not reasons, tuple(reasons))
 
 

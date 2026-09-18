@@ -302,6 +302,59 @@ class PhysicalPersistentShapeEnvironment:
             },
         }
 
+    def preview_safety(self, action: CandidateAction) -> tuple[str, ...]:
+        """Compute IK and conservative joint kinematics before allowing execution."""
+        name = action.skill_name
+        if name in {"observe_scene", "grasp_object", "release_object", "align_object", "recover_alignment"}:
+            return ()
+        p = action.parameters
+        shape = str(p["object_id"]).split("_", 1)[0]
+        offset = math.pi / 2 if shape == "triangle" else 0.0
+        obj = p.get("object_pose")
+        target = p.get("target_pose")
+        if obj is None or target is None:
+            return ("INVALID_TRAJECTORY",)
+        if name == "reach_object":
+            positions = ((float(obj[0]), float(obj[1]), 0.55), (float(obj[0]), float(obj[1]), 0.43))
+            yaw, duration = float(p.get("object_yaw", 0.0)) + offset, 1.9
+        elif name == "lift_object":
+            positions = ((float(obj[0]), float(obj[1]), 0.58),)
+            yaw, duration = float(p.get("object_yaw", 0.0)) + offset, 1.6
+        elif name == "move_to_target":
+            positions = ((float(target[0]), float(target[1]), 0.58),)
+            yaw, duration = float(p.get("target_yaw", 0.0)) + offset, 2.0
+        elif name == "insert_object":
+            positions = ((float(target[0]), float(target[1]), 0.445),)
+            yaw, duration = float(p.get("target_yaw", 0.0)) + offset, 1.8
+        elif name == "retreat":
+            positions = ((float(target[0]), float(target[1]), 0.55),)
+            yaw, duration = float(p.get("target_yaw", 0.0)) + offset, 1.3
+        else:
+            return ("INVALID_TRAJECTORY",)
+        current = self.data.ctrl[:7].copy()
+        reasons: list[str] = []
+        try:
+            for position in positions:
+                target_qpos = np.asarray(
+                    PandaPoseReachExperiment(position, _hand_quaternion(yaw)).run()[0].target_qpos,
+                    dtype=float,
+                )
+                if not np.all(np.isfinite(target_qpos)):
+                    reasons.append("INVALID_TRAJECTORY")
+                    break
+                joint_ranges = self.model.jnt_range[:7]
+                if np.any(target_qpos < joint_ranges[:, 0]) or np.any(target_qpos > joint_ranges[:, 1]):
+                    reasons.append("JOINT_LIMIT")
+                delta = np.abs(target_qpos - current)
+                if float(np.max(delta / duration)) > 2.5:
+                    reasons.append("VELOCITY_LIMIT")
+                if float(np.max(4.0 * delta / (duration * duration))) > 15.0:
+                    reasons.append("ACCELERATION_LIMIT")
+                current = target_qpos
+        except Exception:
+            reasons.append("IK_FAILURE")
+        return tuple(dict.fromkeys(reasons))
+
     def execute(self, action: CandidateAction) -> SkillResult:
         self.sequence += 1
         name = action.skill_name

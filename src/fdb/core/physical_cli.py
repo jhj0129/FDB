@@ -32,7 +32,7 @@ def run_tasks(
     skills = build_shape_manipulation_skills()
     brain = PhysicalAtomicRuntime(
         environment, skills, AtomicSkillWorldModel(skills, use_neural=use_neural),
-        PhysicalSafetyGate(), EpisodeStore(output_directory / "episodes"), use_memory=use_memory,
+        PhysicalSafetyGate(environment), EpisodeStore(output_directory / "episodes"), use_memory=use_memory,
     )
     results = []
     for shape in goals:

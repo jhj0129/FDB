@@ -26,3 +26,5 @@ artifacts/phase2_ablation_*/episodes/
 artifacts/phase2_ablation_*/final_camera.png
 artifacts/phase2_robustness_*/episodes/
 artifacts/phase2_robustness_*/final_camera.png
+artifacts/phase2_physical_safety_*/episodes/
+artifacts/phase2_physical_safety_*/final_camera.png

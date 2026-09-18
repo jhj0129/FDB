@@ -15,7 +15,7 @@
     {"metric": "robot_table_contact_steps", "operator": "equals", "threshold": 0}
   ],
   "known_limits": ["candidate generation is deterministic", "simulator segmentation provides identity", "seed-1 triangle pose perturbation timeout", "actual robot unverified"],
-  "evidence": ["experiments/0042_physical_persistent_atomic_runtime.md", "experiments/0044_phase2_ablation_and_robustness.md", "artifacts/phase2_physical_seed0/summary.json", "tests/test_physical_persistent_runtime.py"],
+  "evidence": ["experiments/0042_physical_persistent_atomic_runtime.md", "experiments/0044_phase2_ablation_and_robustness.md", "experiments/0045_phase2_preexecution_safety_validation.md", "artifacts/phase2_physical_seed0/summary.json", "tests/test_physical_persistent_runtime.py"],
   "verification": {"environment": "MuJoCo 3.13 Panda headless EGL", "success_count": 3, "failure_count": 1, "last_verified_at": "2026-09-19T03:00:00+09:00"},
   "deprecation": null
 }

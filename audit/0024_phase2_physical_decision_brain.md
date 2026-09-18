@@ -10,3 +10,6 @@ controller는 IK+PD, safety/evaluation은 deterministic이다. CNN과 Memory abl
 성공 차이가 없었으므로 학습형 planning 또는 memory-driven improvement로 승격하지 않는다.
 
 seed 1의 2mm perturbation에서 triangle 실패도 보존했다.
+
+후속 안전 검토에서 motion candidate 실행 전 IK, joint limit, velocity, acceleration preview를
+추가하고 같은 3-Goal 실패 주입 run을 새 evidence로 재검증했다.

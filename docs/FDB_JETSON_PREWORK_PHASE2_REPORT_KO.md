@@ -68,8 +68,10 @@ physics fallback은 0회다. Neural이 성공의 주원인이라고 볼 수 없�
 ## 7. Safety와 Failure Replanning
 
 Safety는 모델과 독립적으로 entity/pose 유효성, finite 값, Panda 작업영역, 최소 table
-clearance, predicted collision을 검사한다. 실행 중 robot-table contact도 계측하며 1회라도
-있으면 `COLLISION` 실패다.
+clearance, predicted collision을 검사한다. 각 motion candidate는 실행 전에 IK, joint
+limit, 보수적 velocity·acceleration, finite trajectory preview도 통과해야 한다. 실행 중
+robot-table contact를 계측하며 1회라도 있으면 `COLLISION` 실패다. 새 preview를 포함한
+재검증도 reset 1회에서 3/3, 24 actions, 2 replans로 통과했다.
 
 - Triangle: `ALIGNMENT_FAILURE` 뒤 grasp/lift 상태를 보존하고 `recover_alignment`
 - Circle: `GRASP_FAILURE` 뒤 재관찰하고 `reach_object → grasp_object`
@@ -133,7 +135,8 @@ Neural과 Memory 모두 이 표본에서 성공률이나 planning efficiency를 
 
 Fast test는 atomic precondition/effect, candidate, subgoal, failure path, Goal leakage를
 포함한다. Integration test는 실제 4-object world와 세 Goal·두 failure recovery를 약
-29초에 검사한다. Heavy simulation은 CI fast 목록에서 제외했다.
+32초에 검사한다. 전체 회귀는 **97 passed, 2 warnings, 276.74초**였다. Heavy simulation은
+CI fast 목록에서 제외했다.
 
 ## 14. 알려진 한계와 Jetson 이전
 

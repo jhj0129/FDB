@@ -289,6 +289,10 @@ class PhysicalPersistentShapeEnvironment:
         grasped = next((name for name, state in self._logical.items() if state["grasped"]), None)
         return Observation(self.scene_id, objects, targets, grasped, self.sequence)
 
+    def camera_rgb(self) -> np.ndarray:
+        """Return the same RGB sensor view used by the agent pipeline."""
+        return self._camera_entities()[2]
+
     def evaluator_ground_truth(self) -> dict[str, Any]:
         return {
             "scene_id": self.scene_id, "sequence": self.sequence, "reset_count": self.reset_count,
@@ -303,6 +307,9 @@ class PhysicalPersistentShapeEnvironment:
         name = action.skill_name
         obj_id = str(action.parameters["object_id"])
         state = self._logical[obj_id]
+        if not self._execution_preconditions_met(name, state):
+            state["last_failure"] = FailureType.UNSAFE_PLAN
+            return SkillResult(False, {"precondition_rejected": True}, FailureType.UNSAFE_PLAN)
         state["last_failure"] = None
         if name == "observe_scene":
             return SkillResult(True, {"camera_reobserved": True})
@@ -448,3 +455,20 @@ class PhysicalPersistentShapeEnvironment:
             "release_object": {"released": True, "grasped": False},
             "retreat": {"retreated": True},
         }.get(name, {})
+
+    @staticmethod
+    def _execution_preconditions_met(name: str, state: dict[str, Any]) -> bool:
+        checks = {
+            "observe_scene": True,
+            "reach_object": not state["grasped"] and not state["inserted"],
+            "grasp_object": state["ee_near"] and not state["grasped"] and not state["inserted"],
+            "lift_object": state["grasped"] and not state["lifted"],
+            "align_object": state["grasped"] and state["lifted"] and not state["aligned"],
+            "recover_alignment": state["grasped"] and state["lifted"]
+            and state["last_failure"] == FailureType.ALIGNMENT_FAILURE,
+            "move_to_target": state["grasped"] and state["lifted"] and state["aligned"],
+            "insert_object": state["grasped"] and state["near_target"] and state["aligned"],
+            "release_object": state["grasped"] and state["inserted"],
+            "retreat": state["inserted"] and state["released"],
+        }
+        return bool(checks.get(name, False))

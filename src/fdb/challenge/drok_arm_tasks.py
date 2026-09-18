@@ -52,6 +52,7 @@ class DrokPickPlaceResult:
     visual_contact_steps: int
     closest_two_sided_visual_gap_m: float
     minimum_visible_gripper_table_clearance_m: float
+    maximum_pad_mount_gap_m: float
     final_left_finger_m: float
     final_right_finger_m: float
     released: bool
@@ -152,6 +153,19 @@ def repaired_robot_spec(root: Path = DEFAULT_DROK_ROOT):
         pos=[0.015, 0.0326, 0.0], size=[0.015, 0.003, 0.04],
         friction=[5.0, 0.05, 0.005], solref=[0.001, 1.0],
         rgba=[0.06, 0.06, 0.07, 1.0], group=3,
+    )
+    # Silver backing plates bridge the original finger bodies to the rubber
+    # contact pads. Their faces meet exactly at y=+/-29.6 mm, so the rendered
+    # pads cannot appear as detached, floating collision geometry.
+    spec.body("GRIPPER_LEFT").add_geom(
+        name="left_pad_mount", type=mujoco.mjtGeom.mjGEOM_BOX,
+        pos=[0.015, -0.0148, 0.0], size=[0.015, 0.0148, 0.04],
+        rgba=[0.70, 0.70, 0.72, 1.0], contype=0, conaffinity=0, group=2,
+    )
+    spec.body("GRIPPER_RIGH").add_geom(
+        name="right_pad_mount", type=mujoco.mjtGeom.mjGEOM_BOX,
+        pos=[0.015, 0.0148, 0.0], size=[0.015, 0.0148, 0.04],
+        rgba=[0.70, 0.70, 0.72, 1.0], contype=0, conaffinity=0, group=2,
     )
     return spec
 
@@ -290,6 +304,15 @@ def run_pick_place(root: Path = DEFAULT_DROK_ROOT, frame_callback=None) -> DrokP
     )
     left_visual = model.geom("left_finger_pad").id
     right_visual = model.geom("right_finger_pad").id
+    mount_gaps = (
+        float(mujoco.mj_geomDistance(
+            model, data, left_visual, model.geom("left_pad_mount").id, 0.02, None,
+        )),
+        float(mujoco.mj_geomDistance(
+            model, data, right_visual, model.geom("right_pad_mount").id, 0.02, None,
+        )),
+    )
+    maximum_pad_mount_gap = max(mount_gaps)
     minimum_visual_table_clearance = math.inf
     for stage, target, closed, steps in stages:
         start_arm = data.ctrl[:6].copy()
@@ -353,6 +376,7 @@ def run_pick_place(root: Path = DEFAULT_DROK_ROOT, frame_callback=None) -> DrokP
         and visual_contact_steps > 0
         and closest_visual_gap >= -0.001
         and minimum_visual_table_clearance >= 0.0
+        and maximum_pad_mount_gap <= 1e-6
         and released
     )
     return DrokPickPlaceResult(
@@ -365,6 +389,7 @@ def run_pick_place(root: Path = DEFAULT_DROK_ROOT, frame_callback=None) -> DrokP
         visual_contact_steps=visual_contact_steps,
         closest_two_sided_visual_gap_m=closest_visual_gap,
         minimum_visible_gripper_table_clearance_m=minimum_visual_table_clearance,
+        maximum_pad_mount_gap_m=maximum_pad_mount_gap,
         final_left_finger_m=float(data.qpos[6]),
         final_right_finger_m=float(data.qpos[7]),
         released=released,

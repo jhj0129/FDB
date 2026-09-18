@@ -188,6 +188,14 @@ def run_sorting(
     )
     left_visual = model.geom("left_finger_pad").id
     right_visual = model.geom("right_finger_pad").id
+    maximum_pad_mount_gap = max(
+        float(mujoco.mj_geomDistance(
+            model, data, left_visual, model.geom("left_pad_mount").id, 0.02, None,
+        )),
+        float(mujoco.mj_geomDistance(
+            model, data, right_visual, model.geom("right_pad_mount").id, 0.02, None,
+        )),
+    )
     minimum_visual_table_clearance = math.inf
 
     for obj, waypoint in plans:
@@ -305,10 +313,12 @@ def run_sorting(
         "robot_table_contact_steps": robot_table_contact_steps,
         "obstacle_contact_steps": obstacle_contact_steps,
         "minimum_visible_gripper_table_clearance_m": minimum_visual_table_clearance,
+        "maximum_pad_mount_gap_m": maximum_pad_mount_gap,
         "hard_safety_pass": (
             robot_table_contact_steps == 0
             and obstacle_contact_steps == 0
             and minimum_visual_table_clearance >= 0.0
+            and maximum_pad_mount_gap <= 1e-6
         ),
         "challenge": {
             "rotated_objects": bool(yaws),

@@ -7,6 +7,7 @@
   "robot_table_contact_steps": 0,
   "obstacle_contact_steps": 0,
   "minimum_visible_gripper_table_clearance_m": 0.0006559053538668369,
+  "maximum_pad_mount_gap_m": 0.0,
   "hard_safety_pass": true,
   "challenge": {
     "rotated_objects": true,

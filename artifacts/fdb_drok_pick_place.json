@@ -29,6 +29,7 @@
     "visual_contact_steps": 4817,
     "closest_two_sided_visual_gap_m": -0.0004515311643516462,
     "minimum_visible_gripper_table_clearance_m": 0.012456151010524663,
+    "maximum_pad_mount_gap_m": 0.0,
     "final_left_finger_m": 8.065032563042705e-05,
     "final_right_finger_m": 4.1657418976279456e-05,
     "released": true,

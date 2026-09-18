@@ -49,6 +49,9 @@ class DrokPickPlaceResult:
     lift_height_m: float
     robot_table_contact_steps: int
     object_gripper_contact_steps: int
+    visual_contact_steps: int
+    closest_two_sided_visual_gap_m: float
+    minimum_visible_gripper_table_clearance_m: float
     final_left_finger_m: float
     final_right_finger_m: float
     released: bool
@@ -140,15 +143,15 @@ def repaired_robot_spec(root: Path = DEFAULT_DROK_ROOT):
     # actual prismatic joints while retaining the original visual geometry.
     spec.body("GRIPPER_LEFT").add_geom(
         name="left_finger_pad", type=mujoco.mjtGeom.mjGEOM_BOX,
-        pos=[0.03, -0.035, 0.0], size=[0.03, 0.003, 0.04],
-        friction=[5.0, 0.05, 0.005], solref=[0.003, 1.0],
-        rgba=[0.8, 0.8, 0.8, 0.0], group=3,
+        pos=[0.015, -0.0326, 0.0], size=[0.015, 0.003, 0.04],
+        friction=[5.0, 0.05, 0.005], solref=[0.001, 1.0],
+        rgba=[0.06, 0.06, 0.07, 1.0], group=3,
     )
     spec.body("GRIPPER_RIGH").add_geom(
         name="right_finger_pad", type=mujoco.mjtGeom.mjGEOM_BOX,
-        pos=[0.03, 0.035, 0.0], size=[0.03, 0.003, 0.04],
-        friction=[5.0, 0.05, 0.005], solref=[0.003, 1.0],
-        rgba=[0.8, 0.8, 0.8, 0.0], group=3,
+        pos=[0.015, 0.0326, 0.0], size=[0.015, 0.003, 0.04],
+        friction=[5.0, 0.05, 0.005], solref=[0.001, 1.0],
+        rgba=[0.06, 0.06, 0.07, 1.0], group=3,
     )
     return spec
 
@@ -275,12 +278,25 @@ def run_pick_place(root: Path = DEFAULT_DROK_ROOT, frame_callback=None) -> DrokP
     peak_height = float(data.body("task_object").xpos[2])
     robot_table_steps = 0
     object_gripper_steps = 0
+    visual_contact_steps = 0
+    closest_visual_gap = math.inf
+    left_mesh_visual = next(
+        index for index in range(model.ngeom)
+        if model.geom_bodyid[index] == model.body("GRIPPER_LEFT").id and model.geom_group[index] == 2
+    )
+    right_mesh_visual = next(
+        index for index in range(model.ngeom)
+        if model.geom_bodyid[index] == model.body("GRIPPER_RIGH").id and model.geom_group[index] == 2
+    )
+    left_visual = model.geom("left_finger_pad").id
+    right_visual = model.geom("right_finger_pad").id
+    minimum_visual_table_clearance = math.inf
     for stage, target, closed, steps in stages:
         start_arm = data.ctrl[:6].copy()
         start_gripper = data.ctrl[6:8].copy()
-        # The proxy pads start 80 mm apart. Closing 11.5 mm per finger matches
-        # the object's 58 mm width without the large, destabilising over-closure.
-        gripper_goal = np.asarray([0.0115, -0.0115]) if closed else np.zeros(2)
+        # The proxies start 84.8 mm apart and are inset so their contact coincides
+        # with the visible mesh. The extra 0.5 mm supplies modest normal force.
+        gripper_goal = np.asarray([0.0160, -0.0160]) if closed else np.zeros(2)
         for index in range(steps):
             phase = (index + 1) / steps
             blend = 10 * phase**3 - 15 * phase**4 + 6 * phase**5
@@ -304,6 +320,21 @@ def run_pick_place(root: Path = DEFAULT_DROK_ROOT, frame_callback=None) -> DrokP
                             object_gripper_hit = True
             robot_table_steps += int(robot_table_hit)
             object_gripper_steps += int(object_gripper_hit)
+            minimum_visual_table_clearance = min(
+                minimum_visual_table_clearance,
+                float(mujoco.mj_geomDistance(model, data, left_mesh_visual, table_id, 0.2, None)),
+                float(mujoco.mj_geomDistance(model, data, right_mesh_visual, table_id, 0.2, None)),
+            )
+            if closed and object_gripper_hit:
+                left_gap = float(mujoco.mj_geomDistance(
+                    model, data, left_visual, object_geom, 0.02, None,
+                ))
+                right_gap = float(mujoco.mj_geomDistance(
+                    model, data, right_visual, object_geom, 0.02, None,
+                ))
+                two_sided_gap = max(left_gap, right_gap)
+                closest_visual_gap = min(closest_visual_gap, two_sided_gap)
+                visual_contact_steps += int(two_sided_gap <= 0.0)
             if frame_callback is not None:
                 frame_callback(model, data, stage)
 
@@ -319,6 +350,9 @@ def run_pick_place(root: Path = DEFAULT_DROK_ROOT, frame_callback=None) -> DrokP
         and lift_height >= 0.08
         and robot_table_steps == 0
         and object_gripper_steps > 0
+        and visual_contact_steps > 0
+        and closest_visual_gap >= -0.001
+        and minimum_visual_table_clearance >= 0.0
         and released
     )
     return DrokPickPlaceResult(
@@ -328,6 +362,9 @@ def run_pick_place(root: Path = DEFAULT_DROK_ROOT, frame_callback=None) -> DrokP
         lift_height_m=lift_height,
         robot_table_contact_steps=robot_table_steps,
         object_gripper_contact_steps=object_gripper_steps,
+        visual_contact_steps=visual_contact_steps,
+        closest_two_sided_visual_gap_m=closest_visual_gap,
+        minimum_visible_gripper_table_clearance_m=minimum_visual_table_clearance,
         final_left_finger_m=float(data.qpos[6]),
         final_right_finger_m=float(data.qpos[7]),
         released=released,
@@ -394,7 +431,7 @@ def main() -> None:
         "runtime_repairs": [
             "ARM_BASE_LINK world Z를 문서 계약값 1.0m로 교정",
             "선언된 stroke 전에 발생하는 손가락끼리의 false mesh contact 제외",
-            "시각 메시 대신 URDF 의도와 같은 단순 손가락 접촉 패드 적용",
+            "시각·충돌 형상이 동일한 검은 고무 손가락 패드 적용",
             "테이블과 물체 접촉 강성을 실제 고체에 가깝게 교정",
         ],
         "result": asdict(result),

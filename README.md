@@ -136,10 +136,13 @@ MUJOCO_GL=egl python -m fdb.v2.render_final
 ```bash
 python -m fdb.challenge.drok_arm_tasks --no-video
 MUJOCO_GL=egl python -m fdb.challenge.drok_arm_sorting
+MUJOCO_GL=egl python -m fdb.challenge.drok_arm_sorting \
+  --hard --output artifacts/fdb_drok_arm_hard.mp4
 ```
 
 검증된 분류 실험은 세 물체 모두 성공했고 전체 로봇-작업대 접촉은 0 step이었다.
-영상은 `artifacts/fdb_drok_arm_sorting.mp4`, 구조 분석과 모델 교정 근거는
+기본 영상은 `artifacts/fdb_drok_arm_sorting.mp4`, 회전 물체·중앙 장애물 영상은
+`artifacts/fdb_drok_arm_hard.mp4`이며, 구조 분석과 모델 교정 근거는
 `DROK_ARM_ANALYSIS_KO.md`에 기록되어 있다.
 
 Each successful CLI run creates an `episodes/episode_*.json` file. Episode records

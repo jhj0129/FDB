@@ -4,7 +4,12 @@ import pytest
 
 pytest.importorskip("mujoco")
 
-from fdb.challenge.drok_arm_sorting import DROK_OBJECTS, run_sorting
+from fdb.challenge.drok_arm_sorting import (
+    DROK_OBJECTS,
+    HARD_DROK_OBJECTS,
+    HARD_YAWS,
+    run_sorting,
+)
 from fdb.challenge.drok_arm_tasks import DEFAULT_DROK_ROOT, analyze_structure, run_pick_place
 
 
@@ -30,6 +35,9 @@ def test_drok_pick_place_lifts_places_and_avoids_table() -> None:
     assert result.lift_height_m >= 0.08
     assert result.final_xy_error_m <= 0.025
     assert result.robot_table_contact_steps == 0
+    assert result.visual_contact_steps > 0
+    assert -0.001 <= result.closest_two_sided_visual_gap_m <= 0.0
+    assert result.minimum_visible_gripper_table_clearance_m >= 0.0
 
 
 def test_drok_neural_sorting_completes_three_objects_safely() -> None:
@@ -37,3 +45,19 @@ def test_drok_neural_sorting_completes_three_objects_safely() -> None:
     assert metrics["classification_accuracy"] == 1.0
     assert metrics["sorting_success_count"] == len(DROK_OBJECTS)
     assert metrics["hard_safety_pass"] is True
+    assert all(result["visible_contact_verified"] for result in metrics["results"])
+
+
+def test_drok_rotated_objects_clear_central_obstacle() -> None:
+    metrics = run_sorting(
+        objects=HARD_DROK_OBJECTS,
+        object_yaws=HARD_YAWS,
+        add_obstacle=True,
+    )
+    assert metrics["sorting_success_count"] == len(HARD_DROK_OBJECTS)
+    assert metrics["obstacle_contact_steps"] == 0
+    assert metrics["minimum_visible_gripper_table_clearance_m"] >= 0.0
+    assert all(
+        -0.001 <= result["closest_two_sided_visual_gap_m"] <= 0.0
+        for result in metrics["results"]
+    )

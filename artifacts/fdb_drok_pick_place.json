@@ -16,18 +16,21 @@
   "runtime_repairs": [
     "ARM_BASE_LINK world Z를 문서 계약값 1.0m로 교정",
     "선언된 stroke 전에 발생하는 손가락끼리의 false mesh contact 제외",
-    "시각 메시 대신 URDF 의도와 같은 단순 손가락 접촉 패드 적용",
+    "시각·충돌 형상이 동일한 검은 고무 손가락 패드 적용",
     "테이블과 물체 접촉 강성을 실제 고체에 가깝게 교정"
   ],
   "result": {
-    "final_xy_error_m": 0.0057495272770435755,
+    "final_xy_error_m": 0.0011451839255476773,
     "final_height_error_m": 0.0005366624141355247,
-    "peak_object_height_m": 1.1422821962003293,
-    "lift_height_m": 0.16228219620032935,
+    "peak_object_height_m": 1.1527919501629333,
+    "lift_height_m": 0.17279195016293336,
     "robot_table_contact_steps": 0,
-    "object_gripper_contact_steps": 4764,
-    "final_left_finger_m": 8.065031852189527e-05,
-    "final_right_finger_m": 4.165742377634373e-05,
+    "object_gripper_contact_steps": 5153,
+    "visual_contact_steps": 4817,
+    "closest_two_sided_visual_gap_m": -0.0004515311643516462,
+    "minimum_visible_gripper_table_clearance_m": 0.012456151010524663,
+    "final_left_finger_m": 8.065032563042705e-05,
+    "final_right_finger_m": 4.1657418976279456e-05,
     "released": true,
     "success": true
   },

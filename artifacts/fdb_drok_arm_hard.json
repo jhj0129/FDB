@@ -6,12 +6,16 @@
   "sorting_success_rate": 1.0,
   "robot_table_contact_steps": 0,
   "obstacle_contact_steps": 0,
-  "minimum_visible_gripper_table_clearance_m": 0.0008057073965579419,
+  "minimum_visible_gripper_table_clearance_m": 0.0006559053538668369,
   "hard_safety_pass": true,
   "challenge": {
-    "rotated_objects": false,
-    "central_obstacle": false,
-    "object_yaws_deg": {}
+    "rotated_objects": true,
+    "central_obstacle": true,
+    "object_yaws_deg": {
+      "red_cube": 35.0,
+      "green_wide": -28.0,
+      "blue_tall": 22.0
+    }
   },
   "results": [
     {
@@ -20,12 +24,12 @@
       "expected_class": "red_small",
       "classification_confidence": 0.9998577237129211,
       "classification_correct": true,
-      "final_xy_error_m": 0.0005885760176208819,
-      "final_z_error_m": 0.0005366624141356358,
-      "lifted_m": 0.18743880155518045,
-      "gripper_contact_steps": 4263,
-      "visual_contact_steps": 4003,
-      "closest_two_sided_visual_gap_m": -0.0006026974536377492,
+      "final_xy_error_m": 0.0011151847830491468,
+      "final_z_error_m": 0.0005366624141355247,
+      "lifted_m": 0.1974369790392254,
+      "gripper_contact_steps": 4253,
+      "visual_contact_steps": 3999,
+      "closest_two_sided_visual_gap_m": -0.0005959638510134234,
       "visible_contact_verified": true,
       "released": true,
       "success": true
@@ -36,12 +40,12 @@
       "expected_class": "green_wide",
       "classification_confidence": 0.9997979402542114,
       "classification_correct": true,
-      "final_xy_error_m": 0.0005537164764004521,
+      "final_xy_error_m": 0.0002084916128190566,
       "final_z_error_m": 0.0005366624141355247,
-      "lifted_m": 0.18726652884538764,
-      "gripper_contact_steps": 4256,
-      "visual_contact_steps": 3999,
-      "closest_two_sided_visual_gap_m": -0.0005822897059003543,
+      "lifted_m": 0.19724876245185596,
+      "gripper_contact_steps": 4295,
+      "visual_contact_steps": 4020,
+      "closest_two_sided_visual_gap_m": -0.0006076266549434125,
       "visible_contact_verified": true,
       "released": true,
       "success": true
@@ -52,18 +56,18 @@
       "expected_class": "blue_tall",
       "classification_confidence": 0.9998030662536621,
       "classification_correct": true,
-      "final_xy_error_m": 0.0008397334423362783,
+      "final_xy_error_m": 0.001244580620512161,
       "final_z_error_m": 0.0005366624141355247,
-      "lifted_m": 0.1762885434128686,
-      "gripper_contact_steps": 4250,
-      "visual_contact_steps": 3998,
-      "closest_two_sided_visual_gap_m": -0.0005811572690779302,
+      "lifted_m": 0.18488630295187936,
+      "gripper_contact_steps": 4242,
+      "visual_contact_steps": 3993,
+      "closest_two_sided_visual_gap_m": -0.0005810764110367153,
       "visible_contact_verified": true,
       "released": true,
       "success": true
     }
   ],
-  "video": "artifacts/fdb_drok_arm_sorting.mp4",
+  "video": "artifacts/fdb_drok_arm_hard.mp4",
   "fps": 30,
   "resolution": [
     960,

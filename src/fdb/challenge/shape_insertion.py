@@ -19,6 +19,7 @@ from fdb.v2.render_final import _ffmpeg_executable
 
 TABLE_TOP_Z = 0.29
 PEG_HALF_SIZE = (0.018, 0.018, 0.040)
+PEG_HALF_HEIGHT = 0.040
 SOURCE_XY = (0.43, 0.16)
 HOLE_XY = (0.56, -0.12)
 OBJECT_YAW = math.radians(24.0)
@@ -58,7 +59,46 @@ def _hand_quaternion(yaw: float) -> tuple[float, float, float, float]:
     return tuple(float(value) for value in output)
 
 
-def _build_scene(object_yaw: float = OBJECT_YAW, hole_yaw: float = HOLE_YAW):
+def _footprint(shape: str, receptacle: bool = False) -> np.ndarray:
+    if shape == "square":
+        half = 0.025 if receptacle else 0.018
+        return np.asarray([[-half, -half], [half, -half], [half, half], [-half, half]])
+    if shape == "rectangle":
+        half_x, half_y = ((0.031, 0.021) if receptacle else (0.024, 0.014))
+        return np.asarray([[-half_x, -half_y], [half_x, -half_y], [half_x, half_y], [-half_x, half_y]])
+    if shape == "triangle":
+        radius = 0.034 if receptacle else 0.025
+        angles = -math.pi / 2 + np.arange(3) * 2 * math.pi / 3
+        return np.stack((np.cos(angles), np.sin(angles)), axis=1) * radius
+    if shape == "circle":
+        radius = 0.025 if receptacle else 0.018
+        angles = np.arange(16) * 2 * math.pi / 16
+        return np.stack((np.cos(angles), np.sin(angles)), axis=1) * radius
+    raise ValueError(f"지원하지 않는 물리 형상: {shape}")
+
+
+def _triangle_mesh(spec) -> str:
+    points = _footprint("triangle", receptacle=False)
+    vertices = [[x, y, z] for z in (-PEG_HALF_HEIGHT, PEG_HALF_HEIGHT) for x, y in points]
+    faces = [
+        [0, 2, 1], [3, 4, 5],
+        [0, 1, 4], [0, 4, 3],
+        [1, 2, 5], [1, 5, 4],
+        [2, 0, 3], [2, 3, 5],
+    ]
+    spec.add_mesh(
+        name="triangle_peg_mesh",
+        uservert=np.asarray(vertices, dtype=float).reshape(-1).tolist(),
+        userface=np.asarray(faces, dtype=int).reshape(-1).tolist(),
+    )
+    return "triangle_peg_mesh"
+
+
+def _build_scene(
+    object_yaw: float = OBJECT_YAW,
+    hole_yaw: float = HOLE_YAW,
+    shape: str = "square",
+):
     import mujoco
 
     record, _ = load_robot()
@@ -69,27 +109,39 @@ def _build_scene(object_yaw: float = OBJECT_YAW, hole_yaw: float = HOLE_YAW):
         rgba=[0.38, 0.29, 0.21, 1.0], group=5,
     )
     frame = spec.worldbody.add_body(
-        name="square_receptacle", pos=[*HOLE_XY, TABLE_TOP_Z], quat=_yaw_quaternion(hole_yaw)
+        name="shape_receptacle", pos=[*HOLE_XY, TABLE_TOP_Z], quat=_yaw_quaternion(hole_yaw)
     )
-    inner, wall, outer, height = 0.025, 0.010, 0.075, 0.040
-    frame.add_geom(name="frame_left", type=mujoco.mjtGeom.mjGEOM_BOX,
-                   pos=[0, inner + wall, height], size=[outer, wall, height], rgba=[0.15, 0.55, 0.95, 1], group=5)
-    frame.add_geom(name="frame_right", type=mujoco.mjtGeom.mjGEOM_BOX,
-                   pos=[0, -inner - wall, height], size=[outer, wall, height], rgba=[0.15, 0.55, 0.95, 1], group=5)
-    frame.add_geom(name="frame_front", type=mujoco.mjtGeom.mjGEOM_BOX,
-                   pos=[inner + wall, 0, height], size=[wall, inner, height], rgba=[0.15, 0.55, 0.95, 1], group=5)
-    frame.add_geom(name="frame_back", type=mujoco.mjtGeom.mjGEOM_BOX,
-                   pos=[-inner - wall, 0, height], size=[wall, inner, height], rgba=[0.15, 0.55, 0.95, 1], group=5)
+    wall, height = 0.006, 0.040
+    hole_points = _footprint(shape, receptacle=True)
+    for index, (start, end) in enumerate(zip(hole_points, np.roll(hole_points, -1, axis=0))):
+        delta = end - start
+        length = float(np.linalg.norm(delta))
+        outward = np.asarray([delta[1], -delta[0]]) / length
+        center = (start + end) / 2 + outward * wall
+        angle = math.atan2(float(delta[1]), float(delta[0]))
+        frame.add_geom(
+            name=f"frame_{index}", type=mujoco.mjtGeom.mjGEOM_BOX,
+            pos=[*center, height], size=[length / 2 + wall, wall, height],
+            quat=_yaw_quaternion(angle), rgba=[0.15, 0.55, 0.95, 1], group=5,
+        )
     peg = spec.worldbody.add_body(
-        name="square_peg", pos=[*SOURCE_XY, TABLE_TOP_Z + PEG_HALF_SIZE[2]],
+        name="shape_peg", pos=[*SOURCE_XY, TABLE_TOP_Z + PEG_HALF_HEIGHT],
         quat=_yaw_quaternion(object_yaw),
     )
-    peg.add_freejoint(name="square_peg_free")
-    peg.add_geom(
-        name="square_peg_geom", type=mujoco.mjtGeom.mjGEOM_BOX,
-        size=PEG_HALF_SIZE, density=330.0, friction=[2.0, 0.01, 0.001],
+    peg.add_freejoint(name="shape_peg_free")
+    geom_options = dict(
+        name="shape_peg_geom", density=330.0, friction=[2.0, 0.01, 0.001],
         rgba=[0.95, 0.16, 0.08, 1.0], group=5,
     )
+    if shape == "circle":
+        peg.add_geom(type=mujoco.mjtGeom.mjGEOM_CYLINDER, size=[0.018, PEG_HALF_HEIGHT], **geom_options)
+    elif shape == "triangle":
+        mesh_name = _triangle_mesh(spec)
+        peg.add_geom(type=mujoco.mjtGeom.mjGEOM_MESH, meshname=mesh_name, **geom_options)
+    else:
+        points = _footprint(shape, receptacle=False)
+        extent = np.max(np.abs(points), axis=0)
+        peg.add_geom(type=mujoco.mjtGeom.mjGEOM_BOX, size=[*extent, PEG_HALF_HEIGHT], **geom_options)
     model = spec.compile()
     data = mujoco.MjData(model)
     mujoco.mj_resetData(model, data)
@@ -99,8 +151,11 @@ def _build_scene(object_yaw: float = OBJECT_YAW, hole_yaw: float = HOLE_YAW):
     return model, data
 
 
-def _angle_error(angle: float, target: float) -> float:
-    period = math.pi / 2
+def _angle_error(angle: float, target: float, shape: str = "square") -> float:
+    period = {"square": math.pi / 2, "circle": 2 * math.pi, "triangle": 2 * math.pi / 3,
+              "rectangle": math.pi}[shape]
+    if shape == "circle":
+        return 0.0
     return abs((angle - target + period / 2) % period - period / 2)
 
 
@@ -121,8 +176,9 @@ def perceive_current_scene(
     model_path: Path = DEFAULT_VISION_MODEL,
     object_yaw: float = OBJECT_YAW,
     hole_yaw: float = HOLE_YAW,
+    shape: str = "square",
 ):
-    model, data = _build_scene(object_yaw, hole_yaw)
+    model, data = _build_scene(object_yaw, hole_yaw, shape)
     visual_input = camera_perception_image(model, data)
     perception = ShapeFitPredictor(model_path).predict(visual_input)
     return perception, visual_input, model, data
@@ -196,19 +252,24 @@ def run_insertion(
     object_yaw: float = OBJECT_YAW,
     hole_yaw: float = HOLE_YAW,
     rotation_bias_rad: float = 0.0,
+    shape: str = "square",
 ) -> tuple[InsertionResult, object, object]:
     import mujoco
 
-    perception, _, model, data = perceive_current_scene(model_path, object_yaw, hole_yaw)
+    perception, _, model, data = perceive_current_scene(model_path, object_yaw, hole_yaw, shape)
     if not perception["fits"]:
         raise RuntimeError(f"시각 안전 게이트가 삽입을 거부했습니다: {perception}")
     # 상단 카메라의 영상 x축은 작업대 월드 x축과 반사 관계다. 이는 물체 정답이 아니라
     # 고정 카메라 외부 파라미터 보정이며, 영상에서 읽은 상대 회전의 부호만 월드로 변환한다.
     planned_rotation = -float(perception["rotation_rad"]) + rotation_bias_rad
     planned_yaw = object_yaw + planned_rotation
-    source_quat = _hand_quaternion(object_yaw)
-    target_quat = _hand_quaternion(planned_yaw)
-    grasp_z = TABLE_TOP_Z + PEG_HALF_SIZE[2] + 0.10
+    # A triangular prism is pinched across a flat side rather than toward its
+    # narrow vertex. The same tool offset is preserved during placement, so it
+    # does not change the vision-derived object orientation.
+    grasp_yaw_offset = math.pi / 2 if shape == "triangle" else 0.0
+    source_quat = _hand_quaternion(object_yaw + grasp_yaw_offset)
+    target_quat = _hand_quaternion(planned_yaw + grasp_yaw_offset)
+    grasp_z = TABLE_TOP_Z + PEG_HALF_HEIGHT + 0.10
     poses = (
         ((*SOURCE_XY, 0.55), source_quat),
         ((*SOURCE_XY, grasp_z), source_quat),
@@ -236,12 +297,12 @@ def run_insertion(
         ("release", targets[4], 255.0, 650),
         ("retreat", targets[5], 255.0, 650),
     )
-    frame_geom_ids = {model.geom(name).id for name in ("frame_left", "frame_right", "frame_front", "frame_back")}
-    peg_geom_id = model.geom("square_peg_geom").id
+    frame_geom_ids = {model.geom(f"frame_{index}").id for index in range(len(_footprint(shape, True)))}
+    peg_geom_id = model.geom("shape_peg_geom").id
     table_id = model.geom("table").id
     frame_contacts = 0
     robot_table_contacts = 0
-    peak_height = float(data.body("square_peg").xpos[2])
+    peak_height = float(data.body("shape_peg").xpos[2])
     for stage, target, gripper, steps in stages:
         start_arm = data.ctrl[:7].copy()
         start_gripper = float(data.ctrl[7])
@@ -251,7 +312,7 @@ def run_insertion(
             data.ctrl[:7] = start_arm + blend * (target - start_arm)
             data.ctrl[7] = start_gripper + blend * (gripper - start_gripper)
             mujoco.mj_step(model, data)
-            peak_height = max(peak_height, float(data.body("square_peg").xpos[2]))
+            peak_height = max(peak_height, float(data.body("shape_peg").xpos[2]))
             frame_hit = False
             table_hit = False
             for contact_index in range(data.ncon):
@@ -263,16 +324,16 @@ def run_insertion(
             robot_table_contacts += table_hit
             if frame_callback is not None:
                 frame_callback(model, data, stage)
-    final = data.body("square_peg").xpos.copy()
-    quaternion = data.body("square_peg").xquat.copy()
+    final = data.body("shape_peg").xpos.copy()
+    quaternion = data.body("shape_peg").xquat.copy()
     yaw = math.atan2(
         2 * (quaternion[0] * quaternion[3] + quaternion[1] * quaternion[2]),
         1 - 2 * (quaternion[2] ** 2 + quaternion[3] ** 2),
     )
     xy_error = float(np.linalg.norm(final[:2] - np.asarray(HOLE_XY)))
-    target_z = TABLE_TOP_Z + PEG_HALF_SIZE[2]
+    target_z = TABLE_TOP_Z + PEG_HALF_HEIGHT
     height_error = abs(float(final[2]) - target_z)
-    yaw_error = _angle_error(yaw, hole_yaw)
+    yaw_error = _angle_error(yaw, hole_yaw, shape)
     released = float(data.joint("finger_joint1").qpos[0]) >= 0.035
     success = (
         xy_error <= 0.009 and height_error <= 0.012 and yaw_error <= math.radians(8)
@@ -298,6 +359,7 @@ def run_insertion(
 def render(
     output: Path, width: int = 960, height: int = 540, fps: int = 30,
     rotation_bias_rad: float = 0.0,
+    shape: str = "square",
 ) -> InsertionResult:
     import mujoco
 
@@ -309,6 +371,8 @@ def render(
     assert process.stdin is not None
     renderer = None
     next_frame = 0.0
+    option = mujoco.MjvOption()
+    option.geomgroup[:] = 1
 
     def callback(model, data, stage):
         nonlocal renderer, next_frame
@@ -323,13 +387,13 @@ def render(
         camera.distance = 1.25
         camera.azimuth = 145
         camera.elevation = -28
-        renderer.update_scene(data, camera=camera)
+        renderer.update_scene(data, camera=camera, scene_option=option)
         frame = renderer.render().copy()
         frame[:8, :, :] = (50, 210, 105)
         process.stdin.write(frame.tobytes())
         next_frame += 1.0 / fps
 
-    result, _, _ = run_insertion(callback, rotation_bias_rad=rotation_bias_rad)
+    result, _, _ = run_insertion(callback, rotation_bias_rad=rotation_bias_rad, shape=shape)
     if renderer is not None:
         renderer.close()
     process.stdin.close()

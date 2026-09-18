@@ -81,6 +81,10 @@ pitch-발목 되먹임으로 4초 직립했지만 단일 지지 0%, 발 수직 �
 - `artifacts/fdb_neural_gait_skill.mp4` 사람 보행을 학습한 신경망의 좌우 10걸음(로컬 전용)
 - `artifacts/fdb_dynamic_gait_baseline.json` 자유 물리 추종 실패와 다음 정책의 기준선
 - `artifacts/fdb_deepmimic_training_1m.json` H1 DeepMimic PPO 100만 step 학습·물리 평가
+- `artifacts/fdb_human_cadence_h1_walk.mp4` 실제 접촉 기반 20초·40걸음 H1 동역학 보행
+- `artifacts/fdb_unitree_h1_robustness.json` 0–500N 횡외란 복구 경계
+- `artifacts/fdb_multi_shape_insertion.mp4` 네 형상 카메라 판단·Panda 정렬 삽입 4/4
+- `artifacts/fdb_final_integrated_demo.mp4` 네 형상 조작과 동역학 보행 최종 통합 영상
 - `models/v6/shape_fit_cnn.msgpack` 형상·fit·회전을 예측하는 two-tower CNN
 - `models/v5/push_dynamics_ensemble.pt` PyTorch 학습 체크포인트
 - `models/v5/push_dynamics_ensemble.npz` MuJoCo 환경용 portable 추론 모델
@@ -122,7 +126,27 @@ MUJOCO_GL=egl .venv/bin/python -m fdb.challenge.shape_insertion
 .venv/bin/python -m fdb.challenge.dynamic_gait_baseline
 .venv/bin/python -m fdb.challenge.cognitive_curriculum
 .venv/bin/python -m fdb.challenge.deepmimic_training --timesteps 1048576 --num-envs 64
+PYTHONPATH=src ~/venvs/robot_ai/bin/python -m fdb.challenge.unitree_h1_walk --duration 20 --forward 1.3 --phase-period 1.0
+PYTHONPATH=src ~/venvs/robot_ai/bin/python -m fdb.challenge.unitree_h1_robustness
+.venv/bin/python -m fdb.challenge.multi_shape_insertion
 ```
+
+## 실제 접촉 기반 동역학 보행
+
+Unitree의 BSD-3-Clause 공식 H1 신경망 정책을 안정화 기반으로 사용하고, FDB가 사람
+보행 연구에 가까운 분당 120걸음 위상과 실제 발-바닥 접촉 판정을 추가했다. 500Hz
+MuJoCo 자유 물리에서 20초 동안 좌우 40걸음과 20.47m 이동을 완료했다. 발이 실제로
+0.15초 이상 떨어지고 10mm 이상 들린 뒤 80mm 이상 앞에 닿아야 한 걸음으로 인정한다.
+350N 횡방향 외란까지 교대 연속 보행을 복구했으며, 400N에서는 연속성 단절, 500N에서는
+낙상하는 한계도 보존했다. 자체 LAFAN1 DeepMimic 정책은 접촉 보상 추가 후에도 최장
+2.06초·1착지이므로 아직 성공으로 계산하지 않는다.
+
+## 네 형상 물리 삽입
+
+동일한 카메라 CNN과 Panda 행동 경로를 정사각형·원·삼각형·직사각형 물체와 수용구에
+연결했다. 4/4 삽입에 성공했고 최종 XY 오차는 2.29–7.55mm, 방향 오차는 최대 1.61도,
+비의도 로봇-테이블 접촉은 0회였다. 삼각형의 첫 꼭짓점 파지 실패는 평평한 변 파지로
+복구했으며, 형상 불일치 한국어 명령은 실행 전에 거부한다.
 
 현재 결과는 시뮬레이션 연구 증거이며 실제 로봇 실행 승인이 아니다. 실제 적용 전에는
 센서 잡음, 지연, calibration, 비상 정지, 힘 제한과 하드웨어별 안전 검증이 필요하다.

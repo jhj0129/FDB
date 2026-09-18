@@ -1,0 +1,679 @@
+{
+  "source": "unitreerobotics/unitree_rl_gym official pretrained H1 policy",
+  "source_url": "https://github.com/unitreerobotics/unitree_rl_gym",
+  "source_revision": "276801e46c5d433564f24658bac64f254b7d2d4b",
+  "license": "BSD-3-Clause",
+  "policy_sha256": "44a0fbceb81f3877833ae9a398d039bea1759cb0d3c8188181013885f70589eb",
+  "definition": "실제 바닥 접촉이 해제된 발이 0.15초 이상 공중에 머물고, 1cm 이상 들린 뒤 8cm 이상 앞에 닿는 좌우 교대 동작 10회",
+  "command_m_s": [
+    1.3,
+    0.0,
+    0.0
+  ],
+  "phase_period_s": 1.0,
+  "cadence_steps_per_min": 120.01200120012,
+  "minimum_pelvis_height_m": 0.9603954311675914,
+  "final_pelvis_height_m": 1.0136739389707448,
+  "remained_upright": true,
+  "overall_success": true,
+  "physics_frequency_hz": 500.0,
+  "result": {
+    "duration_s": 19.998,
+    "alternating_steps": 40,
+    "completed_strides": 20,
+    "left_steps": 20,
+    "right_steps": 20,
+    "minimum_air_time_s": 0.25,
+    "minimum_swing_clearance_m": 0.03536128207884581,
+    "minimum_forward_placement_m": 0.139304655039599,
+    "pelvis_path_length_m": 20.820192582125756,
+    "net_pelvis_displacement_m": 20.466225168120303,
+    "success": true
+  },
+  "detected_steps": [
+    {
+      "side": "right",
+      "lift_frame": 81,
+      "touchdown_frame": 206,
+      "air_time_s": 0.25,
+      "swing_clearance_m": 0.03980529335131333,
+      "forward_placement_m": 0.139304655039599
+    },
+    {
+      "side": "left",
+      "lift_frame": 249,
+      "touchdown_frame": 442,
+      "air_time_s": 0.386,
+      "swing_clearance_m": 0.03536128207884581,
+      "forward_placement_m": 0.7711270810127763
+    },
+    {
+      "side": "right",
+      "lift_frame": 474,
+      "touchdown_frame": 679,
+      "air_time_s": 0.41,
+      "swing_clearance_m": 0.05915434173699191,
+      "forward_placement_m": 1.0309718019238814
+    },
+    {
+      "side": "left",
+      "lift_frame": 727,
+      "touchdown_frame": 940,
+      "air_time_s": 0.426,
+      "swing_clearance_m": 0.05577906395058502,
+      "forward_placement_m": 0.9734017424702207
+    },
+    {
+      "side": "right",
+      "lift_frame": 973,
+      "touchdown_frame": 1176,
+      "air_time_s": 0.406,
+      "swing_clearance_m": 0.05956368045336957,
+      "forward_placement_m": 1.0014772327277752
+    },
+    {
+      "side": "left",
+      "lift_frame": 1224,
+      "touchdown_frame": 1441,
+      "air_time_s": 0.434,
+      "swing_clearance_m": 0.058263152023026954,
+      "forward_placement_m": 1.0076455803326443
+    },
+    {
+      "side": "right",
+      "lift_frame": 1472,
+      "touchdown_frame": 1677,
+      "air_time_s": 0.41,
+      "swing_clearance_m": 0.060543619209368515,
+      "forward_placement_m": 1.0146248619842357
+    },
+    {
+      "side": "left",
+      "lift_frame": 1723,
+      "touchdown_frame": 1936,
+      "air_time_s": 0.426,
+      "swing_clearance_m": 0.05610509762085286,
+      "forward_placement_m": 1.0086677776377952
+    },
+    {
+      "side": "right",
+      "lift_frame": 1972,
+      "touchdown_frame": 2176,
+      "air_time_s": 0.408,
+      "swing_clearance_m": 0.05856828018490623,
+      "forward_placement_m": 1.0110864309716343
+    },
+    {
+      "side": "left",
+      "lift_frame": 2223,
+      "touchdown_frame": 2433,
+      "air_time_s": 0.42,
+      "swing_clearance_m": 0.05621784470622626,
+      "forward_placement_m": 1.0196694128721984
+    },
+    {
+      "side": "right",
+      "lift_frame": 2472,
+      "touchdown_frame": 2675,
+      "air_time_s": 0.406,
+      "swing_clearance_m": 0.059745985398047985,
+      "forward_placement_m": 1.0224163427156572
+    },
+    {
+      "side": "left",
+      "lift_frame": 2722,
+      "touchdown_frame": 2932,
+      "air_time_s": 0.42,
+      "swing_clearance_m": 0.056132442795528315,
+      "forward_placement_m": 1.0285545974427623
+    },
+    {
+      "side": "right",
+      "lift_frame": 2972,
+      "touchdown_frame": 3175,
+      "air_time_s": 0.406,
+      "swing_clearance_m": 0.058935858458754764,
+      "forward_placement_m": 1.0223797072274519
+    },
+    {
+      "side": "left",
+      "lift_frame": 3222,
+      "touchdown_frame": 3431,
+      "air_time_s": 0.418,
+      "swing_clearance_m": 0.05608715138451659,
+      "forward_placement_m": 1.0353858381747816
+    },
+    {
+      "side": "right",
+      "lift_frame": 3471,
+      "touchdown_frame": 3674,
+      "air_time_s": 0.406,
+      "swing_clearance_m": 0.059576812053198536,
+      "forward_placement_m": 1.0275480236292052
+    },
+    {
+      "side": "left",
+      "lift_frame": 3722,
+      "touchdown_frame": 3932,
+      "air_time_s": 0.42,
+      "swing_clearance_m": 0.056883552837393214,
+      "forward_placement_m": 1.0401024122822595
+    },
+    {
+      "side": "right",
+      "lift_frame": 3971,
+      "touchdown_frame": 4174,
+      "air_time_s": 0.406,
+      "swing_clearance_m": 0.06003260804155486,
+      "forward_placement_m": 1.0295340498484074
+    },
+    {
+      "side": "left",
+      "lift_frame": 4221,
+      "touchdown_frame": 4431,
+      "air_time_s": 0.42,
+      "swing_clearance_m": 0.05667465123505816,
+      "forward_placement_m": 1.0452126306292673
+    },
+    {
+      "side": "right",
+      "lift_frame": 4471,
+      "touchdown_frame": 4674,
+      "air_time_s": 0.406,
+      "swing_clearance_m": 0.059452443227192786,
+      "forward_placement_m": 1.0293055902560024
+    },
+    {
+      "side": "left",
+      "lift_frame": 4721,
+      "touchdown_frame": 4931,
+      "air_time_s": 0.42,
+      "swing_clearance_m": 0.05657057712890817,
+      "forward_placement_m": 1.0481122613666605
+    },
+    {
+      "side": "right",
+      "lift_frame": 4971,
+      "touchdown_frame": 5174,
+      "air_time_s": 0.406,
+      "swing_clearance_m": 0.059859928905985405,
+      "forward_placement_m": 1.030978720919775
+    },
+    {
+      "side": "left",
+      "lift_frame": 5221,
+      "touchdown_frame": 5431,
+      "air_time_s": 0.42,
+      "swing_clearance_m": 0.05687164586631571,
+      "forward_placement_m": 1.0506955133786975
+    },
+    {
+      "side": "right",
+      "lift_frame": 5471,
+      "touchdown_frame": 5674,
+      "air_time_s": 0.406,
+      "swing_clearance_m": 0.05986394656094168,
+      "forward_placement_m": 1.029616556981976
+    },
+    {
+      "side": "left",
+      "lift_frame": 5721,
+      "touchdown_frame": 5931,
+      "air_time_s": 0.42,
+      "swing_clearance_m": 0.05695770283790219,
+      "forward_placement_m": 1.0512593724998565
+    },
+    {
+      "side": "right",
+      "lift_frame": 5971,
+      "touchdown_frame": 6174,
+      "air_time_s": 0.406,
+      "swing_clearance_m": 0.059939448633863746,
+      "forward_placement_m": 1.0275529369485537
+    },
+    {
+      "side": "left",
+      "lift_frame": 6221,
+      "touchdown_frame": 6431,
+      "air_time_s": 0.42,
+      "swing_clearance_m": 0.05708230310212847,
+      "forward_placement_m": 1.050737196997628
+    },
+    {
+      "side": "right",
+      "lift_frame": 6471,
+      "touchdown_frame": 6674,
+      "air_time_s": 0.406,
+      "swing_clearance_m": 0.05971029503729203,
+      "forward_placement_m": 1.0229125626633748
+    },
+    {
+      "side": "left",
+      "lift_frame": 6721,
+      "touchdown_frame": 6931,
+      "air_time_s": 0.42,
+      "swing_clearance_m": 0.05704508253242435,
+      "forward_placement_m": 1.0480858780858036
+    },
+    {
+      "side": "right",
+      "lift_frame": 6971,
+      "touchdown_frame": 7174,
+      "air_time_s": 0.406,
+      "swing_clearance_m": 0.059934020907287056,
+      "forward_placement_m": 1.019255137672002
+    },
+    {
+      "side": "left",
+      "lift_frame": 7221,
+      "touchdown_frame": 7431,
+      "air_time_s": 0.42,
+      "swing_clearance_m": 0.057065159165802404,
+      "forward_placement_m": 1.0455127925346945
+    },
+    {
+      "side": "right",
+      "lift_frame": 7471,
+      "touchdown_frame": 7674,
+      "air_time_s": 0.406,
+      "swing_clearance_m": 0.059915860456515924,
+      "forward_placement_m": 1.0140275228403608
+    },
+    {
+      "side": "left",
+      "lift_frame": 7721,
+      "touchdown_frame": 7931,
+      "air_time_s": 0.42,
+      "swing_clearance_m": 0.057079980354759585,
+      "forward_placement_m": 1.041992706360629
+    },
+    {
+      "side": "right",
+      "lift_frame": 7971,
+      "touchdown_frame": 8174,
+      "air_time_s": 0.406,
+      "swing_clearance_m": 0.05991936748727744,
+      "forward_placement_m": 1.0076958416708608
+    },
+    {
+      "side": "left",
+      "lift_frame": 8221,
+      "touchdown_frame": 8431,
+      "air_time_s": 0.42,
+      "swing_clearance_m": 0.05708890868300193,
+      "forward_placement_m": 1.037319254547127
+    },
+    {
+      "side": "right",
+      "lift_frame": 8471,
+      "touchdown_frame": 8674,
+      "air_time_s": 0.406,
+      "swing_clearance_m": 0.05991288756351376,
+      "forward_placement_m": 1.0001136927362582
+    },
+    {
+      "side": "left",
+      "lift_frame": 8721,
+      "touchdown_frame": 8931,
+      "air_time_s": 0.42,
+      "swing_clearance_m": 0.05717490562316624,
+      "forward_placement_m": 1.0314169025700377
+    },
+    {
+      "side": "right",
+      "lift_frame": 8971,
+      "touchdown_frame": 9174,
+      "air_time_s": 0.406,
+      "swing_clearance_m": 0.05997914286206729,
+      "forward_placement_m": 0.9926652724839667
+    },
+    {
+      "side": "left",
+      "lift_frame": 9221,
+      "touchdown_frame": 9431,
+      "air_time_s": 0.42,
+      "swing_clearance_m": 0.05718353017878691,
+      "forward_placement_m": 1.025169437150503
+    },
+    {
+      "side": "right",
+      "lift_frame": 9471,
+      "touchdown_frame": 9674,
+      "air_time_s": 0.406,
+      "swing_clearance_m": 0.05999863730757071,
+      "forward_placement_m": 0.9835908345995524
+    },
+    {
+      "side": "left",
+      "lift_frame": 9721,
+      "touchdown_frame": 9931,
+      "air_time_s": 0.42,
+      "swing_clearance_m": 0.0571457238427594,
+      "forward_placement_m": 1.0178133256897504
+    }
+  ],
+  "valid_alternating_steps": [
+    {
+      "side": "right",
+      "lift_frame": 81,
+      "touchdown_frame": 206,
+      "air_time_s": 0.25,
+      "swing_clearance_m": 0.03980529335131333,
+      "forward_placement_m": 0.139304655039599
+    },
+    {
+      "side": "left",
+      "lift_frame": 249,
+      "touchdown_frame": 442,
+      "air_time_s": 0.386,
+      "swing_clearance_m": 0.03536128207884581,
+      "forward_placement_m": 0.7711270810127763
+    },
+    {
+      "side": "right",
+      "lift_frame": 474,
+      "touchdown_frame": 679,
+      "air_time_s": 0.41,
+      "swing_clearance_m": 0.05915434173699191,
+      "forward_placement_m": 1.0309718019238814
+    },
+    {
+      "side": "left",
+      "lift_frame": 727,
+      "touchdown_frame": 940,
+      "air_time_s": 0.426,
+      "swing_clearance_m": 0.05577906395058502,
+      "forward_placement_m": 0.9734017424702207
+    },
+    {
+      "side": "right",
+      "lift_frame": 973,
+      "touchdown_frame": 1176,
+      "air_time_s": 0.406,
+      "swing_clearance_m": 0.05956368045336957,
+      "forward_placement_m": 1.0014772327277752
+    },
+    {
+      "side": "left",
+      "lift_frame": 1224,
+      "touchdown_frame": 1441,
+      "air_time_s": 0.434,
+      "swing_clearance_m": 0.058263152023026954,
+      "forward_placement_m": 1.0076455803326443
+    },
+    {
+      "side": "right",
+      "lift_frame": 1472,
+      "touchdown_frame": 1677,
+      "air_time_s": 0.41,
+      "swing_clearance_m": 0.060543619209368515,
+      "forward_placement_m": 1.0146248619842357
+    },
+    {
+      "side": "left",
+      "lift_frame": 1723,
+      "touchdown_frame": 1936,
+      "air_time_s": 0.426,
+      "swing_clearance_m": 0.05610509762085286,
+      "forward_placement_m": 1.0086677776377952
+    },
+    {
+      "side": "right",
+      "lift_frame": 1972,
+      "touchdown_frame": 2176,
+      "air_time_s": 0.408,
+      "swing_clearance_m": 0.05856828018490623,
+      "forward_placement_m": 1.0110864309716343
+    },
+    {
+      "side": "left",
+      "lift_frame": 2223,
+      "touchdown_frame": 2433,
+      "air_time_s": 0.42,
+      "swing_clearance_m": 0.05621784470622626,
+      "forward_placement_m": 1.0196694128721984
+    },
+    {
+      "side": "right",
+      "lift_frame": 2472,
+      "touchdown_frame": 2675,
+      "air_time_s": 0.406,
+      "swing_clearance_m": 0.059745985398047985,
+      "forward_placement_m": 1.0224163427156572
+    },
+    {
+      "side": "left",
+      "lift_frame": 2722,
+      "touchdown_frame": 2932,
+      "air_time_s": 0.42,
+      "swing_clearance_m": 0.056132442795528315,
+      "forward_placement_m": 1.0285545974427623
+    },
+    {
+      "side": "right",
+      "lift_frame": 2972,
+      "touchdown_frame": 3175,
+      "air_time_s": 0.406,
+      "swing_clearance_m": 0.058935858458754764,
+      "forward_placement_m": 1.0223797072274519
+    },
+    {
+      "side": "left",
+      "lift_frame": 3222,
+      "touchdown_frame": 3431,
+      "air_time_s": 0.418,
+      "swing_clearance_m": 0.05608715138451659,
+      "forward_placement_m": 1.0353858381747816
+    },
+    {
+      "side": "right",
+      "lift_frame": 3471,
+      "touchdown_frame": 3674,
+      "air_time_s": 0.406,
+      "swing_clearance_m": 0.059576812053198536,
+      "forward_placement_m": 1.0275480236292052
+    },
+    {
+      "side": "left",
+      "lift_frame": 3722,
+      "touchdown_frame": 3932,
+      "air_time_s": 0.42,
+      "swing_clearance_m": 0.056883552837393214,
+      "forward_placement_m": 1.0401024122822595
+    },
+    {
+      "side": "right",
+      "lift_frame": 3971,
+      "touchdown_frame": 4174,
+      "air_time_s": 0.406,
+      "swing_clearance_m": 0.06003260804155486,
+      "forward_placement_m": 1.0295340498484074
+    },
+    {
+      "side": "left",
+      "lift_frame": 4221,
+      "touchdown_frame": 4431,
+      "air_time_s": 0.42,
+      "swing_clearance_m": 0.05667465123505816,
+      "forward_placement_m": 1.0452126306292673
+    },
+    {
+      "side": "right",
+      "lift_frame": 4471,
+      "touchdown_frame": 4674,
+      "air_time_s": 0.406,
+      "swing_clearance_m": 0.059452443227192786,
+      "forward_placement_m": 1.0293055902560024
+    },
+    {
+      "side": "left",
+      "lift_frame": 4721,
+      "touchdown_frame": 4931,
+      "air_time_s": 0.42,
+      "swing_clearance_m": 0.05657057712890817,
+      "forward_placement_m": 1.0481122613666605
+    },
+    {
+      "side": "right",
+      "lift_frame": 4971,
+      "touchdown_frame": 5174,
+      "air_time_s": 0.406,
+      "swing_clearance_m": 0.059859928905985405,
+      "forward_placement_m": 1.030978720919775
+    },
+    {
+      "side": "left",
+      "lift_frame": 5221,
+      "touchdown_frame": 5431,
+      "air_time_s": 0.42,
+      "swing_clearance_m": 0.05687164586631571,
+      "forward_placement_m": 1.0506955133786975
+    },
+    {
+      "side": "right",
+      "lift_frame": 5471,
+      "touchdown_frame": 5674,
+      "air_time_s": 0.406,
+      "swing_clearance_m": 0.05986394656094168,
+      "forward_placement_m": 1.029616556981976
+    },
+    {
+      "side": "left",
+      "lift_frame": 5721,
+      "touchdown_frame": 5931,
+      "air_time_s": 0.42,
+      "swing_clearance_m": 0.05695770283790219,
+      "forward_placement_m": 1.0512593724998565
+    },
+    {
+      "side": "right",
+      "lift_frame": 5971,
+      "touchdown_frame": 6174,
+      "air_time_s": 0.406,
+      "swing_clearance_m": 0.059939448633863746,
+      "forward_placement_m": 1.0275529369485537
+    },
+    {
+      "side": "left",
+      "lift_frame": 6221,
+      "touchdown_frame": 6431,
+      "air_time_s": 0.42,
+      "swing_clearance_m": 0.05708230310212847,
+      "forward_placement_m": 1.050737196997628
+    },
+    {
+      "side": "right",
+      "lift_frame": 6471,
+      "touchdown_frame": 6674,
+      "air_time_s": 0.406,
+      "swing_clearance_m": 0.05971029503729203,
+      "forward_placement_m": 1.0229125626633748
+    },
+    {
+      "side": "left",
+      "lift_frame": 6721,
+      "touchdown_frame": 6931,
+      "air_time_s": 0.42,
+      "swing_clearance_m": 0.05704508253242435,
+      "forward_placement_m": 1.0480858780858036
+    },
+    {
+      "side": "right",
+      "lift_frame": 6971,
+      "touchdown_frame": 7174,
+      "air_time_s": 0.406,
+      "swing_clearance_m": 0.059934020907287056,
+      "forward_placement_m": 1.019255137672002
+    },
+    {
+      "side": "left",
+      "lift_frame": 7221,
+      "touchdown_frame": 7431,
+      "air_time_s": 0.42,
+      "swing_clearance_m": 0.057065159165802404,
+      "forward_placement_m": 1.0455127925346945
+    },
+    {
+      "side": "right",
+      "lift_frame": 7471,
+      "touchdown_frame": 7674,
+      "air_time_s": 0.406,
+      "swing_clearance_m": 0.059915860456515924,
+      "forward_placement_m": 1.0140275228403608
+    },
+    {
+      "side": "left",
+      "lift_frame": 7721,
+      "touchdown_frame": 7931,
+      "air_time_s": 0.42,
+      "swing_clearance_m": 0.057079980354759585,
+      "forward_placement_m": 1.041992706360629
+    },
+    {
+      "side": "right",
+      "lift_frame": 7971,
+      "touchdown_frame": 8174,
+      "air_time_s": 0.406,
+      "swing_clearance_m": 0.05991936748727744,
+      "forward_placement_m": 1.0076958416708608
+    },
+    {
+      "side": "left",
+      "lift_frame": 8221,
+      "touchdown_frame": 8431,
+      "air_time_s": 0.42,
+      "swing_clearance_m": 0.05708890868300193,
+      "forward_placement_m": 1.037319254547127
+    },
+    {
+      "side": "right",
+      "lift_frame": 8471,
+      "touchdown_frame": 8674,
+      "air_time_s": 0.406,
+      "swing_clearance_m": 0.05991288756351376,
+      "forward_placement_m": 1.0001136927362582
+    },
+    {
+      "side": "left",
+      "lift_frame": 8721,
+      "touchdown_frame": 8931,
+      "air_time_s": 0.42,
+      "swing_clearance_m": 0.05717490562316624,
+      "forward_placement_m": 1.0314169025700377
+    },
+    {
+      "side": "right",
+      "lift_frame": 8971,
+      "touchdown_frame": 9174,
+      "air_time_s": 0.406,
+      "swing_clearance_m": 0.05997914286206729,
+      "forward_placement_m": 0.9926652724839667
+    },
+    {
+      "side": "left",
+      "lift_frame": 9221,
+      "touchdown_frame": 9431,
+      "air_time_s": 0.42,
+      "swing_clearance_m": 0.05718353017878691,
+      "forward_placement_m": 1.025169437150503
+    },
+    {
+      "side": "right",
+      "lift_frame": 9471,
+      "touchdown_frame": 9674,
+      "air_time_s": 0.406,
+      "swing_clearance_m": 0.05999863730757071,
+      "forward_placement_m": 0.9835908345995524
+    },
+    {
+      "side": "left",
+      "lift_frame": 9721,
+      "touchdown_frame": 9931,
+      "air_time_s": 0.42,
+      "swing_clearance_m": 0.0571457238427594,
+      "forward_placement_m": 1.0178133256897504
+    }
+  ],
+  "video": "artifacts/fdb_human_cadence_h1_walk.mp4",
+  "preview": "artifacts/fdb_human_cadence_h1_walk.png"
+}

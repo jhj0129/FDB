@@ -1,5 +1,20 @@
 # 시연 결과물
 
+`fdb_final_integrated_demo.mp4`는 네 형상 카메라 판단·Panda 삽입 4회와 사람 보행률
+H1 20초·40걸음을 연결한 최신 최종본이다.
+
+`fdb_multi_shape_insertion.mp4`는 정사각형·원·삼각형·직사각형을 차례로 인식하고,
+크기와 회전을 판단해 각 수용구에 삽입하는 49초 물리 시연이다. 4/4 성공과 비의도
+로봇-테이블 접촉 0회를 JSON에 기록했다.
+
+`fdb_human_cadence_h1_walk.mp4`는 Unitree 공식 H1 정책에 FDB의 사람 보행률 위상 제어와
+접촉 기반 걸음 판정을 결합한 자유 물리 시연이다. 20초 동안 분당 120걸음으로 좌우
+40걸음을 수행한다. 함께 있는 JSON은 출처 revision, 가중치 SHA-256, 공중시간, 발 여유,
+전진 착지, 몸통 이동과 직립 여부를 기록한다.
+
+`fdb_unitree_h1_robustness.json`은 같은 정책의 횡방향 외란 경계다. 350N을 0.15초 가한
+조건까지 보행 연속성을 복구하고, 400N 연속성 실패와 500N 낙상도 숨기지 않는다.
+
 `fdb_shape_insertion.mp4`는 상단 카메라 픽셀에서 CNN이 정사각형 물체와 수용구,
 삽입 가능성 및 상대 회전을 판단한 뒤 Panda가 집기·회전·삽입·해제를 수행하는 시연이다.
 `fdb_shape_insertion_camera.png`는 원 카메라 영상, `_vision.png`는 신경망 입력이다.

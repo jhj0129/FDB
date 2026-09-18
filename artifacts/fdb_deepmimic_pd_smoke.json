@@ -1,0 +1,15 @@
+{
+  "algorithm": "LocoMuJoCo PPO DeepMimic",
+  "dataset": "LAFAN1 walk1_subject5",
+  "timesteps": 65536,
+  "parallel_environments": 32,
+  "elapsed_s": 47.33528637499694,
+  "updates": 32,
+  "last_mean_episode_return": 44.7423210144043,
+  "last_mean_episode_length": 68.70967864990234,
+  "checkpoint": "models/local/deepmimic_pd_smoke/PPOJax_saved.pkl",
+  "resumed_from": null,
+  "behavioral_contact_reward": true,
+  "control": "PD position",
+  "status": "smoke training only; behavioral 10-step evaluation still required"
+}

@@ -1,0 +1,14 @@
+{
+  "checkpoint": "models/local/deepmimic_pd_smoke/PPOJax_saved.pkl",
+  "evaluation_steps": 3000,
+  "episodes": 35,
+  "best_episode_steps": 204,
+  "control_frequency_hz": 100.0,
+  "best_survival_s": 2.04,
+  "pelvis_path_length_m": 0.892227891210718,
+  "detected_touchdowns": 0,
+  "longest_alternating_touchdowns": 0,
+  "touchdowns": [],
+  "required_alternating_touchdowns": 10,
+  "success": false
+}

@@ -1,0 +1,625 @@
+{
+  "source": "unitreerobotics/unitree_rl_gym official pretrained H1 policy",
+  "source_url": "https://github.com/unitreerobotics/unitree_rl_gym",
+  "source_revision": "276801e46c5d433564f24658bac64f254b7d2d4b",
+  "license": "BSD-3-Clause",
+  "policy_sha256": "44a0fbceb81f3877833ae9a398d039bea1759cb0d3c8188181013885f70589eb",
+  "definition": "실제 바닥 접촉이 해제된 발이 0.15초 이상 공중에 머물고, 1cm 이상 들린 뒤 8cm 이상 앞에 닿는 좌우 교대 동작 10회",
+  "command_m_s": [
+    0.5,
+    0.0,
+    0.0
+  ],
+  "physics_frequency_hz": 500.0,
+  "result": {
+    "duration_s": 14.998,
+    "alternating_steps": 37,
+    "completed_strides": 18,
+    "left_steps": 18,
+    "right_steps": 19,
+    "minimum_air_time_s": 0.19,
+    "minimum_swing_clearance_m": 0.031409842122497145,
+    "minimum_forward_placement_m": 0.12205762839899179,
+    "pelvis_path_length_m": 6.990678846657897,
+    "net_pelvis_displacement_m": 6.745569926093483,
+    "success": true
+  },
+  "detected_steps": [
+    {
+      "side": "right",
+      "lift_frame": 83,
+      "touchdown_frame": 178,
+      "air_time_s": 0.19,
+      "swing_clearance_m": 0.037952455292548704,
+      "forward_placement_m": 0.12205762839899179
+    },
+    {
+      "side": "left",
+      "lift_frame": 226,
+      "touchdown_frame": 382,
+      "air_time_s": 0.312,
+      "swing_clearance_m": 0.03733207785683784,
+      "forward_placement_m": 0.24426171499658564
+    },
+    {
+      "side": "right",
+      "lift_frame": 427,
+      "touchdown_frame": 595,
+      "air_time_s": 0.336,
+      "swing_clearance_m": 0.036142382039020315,
+      "forward_placement_m": 0.3278069120957807
+    },
+    {
+      "side": "left",
+      "lift_frame": 635,
+      "touchdown_frame": 801,
+      "air_time_s": 0.332,
+      "swing_clearance_m": 0.03490740141203835,
+      "forward_placement_m": 0.3041615328863501
+    },
+    {
+      "side": "right",
+      "lift_frame": 836,
+      "touchdown_frame": 1007,
+      "air_time_s": 0.342,
+      "swing_clearance_m": 0.03288426578720227,
+      "forward_placement_m": 0.34339256677830504
+    },
+    {
+      "side": "left",
+      "lift_frame": 1035,
+      "touchdown_frame": 1208,
+      "air_time_s": 0.346,
+      "swing_clearance_m": 0.03416312048461595,
+      "forward_placement_m": 0.37514738116268104
+    },
+    {
+      "side": "right",
+      "lift_frame": 1237,
+      "touchdown_frame": 1413,
+      "air_time_s": 0.352,
+      "swing_clearance_m": 0.031409842122497145,
+      "forward_placement_m": 0.362954858379529
+    },
+    {
+      "side": "left",
+      "lift_frame": 1442,
+      "touchdown_frame": 1607,
+      "air_time_s": 0.33,
+      "swing_clearance_m": 0.03323741232203864,
+      "forward_placement_m": 0.3744226733732002
+    },
+    {
+      "side": "right",
+      "lift_frame": 1636,
+      "touchdown_frame": 1815,
+      "air_time_s": 0.358,
+      "swing_clearance_m": 0.031655975218915056,
+      "forward_placement_m": 0.37522207037414584
+    },
+    {
+      "side": "left",
+      "lift_frame": 1842,
+      "touchdown_frame": 2007,
+      "air_time_s": 0.33,
+      "swing_clearance_m": 0.03334889476107239,
+      "forward_placement_m": 0.3753233166485343
+    },
+    {
+      "side": "right",
+      "lift_frame": 2036,
+      "touchdown_frame": 2216,
+      "air_time_s": 0.36,
+      "swing_clearance_m": 0.031609487639297495,
+      "forward_placement_m": 0.3766590164689914
+    },
+    {
+      "side": "left",
+      "lift_frame": 2242,
+      "touchdown_frame": 2406,
+      "air_time_s": 0.328,
+      "swing_clearance_m": 0.03342440781497075,
+      "forward_placement_m": 0.3748939099947502
+    },
+    {
+      "side": "right",
+      "lift_frame": 2435,
+      "touchdown_frame": 2615,
+      "air_time_s": 0.36,
+      "swing_clearance_m": 0.031532504332615285,
+      "forward_placement_m": 0.3756805379319929
+    },
+    {
+      "side": "left",
+      "lift_frame": 2642,
+      "touchdown_frame": 2806,
+      "air_time_s": 0.328,
+      "swing_clearance_m": 0.033384270865093435,
+      "forward_placement_m": 0.3749449697000098
+    },
+    {
+      "side": "right",
+      "lift_frame": 2835,
+      "touchdown_frame": 3015,
+      "air_time_s": 0.36,
+      "swing_clearance_m": 0.03153155455951062,
+      "forward_placement_m": 0.37479761000937667
+    },
+    {
+      "side": "left",
+      "lift_frame": 3042,
+      "touchdown_frame": 3206,
+      "air_time_s": 0.328,
+      "swing_clearance_m": 0.03340529533655828,
+      "forward_placement_m": 0.3741842461177511
+    },
+    {
+      "side": "right",
+      "lift_frame": 3235,
+      "touchdown_frame": 3415,
+      "air_time_s": 0.36,
+      "swing_clearance_m": 0.03154508231134301,
+      "forward_placement_m": 0.37497881768628316
+    },
+    {
+      "side": "left",
+      "lift_frame": 3442,
+      "touchdown_frame": 3606,
+      "air_time_s": 0.328,
+      "swing_clearance_m": 0.03342262439698035,
+      "forward_placement_m": 0.3745443469262499
+    },
+    {
+      "side": "right",
+      "lift_frame": 3635,
+      "touchdown_frame": 3815,
+      "air_time_s": 0.36,
+      "swing_clearance_m": 0.03158672131572188,
+      "forward_placement_m": 0.37514187510330477
+    },
+    {
+      "side": "left",
+      "lift_frame": 3842,
+      "touchdown_frame": 4006,
+      "air_time_s": 0.328,
+      "swing_clearance_m": 0.03342830888789766,
+      "forward_placement_m": 0.3747018899169852
+    },
+    {
+      "side": "right",
+      "lift_frame": 4035,
+      "touchdown_frame": 4215,
+      "air_time_s": 0.36,
+      "swing_clearance_m": 0.03158732314298551,
+      "forward_placement_m": 0.37508460956830003
+    },
+    {
+      "side": "left",
+      "lift_frame": 4242,
+      "touchdown_frame": 4406,
+      "air_time_s": 0.328,
+      "swing_clearance_m": 0.033434985028392206,
+      "forward_placement_m": 0.3746109052968251
+    },
+    {
+      "side": "right",
+      "lift_frame": 4435,
+      "touchdown_frame": 4615,
+      "air_time_s": 0.36,
+      "swing_clearance_m": 0.03159020586731248,
+      "forward_placement_m": 0.3750935201884924
+    },
+    {
+      "side": "left",
+      "lift_frame": 4642,
+      "touchdown_frame": 4806,
+      "air_time_s": 0.328,
+      "swing_clearance_m": 0.03345276193431196,
+      "forward_placement_m": 0.3747375038641749
+    },
+    {
+      "side": "right",
+      "lift_frame": 4835,
+      "touchdown_frame": 5015,
+      "air_time_s": 0.36,
+      "swing_clearance_m": 0.03158373405201681,
+      "forward_placement_m": 0.3751270880462434
+    },
+    {
+      "side": "left",
+      "lift_frame": 5042,
+      "touchdown_frame": 5206,
+      "air_time_s": 0.328,
+      "swing_clearance_m": 0.033451518695304217,
+      "forward_placement_m": 0.3747367644010734
+    },
+    {
+      "side": "right",
+      "lift_frame": 5235,
+      "touchdown_frame": 5415,
+      "air_time_s": 0.36,
+      "swing_clearance_m": 0.03158374001910219,
+      "forward_placement_m": 0.37509751536048913
+    },
+    {
+      "side": "left",
+      "lift_frame": 5442,
+      "touchdown_frame": 5606,
+      "air_time_s": 0.328,
+      "swing_clearance_m": 0.03345439101851516,
+      "forward_placement_m": 0.3747612510476642
+    },
+    {
+      "side": "right",
+      "lift_frame": 5635,
+      "touchdown_frame": 5815,
+      "air_time_s": 0.36,
+      "swing_clearance_m": 0.031583324722375516,
+      "forward_placement_m": 0.3750563640072675
+    },
+    {
+      "side": "left",
+      "lift_frame": 5842,
+      "touchdown_frame": 6006,
+      "air_time_s": 0.328,
+      "swing_clearance_m": 0.033456499536782314,
+      "forward_placement_m": 0.37475831204148286
+    },
+    {
+      "side": "right",
+      "lift_frame": 6035,
+      "touchdown_frame": 6215,
+      "air_time_s": 0.36,
+      "swing_clearance_m": 0.03158298091006878,
+      "forward_placement_m": 0.37499818621730363
+    },
+    {
+      "side": "left",
+      "lift_frame": 6242,
+      "touchdown_frame": 6406,
+      "air_time_s": 0.328,
+      "swing_clearance_m": 0.03345865929395353,
+      "forward_placement_m": 0.37474044163297526
+    },
+    {
+      "side": "right",
+      "lift_frame": 6435,
+      "touchdown_frame": 6615,
+      "air_time_s": 0.36,
+      "swing_clearance_m": 0.031582704700443165,
+      "forward_placement_m": 0.3749242480759128
+    },
+    {
+      "side": "left",
+      "lift_frame": 6642,
+      "touchdown_frame": 6806,
+      "air_time_s": 0.328,
+      "swing_clearance_m": 0.03346073147690054,
+      "forward_placement_m": 0.3747087481865646
+    },
+    {
+      "side": "right",
+      "lift_frame": 6835,
+      "touchdown_frame": 7015,
+      "air_time_s": 0.36,
+      "swing_clearance_m": 0.0315825750585752,
+      "forward_placement_m": 0.37483593026991774
+    },
+    {
+      "side": "left",
+      "lift_frame": 7042,
+      "touchdown_frame": 7206,
+      "air_time_s": 0.328,
+      "swing_clearance_m": 0.03346298837062622,
+      "forward_placement_m": 0.37466133898088766
+    },
+    {
+      "side": "right",
+      "lift_frame": 7235,
+      "touchdown_frame": 7415,
+      "air_time_s": 0.36,
+      "swing_clearance_m": 0.031582566334489415,
+      "forward_placement_m": 0.3747317260790303
+    }
+  ],
+  "valid_alternating_steps": [
+    {
+      "side": "right",
+      "lift_frame": 83,
+      "touchdown_frame": 178,
+      "air_time_s": 0.19,
+      "swing_clearance_m": 0.037952455292548704,
+      "forward_placement_m": 0.12205762839899179
+    },
+    {
+      "side": "left",
+      "lift_frame": 226,
+      "touchdown_frame": 382,
+      "air_time_s": 0.312,
+      "swing_clearance_m": 0.03733207785683784,
+      "forward_placement_m": 0.24426171499658564
+    },
+    {
+      "side": "right",
+      "lift_frame": 427,
+      "touchdown_frame": 595,
+      "air_time_s": 0.336,
+      "swing_clearance_m": 0.036142382039020315,
+      "forward_placement_m": 0.3278069120957807
+    },
+    {
+      "side": "left",
+      "lift_frame": 635,
+      "touchdown_frame": 801,
+      "air_time_s": 0.332,
+      "swing_clearance_m": 0.03490740141203835,
+      "forward_placement_m": 0.3041615328863501
+    },
+    {
+      "side": "right",
+      "lift_frame": 836,
+      "touchdown_frame": 1007,
+      "air_time_s": 0.342,
+      "swing_clearance_m": 0.03288426578720227,
+      "forward_placement_m": 0.34339256677830504
+    },
+    {
+      "side": "left",
+      "lift_frame": 1035,
+      "touchdown_frame": 1208,
+      "air_time_s": 0.346,
+      "swing_clearance_m": 0.03416312048461595,
+      "forward_placement_m": 0.37514738116268104
+    },
+    {
+      "side": "right",
+      "lift_frame": 1237,
+      "touchdown_frame": 1413,
+      "air_time_s": 0.352,
+      "swing_clearance_m": 0.031409842122497145,
+      "forward_placement_m": 0.362954858379529
+    },
+    {
+      "side": "left",
+      "lift_frame": 1442,
+      "touchdown_frame": 1607,
+      "air_time_s": 0.33,
+      "swing_clearance_m": 0.03323741232203864,
+      "forward_placement_m": 0.3744226733732002
+    },
+    {
+      "side": "right",
+      "lift_frame": 1636,
+      "touchdown_frame": 1815,
+      "air_time_s": 0.358,
+      "swing_clearance_m": 0.031655975218915056,
+      "forward_placement_m": 0.37522207037414584
+    },
+    {
+      "side": "left",
+      "lift_frame": 1842,
+      "touchdown_frame": 2007,
+      "air_time_s": 0.33,
+      "swing_clearance_m": 0.03334889476107239,
+      "forward_placement_m": 0.3753233166485343
+    },
+    {
+      "side": "right",
+      "lift_frame": 2036,
+      "touchdown_frame": 2216,
+      "air_time_s": 0.36,
+      "swing_clearance_m": 0.031609487639297495,
+      "forward_placement_m": 0.3766590164689914
+    },
+    {
+      "side": "left",
+      "lift_frame": 2242,
+      "touchdown_frame": 2406,
+      "air_time_s": 0.328,
+      "swing_clearance_m": 0.03342440781497075,
+      "forward_placement_m": 0.3748939099947502
+    },
+    {
+      "side": "right",
+      "lift_frame": 2435,
+      "touchdown_frame": 2615,
+      "air_time_s": 0.36,
+      "swing_clearance_m": 0.031532504332615285,
+      "forward_placement_m": 0.3756805379319929
+    },
+    {
+      "side": "left",
+      "lift_frame": 2642,
+      "touchdown_frame": 2806,
+      "air_time_s": 0.328,
+      "swing_clearance_m": 0.033384270865093435,
+      "forward_placement_m": 0.3749449697000098
+    },
+    {
+      "side": "right",
+      "lift_frame": 2835,
+      "touchdown_frame": 3015,
+      "air_time_s": 0.36,
+      "swing_clearance_m": 0.03153155455951062,
+      "forward_placement_m": 0.37479761000937667
+    },
+    {
+      "side": "left",
+      "lift_frame": 3042,
+      "touchdown_frame": 3206,
+      "air_time_s": 0.328,
+      "swing_clearance_m": 0.03340529533655828,
+      "forward_placement_m": 0.3741842461177511
+    },
+    {
+      "side": "right",
+      "lift_frame": 3235,
+      "touchdown_frame": 3415,
+      "air_time_s": 0.36,
+      "swing_clearance_m": 0.03154508231134301,
+      "forward_placement_m": 0.37497881768628316
+    },
+    {
+      "side": "left",
+      "lift_frame": 3442,
+      "touchdown_frame": 3606,
+      "air_time_s": 0.328,
+      "swing_clearance_m": 0.03342262439698035,
+      "forward_placement_m": 0.3745443469262499
+    },
+    {
+      "side": "right",
+      "lift_frame": 3635,
+      "touchdown_frame": 3815,
+      "air_time_s": 0.36,
+      "swing_clearance_m": 0.03158672131572188,
+      "forward_placement_m": 0.37514187510330477
+    },
+    {
+      "side": "left",
+      "lift_frame": 3842,
+      "touchdown_frame": 4006,
+      "air_time_s": 0.328,
+      "swing_clearance_m": 0.03342830888789766,
+      "forward_placement_m": 0.3747018899169852
+    },
+    {
+      "side": "right",
+      "lift_frame": 4035,
+      "touchdown_frame": 4215,
+      "air_time_s": 0.36,
+      "swing_clearance_m": 0.03158732314298551,
+      "forward_placement_m": 0.37508460956830003
+    },
+    {
+      "side": "left",
+      "lift_frame": 4242,
+      "touchdown_frame": 4406,
+      "air_time_s": 0.328,
+      "swing_clearance_m": 0.033434985028392206,
+      "forward_placement_m": 0.3746109052968251
+    },
+    {
+      "side": "right",
+      "lift_frame": 4435,
+      "touchdown_frame": 4615,
+      "air_time_s": 0.36,
+      "swing_clearance_m": 0.03159020586731248,
+      "forward_placement_m": 0.3750935201884924
+    },
+    {
+      "side": "left",
+      "lift_frame": 4642,
+      "touchdown_frame": 4806,
+      "air_time_s": 0.328,
+      "swing_clearance_m": 0.03345276193431196,
+      "forward_placement_m": 0.3747375038641749
+    },
+    {
+      "side": "right",
+      "lift_frame": 4835,
+      "touchdown_frame": 5015,
+      "air_time_s": 0.36,
+      "swing_clearance_m": 0.03158373405201681,
+      "forward_placement_m": 0.3751270880462434
+    },
+    {
+      "side": "left",
+      "lift_frame": 5042,
+      "touchdown_frame": 5206,
+      "air_time_s": 0.328,
+      "swing_clearance_m": 0.033451518695304217,
+      "forward_placement_m": 0.3747367644010734
+    },
+    {
+      "side": "right",
+      "lift_frame": 5235,
+      "touchdown_frame": 5415,
+      "air_time_s": 0.36,
+      "swing_clearance_m": 0.03158374001910219,
+      "forward_placement_m": 0.37509751536048913
+    },
+    {
+      "side": "left",
+      "lift_frame": 5442,
+      "touchdown_frame": 5606,
+      "air_time_s": 0.328,
+      "swing_clearance_m": 0.03345439101851516,
+      "forward_placement_m": 0.3747612510476642
+    },
+    {
+      "side": "right",
+      "lift_frame": 5635,
+      "touchdown_frame": 5815,
+      "air_time_s": 0.36,
+      "swing_clearance_m": 0.031583324722375516,
+      "forward_placement_m": 0.3750563640072675
+    },
+    {
+      "side": "left",
+      "lift_frame": 5842,
+      "touchdown_frame": 6006,
+      "air_time_s": 0.328,
+      "swing_clearance_m": 0.033456499536782314,
+      "forward_placement_m": 0.37475831204148286
+    },
+    {
+      "side": "right",
+      "lift_frame": 6035,
+      "touchdown_frame": 6215,
+      "air_time_s": 0.36,
+      "swing_clearance_m": 0.03158298091006878,
+      "forward_placement_m": 0.37499818621730363
+    },
+    {
+      "side": "left",
+      "lift_frame": 6242,
+      "touchdown_frame": 6406,
+      "air_time_s": 0.328,
+      "swing_clearance_m": 0.03345865929395353,
+      "forward_placement_m": 0.37474044163297526
+    },
+    {
+      "side": "right",
+      "lift_frame": 6435,
+      "touchdown_frame": 6615,
+      "air_time_s": 0.36,
+      "swing_clearance_m": 0.031582704700443165,
+      "forward_placement_m": 0.3749242480759128
+    },
+    {
+      "side": "left",
+      "lift_frame": 6642,
+      "touchdown_frame": 6806,
+      "air_time_s": 0.328,
+      "swing_clearance_m": 0.03346073147690054,
+      "forward_placement_m": 0.3747087481865646
+    },
+    {
+      "side": "right",
+      "lift_frame": 6835,
+      "touchdown_frame": 7015,
+      "air_time_s": 0.36,
+      "swing_clearance_m": 0.0315825750585752,
+      "forward_placement_m": 0.37483593026991774
+    },
+    {
+      "side": "left",
+      "lift_frame": 7042,
+      "touchdown_frame": 7206,
+      "air_time_s": 0.328,
+      "swing_clearance_m": 0.03346298837062622,
+      "forward_placement_m": 0.37466133898088766
+    },
+    {
+      "side": "right",
+      "lift_frame": 7235,
+      "touchdown_frame": 7415,
+      "air_time_s": 0.36,
+      "swing_clearance_m": 0.031582566334489415,
+      "forward_placement_m": 0.3747317260790303
+    }
+  ],
+  "video": "artifacts/fdb_unitree_h1_walk.mp4",
+  "preview": "artifacts/fdb_unitree_h1_walk.png"
+}

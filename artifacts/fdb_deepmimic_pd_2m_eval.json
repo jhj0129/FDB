@@ -1,0 +1,23 @@
+{
+  "checkpoint": "models/local/deepmimic_pd_2m/PPOJax_saved.pkl",
+  "evaluation_steps": 5000,
+  "episodes": 50,
+  "best_episode_steps": 162,
+  "control_frequency_hz": 100.0,
+  "best_survival_s": 1.62,
+  "pelvis_path_length_m": 1.056459452529443,
+  "detected_touchdowns": 1,
+  "longest_alternating_touchdowns": 1,
+  "touchdowns": [
+    {
+      "frame": 117,
+      "side": "right",
+      "lift_frame": 55,
+      "air_time_s": 0.62,
+      "maximum_foot_height_m": 0.20863962938564654,
+      "forward_placement_m": -0.2757303806598253
+    }
+  ],
+  "required_alternating_touchdowns": 10,
+  "success": false
+}

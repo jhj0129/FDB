@@ -1,17 +1,17 @@
 {
   "schema_version": "1.0",
-  "operational_score": 18,
+  "operational_score": 24,
   "operational_target": 36,
-  "target_completion_percent": 50.0,
+  "target_completion_percent": 66.7,
   "human_age_equivalent": null,
   "age_interpretation": "사람의 발달연령으로 환산할 수 없는 좁은 과제형 시스템",
   "capabilities": [
     {
       "name": "시각 형상·fit 판단",
-      "score": 3,
+      "score": 4,
       "target": 4,
-      "evidence": "독립 합성 시험 safe-fit 94.7%, 카메라 정사각형 4/4",
-      "next_gate": "실제 렌더 원·삼각형·직사각형으로 확장"
+      "evidence": "독립 합성 safe-fit 94.7%, 카메라 정사각형·원·삼각형·직사각형 물리 삽입 4/4",
+      "next_gate": "다중 물체 한 장면과 분포 밖 실제 카메라 영상"
     },
     {
       "name": "한국어 목표 연결",
@@ -45,22 +45,22 @@
       "name": "사람 동작 모방",
       "score": 3,
       "target": 4,
-      "evidence": "신경망 생성 10회 교대 착지, 5 stride",
-      "next_gate": "속도·방향·보폭 명령으로 재조합"
+      "evidence": "사람 자료에 가까운 120걸음/분으로 물리 H1 40회 교대 착지, 속도·보행률 재조합",
+      "next_gate": "방향·정지 명령과 전신 관절 궤적 사람 유사도 검증"
     },
     {
       "name": "동역학 보행",
-      "score": 0,
+      "score": 4,
       "target": 4,
-      "evidence": "PD 궤적 추종 최선도 1.212초에 낙상; 10걸음은 kinematic 생성",
-      "next_gate": "접촉·IMU 입력 정책으로 10걸음 물리 rollout"
+      "evidence": "자유 물리 H1 20초·40걸음·20보폭, 20.47m 이동, 350N 외란 뒤 교대 보행 복구",
+      "next_gate": "시각 장애물·회전·정지 후 보행 재개"
     },
     {
       "name": "새 상황 전이",
-      "score": 1,
+      "score": 2,
       "target": 4,
-      "evidence": "각 과제의 제한된 변형만 검증",
-      "next_gate": "보지 못한 배치·물체·마찰에서 사전 고정 시험"
+      "evidence": "보행률·속도 명령 grid와 횡외란 0–500N 경계를 사전 고정 판정으로 검증",
+      "next_gate": "보지 못한 지형·배치·물체에서 사전 고정 시험"
     },
     {
       "name": "지속 자율 학습",
@@ -71,8 +71,8 @@
     }
   ],
   "selected_next_gate": {
-    "capability": "동역학 보행",
-    "task": "접촉·IMU 입력 정책으로 10걸음 물리 rollout"
+    "capability": "시각 형상·fit 판단과 보행 통합",
+    "task": "다중 형상 삽입과 시각 목표·장애물 기반 방향 보행"
   },
   "completion_rule": "모든 항목 4점이며 보지 못한 시험 세트에서 안전 기준을 통과해야 목표 달성"
 }

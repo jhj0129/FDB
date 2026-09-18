@@ -20,3 +20,11 @@ def test_camera_neural_policy_generalizes_across_unseen_square_rotations():
             hole_yaw=math.radians(hole_degrees),
         )
         assert result.success, (object_degrees, hole_degrees, result)
+
+
+def test_camera_neural_policy_executes_all_four_known_physical_shapes():
+    for shape in ("square", "circle", "triangle", "rectangle"):
+        result, _, _ = run_insertion(shape=shape)
+        assert result.perceived_object == shape
+        assert result.perceived_hole == shape
+        assert result.success, (shape, result)

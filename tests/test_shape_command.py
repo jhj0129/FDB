@@ -10,6 +10,18 @@ def test_korean_square_into_square_command_is_understood_and_executed():
     assert result.success
 
 
+def test_korean_commands_execute_circle_triangle_and_rectangle():
+    for command, expected in (
+        ("동그라미를 원형 칸에 넣어", "circle"),
+        ("세모를 삼각형 칸에 끼워", "triangle"),
+        ("직사각형을 직사각형 구멍에 삽입해", "rectangle"),
+    ):
+        goal, result, _, _ = execute_shape_command(command)
+        assert goal.object_shape == expected
+        assert result.perceived_object == expected
+        assert result.success
+
+
 def test_ambiguous_or_incomplete_commands_are_rejected():
     with pytest.raises(ValueError):
         interpret_shape_command("네모를 옮겨")

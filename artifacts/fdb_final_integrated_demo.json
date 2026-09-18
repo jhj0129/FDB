@@ -1,0 +1,22 @@
+{
+  "title": "FDB 네 형상 조작과 사람 보행률 동역학 보행 최종 통합 시연",
+  "segments": [
+    {
+      "name": "카메라 기반 네 형상 물리 삽입",
+      "source": "artifacts/fdb_multi_shape_insertion.mp4",
+      "successes": 4,
+      "total": 4,
+      "robot_table_contact_steps": 0
+    },
+    {
+      "name": "실제 접촉 기반 H1 동역학 보행",
+      "source": "artifacts/fdb_human_cadence_h1_walk.mp4",
+      "duration_s": 20.0,
+      "alternating_steps": 40,
+      "cadence_steps_per_min": 120.01,
+      "net_pelvis_displacement_m": 20.47,
+      "remained_upright": true
+    }
+  ],
+  "video": "artifacts/fdb_final_integrated_demo.mp4"
+}

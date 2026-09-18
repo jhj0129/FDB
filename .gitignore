@@ -17,5 +17,7 @@ artifacts/fdb_dynamic_gait_baseline.mp4
 artifacts/fdb_dynamic_gait_baseline.png
 artifacts/fdb_deepmimic_1m.mp4
 artifacts/fdb_deepmimic_1m.png
+artifacts/fdb_unitree_h1_walk.mp4
+artifacts/fdb_unitree_h1_walk.png
 LocoMuJoCo_recordings/
 models/local/

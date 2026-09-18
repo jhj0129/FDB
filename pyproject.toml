@@ -62,6 +62,10 @@ fdb-gait-skill-train = "fdb.challenge.gait_skill_learning:main"
 fdb-cognitive-profile = "fdb.challenge.cognitive_curriculum:main"
 fdb-dynamic-gait-baseline = "fdb.challenge.dynamic_gait_baseline:main"
 fdb-deepmimic-train = "fdb.challenge.deepmimic_training:main"
+fdb-deepmimic-evaluate = "fdb.challenge.deepmimic_evaluation:main"
+fdb-unitree-h1-walk = "fdb.challenge.unitree_h1_walk:main"
+fdb-unitree-h1-robustness = "fdb.challenge.unitree_h1_robustness:main"
+fdb-multi-shape-insertion = "fdb.challenge.multi_shape_insertion:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]

@@ -45,7 +45,9 @@ def interpret_shape_command(command: str) -> ShapeInsertionGoal:
 
 def execute_shape_command(command: str):
     goal = interpret_shape_command(command)
-    perception, _, _, _ = perceive_current_scene()
+    if goal.object_shape != goal.receptacle_shape:
+        raise RuntimeError("명령 물체와 수용구 형상이 달라 안전하게 삽입할 수 없습니다.")
+    perception, _, _, _ = perceive_current_scene(shape=goal.object_shape)
     if perception["object_shape"] != goal.object_shape:
         raise RuntimeError(
             f"명령 물체는 {goal.object_shape}이지만 카메라는 {perception['object_shape']}로 인식했습니다."
@@ -56,7 +58,7 @@ def execute_shape_command(command: str):
         )
     if not perception["fits"]:
         raise RuntimeError("신경망과 형상 일치 안전 게이트가 삽입 불가로 판단했습니다.")
-    result, model, data = run_insertion()
+    result, model, data = run_insertion(shape=goal.object_shape)
     return goal, result, model, data
 
 

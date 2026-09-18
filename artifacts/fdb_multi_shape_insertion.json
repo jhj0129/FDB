@@ -1,0 +1,87 @@
+{
+  "task": "카메라 형상 판단과 네 종류 물체-수용구 정렬 삽입",
+  "shapes": [
+    "square",
+    "circle",
+    "triangle",
+    "rectangle"
+  ],
+  "successes": 4,
+  "total": 4,
+  "robot_table_contact_steps": 0,
+  "trials": [
+    {
+      "shape": "square",
+      "command": "네모를 네모칸에 넣어",
+      "result": {
+        "perceived_object": "square",
+        "perceived_hole": "square",
+        "fit_decision": true,
+        "planned_rotation_deg": -34.19061746324982,
+        "final_xy_error_m": 0.0075525719517775345,
+        "final_height_error_m": 0.0006298030920656172,
+        "final_yaw_error_deg": 0.5731288724199455,
+        "peak_peg_height_m": 0.47320748177642513,
+        "frame_contact_steps": 1527,
+        "robot_table_contact_steps": 0,
+        "released": true,
+        "success": true
+      }
+    },
+    {
+      "shape": "circle",
+      "command": "동그라미를 원형 칸에 넣어",
+      "result": {
+        "perceived_object": "circle",
+        "perceived_hole": "circle",
+        "fit_decision": true,
+        "planned_rotation_deg": 0.0,
+        "final_xy_error_m": 0.0022935935168633486,
+        "final_height_error_m": 0.0004281526674708158,
+        "final_yaw_error_deg": 0.0,
+        "peak_peg_height_m": 0.4709137363520927,
+        "frame_contact_steps": 1508,
+        "robot_table_contact_steps": 0,
+        "released": true,
+        "success": true
+      }
+    },
+    {
+      "shape": "triangle",
+      "command": "세모를 삼각형 칸에 끼워",
+      "result": {
+        "perceived_object": "triangle",
+        "perceived_hole": "triangle",
+        "fit_decision": true,
+        "planned_rotation_deg": -36.87716304313929,
+        "final_xy_error_m": 0.003815736721348381,
+        "final_height_error_m": 0.0007474387500821522,
+        "final_yaw_error_deg": 1.6106969593092144,
+        "peak_peg_height_m": 0.47161612421279325,
+        "frame_contact_steps": 1199,
+        "robot_table_contact_steps": 0,
+        "released": true,
+        "success": true
+      }
+    },
+    {
+      "shape": "rectangle",
+      "command": "직사각형을 직사각형 구멍에 삽입해",
+      "result": {
+        "perceived_object": "rectangle",
+        "perceived_hole": "rectangle",
+        "fit_decision": true,
+        "planned_rotation_deg": -42.36508247173894,
+        "final_xy_error_m": 0.007134139168404618,
+        "final_height_error_m": 0.0006337196715038851,
+        "final_yaw_error_deg": 0.61523408912008,
+        "peak_peg_height_m": 0.47358446984234415,
+        "frame_contact_steps": 1537,
+        "robot_table_contact_steps": 0,
+        "released": true,
+        "success": true
+      }
+    }
+  ],
+  "video": "artifacts/fdb_multi_shape_insertion.mp4"
+}

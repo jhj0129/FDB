@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "stage": "visual_recovery_and_neural_gait_skill",
+  "stage": "dynamic_contact_gait_and_visual_generalization",
   "goal": "카메라에서 물체와 수용구의 형상·크기·방향·삽입 가능성을 이해해 명령대로 조작하고, 최소 10걸음 연속 교대 보행을 학습 정책으로 재현한다.",
   "status": "in_progress",
   "active_hypotheses": [
@@ -21,7 +21,9 @@
     "Which CMU or LAFAN1 gait clip gives the cleanest heel-strike and toe-off labels after retargeting?",
     "Can the same reference gait be retargeted to H1, G1, and Cassie without morphology-specific reward tuning?",
     "How much real-camera domain randomization is needed before physical hardware transfer?",
-    "Can a learned residual policy reproduce all ten alternating steps under physics instead of kinematic playback?"
+    "Can the stable H1 policy turn, stop, and step around visually detected obstacles while preserving contact alternation?",
+    "Can FDB distill the open-source H1 balance skill into its own human-motion imitation policy?",
+    "Can the visual shape-fit policy generalize from squares to circles, triangles, and rectangles in physical insertion?"
   ],
-  "next_gate": "100만 step PPO의 1.39초 생존·0 touchdown을 넘어, 접촉 전환·몸통 자세 보상과 초기 상태 커리큘럼을 추가해 체크포인트를 수천만 step까지 재개한다. 조작은 원·삼각형·직사각형 수용구로 확장한다."
+  "next_gate": "H1의 20초·40걸음 동역학 보행을 시각 목표 방향과 장애물 회피에 연결하고, 조작은 원·삼각형·직사각형 수용구 및 순차 명령으로 확장한다. 자체 DeepMimic은 안정 정책 증류를 초기값으로 재개한다."
 }

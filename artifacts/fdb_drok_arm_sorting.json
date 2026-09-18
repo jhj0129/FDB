@@ -1,0 +1,56 @@
+{
+  "task": "DROK ARM 신경망 다중 물체 분류·배치",
+  "classification_method": "five_member_mlp_ensemble",
+  "classification_accuracy": 1.0,
+  "sorting_success_count": 3,
+  "sorting_success_rate": 1.0,
+  "robot_table_contact_steps": 0,
+  "hard_safety_pass": true,
+  "results": [
+    {
+      "object_id": "red_cube",
+      "predicted_class": "red_small",
+      "expected_class": "red_small",
+      "classification_confidence": 0.9998577237129211,
+      "classification_correct": true,
+      "final_xy_error_m": 0.0015616132353134683,
+      "final_z_error_m": 0.0005366624141355247,
+      "lifted_m": 0.17488104040067287,
+      "gripper_contact_steps": 4217,
+      "released": true,
+      "success": true
+    },
+    {
+      "object_id": "green_wide",
+      "predicted_class": "green_wide",
+      "expected_class": "green_wide",
+      "classification_confidence": 0.9997979402542114,
+      "classification_correct": true,
+      "final_xy_error_m": 0.0015942750495050895,
+      "final_z_error_m": 0.0005366624141356358,
+      "lifted_m": 0.17461581427416806,
+      "gripper_contact_steps": 4206,
+      "released": true,
+      "success": true
+    },
+    {
+      "object_id": "blue_tall",
+      "predicted_class": "blue_tall",
+      "expected_class": "blue_tall",
+      "classification_confidence": 0.9998030662536621,
+      "classification_correct": true,
+      "final_xy_error_m": 0.0005410819433067794,
+      "final_z_error_m": 0.0005366624141353027,
+      "lifted_m": 0.17297494240861988,
+      "gripper_contact_steps": 4192,
+      "released": true,
+      "success": true
+    }
+  ],
+  "video": "artifacts/fdb_drok_arm_sorting.mp4",
+  "fps": 30,
+  "resolution": [
+    960,
+    540
+  ]
+}

@@ -127,6 +127,21 @@ python -m fdb.v4.cli
 MUJOCO_GL=egl python -m fdb.v2.render_final
 ```
 
+## DROK ARM 적용
+
+외부 `DROK_ARM_Sim_only` 저장소가 `/home/hgui/DROK_ARM_Sim_only`에 있을 때,
+원본 6축 팔과 2축 그리퍼 구조로 단일 pick-place와 신경망 기반 세 물체 분류를
+재현할 수 있다.
+
+```bash
+python -m fdb.challenge.drok_arm_tasks --no-video
+MUJOCO_GL=egl python -m fdb.challenge.drok_arm_sorting
+```
+
+검증된 분류 실험은 세 물체 모두 성공했고 전체 로봇-작업대 접촉은 0 step이었다.
+영상은 `artifacts/fdb_drok_arm_sorting.mp4`, 구조 분석과 모델 교정 근거는
+`DROK_ARM_ANALYSIS_KO.md`에 기록되어 있다.
+
 Each successful CLI run creates an `episodes/episode_*.json` file. Episode records
 include observations, candidate plans, predicted scores, the selected plan, execution
 result, reflection, confidence, and unresolved questions. Generated episodes are

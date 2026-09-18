@@ -1,0 +1,35 @@
+{
+  "source": "https://github.com/jhj0129/DROK_ARM_Sim_only",
+  "structure": {
+    "arm_joints": 6,
+    "gripper_joints": 2,
+    "total_mass_kg": 5.0395910000000015,
+    "tcp_offset_m": 0.05,
+    "declared_finger_travel_m": 0.05,
+    "open_finger_center_distance_m": 0.15599999999999997,
+    "declared_closed_finger_center_distance_m": 0.05599999999999997,
+    "base_z_documented_m": 1.0,
+    "base_z_model_m": 0.0,
+    "home_floor_penetration_m": 0.0011525365572840618,
+    "finger_self_collision_position_m": 0.0035
+  },
+  "runtime_repairs": [
+    "ARM_BASE_LINK world Z를 문서 계약값 1.0m로 교정",
+    "선언된 stroke 전에 발생하는 손가락끼리의 false mesh contact 제외",
+    "시각 메시 대신 URDF 의도와 같은 단순 손가락 접촉 패드 적용",
+    "테이블과 물체 접촉 강성을 실제 고체에 가깝게 교정"
+  ],
+  "result": {
+    "final_xy_error_m": 0.0057495272770435755,
+    "final_height_error_m": 0.0005366624141355247,
+    "peak_object_height_m": 1.1422821962003293,
+    "lift_height_m": 0.16228219620032935,
+    "robot_table_contact_steps": 0,
+    "object_gripper_contact_steps": 4764,
+    "final_left_finger_m": 8.065031852189527e-05,
+    "final_right_finger_m": 4.165742377634373e-05,
+    "released": true,
+    "success": true
+  },
+  "video": null
+}

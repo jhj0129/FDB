@@ -6,8 +6,8 @@
 ## 결론
 
 중앙 Runtime의 순수 Python 경로는 ARM64에 옮길 준비가 됐다. 전체 저장소는 아직
-준비 완료가 아니다. 가장 큰 차단 요소는 JAX/Flax 학습 경로, 두 개의 사용자 홈 절대
-경로, 외부 H1 정책 환경, ARM64용 MuJoCo/OpenCV/ffmpeg 패키지 검증 부재다.
+준비 완료가 아니다. 가장 큰 차단 요소는 JAX/Flax 학습 경로, 외부 H1 정책 환경,
+ARM64용 MuJoCo/OpenCV/ffmpeg 패키지 검증 부재다.
 
 ## 조사 결과
 
@@ -24,9 +24,8 @@
   `imageio-ffmpeg`를 찾는 fallback이 있다.
 - ROS2: 프로젝트 코드가 ROS2에 직접 결합되지는 않았다. 현재 PC의 ROS Jazzy pytest
   plugin 자동 로드가 `lark` 누락으로 시험을 방해하므로 CI는 plugin 자동 로드를 끈다.
-- 절대 경로: `unitree_h1_walk.py`의 `/home/hgui/.cache/fdb/unitree_rl_gym`,
-  `drok_arm_tasks.py`의 `/home/hgui/DROK_ARM_Sim_only` 두 곳이 남아 있다. config 또는
-  환경변수로 바꿔야 한다.
+- 외부 경로: 사용자명이 박힌 절대 경로를 제거했다. H1은 `FDB_UNITREE_RL_GYM`, DROK은
+  `FDB_DROK_ROOT`로 덮어쓸 수 있고 기본값은 현재 사용자 홈 아래의 기존 위치다.
 - 실제 카메라/로봇: 현재 Runtime에는 장치 드라이버가 없고 실제 안전 승인이 없다.
 - 병렬 처리: 중앙 Runtime에는 multiprocessing 의존성이 없다. MemoryStore는 단일
   프로세스 기준이며 Jetson 서비스화 전에 파일 잠금 또는 DB가 필요하다.
@@ -41,7 +40,7 @@ artifact 디렉터리에 둔다. 기존 증거는 삭제하지 않았다.
 ## 이식 순서
 
 1. JetPack/Python/Torch/MuJoCo 호환 행렬 고정
-2. 절대 경로를 config 및 환경변수로 교체
+2. 외부 H1 및 DROK 저장소를 환경변수로 지정
 3. 순수 Python Runtime fast test 실행
 4. MuJoCo headless와 portable NumPy 모델 실행
 5. 카메라 OpenCV 입력 연결 및 지연 측정

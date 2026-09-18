@@ -3,6 +3,7 @@ from __future__ import annotations
 import argparse
 import json
 import math
+import os
 import subprocess
 from dataclasses import asdict, dataclass
 from pathlib import Path
@@ -12,7 +13,9 @@ import numpy as np
 from fdb.v2.render_final import _ffmpeg_executable
 
 
-DEFAULT_DROK_ROOT = Path("/home/hgui/DROK_ARM_Sim_only")
+DEFAULT_DROK_ROOT = Path(
+    os.environ.get("FDB_DROK_ROOT", Path.home() / "DROK_ARM_Sim_only")
+).expanduser()
 HOME_Q = np.asarray([
     -0.021575836809374353,
     1.539294212305629,

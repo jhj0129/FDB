@@ -3,6 +3,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import os
 import subprocess
 from dataclasses import asdict
 from pathlib import Path
@@ -13,7 +14,9 @@ from fdb.challenge.contact_gait import evaluate_contact_gait
 from fdb.v2.render_final import _ffmpeg_executable
 
 
-DEFAULT_UPSTREAM = Path("/home/hgui/.cache/fdb/unitree_rl_gym")
+DEFAULT_UPSTREAM = Path(
+    os.environ.get("FDB_UNITREE_RL_GYM", Path.home() / ".cache" / "fdb" / "unitree_rl_gym")
+).expanduser()
 
 
 def gravity_orientation(quaternion: np.ndarray) -> np.ndarray:

@@ -18,5 +18,6 @@
       "remained_upright": true
     }
   ],
-  "video": "artifacts/fdb_final_integrated_demo.mp4"
+  "video": "artifacts/fdb_final_integrated_demo.mp4",
+  "sha256": "3234934ccfd81348e96f015cdbd969c795f31816f5fe5d492d6b99bf69dd0132"
 }

@@ -25,5 +25,5 @@
     "Can FDB distill the open-source H1 balance skill into its own human-motion imitation policy?",
     "Can the visual shape-fit policy generalize from squares to circles, triangles, and rectangles in physical insertion?"
   ],
-  "next_gate": "H1의 20초·40걸음 동역학 보행을 시각 목표 방향과 장애물 회피에 연결하고, 조작은 원·삼각형·직사각형 수용구 및 순차 명령으로 확장한다. 자체 DeepMimic은 안정 정책 증류를 초기값으로 재개한다."
+  "next_gate": "H1의 20초·40걸음 동역학 보행을 시각 목표 방향과 장애물 회피에 연결한다. 조작은 한 지속 장면의 여러 물체·수용구를 상태 기억과 조건부 재계획으로 처리한다. 자체 DeepMimic은 안정 정책 증류를 초기값으로 재개한다."
 }

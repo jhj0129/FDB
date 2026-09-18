@@ -1,8 +1,8 @@
 {
   "schema_version": "1.0",
-  "operational_score": 24,
+  "operational_score": 25,
   "operational_target": 36,
-  "target_completion_percent": 66.7,
+  "target_completion_percent": 69.4,
   "human_age_equivalent": null,
   "age_interpretation": "사람의 발달연령으로 환산할 수 없는 좁은 과제형 시스템",
   "capabilities": [
@@ -15,10 +15,10 @@
     },
     {
       "name": "한국어 목표 연결",
-      "score": 2,
+      "score": 3,
       "target": 4,
-      "evidence": "정해진 형상 별칭과 삽입 동사, 불완전 명령 거부",
-      "next_gate": "관계·순서·수식어를 포함한 조합 명령"
+      "evidence": "형상 별칭·삽입 동사와 먼저→다음→그리고 3단계 계획, 불완전 후속 절 사전 거부",
+      "next_gate": "한 지속 장면의 대상 관계·상태 기억·조건부 재계획"
     },
     {
       "name": "접촉 안전 조작",

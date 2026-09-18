@@ -1,0 +1,9 @@
+{
+  "command": "먼저 세모를 삼각형 칸에 넣고 다음으로 원을 원형 칸에 넣어 그리고 직사각형을 직사각형 구멍에 삽입해",
+  "ordered_shapes": ["triangle", "circle", "rectangle"],
+  "completed": 3,
+  "total": 3,
+  "success": true,
+  "robot_table_contact_steps": 0,
+  "execution_model": "각 절을 먼저 검증한 뒤 fresh-state 물리 장면에서 순서대로 실행"
+}

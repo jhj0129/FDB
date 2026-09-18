@@ -66,6 +66,7 @@ fdb-deepmimic-evaluate = "fdb.challenge.deepmimic_evaluation:main"
 fdb-unitree-h1-walk = "fdb.challenge.unitree_h1_walk:main"
 fdb-unitree-h1-robustness = "fdb.challenge.unitree_h1_robustness:main"
 fdb-multi-shape-insertion = "fdb.challenge.multi_shape_insertion:main"
+fdb-shape-sequence = "fdb.challenge.shape_sequence:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]

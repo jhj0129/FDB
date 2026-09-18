@@ -85,6 +85,7 @@ pitch-발목 되먹임으로 4초 직립했지만 단일 지지 0%, 발 수직 �
 - `artifacts/fdb_unitree_h1_robustness.json` 0–500N 횡외란 복구 경계
 - `artifacts/fdb_multi_shape_insertion.mp4` 네 형상 카메라 판단·Panda 정렬 삽입 4/4
 - `artifacts/fdb_final_integrated_demo.mp4` 네 형상 조작과 동역학 보행 최종 통합 영상
+- `artifacts/fdb_shape_sequence.json` 한국어 3단계 형상 삽입 순서 계획 3/3
 - `models/v6/shape_fit_cnn.msgpack` 형상·fit·회전을 예측하는 two-tower CNN
 - `models/v5/push_dynamics_ensemble.pt` PyTorch 학습 체크포인트
 - `models/v5/push_dynamics_ensemble.npz` MuJoCo 환경용 portable 추론 모델
@@ -129,6 +130,7 @@ MUJOCO_GL=egl .venv/bin/python -m fdb.challenge.shape_insertion
 PYTHONPATH=src ~/venvs/robot_ai/bin/python -m fdb.challenge.unitree_h1_walk --duration 20 --forward 1.3 --phase-period 1.0
 PYTHONPATH=src ~/venvs/robot_ai/bin/python -m fdb.challenge.unitree_h1_robustness
 .venv/bin/python -m fdb.challenge.multi_shape_insertion
+.venv/bin/python -m fdb.challenge.shape_sequence "먼저 세모를 삼각형 칸에 넣고 다음으로 원을 원형 칸에 넣어"
 ```
 
 ## 실제 접촉 기반 동역학 보행
@@ -147,6 +149,10 @@ MuJoCo 자유 물리에서 20초 동안 좌우 40걸음과 20.47m 이동을 완�
 연결했다. 4/4 삽입에 성공했고 최종 XY 오차는 2.29–7.55mm, 방향 오차는 최대 1.61도,
 비의도 로봇-테이블 접촉은 0회였다. 삼각형의 첫 꼭짓점 파지 실패는 평평한 변 파지로
 복구했으며, 형상 불일치 한국어 명령은 실행 전에 거부한다.
+
+한국어 연결어로 묶인 세모→원→직사각형 3단계 명령도 실행 전에 전체 계획을 검증한 뒤
+순서대로 3/3 완료했다. 현재 단계별 물리 장면은 fresh-state이며, 다음 목표는 한 장면의
+여러 물체를 완료 상태를 기억하면서 처리하는 것이다.
 
 현재 결과는 시뮬레이션 연구 증거이며 실제 로봇 실행 승인이 아니다. 실제 적용 전에는
 센서 잡음, 지연, calibration, 비상 정지, 힘 제한과 하드웨어별 안전 검증이 필요하다.

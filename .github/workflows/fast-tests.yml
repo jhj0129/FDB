@@ -22,3 +22,4 @@ jobs:
           tests/test_cognitive_curriculum.py
           tests/test_memory.py
           tests/test_core_runtime.py
+          tests/test_atomic_skills.py

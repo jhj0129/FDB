@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "FDB state-based goal",
+  "type": "object",
+  "required": ["task", "object_id", "target_id", "success_conditions"],
+  "properties": {
+    "task": {"type": "string", "minLength": 1},
+    "object_id": {"type": "string", "minLength": 1},
+    "target_id": {"type": "string", "minLength": 1},
+    "success_conditions": {
+      "type": "object",
+      "required": ["inside", "released"],
+      "properties": {"inside": {"type": "boolean"}, "released": {"type": "boolean"}},
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": false
+}

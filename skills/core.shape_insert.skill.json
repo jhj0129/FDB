@@ -1,0 +1,19 @@
+{
+  "schema_version": "1.0",
+  "skill_id": "core.shape_insert",
+  "version": "0.1.0",
+  "status": "candidate",
+  "description": "지속 장면 관찰과 상태 기반 Goal에서 형상 삽입 후보를 만들고 정렬 실패 후 대안을 재생성하는 Core 어댑터",
+  "prerequisites": ["장면에 안정된 object/target identity 존재", "형상 일치", "결정론 안전 게이트"],
+  "inputs": {"observation": "전체 지속 장면", "goal": "object_to_target 상태 조건", "failure": "선택적 failure taxonomy"},
+  "outputs": {"candidates": "회전 bias를 포함한 CandidateAction 목록"},
+  "procedure": ["Goal entity grounding", "현재 완료 상태 확인", "삽입 후보 생성", "정렬 실패 시 대안 회전 생성"],
+  "acceptance_criteria": [
+    {"metric": "persistent_scene_goals", "operator": "equals", "threshold": 3},
+    {"metric": "recovery_replans", "operator": "greater_than_or_equal", "threshold": 1}
+  ],
+  "known_limits": ["현재 Core 지속 장면은 결정론적이며 MuJoCo 물리 장면이 아님", "실제 로봇 승인 없음"],
+  "evidence": ["experiments/0040_fdb_runtime_persistent_scene.md", "experiments/0040_runtime_e2e.results.json", "tests/test_core_runtime.py"],
+  "verification": {"environment": "pure Python deterministic persistent scene", "success_count": 3, "failure_count": 1, "last_verified_at": "2026-09-19T01:31:52+09:00"},
+  "deprecation": null
+}

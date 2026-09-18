@@ -1,0 +1,36 @@
+{
+  "schema_version": "1.0",
+  "comparison_warning": "Legacy is MuJoCo physical evidence; Runtime v1 is deterministic decision-semantics evidence. Latency and position error are not directly comparable.",
+  "legacy_direct_execution": {
+    "source": "artifacts/fdb_multi_shape_insertion.json",
+    "environment": "four independent fresh-state Panda MuJoCo scenes",
+    "task_success": "4/4",
+    "number_of_actions": null,
+    "number_of_replans": 0,
+    "collisions": null,
+    "robot_table_contact_steps": 0,
+    "safety_rejections": null,
+    "maximum_final_position_error_m": 0.0075525719517775345,
+    "task_completion_time_s": null,
+    "world_model_calls": null,
+    "physics_fallback_calls": null,
+    "memory_retrieval_count": 0,
+    "persistent_scene": false
+  },
+  "fdb_runtime_v1": {
+    "source": "experiments/0040_runtime_e2e.results.json",
+    "environment": "one deterministic persistent scene",
+    "task_success": "3/3",
+    "number_of_actions": 4,
+    "number_of_replans": 1,
+    "collisions": 0,
+    "robot_table_contact_steps": null,
+    "safety_rejections": 0,
+    "maximum_final_position_error_m": null,
+    "task_completion_time_s": 0.005552147000343306,
+    "world_model_calls": 8,
+    "physics_fallback_calls": 0,
+    "memory_retrieval_count": 6,
+    "persistent_scene": true
+  }
+}

@@ -18,6 +18,8 @@ FDB는 초파리 connectome에서 영감을 받은 검증 중심 의사결정 �
 - 사람 보행 원리 기반 휴머노이드 보행: G1과 OP3 4초 완주, T1과 Berkeley 실패 보존
 - v6 카메라 CNN: 물체·수용구 형상, 삽입 가능성, 필요한 회전 추론
 - `네모를 네모칸에 넣어` 한국어 명령에서 Panda 정렬·삽입까지 통합
+- LLM/VLA 없이 Goal→관찰→기억→후보→예측→안전→실행→평가→재계획을 잇는 `FDBRuntime`
+- 네 형상이 동시에 존재하는 지속 장면에서 순차 Goal 3/3 및 정렬 실패 재계획 1회
 
 > 판정 정정: 과거의 4초·10mm 보행 기준은 폐기했다. 최신 보행 합격선은 양발이 실제로
 > 번갈아 이륙해 진행 방향 앞에 착지하는 동작이 최소 10걸음 이어지는 것이다. 과거
@@ -131,7 +133,12 @@ PYTHONPATH=src ~/venvs/robot_ai/bin/python -m fdb.challenge.unitree_h1_walk --du
 PYTHONPATH=src ~/venvs/robot_ai/bin/python -m fdb.challenge.unitree_h1_robustness
 .venv/bin/python -m fdb.challenge.multi_shape_insertion
 .venv/bin/python -m fdb.challenge.shape_sequence "먼저 세모를 삼각형 칸에 넣고 다음으로 원을 원형 칸에 넣어"
+.venv/bin/python -m fdb.core.demo
 ```
+
+`fdb.core.demo`는 중앙 의사결정 구조를 빠르게 검사하는 결정론적 지속 장면이다. 기존
+Panda MuJoCo 4/4 물리 삽입 증거를 대체하지 않으며, 한 물리 model에 네 물체를 유지하는
+어댑터는 아직 남아 있다.
 
 ## 실제 접촉 기반 동역학 보행
 

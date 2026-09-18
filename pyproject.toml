@@ -69,6 +69,7 @@ fdb-multi-shape-insertion = "fdb.challenge.multi_shape_insertion:main"
 fdb-shape-sequence = "fdb.challenge.shape_sequence:main"
 fdb-drok-arm = "fdb.challenge.drok_arm_tasks:main"
 fdb-drok-arm-sort = "fdb.challenge.drok_arm_sorting:main"
+fdb-runtime-demo = "fdb.core.demo:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
@@ -79,3 +80,7 @@ where = ["src"]
 [tool.pytest.ini_options]
 pythonpath = ["src"]
 testpaths = ["tests"]
+markers = [
+  "integration: MuJoCo, trained-model, or multi-component integration tests",
+  "heavy: long-running training or simulation tests",
+]

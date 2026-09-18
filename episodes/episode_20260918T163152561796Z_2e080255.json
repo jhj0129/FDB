@@ -1,0 +1,324 @@
+{
+  "schema_version": "1.0",
+  "episode_id": "episode_20260918T163152561796Z_2e080255",
+  "created_at": "2026-09-18T16:31:52.561796+00:00",
+  "stage": "fdb_runtime_v1",
+  "task": "object_to_target",
+  "environment": {
+    "scene_id": "persistent-shape-scene-v1",
+    "sequence": 3
+  },
+  "observation": {
+    "scene_id": "persistent-shape-scene-v1",
+    "objects": {
+      "square_object": {
+        "shape": "square",
+        "pose": [
+          0.4,
+          -0.135,
+          0.33
+        ],
+        "inside_target": null,
+        "released": true,
+        "completed": false,
+        "initial_bias_deg": 0.0
+      },
+      "circle_object": {
+        "shape": "circle",
+        "pose": [
+          0.4,
+          -0.04500000000000001,
+          0.33
+        ],
+        "inside_target": "circle_receptacle",
+        "released": true,
+        "completed": true,
+        "initial_bias_deg": 0.0
+      },
+      "triangle_object": {
+        "shape": "triangle",
+        "pose": [
+          0.4,
+          0.044999999999999984,
+          0.33
+        ],
+        "inside_target": "triangle_receptacle",
+        "released": true,
+        "completed": true,
+        "initial_bias_deg": 0.0
+      },
+      "rectangle_object": {
+        "shape": "rectangle",
+        "pose": [
+          0.4,
+          0.135,
+          0.33
+        ],
+        "inside_target": null,
+        "released": true,
+        "completed": false,
+        "initial_bias_deg": 0.0
+      }
+    },
+    "targets": {
+      "square_receptacle": {
+        "shape": "square",
+        "pose": [
+          0.62,
+          -0.135,
+          0.29
+        ]
+      },
+      "circle_receptacle": {
+        "shape": "circle",
+        "pose": [
+          0.62,
+          -0.04500000000000001,
+          0.29
+        ]
+      },
+      "triangle_receptacle": {
+        "shape": "triangle",
+        "pose": [
+          0.62,
+          0.044999999999999984,
+          0.29
+        ]
+      },
+      "rectangle_receptacle": {
+        "shape": "rectangle",
+        "pose": [
+          0.62,
+          0.135,
+          0.29
+        ]
+      }
+    },
+    "grasped_object": null,
+    "sequence": 3
+  },
+  "goal": {
+    "task": "object_to_target",
+    "object_id": "rectangle_object",
+    "target_id": "rectangle_receptacle",
+    "success_conditions": {
+      "inside": true,
+      "released": true
+    }
+  },
+  "retrieved_memories": [
+    "episode_20260918T163152557477Z_e5589ffc",
+    "episode_20260918T163152558764Z_4b8f9452",
+    "episode_20260918T163152560452Z_db68535e"
+  ],
+  "candidate_plans": [
+    {
+      "action_id": "insert:rectangle_object:+0.0",
+      "skill_name": "shape_insert",
+      "parameters": {
+        "object_id": "rectangle_object",
+        "target_id": "rectangle_receptacle",
+        "clearance_m": 0.1,
+        "rotation_bias_deg": 0.0
+      },
+      "confidence": 0.95
+    }
+  ],
+  "predictions": [
+    {
+      "candidate": {
+        "action_id": "insert:rectangle_object:+0.0",
+        "skill_name": "shape_insert",
+        "parameters": {
+          "object_id": "rectangle_object",
+          "target_id": "rectangle_receptacle",
+          "clearance_m": 0.1,
+          "rotation_bias_deg": 0.0
+        },
+        "confidence": 0.95
+      },
+      "predicted_success": 1.0,
+      "predicted_collision": false,
+      "uncertainty": 0.0,
+      "source": "neural",
+      "predicted_next_state": {
+        "inside": true,
+        "released": true
+      }
+    }
+  ],
+  "decision": {
+    "selected_plan_id": "insert:rectangle_object:+0.0",
+    "reason": "안전 게이트를 통과한 후보 중 예측 성공률 최대",
+    "predicted_evaluation": {
+      "candidate": {
+        "action_id": "insert:rectangle_object:+0.0",
+        "skill_name": "shape_insert",
+        "parameters": {
+          "object_id": "rectangle_object",
+          "target_id": "rectangle_receptacle",
+          "clearance_m": 0.1,
+          "rotation_bias_deg": 0.0
+        },
+        "confidence": 0.95
+      },
+      "predicted_success": 1.0,
+      "predicted_collision": false,
+      "uncertainty": 0.0,
+      "source": "neural",
+      "predicted_next_state": {
+        "inside": true,
+        "released": true
+      }
+    },
+    "selected_action": {
+      "action_id": "insert:rectangle_object:+0.0",
+      "skill_name": "shape_insert",
+      "parameters": {
+        "object_id": "rectangle_object",
+        "target_id": "rectangle_receptacle",
+        "clearance_m": 0.1,
+        "rotation_bias_deg": 0.0
+      },
+      "confidence": 0.95
+    }
+  },
+  "safety_result": [
+    {
+      "allowed": true,
+      "reasons": []
+    }
+  ],
+  "execution": {
+    "success": true,
+    "metrics": {
+      "final_yaw_error_deg": 0.0,
+      "frame_contact_steps": 0,
+      "robot_table_contact_steps": 0,
+      "collision": false
+    },
+    "failure_type": null,
+    "message": ""
+  },
+  "result": {
+    "final_state": {
+      "scene_id": "persistent-shape-scene-v1",
+      "objects": {
+        "square_object": {
+          "shape": "square",
+          "pose": [
+            0.4,
+            -0.135,
+            0.33
+          ],
+          "inside_target": null,
+          "released": true,
+          "completed": false,
+          "initial_bias_deg": 0.0
+        },
+        "circle_object": {
+          "shape": "circle",
+          "pose": [
+            0.4,
+            -0.04500000000000001,
+            0.33
+          ],
+          "inside_target": "circle_receptacle",
+          "released": true,
+          "completed": true,
+          "initial_bias_deg": 0.0
+        },
+        "triangle_object": {
+          "shape": "triangle",
+          "pose": [
+            0.4,
+            0.044999999999999984,
+            0.33
+          ],
+          "inside_target": "triangle_receptacle",
+          "released": true,
+          "completed": true,
+          "initial_bias_deg": 0.0
+        },
+        "rectangle_object": {
+          "shape": "rectangle",
+          "pose": [
+            0.4,
+            0.135,
+            0.33
+          ],
+          "inside_target": "rectangle_receptacle",
+          "released": true,
+          "completed": true,
+          "initial_bias_deg": 0.0
+        }
+      },
+      "targets": {
+        "square_receptacle": {
+          "shape": "square",
+          "pose": [
+            0.62,
+            -0.135,
+            0.29
+          ]
+        },
+        "circle_receptacle": {
+          "shape": "circle",
+          "pose": [
+            0.62,
+            -0.04500000000000001,
+            0.29
+          ]
+        },
+        "triangle_receptacle": {
+          "shape": "triangle",
+          "pose": [
+            0.62,
+            0.044999999999999984,
+            0.29
+          ]
+        },
+        "rectangle_receptacle": {
+          "shape": "rectangle",
+          "pose": [
+            0.62,
+            0.135,
+            0.29
+          ]
+        }
+      },
+      "grasped_object": null,
+      "sequence": 4
+    },
+    "objective_evaluation": {
+      "success": true,
+      "final_yaw_error_deg": 0.0,
+      "frame_contact_steps": 0,
+      "robot_table_contact_steps": 0,
+      "collision": false
+    },
+    "user_evaluation": null
+  },
+  "reflection": {
+    "success_factors": [
+      "goal_state_verified"
+    ],
+    "failure_causes": [],
+    "learned": "episode retained for later validated promotion",
+    "next_experiment": null,
+    "confidence": 1.0,
+    "unresolved_questions": [],
+    "failure_type": null,
+    "retry_required": false
+  },
+  "sources": [
+    "src/fdb/challenge/shape_insertion.py",
+    "experiments/0037_multi_shape_physical_insertion.md"
+  ],
+  "skills_used": [
+    "shape_insert"
+  ],
+  "model_versions": {
+    "world_model": "HybridShapeWorldModel"
+  }
+}

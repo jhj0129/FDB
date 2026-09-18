@@ -1,0 +1,345 @@
+{
+  "scene_id": "persistent-shape-scene-v1",
+  "scene_sequence": 4,
+  "successes": 3,
+  "total": 3,
+  "results": [
+    {
+      "shape": "triangle",
+      "success": true,
+      "actions": 2,
+      "replans": 1,
+      "episode_paths": [
+        "episodes/episode_20260918T163152557477Z_e5589ffc.json",
+        "episodes/episode_20260918T163152558764Z_4b8f9452.json"
+      ],
+      "final_observation": {
+        "scene_id": "persistent-shape-scene-v1",
+        "objects": {
+          "square_object": {
+            "shape": "square",
+            "pose": [
+              0.4,
+              -0.135,
+              0.33
+            ],
+            "inside_target": null,
+            "released": true,
+            "completed": false,
+            "initial_bias_deg": 0.0
+          },
+          "circle_object": {
+            "shape": "circle",
+            "pose": [
+              0.4,
+              -0.04500000000000001,
+              0.33
+            ],
+            "inside_target": null,
+            "released": true,
+            "completed": false,
+            "initial_bias_deg": 0.0
+          },
+          "triangle_object": {
+            "shape": "triangle",
+            "pose": [
+              0.4,
+              0.044999999999999984,
+              0.33
+            ],
+            "inside_target": "triangle_receptacle",
+            "released": true,
+            "completed": true,
+            "initial_bias_deg": 0.0
+          },
+          "rectangle_object": {
+            "shape": "rectangle",
+            "pose": [
+              0.4,
+              0.135,
+              0.33
+            ],
+            "inside_target": null,
+            "released": true,
+            "completed": false,
+            "initial_bias_deg": 0.0
+          }
+        },
+        "targets": {
+          "square_receptacle": {
+            "shape": "square",
+            "pose": [
+              0.62,
+              -0.135,
+              0.29
+            ]
+          },
+          "circle_receptacle": {
+            "shape": "circle",
+            "pose": [
+              0.62,
+              -0.04500000000000001,
+              0.29
+            ]
+          },
+          "triangle_receptacle": {
+            "shape": "triangle",
+            "pose": [
+              0.62,
+              0.044999999999999984,
+              0.29
+            ]
+          },
+          "rectangle_receptacle": {
+            "shape": "rectangle",
+            "pose": [
+              0.62,
+              0.135,
+              0.29
+            ]
+          }
+        },
+        "grasped_object": null,
+        "sequence": 2
+      },
+      "metrics": {
+        "memory_retrieval_count": 1,
+        "safety_rejections": 0,
+        "observation_s": 8.039600106712896e-05,
+        "memory_retrieval_s": 0.0015402089993585832,
+        "planning_s": 2.9222999728517607e-05,
+        "prediction_s": 1.9002998669748195e-05,
+        "execution_s": 7.618000381626189e-06,
+        "total_task_latency_s": 0.002708441999857314,
+        "world_model_calls": 6,
+        "physics_fallback_calls": 0,
+        "deterministic_fallback_calls": 5,
+        "final_failure_type": null
+      }
+    },
+    {
+      "shape": "circle",
+      "success": true,
+      "actions": 1,
+      "replans": 0,
+      "episode_paths": [
+        "episodes/episode_20260918T163152560452Z_db68535e.json"
+      ],
+      "final_observation": {
+        "scene_id": "persistent-shape-scene-v1",
+        "objects": {
+          "square_object": {
+            "shape": "square",
+            "pose": [
+              0.4,
+              -0.135,
+              0.33
+            ],
+            "inside_target": null,
+            "released": true,
+            "completed": false,
+            "initial_bias_deg": 0.0
+          },
+          "circle_object": {
+            "shape": "circle",
+            "pose": [
+              0.4,
+              -0.04500000000000001,
+              0.33
+            ],
+            "inside_target": "circle_receptacle",
+            "released": true,
+            "completed": true,
+            "initial_bias_deg": 0.0
+          },
+          "triangle_object": {
+            "shape": "triangle",
+            "pose": [
+              0.4,
+              0.044999999999999984,
+              0.33
+            ],
+            "inside_target": "triangle_receptacle",
+            "released": true,
+            "completed": true,
+            "initial_bias_deg": 0.0
+          },
+          "rectangle_object": {
+            "shape": "rectangle",
+            "pose": [
+              0.4,
+              0.135,
+              0.33
+            ],
+            "inside_target": null,
+            "released": true,
+            "completed": false,
+            "initial_bias_deg": 0.0
+          }
+        },
+        "targets": {
+          "square_receptacle": {
+            "shape": "square",
+            "pose": [
+              0.62,
+              -0.135,
+              0.29
+            ]
+          },
+          "circle_receptacle": {
+            "shape": "circle",
+            "pose": [
+              0.62,
+              -0.04500000000000001,
+              0.29
+            ]
+          },
+          "triangle_receptacle": {
+            "shape": "triangle",
+            "pose": [
+              0.62,
+              0.044999999999999984,
+              0.29
+            ]
+          },
+          "rectangle_receptacle": {
+            "shape": "rectangle",
+            "pose": [
+              0.62,
+              0.135,
+              0.29
+            ]
+          }
+        },
+        "grasped_object": null,
+        "sequence": 3
+      },
+      "metrics": {
+        "memory_retrieval_count": 2,
+        "safety_rejections": 0,
+        "observation_s": 2.531400059524458e-05,
+        "memory_retrieval_s": 0.0010830439987330465,
+        "planning_s": 9.474000762565993e-06,
+        "prediction_s": 4.228000761941075e-06,
+        "execution_s": 3.1759991543367505e-06,
+        "total_task_latency_s": 0.0015614490002917591,
+        "world_model_calls": 1,
+        "physics_fallback_calls": 0,
+        "deterministic_fallback_calls": 0,
+        "final_failure_type": null
+      }
+    },
+    {
+      "shape": "rectangle",
+      "success": true,
+      "actions": 1,
+      "replans": 0,
+      "episode_paths": [
+        "episodes/episode_20260918T163152561796Z_2e080255.json"
+      ],
+      "final_observation": {
+        "scene_id": "persistent-shape-scene-v1",
+        "objects": {
+          "square_object": {
+            "shape": "square",
+            "pose": [
+              0.4,
+              -0.135,
+              0.33
+            ],
+            "inside_target": null,
+            "released": true,
+            "completed": false,
+            "initial_bias_deg": 0.0
+          },
+          "circle_object": {
+            "shape": "circle",
+            "pose": [
+              0.4,
+              -0.04500000000000001,
+              0.33
+            ],
+            "inside_target": "circle_receptacle",
+            "released": true,
+            "completed": true,
+            "initial_bias_deg": 0.0
+          },
+          "triangle_object": {
+            "shape": "triangle",
+            "pose": [
+              0.4,
+              0.044999999999999984,
+              0.33
+            ],
+            "inside_target": "triangle_receptacle",
+            "released": true,
+            "completed": true,
+            "initial_bias_deg": 0.0
+          },
+          "rectangle_object": {
+            "shape": "rectangle",
+            "pose": [
+              0.4,
+              0.135,
+              0.33
+            ],
+            "inside_target": "rectangle_receptacle",
+            "released": true,
+            "completed": true,
+            "initial_bias_deg": 0.0
+          }
+        },
+        "targets": {
+          "square_receptacle": {
+            "shape": "square",
+            "pose": [
+              0.62,
+              -0.135,
+              0.29
+            ]
+          },
+          "circle_receptacle": {
+            "shape": "circle",
+            "pose": [
+              0.62,
+              -0.04500000000000001,
+              0.29
+            ]
+          },
+          "triangle_receptacle": {
+            "shape": "triangle",
+            "pose": [
+              0.62,
+              0.044999999999999984,
+              0.29
+            ]
+          },
+          "rectangle_receptacle": {
+            "shape": "rectangle",
+            "pose": [
+              0.62,
+              0.135,
+              0.29
+            ]
+          }
+        },
+        "grasped_object": null,
+        "sequence": 4
+      },
+      "metrics": {
+        "memory_retrieval_count": 3,
+        "safety_rejections": 0,
+        "observation_s": 2.5829000151134096e-05,
+        "memory_retrieval_s": 0.0007711529997322941,
+        "planning_s": 7.390000973828137e-06,
+        "prediction_s": 3.944000127376057e-06,
+        "execution_s": 3.0289993446785957e-06,
+        "total_task_latency_s": 0.0012822560001950478,
+        "world_model_calls": 1,
+        "physics_fallback_calls": 0,
+        "deterministic_fallback_calls": 0,
+        "final_failure_type": null
+      }
+    }
+  ]
+}

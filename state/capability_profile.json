@@ -1,5 +1,7 @@
 {
-  "schema_version": "1.0",
+  "schema_version": "1.1",
+  "derived_from": "experiments/capability_evidence.json",
+  "evidence_revision": "2026-09-17T09:30:43Z",
   "operational_score": 25,
   "operational_target": 36,
   "target_completion_percent": 69.4,
@@ -11,63 +13,94 @@
       "score": 4,
       "target": 4,
       "evidence": "독립 합성 safe-fit 94.7%, 카메라 정사각형·원·삼각형·직사각형 물리 삽입 4/4",
-      "next_gate": "다중 물체 한 장면과 분포 밖 실제 카메라 영상"
+      "next_gate": "다중 물체 한 장면과 분포 밖 실제 카메라 영상",
+      "evidence_refs": [
+        "experiments/0029_shape_fit_cnn.metrics.json",
+        "experiments/0037_multi_shape_physical_insertion.md"
+      ]
     },
     {
       "name": "한국어 목표 연결",
       "score": 3,
       "target": 4,
       "evidence": "형상 별칭·삽입 동사와 먼저→다음→그리고 3단계 계획, 불완전 후속 절 사전 거부",
-      "next_gate": "한 지속 장면의 대상 관계·상태 기억·조건부 재계획"
+      "next_gate": "한 지속 장면의 대상 관계·상태 기억·조건부 재계획",
+      "evidence_refs": [
+        "experiments/0038_korean_shape_sequence.md"
+      ]
     },
     {
       "name": "접촉 안전 조작",
       "score": 3,
       "target": 4,
       "evidence": "삽입 중심 오차 7.76mm 이하, 로봇-테이블 접촉 0",
-      "next_gate": "접촉력 기반 미세 탐색과 실제 센서 잡음"
+      "next_gate": "접촉력 기반 미세 탐색과 실제 센서 잡음",
+      "evidence_refs": [
+        "experiments/0030_camera_shape_insertion.md",
+        "experiments/0037_multi_shape_physical_insertion.md"
+      ]
     },
     {
       "name": "실패 인식·복구",
       "score": 2,
       "target": 4,
       "evidence": "40도 오류 실패 뒤 후보 시뮬레이션으로 복구",
-      "next_gate": "관측 기반 원인 분류와 여러 실패 종류 복구"
+      "next_gate": "관측 기반 원인 분류와 여러 실패 종류 복구",
+      "evidence_refs": [
+        "experiments/0031_insertion_failure_recovery.md"
+      ]
     },
     {
       "name": "실행 전 상식 제약",
       "score": 3,
       "target": 4,
       "evidence": "손·물체 바닥 여유를 실행 전 검사",
-      "next_gate": "충돌·가림·불안정 파지까지 예측"
+      "next_gate": "충돌·가림·불안정 파지까지 예측",
+      "evidence_refs": [
+        "experiments/0033_preexecution_common_sense_gate.md"
+      ]
     },
     {
       "name": "사람 동작 모방",
       "score": 3,
       "target": 4,
       "evidence": "사람 자료에 가까운 120걸음/분으로 물리 H1 40회 교대 착지, 속도·보행률 재조합",
-      "next_gate": "방향·정지 명령과 전신 관절 궤적 사람 유사도 검증"
+      "next_gate": "방향·정지 명령과 전신 관절 궤적 사람 유사도 검증",
+      "evidence_refs": [
+        "experiments/0036_contact_gait_and_h1_policy.md",
+        "experiments/0039_h1_command_transfer.md"
+      ]
     },
     {
       "name": "동역학 보행",
       "score": 4,
       "target": 4,
       "evidence": "자유 물리 H1 20초·40걸음·20보폭, 20.47m 이동, 350N 외란 뒤 교대 보행 복구",
-      "next_gate": "시각 장애물·회전·정지 후 보행 재개"
+      "next_gate": "시각 장애물·회전·정지 후 보행 재개",
+      "evidence_refs": [
+        "experiments/0036_contact_gait_and_h1_policy.md",
+        "experiments/0039_h1_command_transfer.md"
+      ]
     },
     {
       "name": "새 상황 전이",
       "score": 2,
       "target": 4,
       "evidence": "보행률·속도 명령 grid와 횡외란 0–500N 경계를 사전 고정 판정으로 검증",
-      "next_gate": "보지 못한 지형·배치·물체에서 사전 고정 시험"
+      "next_gate": "보지 못한 지형·배치·물체에서 사전 고정 시험",
+      "evidence_refs": [
+        "experiments/0039_h1_command_transfer.md"
+      ]
     },
     {
       "name": "지속 자율 학습",
       "score": 1,
       "target": 4,
       "evidence": "상태·다음 gate 저장과 예약 실행은 있으나 경험 재학습은 수동",
-      "next_gate": "경험 버퍼→평가→재학습→회귀검사 폐루프"
+      "next_gate": "경험 버퍼→평가→재학습→회귀검사 폐루프",
+      "evidence_refs": [
+        "docs/memory_architecture.md"
+      ]
     }
   ],
   "selected_next_gate": {

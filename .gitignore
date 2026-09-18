@@ -21,3 +21,8 @@ artifacts/fdb_unitree_h1_walk.mp4
 artifacts/fdb_unitree_h1_walk.png
 LocoMuJoCo_recordings/
 models/local/
+# Phase 2 ablation/robustness raw traces and frames stay local; summaries are tracked.
+artifacts/phase2_ablation_*/episodes/
+artifacts/phase2_ablation_*/final_camera.png
+artifacts/phase2_robustness_*/episodes/
+artifacts/phase2_robustness_*/final_camera.png

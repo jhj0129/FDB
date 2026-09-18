@@ -1,0 +1,795 @@
+{
+  "schema_version": "1.0",
+  "mode": "neural+rules",
+  "memory": true,
+  "seed": 0,
+  "headless": true,
+  "position_noise_m": 0.0,
+  "target_noise_m": 0.0,
+  "failure_injection": true,
+  "goal_order": [
+    "triangle",
+    "circle",
+    "rectangle"
+  ],
+  "single_world_reset_count": 1,
+  "final_scene_sequence": 24,
+  "successes": 3,
+  "total": 3,
+  "results": [
+    {
+      "shape": "triangle",
+      "success": true,
+      "actions": 8,
+      "replans": 1,
+      "episode_paths": [
+        "artifacts/phase2_physical_seed0/episodes/episode_20260918T173859558483Z_bd4e7348.json"
+      ],
+      "final_observation": {
+        "scene_id": "physical-persistent-0",
+        "objects": {
+          "square_01": {
+            "object_id": "square_01",
+            "shape": "square",
+            "pose": [
+              0.37493640987284965,
+              -0.24784924457741203,
+              0.32999999999999996
+            ],
+            "orientation": -0.9600703053428652,
+            "velocity": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "visible": true,
+            "confidence": 0.95,
+            "last_seen": "2026-09-18T17:38:59.469885+00:00",
+            "yaw_error_deg": -79.78312301635742,
+            "ee_near": false,
+            "grasped": false,
+            "lifted": false,
+            "aligned": false,
+            "near_target": false,
+            "inserted": false,
+            "released": false,
+            "retreated": false,
+            "last_failure": null,
+            "target_id": "square_target",
+            "neural_perception": {
+              "object_shape": "square",
+              "target_shape": "square",
+              "fits": true,
+              "rotation_rad": 0.11265157047376761,
+              "source": "shape_fit_cnn.msgpack",
+              "device": "cpu"
+            },
+            "inside_target": null,
+            "completed": false,
+            "observation_source": "camera_rgb+simulator_segmentation+fixed_extrinsic_calibration"
+          },
+          "circle_01": {
+            "object_id": "circle_01",
+            "shape": "circle",
+            "pose": [
+              0.37504180569185475,
+              -0.08238099116781156,
+              0.32999999999999996
+            ],
+            "orientation": 0.0,
+            "velocity": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "visible": true,
+            "confidence": 0.95,
+            "last_seen": "2026-09-18T17:38:59.496970+00:00",
+            "yaw_error_deg": 0.0,
+            "ee_near": false,
+            "grasped": false,
+            "lifted": false,
+            "aligned": false,
+            "near_target": false,
+            "inserted": false,
+            "released": false,
+            "retreated": false,
+            "last_failure": null,
+            "target_id": "circle_target",
+            "neural_perception": {
+              "object_shape": "circle",
+              "target_shape": "circle",
+              "fits": true,
+              "rotation_rad": 0.0,
+              "source": "shape_fit_cnn.msgpack",
+              "device": "cpu"
+            },
+            "inside_target": null,
+            "completed": false,
+            "observation_source": "camera_rgb+simulator_segmentation+fixed_extrinsic_calibration"
+          },
+          "triangle_01": {
+            "object_id": "triangle_01",
+            "shape": "triangle",
+            "pose": [
+              0.6219294634146341,
+              0.0865866097560976,
+              0.32999999999999996
+            ],
+            "orientation": -0.5235987755982989,
+            "velocity": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "visible": true,
+            "confidence": 0.95,
+            "last_seen": "2026-09-18T17:38:59.523887+00:00",
+            "yaw_error_deg": -32.48955535888671,
+            "ee_near": true,
+            "grasped": false,
+            "lifted": true,
+            "aligned": true,
+            "near_target": true,
+            "inserted": true,
+            "released": true,
+            "retreated": false,
+            "last_failure": null,
+            "target_id": "triangle_target",
+            "neural_perception": {
+              "object_shape": "triangle",
+              "target_shape": "rectangle",
+              "fits": false,
+              "rotation_rad": 0.0,
+              "source": "shape_fit_cnn.msgpack",
+              "device": "cpu"
+            },
+            "inside_target": "triangle_target",
+            "completed": true,
+            "observation_source": "camera_rgb+simulator_segmentation+fixed_extrinsic_calibration"
+          },
+          "rectangle_01": {
+            "object_id": "rectangle_01",
+            "shape": "rectangle",
+            "pose": [
+              0.3748238976945245,
+              0.24917686599423633,
+              0.32999999999999996
+            ],
+            "orientation": -0.9928942984103097,
+            "velocity": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "visible": true,
+            "confidence": 0.95,
+            "last_seen": "2026-09-18T17:38:59.551083+00:00",
+            "yaw_error_deg": -65.63481521606445,
+            "ee_near": false,
+            "grasped": false,
+            "lifted": false,
+            "aligned": false,
+            "near_target": false,
+            "inserted": false,
+            "released": false,
+            "retreated": false,
+            "last_failure": null,
+            "target_id": "rectangle_target",
+            "neural_perception": {
+              "object_shape": "rectangle",
+              "target_shape": "square",
+              "fits": false,
+              "rotation_rad": 0.0,
+              "source": "shape_fit_cnn.msgpack",
+              "device": "cpu"
+            },
+            "inside_target": null,
+            "completed": false,
+            "observation_source": "camera_rgb+simulator_segmentation+fixed_extrinsic_calibration"
+          }
+        },
+        "targets": {
+          "square_target": {
+            "target_id": "square_target",
+            "shape": "square",
+            "pose": [
+              0.6193586275720164,
+              -0.23954004526748968,
+              0.29
+            ],
+            "orientation": 0.43240787881624154,
+            "visible": true,
+            "confidence": 0.95,
+            "observation_source": "camera_rgb+simulator_segmentation+fixed_extrinsic_calibration"
+          },
+          "circle_target": {
+            "target_id": "circle_target",
+            "shape": "circle",
+            "pose": [
+              0.6193281644115394,
+              -0.07937912432984424,
+              0.29
+            ],
+            "orientation": 0.0,
+            "visible": true,
+            "confidence": 0.95,
+            "observation_source": "camera_rgb+simulator_segmentation+fixed_extrinsic_calibration"
+          },
+          "triangle_target": {
+            "target_id": "triangle_target",
+            "shape": "triangle",
+            "pose": [
+              0.6192415483510341,
+              0.08064847959754054,
+              0.29
+            ],
+            "orientation": 0.04345093792324217,
+            "visible": true,
+            "confidence": 0.95,
+            "observation_source": "camera_rgb+simulator_segmentation+fixed_extrinsic_calibration"
+          },
+          "rectangle_target": {
+            "target_id": "rectangle_target",
+            "shape": "rectangle",
+            "pose": [
+              0.6195299603646451,
+              0.24090806579468887,
+              0.29
+            ],
+            "orientation": 0.1526493310480883,
+            "visible": true,
+            "confidence": 0.95,
+            "observation_source": "camera_rgb+simulator_segmentation+fixed_extrinsic_calibration"
+          }
+        },
+        "grasped_object": null,
+        "sequence": 8
+      },
+      "metrics": {
+        "total_task_latency_s": 7.926302616000612,
+        "actions": 8,
+        "replans": 1,
+        "safety_rejections": 0,
+        "memory_retrieval_count": 0,
+        "world_model_calls": 10,
+        "neural_world_model_calls": 0,
+        "deterministic_fallback_calls": 4,
+        "physics_fallback_calls": 0,
+        "final_failure_type": null
+      }
+    },
+    {
+      "shape": "circle",
+      "success": true,
+      "actions": 9,
+      "replans": 1,
+      "episode_paths": [
+        "artifacts/phase2_physical_seed0/episodes/episode_20260918T173908614852Z_ea257d8d.json"
+      ],
+      "final_observation": {
+        "scene_id": "physical-persistent-0",
+        "objects": {
+          "square_01": {
+            "object_id": "square_01",
+            "shape": "square",
+            "pose": [
+              0.37493640987284965,
+              -0.24784924457741203,
+              0.32999999999999996
+            ],
+            "orientation": -0.9600703053428652,
+            "velocity": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "visible": true,
+            "confidence": 0.95,
+            "last_seen": "2026-09-18T17:39:08.515922+00:00",
+            "yaw_error_deg": -79.78312301635742,
+            "ee_near": false,
+            "grasped": false,
+            "lifted": false,
+            "aligned": false,
+            "near_target": false,
+            "inserted": false,
+            "released": false,
+            "retreated": false,
+            "last_failure": null,
+            "target_id": "square_target",
+            "neural_perception": {
+              "object_shape": "square",
+              "target_shape": "square",
+              "fits": true,
+              "rotation_rad": 0.11265157047376761,
+              "source": "shape_fit_cnn.msgpack",
+              "device": "cpu"
+            },
+            "inside_target": null,
+            "completed": false,
+            "observation_source": "camera_rgb+simulator_segmentation+fixed_extrinsic_calibration"
+          },
+          "circle_01": {
+            "object_id": "circle_01",
+            "shape": "circle",
+            "pose": [
+              0.6230900682261208,
+              -0.07513861598440541,
+              0.32999999999999996
+            ],
+            "orientation": 0.0,
+            "velocity": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "visible": true,
+            "confidence": 0.95,
+            "last_seen": "2026-09-18T17:39:08.546711+00:00",
+            "yaw_error_deg": 0.0,
+            "ee_near": true,
+            "grasped": false,
+            "lifted": true,
+            "aligned": true,
+            "near_target": true,
+            "inserted": true,
+            "released": true,
+            "retreated": false,
+            "last_failure": null,
+            "target_id": "circle_target",
+            "neural_perception": {
+              "object_shape": "circle",
+              "target_shape": "circle",
+              "fits": true,
+              "rotation_rad": 0.0,
+              "source": "shape_fit_cnn.msgpack",
+              "device": "cpu"
+            },
+            "inside_target": "circle_target",
+            "completed": true,
+            "observation_source": "camera_rgb+simulator_segmentation+fixed_extrinsic_calibration"
+          },
+          "triangle_01": {
+            "object_id": "triangle_01",
+            "shape": "triangle",
+            "pose": [
+              0.6229801763224181,
+              0.08331845088161212,
+              0.32999999999999996
+            ],
+            "orientation": 0.11990236991517411,
+            "velocity": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "visible": true,
+            "confidence": 0.95,
+            "last_seen": "2026-09-18T17:39:08.577190+00:00",
+            "yaw_error_deg": 4.380344390869141,
+            "ee_near": true,
+            "grasped": false,
+            "lifted": true,
+            "aligned": true,
+            "near_target": true,
+            "inserted": true,
+            "released": true,
+            "retreated": false,
+            "last_failure": null,
+            "target_id": "triangle_target",
+            "neural_perception": {
+              "object_shape": "triangle",
+              "target_shape": "rectangle",
+              "fits": false,
+              "rotation_rad": 0.0,
+              "source": "shape_fit_cnn.msgpack",
+              "device": "cpu"
+            },
+            "inside_target": "triangle_target",
+            "completed": true,
+            "observation_source": "camera_rgb+simulator_segmentation+fixed_extrinsic_calibration"
+          },
+          "rectangle_01": {
+            "object_id": "rectangle_01",
+            "shape": "rectangle",
+            "pose": [
+              0.3748238976945245,
+              0.24917686599423633,
+              0.32999999999999996
+            ],
+            "orientation": -0.9928942984103097,
+            "velocity": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "visible": true,
+            "confidence": 0.95,
+            "last_seen": "2026-09-18T17:39:08.606790+00:00",
+            "yaw_error_deg": -65.63481521606445,
+            "ee_near": false,
+            "grasped": false,
+            "lifted": false,
+            "aligned": false,
+            "near_target": false,
+            "inserted": false,
+            "released": false,
+            "retreated": false,
+            "last_failure": null,
+            "target_id": "rectangle_target",
+            "neural_perception": {
+              "object_shape": "rectangle",
+              "target_shape": "square",
+              "fits": false,
+              "rotation_rad": 0.0,
+              "source": "shape_fit_cnn.msgpack",
+              "device": "cpu"
+            },
+            "inside_target": null,
+            "completed": false,
+            "observation_source": "camera_rgb+simulator_segmentation+fixed_extrinsic_calibration"
+          }
+        },
+        "targets": {
+          "square_target": {
+            "target_id": "square_target",
+            "shape": "square",
+            "pose": [
+              0.6193586275720164,
+              -0.23954004526748968,
+              0.29
+            ],
+            "orientation": 0.43240787881624154,
+            "visible": true,
+            "confidence": 0.95,
+            "observation_source": "camera_rgb+simulator_segmentation+fixed_extrinsic_calibration"
+          },
+          "circle_target": {
+            "target_id": "circle_target",
+            "shape": "circle",
+            "pose": [
+              0.6193281644115394,
+              -0.07937912432984424,
+              0.29
+            ],
+            "orientation": 0.0,
+            "visible": true,
+            "confidence": 0.95,
+            "observation_source": "camera_rgb+simulator_segmentation+fixed_extrinsic_calibration"
+          },
+          "triangle_target": {
+            "target_id": "triangle_target",
+            "shape": "triangle",
+            "pose": [
+              0.6192415483510341,
+              0.08064847959754054,
+              0.29
+            ],
+            "orientation": 0.04345093792324217,
+            "visible": true,
+            "confidence": 0.95,
+            "observation_source": "camera_rgb+simulator_segmentation+fixed_extrinsic_calibration"
+          },
+          "rectangle_target": {
+            "target_id": "rectangle_target",
+            "shape": "rectangle",
+            "pose": [
+              0.6195299603646451,
+              0.24090806579468887,
+              0.29
+            ],
+            "orientation": 0.1526493310480883,
+            "visible": true,
+            "confidence": 0.95,
+            "observation_source": "camera_rgb+simulator_segmentation+fixed_extrinsic_calibration"
+          }
+        },
+        "grasped_object": null,
+        "sequence": 17
+      },
+      "metrics": {
+        "total_task_latency_s": 9.057858359999955,
+        "actions": 9,
+        "replans": 1,
+        "safety_rejections": 0,
+        "memory_retrieval_count": 9,
+        "world_model_calls": 9,
+        "neural_world_model_calls": 1,
+        "deterministic_fallback_calls": 0,
+        "physics_fallback_calls": 0,
+        "final_failure_type": null
+      }
+    },
+    {
+      "shape": "rectangle",
+      "success": true,
+      "actions": 7,
+      "replans": 0,
+      "episode_paths": [
+        "artifacts/phase2_physical_seed0/episodes/episode_20260918T173915955995Z_77b68116.json"
+      ],
+      "final_observation": {
+        "scene_id": "physical-persistent-0",
+        "objects": {
+          "square_01": {
+            "object_id": "square_01",
+            "shape": "square",
+            "pose": [
+              0.37493640987284965,
+              -0.24784924457741203,
+              0.32999999999999996
+            ],
+            "orientation": -0.9600703053428652,
+            "velocity": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "visible": true,
+            "confidence": 0.95,
+            "last_seen": "2026-09-18T17:39:15.863867+00:00",
+            "yaw_error_deg": -79.78312301635742,
+            "ee_near": false,
+            "grasped": false,
+            "lifted": false,
+            "aligned": false,
+            "near_target": false,
+            "inserted": false,
+            "released": false,
+            "retreated": false,
+            "last_failure": null,
+            "target_id": "square_target",
+            "neural_perception": {
+              "object_shape": "square",
+              "target_shape": "square",
+              "fits": true,
+              "rotation_rad": 0.11265157047376761,
+              "source": "shape_fit_cnn.msgpack",
+              "device": "cpu"
+            },
+            "inside_target": null,
+            "completed": false,
+            "observation_source": "camera_rgb+simulator_segmentation+fixed_extrinsic_calibration"
+          },
+          "circle_01": {
+            "object_id": "circle_01",
+            "shape": "circle",
+            "pose": [
+              0.6302412062256809,
+              -0.08174433852140074,
+              0.32999999999999996
+            ],
+            "orientation": 0.0,
+            "velocity": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "visible": true,
+            "confidence": 0.95,
+            "last_seen": "2026-09-18T17:39:15.891634+00:00",
+            "yaw_error_deg": 0.0,
+            "ee_near": true,
+            "grasped": false,
+            "lifted": true,
+            "aligned": true,
+            "near_target": true,
+            "inserted": true,
+            "released": true,
+            "retreated": false,
+            "last_failure": null,
+            "target_id": "circle_target",
+            "neural_perception": {
+              "object_shape": "unknown",
+              "target_shape": "circle",
+              "fits": false,
+              "rotation_rad": 0.0,
+              "source": "shape_fit_cnn.msgpack",
+              "device": "cpu"
+            },
+            "inside_target": "circle_target",
+            "completed": true,
+            "observation_source": "camera_rgb+simulator_segmentation+fixed_extrinsic_calibration"
+          },
+          "triangle_01": {
+            "object_id": "triangle_01",
+            "shape": "triangle",
+            "pose": [
+              0.6229801763224181,
+              0.08331845088161212,
+              0.32999999999999996
+            ],
+            "orientation": 0.11990236991517411,
+            "velocity": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "visible": true,
+            "confidence": 0.95,
+            "last_seen": "2026-09-18T17:39:15.919858+00:00",
+            "yaw_error_deg": 4.380344390869141,
+            "ee_near": true,
+            "grasped": false,
+            "lifted": true,
+            "aligned": true,
+            "near_target": true,
+            "inserted": true,
+            "released": true,
+            "retreated": false,
+            "last_failure": null,
+            "target_id": "triangle_target",
+            "neural_perception": {
+              "object_shape": "triangle",
+              "target_shape": "rectangle",
+              "fits": false,
+              "rotation_rad": 0.0,
+              "source": "shape_fit_cnn.msgpack",
+              "device": "cpu"
+            },
+            "inside_target": "triangle_target",
+            "completed": true,
+            "observation_source": "camera_rgb+simulator_segmentation+fixed_extrinsic_calibration"
+          },
+          "rectangle_01": {
+            "object_id": "rectangle_01",
+            "shape": "rectangle",
+            "pose": [
+              0.6216729311678267,
+              0.2599052745552977,
+              0.32999999999999996
+            ],
+            "orientation": -1.4181469957468082,
+            "velocity": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "visible": true,
+            "confidence": 0.95,
+            "last_seen": "2026-09-18T17:39:15.948424+00:00",
+            "yaw_error_deg": -90.0,
+            "ee_near": true,
+            "grasped": false,
+            "lifted": true,
+            "aligned": true,
+            "near_target": true,
+            "inserted": true,
+            "released": true,
+            "retreated": false,
+            "last_failure": null,
+            "target_id": "rectangle_target",
+            "neural_perception": {
+              "object_shape": "rectangle",
+              "target_shape": "square",
+              "fits": false,
+              "rotation_rad": 0.0,
+              "source": "shape_fit_cnn.msgpack",
+              "device": "cpu"
+            },
+            "inside_target": "rectangle_target",
+            "completed": true,
+            "observation_source": "camera_rgb+simulator_segmentation+fixed_extrinsic_calibration"
+          }
+        },
+        "targets": {
+          "square_target": {
+            "target_id": "square_target",
+            "shape": "square",
+            "pose": [
+              0.6193586275720164,
+              -0.23954004526748968,
+              0.29
+            ],
+            "orientation": 0.43240787881624154,
+            "visible": true,
+            "confidence": 0.95,
+            "observation_source": "camera_rgb+simulator_segmentation+fixed_extrinsic_calibration"
+          },
+          "circle_target": {
+            "target_id": "circle_target",
+            "shape": "circle",
+            "pose": [
+              0.6193281644115394,
+              -0.07937912432984424,
+              0.29
+            ],
+            "orientation": 0.0,
+            "visible": true,
+            "confidence": 0.95,
+            "observation_source": "camera_rgb+simulator_segmentation+fixed_extrinsic_calibration"
+          },
+          "triangle_target": {
+            "target_id": "triangle_target",
+            "shape": "triangle",
+            "pose": [
+              0.6192415483510341,
+              0.08064847959754054,
+              0.29
+            ],
+            "orientation": 0.04345093792324217,
+            "visible": true,
+            "confidence": 0.95,
+            "observation_source": "camera_rgb+simulator_segmentation+fixed_extrinsic_calibration"
+          },
+          "rectangle_target": {
+            "target_id": "rectangle_target",
+            "shape": "rectangle",
+            "pose": [
+              0.6195285878619594,
+              0.24088283022610077,
+              0.29
+            ],
+            "orientation": 0.1526493310480883,
+            "visible": true,
+            "confidence": 0.95,
+            "observation_source": "camera_rgb+simulator_segmentation+fixed_extrinsic_calibration"
+          }
+        },
+        "grasped_object": null,
+        "sequence": 24
+      },
+      "metrics": {
+        "total_task_latency_s": 7.338264924001123,
+        "actions": 7,
+        "replans": 0,
+        "safety_rejections": 0,
+        "memory_retrieval_count": 14,
+        "world_model_calls": 7,
+        "neural_world_model_calls": 0,
+        "deterministic_fallback_calls": 1,
+        "physics_fallback_calls": 0,
+        "final_failure_type": null
+      }
+    }
+  ],
+  "final_camera": "artifacts/phase2_physical_seed0/final_camera.png",
+  "world_configuration": {
+    "seed": 0,
+    "object_poses": {
+      "square_01": [
+        0.38,
+        -0.24,
+        -0.9613828033368411
+      ],
+      "circle_01": [
+        0.38,
+        -0.08,
+        0.09136796846712669
+      ],
+      "triangle_01": [
+        0.38,
+        0.08,
+        0.48098924224079775
+      ],
+      "rectangle_01": [
+        0.38,
+        0.24,
+        -0.9878849706481541
+      ]
+    },
+    "target_poses": {
+      "square_target": [
+        0.62,
+        -0.24,
+        0.4322366297679682
+      ],
+      "circle_target": [
+        0.62,
+        -0.08,
+        -0.5207310249261683
+      ],
+      "triangle_target": [
+        0.62,
+        0.08,
+        0.04341808831447158
+      ],
+      "rectangle_target": [
+        0.62,
+        0.24,
+        0.154136496082378
+      ]
+    }
+  }
+}

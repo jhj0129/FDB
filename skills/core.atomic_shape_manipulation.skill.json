@@ -1,0 +1,21 @@
+{
+  "schema_version": "1.0",
+  "skill_id": "core.atomic_shape_manipulation",
+  "version": "0.2.0",
+  "status": "candidate",
+  "description": "단일 Panda 물리 세계에서 observation의 전제조건으로 다음 원자 조작 Skill을 선택하는 라이브러리",
+  "prerequisites": ["camera observation", "persistent object identity", "Panda IK", "deterministic safety gate"],
+  "inputs": {"observation": "4-object physical scene", "goal": "state-based object_to_target", "failure": "structured failure type"},
+  "outputs": {"candidates": "applicable atomic skills and parameters", "rejections": "skill-specific rejection reasons"},
+  "procedure": ["observe_scene", "reach_object", "grasp_object", "lift_object", "align_object or recover_alignment", "move_to_target", "insert_object", "release_object", "optional retreat"],
+  "acceptance_criteria": [
+    {"metric": "persistent_goal_successes", "operator": "equals", "threshold": 3},
+    {"metric": "world_reset_count", "operator": "equals", "threshold": 1},
+    {"metric": "failure_specific_replans", "operator": "greater_than_or_equal", "threshold": 2},
+    {"metric": "robot_table_contact_steps", "operator": "equals", "threshold": 0}
+  ],
+  "known_limits": ["candidate generation is deterministic", "simulator segmentation provides identity", "seed-1 triangle pose perturbation timeout", "actual robot unverified"],
+  "evidence": ["experiments/0042_physical_persistent_atomic_runtime.md", "experiments/0044_phase2_ablation_and_robustness.md", "artifacts/phase2_physical_seed0/summary.json", "tests/test_physical_persistent_runtime.py"],
+  "verification": {"environment": "MuJoCo 3.13 Panda headless EGL", "success_count": 3, "failure_count": 1, "last_verified_at": "2026-09-19T03:00:00+09:00"},
+  "deprecation": null
+}

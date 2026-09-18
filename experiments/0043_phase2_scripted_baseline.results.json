@@ -1,0 +1,275 @@
+{
+  "baseline": "scripted_atomic_sequence",
+  "sequence": [
+    "reach_object",
+    "grasp_object",
+    "lift_object",
+    "align_object",
+    "move_to_target",
+    "insert_object",
+    "release_object"
+  ],
+  "successes": 0,
+  "total": 3,
+  "reset_count": 1,
+  "trials": [
+    {
+      "object_id": "triangle_01",
+      "success": false,
+      "steps": [
+        {
+          "skill": "reach_object",
+          "result": {
+            "success": true,
+            "metrics": {
+              "robot_table_contact_steps": 0,
+              "physics_steps": 950
+            },
+            "failure_type": null,
+            "message": ""
+          }
+        },
+        {
+          "skill": "grasp_object",
+          "result": {
+            "success": true,
+            "metrics": {
+              "robot_table_contact_steps": 0,
+              "physics_steps": 650
+            },
+            "failure_type": null,
+            "message": ""
+          }
+        },
+        {
+          "skill": "lift_object",
+          "result": {
+            "success": true,
+            "metrics": {
+              "robot_table_contact_steps": 0,
+              "physics_steps": 800
+            },
+            "failure_type": null,
+            "message": ""
+          }
+        },
+        {
+          "skill": "align_object",
+          "result": {
+            "success": false,
+            "metrics": {
+              "injected": true,
+              "object_retained": true
+            },
+            "failure_type": "ALIGNMENT_FAILURE",
+            "message": ""
+          }
+        },
+        {
+          "skill": "move_to_target",
+          "result": {
+            "success": false,
+            "metrics": {
+              "precondition_rejected": true
+            },
+            "failure_type": "UNSAFE_PLAN",
+            "message": ""
+          }
+        },
+        {
+          "skill": "insert_object",
+          "result": {
+            "success": false,
+            "metrics": {
+              "precondition_rejected": true
+            },
+            "failure_type": "UNSAFE_PLAN",
+            "message": ""
+          }
+        },
+        {
+          "skill": "release_object",
+          "result": {
+            "success": false,
+            "metrics": {
+              "precondition_rejected": true
+            },
+            "failure_type": "UNSAFE_PLAN",
+            "message": ""
+          }
+        }
+      ]
+    },
+    {
+      "object_id": "circle_01",
+      "success": false,
+      "steps": [
+        {
+          "skill": "reach_object",
+          "result": {
+            "success": true,
+            "metrics": {
+              "robot_table_contact_steps": 0,
+              "physics_steps": 950
+            },
+            "failure_type": null,
+            "message": ""
+          }
+        },
+        {
+          "skill": "grasp_object",
+          "result": {
+            "success": false,
+            "metrics": {
+              "injected": true
+            },
+            "failure_type": "GRASP_FAILURE",
+            "message": ""
+          }
+        },
+        {
+          "skill": "lift_object",
+          "result": {
+            "success": false,
+            "metrics": {
+              "precondition_rejected": true
+            },
+            "failure_type": "UNSAFE_PLAN",
+            "message": ""
+          }
+        },
+        {
+          "skill": "align_object",
+          "result": {
+            "success": false,
+            "metrics": {
+              "precondition_rejected": true
+            },
+            "failure_type": "UNSAFE_PLAN",
+            "message": ""
+          }
+        },
+        {
+          "skill": "move_to_target",
+          "result": {
+            "success": false,
+            "metrics": {
+              "precondition_rejected": true
+            },
+            "failure_type": "UNSAFE_PLAN",
+            "message": ""
+          }
+        },
+        {
+          "skill": "insert_object",
+          "result": {
+            "success": false,
+            "metrics": {
+              "precondition_rejected": true
+            },
+            "failure_type": "UNSAFE_PLAN",
+            "message": ""
+          }
+        },
+        {
+          "skill": "release_object",
+          "result": {
+            "success": false,
+            "metrics": {
+              "precondition_rejected": true
+            },
+            "failure_type": "UNSAFE_PLAN",
+            "message": ""
+          }
+        }
+      ]
+    },
+    {
+      "object_id": "rectangle_01",
+      "success": false,
+      "steps": [
+        {
+          "skill": "reach_object",
+          "result": {
+            "success": true,
+            "metrics": {
+              "robot_table_contact_steps": 0,
+              "physics_steps": 950
+            },
+            "failure_type": null,
+            "message": ""
+          }
+        },
+        {
+          "skill": "grasp_object",
+          "result": {
+            "success": true,
+            "metrics": {
+              "robot_table_contact_steps": 0,
+              "physics_steps": 650
+            },
+            "failure_type": null,
+            "message": ""
+          }
+        },
+        {
+          "skill": "lift_object",
+          "result": {
+            "success": false,
+            "metrics": {
+              "robot_table_contact_steps": 0,
+              "physics_steps": 800,
+              "effect_verified": false
+            },
+            "failure_type": "GRASP_FAILURE",
+            "message": ""
+          }
+        },
+        {
+          "skill": "align_object",
+          "result": {
+            "success": false,
+            "metrics": {
+              "precondition_rejected": true
+            },
+            "failure_type": "UNSAFE_PLAN",
+            "message": ""
+          }
+        },
+        {
+          "skill": "move_to_target",
+          "result": {
+            "success": false,
+            "metrics": {
+              "precondition_rejected": true
+            },
+            "failure_type": "UNSAFE_PLAN",
+            "message": ""
+          }
+        },
+        {
+          "skill": "insert_object",
+          "result": {
+            "success": false,
+            "metrics": {
+              "precondition_rejected": true
+            },
+            "failure_type": "UNSAFE_PLAN",
+            "message": ""
+          }
+        },
+        {
+          "skill": "release_object",
+          "result": {
+            "success": false,
+            "metrics": {
+              "precondition_rejected": true
+            },
+            "failure_type": "UNSAFE_PLAN",
+            "message": ""
+          }
+        }
+      ]
+    }
+  ]
+}

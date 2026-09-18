@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "evidence_revision": "2026-09-17T09:30:43Z",
+  "evidence_revision": "2026-09-19T03:00:00+09:00",
   "capabilities": [
     {
       "name": "시각 형상·fit 판단", "score": 4, "target": 4,
@@ -21,10 +21,10 @@
       "evidence_refs": ["experiments/0030_camera_shape_insertion.md", "experiments/0037_multi_shape_physical_insertion.md"]
     },
     {
-      "name": "실패 인식·복구", "score": 2, "target": 4,
-      "evidence": "40도 오류 실패 뒤 후보 시뮬레이션으로 복구",
-      "next_gate": "관측 기반 원인 분류와 여러 실패 종류 복구",
-      "evidence_refs": ["experiments/0031_insertion_failure_recovery.md"]
+      "name": "실패 인식·복구", "score": 3, "target": 4,
+      "evidence": "단일 물리 세계에서 ALIGNMENT_FAILURE와 GRASP_FAILURE를 구분하고 현재 상태에서 서로 다른 경로로 복구",
+      "next_gate": "무작위 pose·충돌·IK 실패의 사전 고정 시험에서 복구율 검증",
+      "evidence_refs": ["experiments/0031_insertion_failure_recovery.md", "experiments/0042_physical_persistent_atomic_runtime.md", "experiments/0044_phase2_ablation_and_robustness.md"]
     },
     {
       "name": "실행 전 상식 제약", "score": 3, "target": 4,
@@ -58,7 +58,7 @@
     }
   ],
   "selected_next_gate": {
-    "capability": "시각 형상·fit 판단과 보행 통합",
-    "task": "다중 형상 삽입과 시각 목표·장애물 기반 방향 보행"
+    "capability": "물리 지속 조작의 새 상황 전이",
+    "task": "camera-only identity/pose 추적과 무작위 배치에서 사전 고정 복구율 검증"
   }
 }

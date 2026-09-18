@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0",
-  "stage": "dynamic_contact_gait_and_visual_generalization",
-  "goal": "카메라에서 물체와 수용구의 형상·크기·방향·삽입 가능성을 이해해 명령대로 조작하고, 최소 10걸음 연속 교대 보행을 학습 정책으로 재현한다.",
+  "stage": "physical_persistent_runtime_robustness",
+  "goal": "단일 지속 물리 세계에서 상태 기반 원자 Skill 조합의 pose 일반화와 실패 복구율을 높이고, 실제 센서로 옮길 수 있는 관측 경계를 만든다.",
   "status": "in_progress",
   "active_hypotheses": [
     "Fresh-state MuJoCo candidate rollouts can improve first-attempt physical task selection.",
@@ -23,7 +23,8 @@
     "How much real-camera domain randomization is needed before physical hardware transfer?",
     "Can the stable H1 policy turn, stop, and step around visually detected obstacles while preserving contact alternation?",
     "Can FDB distill the open-source H1 balance skill into its own human-motion imitation policy?",
-    "Can the runtime preserve object identity and completion state across several goals in one persistent scene?"
+    "Can camera-only identity and pose tracking replace simulator segmentation without reducing physical success?",
+    "Which recovery candidates generalize beyond the seed-0 layout to randomized triangle poses?"
   ],
-  "next_gate": "H1은 전진·측면 명령에는 전이됐지만 정지 시 1.18m 표류하고 회전은 과도했다. 감속→양발 접촉→정적 균형 전환과 목표 각도 회전 폐루프를 먼저 구현한 뒤 시각 장애물 회피에 연결한다. 조작은 한 지속 장면의 여러 물체·수용구를 상태 기억으로 처리한다."
+  "next_gate": "seed 1의 ±2mm pose perturbation에서 triangle이 timeout했다. simulator segmentation 의존성을 제거하기 전에 camera pose estimator를 교정하고, 무작위 배치 사전 고정 시험에서 물리 복구율을 측정한다. Memory는 검색 결과가 실제 후보 점수에 영향을 주도록 검증해야 한다."
 }

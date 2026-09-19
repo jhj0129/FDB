@@ -44,12 +44,16 @@ def run_tasks(
     for shape in goals:
         result = brain.run(Goal(
             "object_to_target", f"{shape}_01", f"{shape}_target",
-            {"inside": True, "released": True},
+            {"inside": True, "released": True, "retreated": True},
         ))
         results.append({"shape": shape, **asdict(result)})
     rgb = environment.camera_rgb()
     image_path = output_directory / "final_camera.png"
     cv2.imwrite(str(image_path), cv2.cvtColor(rgb, cv2.COLOR_RGB2BGR))
+    final_goal_preservation = {
+        shape: environment.evaluator_satisfied(f"{shape}_01", f"{shape}_target")
+        for shape in goals
+    }
     payload = {
         "schema_version": "1.0", "mode": "neural+rules" if use_neural else "rules_only",
         "memory": use_memory, "seed": seed, "headless": True,
@@ -62,6 +66,8 @@ def run_tasks(
         "final_scene_sequence": environment.sequence,
         "successes": sum(result["success"] for result in results), "total": len(results),
         "results": results, "final_camera": str(image_path),
+        "final_goal_preservation": final_goal_preservation,
+        "all_goals_preserved": all(final_goal_preservation.values()),
         "world_configuration": asdict(environment.configuration),
     }
     (output_directory / "summary.json").write_text(

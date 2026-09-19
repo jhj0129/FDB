@@ -145,7 +145,10 @@ class PhysicalAtomicRuntime:
                     "predicted_success": selected.predicted_success,
                     "actual_success": execution.success,
                     "predicted_collision": selected.predicted_collision,
-                    "actual_collision": bool(execution.metrics.get("robot_table_contact_steps", 0)),
+                    "actual_collision": (
+                        bool(execution.metrics.get("robot_table_contact_steps", 0))
+                        if "robot_table_contact_steps" in execution.metrics else None
+                    ),
                 },
             })
             if execution.success:

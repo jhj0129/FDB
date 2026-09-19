@@ -57,6 +57,7 @@ class PhysicalPersistentShapeEnvironment:
         self.scene_id = f"physical-persistent-{seed}"
         self.sequence = 0
         self.reset_count = 1
+        self.evaluator_robot_table_contact_steps = 0
         self.grasp_failure_once = set(grasp_failure_once or ())
         self.alignment_failure_once = set(alignment_failure_once or ())
         self._injected: set[tuple[str, str]] = set()
@@ -306,6 +307,10 @@ class PhysicalPersistentShapeEnvironment:
         }
 
     def observe(self) -> Observation:
+        return self.get_agent_observation()
+
+    def get_agent_observation(self) -> Observation:
+        """The only world-state entry point provided to FDBRuntime."""
         if self.observation_mode == "camera":
             return self._camera_only_observation()
         if self.observation_mode == "oracle":
@@ -384,8 +389,13 @@ class PhysicalPersistentShapeEnvironment:
         return self.camera_source.capture().rgb
 
     def evaluator_ground_truth(self) -> dict[str, Any]:
+        return self.get_evaluator_ground_truth()
+
+    def get_evaluator_ground_truth(self) -> dict[str, Any]:
+        """Privileged state for objective scoring and offline error logs only."""
         return {
             "scene_id": self.scene_id, "sequence": self.sequence, "reset_count": self.reset_count,
+            "robot_table_contact_steps": self.evaluator_robot_table_contact_steps,
             "objects": {
                 name: {"pose": [float(v) for v in self.data.body(name).xpos], **state}
                 for name, state in self._logical.items()
@@ -510,7 +520,13 @@ class PhysicalPersistentShapeEnvironment:
         except Exception as exc:
             state["last_failure"] = FailureType.IK_FAILURE
             return SkillResult(False, {"exception": str(exc)}, FailureType.IK_FAILURE)
-        if int(metrics.get("robot_table_contact_steps", 0)) > 0:
+        contact_steps = int(metrics.pop("robot_table_contact_steps", 0))
+        self.evaluator_robot_table_contact_steps += contact_steps
+        if self.observation_mode != "camera":
+            metrics["robot_table_contact_steps"] = contact_steps
+        else:
+            metrics["collision_observation"] = "unavailable_without_real_force_torque_sensor"
+        if contact_steps > 0 and self.observation_mode != "camera":
             state["last_failure"] = FailureType.COLLISION
             return SkillResult(False, metrics, FailureType.COLLISION)
         target_id = str(action.parameters["target_id"])

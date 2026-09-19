@@ -105,7 +105,10 @@ def run_benchmark(
     failure_budget: Counter[str] = Counter()
     for experiment in _experiment_matrix(suite):
         for seed in seeds:
-            run_dir = output_directory / str(experiment["axis"]) / str(experiment["level"]) / f"seed_{seed}"
+            run_dir = (
+                output_directory / str(experiment["axis"]) / str(experiment["level"])
+                / f"{experiment['observation_mode']}_seed_{seed}"
+            )
             payload = run_tasks(
                 goals=goals, seed=seed, output_directory=run_dir,
                 use_neural=bool(experiment.get("use_neural", True)),
@@ -134,6 +137,8 @@ def run_benchmark(
                     "physics_fallback_calls": result["metrics"]["physics_fallback_calls"],
                     "prediction_fallback_calls": result["metrics"]["deterministic_fallback_calls"],
                     "final_failure": result["metrics"].get("final_failure_type"),
+                    "goal_preserved_at_end": payload["final_goal_preservation"][result["shape"]],
+                    "all_goals_preserved": payload["all_goals_preserved"],
                 })
     grouped: dict[tuple[str, str, str], list[dict[str, Any]]] = defaultdict(list)
     for record in records:

@@ -62,8 +62,8 @@ def build_shape_manipulation_skills() -> tuple[AtomicSkill, ...]:
     def perception_ready(obj: dict[str, Any], target: dict[str, Any]) -> bool:
         return bool(
             obj.get("visible", False) and target.get("visible", False)
-            and float(obj.get("confidence", 0.0)) >= 0.60
-            and float(target.get("confidence", 0.0)) >= 0.60
+            and float(obj.get("confidence", 1.0)) >= 0.60
+            and float(target.get("confidence", 1.0)) >= 0.60
             and not obj.get("stale", False) and not target.get("stale", False)
         )
 

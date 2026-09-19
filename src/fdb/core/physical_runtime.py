@@ -153,7 +153,10 @@ class PhysicalAtomicRuntime:
                 replans += 1
 
         final = self.environment.observe()
-        success = self._satisfied(final, goal)
+        agent_success = self._satisfied(final, goal)
+        success = agent_success
+        if hasattr(self.environment, "evaluator_satisfied"):
+            success = agent_success and self.environment.evaluator_satisfied(goal.object_id, goal.target_id)
         if not success and failure is None:
             failure = FailureType.TIMEOUT
         task_episode = {
@@ -161,6 +164,7 @@ class PhysicalAtomicRuntime:
             "environment": {
                 "scene_id": initial_observation.scene_id,
                 "seed": self.environment.seed,
+                "observation_mode": getattr(self.environment, "observation_mode", "unknown"),
                 "reset_count": self.environment.reset_count,
                 "initial_world_configuration": asdict(self.environment.configuration),
                 "headless": True,
@@ -176,7 +180,8 @@ class PhysicalAtomicRuntime:
             "result": {
                 "final_state": asdict(final),
                 "objective_evaluation": {
-                    "success": success, "steps": len(steps), "replans": replans,
+                    "success": success, "agent_reported_success": agent_success,
+                    "steps": len(steps), "replans": replans,
                     "ground_truth": self.environment.evaluator_ground_truth(),
                 },
                 "user_evaluation": None,

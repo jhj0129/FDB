@@ -1,4 +1,5 @@
 import json
+import math
 from pathlib import Path
 
 import pytest
@@ -35,6 +36,23 @@ def test_one_physical_world_contains_every_entity_before_goal() -> None:
     }
     assert environment.reset_count == 1
     assert all(item["observation_source"].startswith("camera_rgb") for item in observation.objects.values())
+
+
+def test_camera_only_observation_uses_rgbd_tracks_with_bounded_pose_error() -> None:
+    environment = PhysicalPersistentShapeEnvironment(seed=0, observation_mode="camera")
+    observation = environment.observe()
+    assert len(observation.objects) == len(observation.targets) == 4
+    assert all(
+        item["observation_source"] == "camera_rgbd_color_contour_tracking"
+        for item in (*observation.objects.values(), *observation.targets.values())
+    )
+    for entity_id, item in {**observation.objects, **observation.targets}.items():
+        truth = (
+            environment.configuration.object_poses.get(entity_id)
+            or environment.configuration.target_poses[entity_id]
+        )
+        assert math.dist(item["pose"][:2], truth[:2]) < 0.003
+        assert item["tracking_age"] == 1
 
 
 def test_multi_goal_world_recovers_without_reset(tmp_path) -> None:

@@ -23,6 +23,7 @@ from fdb.v2.inspector import load_robot
 from fdb.v2.pose_reach import PandaPoseReachExperiment
 
 from .models import CandidateAction, FailureType, Observation, SkillResult
+from .camera import MuJoCoCameraSource, CameraOnlyShapePerception, SemanticNearestTracker
 
 
 @dataclass(frozen=True)
@@ -44,8 +45,12 @@ class PhysicalPersistentShapeEnvironment:
         self, *, seed: int = 0, position_noise_m: float = 0.0,
         target_noise_m: float = 0.0, grasp_failure_once: set[str] | None = None,
         alignment_failure_once: set[str] | None = None,
+        observation_mode: str = "segmentation",
     ) -> None:
+        if observation_mode not in {"oracle", "segmentation", "camera"}:
+            raise ValueError(f"unsupported observation mode: {observation_mode}")
         self.seed = seed
+        self.observation_mode = observation_mode
         self.rng = np.random.default_rng(seed)
         self.scene_id = f"physical-persistent-{seed}"
         self.sequence = 0
@@ -54,6 +59,7 @@ class PhysicalPersistentShapeEnvironment:
         self.alignment_failure_once = set(alignment_failure_once or ())
         self._injected: set[tuple[str, str]] = set()
         self._logical: dict[str, dict[str, Any]] = {}
+        self._agent_logical: dict[str, dict[str, Any]] = {}
         self.vision_model = ShapeFitPredictor(DEFAULT_VISION_MODEL)
         self._build(position_noise_m, target_noise_m)
 
@@ -90,6 +96,7 @@ class PhysicalPersistentShapeEnvironment:
                 "released": False, "retreated": False, "last_failure": None,
                 "target_id": target_id,
             }
+            self._agent_logical[obj_id] = dict(self._logical[obj_id])
         self.configuration = WorldConfiguration(self.seed, object_poses, target_poses)
         self.model = spec.compile()
         self.data = mujoco.MjData(self.model)
@@ -97,6 +104,9 @@ class PhysicalPersistentShapeEnvironment:
         self.data.qpos[:9] = self.model.key(0).qpos[:9]
         self.data.ctrl[:] = self.model.key(0).ctrl
         mujoco.mj_forward(self.model, self.data)
+        self.camera_source = MuJoCoCameraSource(self.model, self.data, width=self.IMAGE_SIZE, height=self.IMAGE_SIZE)
+        self.camera_perception = CameraOnlyShapePerception()
+        self.camera_tracker = SemanticNearestTracker()
 
     def _add_target(self, spec, shape: str, target_id: str, x: float, y: float, yaw: float) -> None:
         import mujoco
@@ -285,13 +295,82 @@ class PhysicalPersistentShapeEnvironment:
         }
 
     def observe(self) -> Observation:
+        if self.observation_mode == "camera":
+            return self._camera_only_observation()
+        if self.observation_mode == "oracle":
+            return self._oracle_observation()
         objects, targets, _ = self._camera_entities()
+        grasped = next((name for name, state in self._logical.items() if state["grasped"]), None)
+        return Observation(self.scene_id, objects, targets, grasped, self.sequence)
+
+    def _camera_only_observation(self) -> Observation:
+        """Agent observation built only from RGB-D plus its own action-state belief."""
+        frame = self.camera_source.capture()
+        tracks = self.camera_tracker.update(self.camera_perception.detect(frame))
+        objects: dict[str, dict[str, Any]] = {}
+        targets: dict[str, dict[str, Any]] = {}
+        for track_id, track in tracks.items():
+            usable = self.camera_tracker.usable(track)
+            if track.role == "object":
+                belief = self._agent_logical[track_id]
+                pose = [track.position[0], track.position[1], track.position[2] - PEG_HALF_HEIGHT]
+                target_track = tracks.get(f"{track.semantic_class}_target")
+                target_yaw = target_track.yaw if target_track is not None else 0.0
+                objects[track_id] = {
+                    "object_id": track_id, "shape": track.semantic_class, "pose": pose,
+                    "orientation": track.yaw, "velocity": [0.0, 0.0, 0.0],
+                    "visible": usable and track.missed_frames == 0,
+                    "confidence": track.confidence, "last_seen": track.last_seen,
+                    "tracking_age": track.tracking_age, "missed_frames": track.missed_frames,
+                    "stale": not usable, "yaw_error_deg": math.degrees(track.yaw - target_yaw),
+                    "neural_perception": None, **belief,
+                    "inside_target": belief["target_id"] if belief["inserted"] else None,
+                    "completed": belief["inserted"] and belief["released"],
+                    "observation_source": "camera_rgbd_color_contour_tracking",
+                }
+            else:
+                targets[track_id] = {
+                    "target_id": track_id, "shape": track.semantic_class,
+                    "pose": list(track.position), "orientation": track.yaw,
+                    "visible": usable and track.missed_frames == 0,
+                    "confidence": track.confidence, "last_seen": track.last_seen,
+                    "tracking_age": track.tracking_age, "missed_frames": track.missed_frames,
+                    "stale": not usable,
+                    "observation_source": "camera_rgbd_color_contour_tracking",
+                }
+        grasped = next((name for name, state in self._agent_logical.items() if state["grasped"]), None)
+        return Observation(self.scene_id, objects, targets, grasped, self.sequence)
+
+    def _oracle_observation(self) -> Observation:
+        """Explicit privileged baseline. Never called by camera mode."""
+        objects: dict[str, dict[str, Any]] = {}
+        targets: dict[str, dict[str, Any]] = {}
+        for shape in self.SHAPES:
+            obj_id, target_id = f"{shape}_01", f"{shape}_target"
+            obj_body, target_body = self.data.body(obj_id), self.data.body(target_id)
+            obj_yaw = float(math.atan2(obj_body.xmat[3], obj_body.xmat[0]))
+            target_yaw = float(math.atan2(target_body.xmat[3], target_body.xmat[0]))
+            logical = self._logical[obj_id]
+            objects[obj_id] = {
+                "object_id": obj_id, "shape": shape, "pose": obj_body.xpos.tolist(),
+                "orientation": obj_yaw, "velocity": [0.0, 0.0, 0.0], "visible": True,
+                "confidence": 1.0, "yaw_error_deg": math.degrees(obj_yaw - target_yaw),
+                "neural_perception": None, **logical,
+                "inside_target": target_id if logical["inserted"] else None,
+                "completed": logical["inserted"] and logical["released"],
+                "observation_source": "oracle_simulator_body_pose",
+            }
+            targets[target_id] = {
+                "target_id": target_id, "shape": shape, "pose": target_body.xpos.tolist(),
+                "orientation": target_yaw, "visible": True, "confidence": 1.0,
+                "observation_source": "oracle_simulator_body_pose",
+            }
         grasped = next((name for name, state in self._logical.items() if state["grasped"]), None)
         return Observation(self.scene_id, objects, targets, grasped, self.sequence)
 
     def camera_rgb(self) -> np.ndarray:
         """Return the same RGB sensor view used by the agent pipeline."""
-        return self._camera_entities()[2]
+        return self.camera_source.capture().rgb
 
     def evaluator_ground_truth(self) -> dict[str, Any]:
         return {
@@ -301,6 +380,16 @@ class PhysicalPersistentShapeEnvironment:
                 for name, state in self._logical.items()
             },
         }
+
+    def evaluator_satisfied(self, object_id: str, target_id: str) -> bool:
+        state = self._logical[object_id]
+        obj = self.data.body(object_id).xpos
+        target = self.data.body(target_id).xpos
+        return bool(
+            state["released"]
+            and float(np.linalg.norm(obj[:2] - target[:2])) <= 0.015
+            and abs(float(obj[2]) - (TABLE_TOP_Z + PEG_HALF_HEIGHT)) <= 0.025
+        )
 
     def preview_safety(self, action: CandidateAction) -> tuple[str, ...]:
         """Compute IK and conservative joint kinematics before allowing execution."""
@@ -359,7 +448,7 @@ class PhysicalPersistentShapeEnvironment:
         self.sequence += 1
         name = action.skill_name
         obj_id = str(action.parameters["object_id"])
-        state = self._logical[obj_id]
+        state = self._agent_logical[obj_id] if self.observation_mode == "camera" else self._logical[obj_id]
         if not self._execution_preconditions_met(name, state):
             state["last_failure"] = FailureType.UNSAFE_PLAN
             return SkillResult(False, {"precondition_rejected": True}, FailureType.UNSAFE_PLAN)
@@ -383,7 +472,16 @@ class PhysicalPersistentShapeEnvironment:
         if int(metrics.get("robot_table_contact_steps", 0)) > 0:
             state["last_failure"] = FailureType.COLLISION
             return SkillResult(False, metrics, FailureType.COLLISION)
-        validation_failure = self._validate_effect(name, obj_id, str(action.parameters["target_id"]))
+        target_id = str(action.parameters["target_id"])
+        if self.observation_mode == "camera":
+            validation_failure = self._validate_camera_effect(name, obj_id, target_id)
+            evaluator_failure = self._validate_effect(name, obj_id, target_id)
+            if evaluator_failure is None:
+                self._logical[obj_id].update(self._effect_for(name))
+            else:
+                self._logical[obj_id]["last_failure"] = evaluator_failure
+        else:
+            validation_failure = self._validate_effect(name, obj_id, target_id)
         if validation_failure is not None:
             state["last_failure"] = validation_failure
             if validation_failure == FailureType.ALIGNMENT_FAILURE:
@@ -394,18 +492,43 @@ class PhysicalPersistentShapeEnvironment:
         state.update(self._effect_for(name))
         return SkillResult(True, metrics)
 
+    def _validate_camera_effect(self, name: str, obj_id: str, target_id: str) -> FailureType | None:
+        """Post-action verification without simulator poses or segmentation IDs."""
+        if name in {"reach_object", "grasp_object", "align_object", "recover_alignment", "release_object", "retreat"}:
+            return None
+        observation = self._camera_only_observation()
+        obj = observation.objects.get(obj_id)
+        target = observation.targets.get(target_id)
+        if obj is None or not obj.get("visible"):
+            return FailureType.OBJECT_LOST
+        if float(obj.get("confidence", 0.0)) < 0.60:
+            return FailureType.LOW_PERCEPTION_CONFIDENCE
+        if name == "lift_object" and float(obj["pose"][2]) < TABLE_TOP_Z + PEG_HALF_HEIGHT + 0.07:
+            return FailureType.GRASP_FAILURE
+        if target is None or not target.get("visible"):
+            return FailureType.TARGET_NOT_FOUND
+        distance = float(np.linalg.norm(np.asarray(obj["pose"][:2]) - np.asarray(target["pose"][:2])))
+        if name == "move_to_target" and distance > 0.065:
+            return FailureType.OBJECT_SLIP
+        if name == "insert_object":
+            if distance > 0.018:
+                return FailureType.ALIGNMENT_FAILURE
+            if abs(float(obj["pose"][2]) - (TABLE_TOP_Z + PEG_HALF_HEIGHT)) > 0.030:
+                return FailureType.CONTROL_FAILURE
+        return None
+
     def _execute_physics(self, action: CandidateAction) -> dict[str, Any]:
         import mujoco
         name = action.skill_name
         obj_id = str(action.parameters["object_id"])
         target_id = str(action.parameters["target_id"])
-        obj = self.data.body(obj_id)
-        target = self.data.body(target_id)
-        shape = self.model.body(obj_id).name.split("_", 1)[0]
+        shape = obj_id.split("_", 1)[0]
         obj_yaw = float(action.parameters.get("object_yaw", 0.0))
         target_yaw = float(action.parameters.get("target_yaw", 0.0))
-        observed_obj = action.parameters.get("object_pose") or obj.xpos
-        observed_target = action.parameters.get("target_pose") or target.xpos
+        observed_obj = action.parameters.get("object_pose")
+        observed_target = action.parameters.get("target_pose")
+        if observed_obj is None or observed_target is None:
+            raise ValueError("agent action requires observed object and target poses")
         grasp_offset = math.pi / 2 if shape == "triangle" else 0.0
         position = None
         quaternion = None

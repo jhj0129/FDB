@@ -59,16 +59,24 @@ class AtomicSkill:
 
 def build_shape_manipulation_skills() -> tuple[AtomicSkill, ...]:
     """State-machine skill library; order has no execution meaning."""
+    def perception_ready(obj: dict[str, Any], target: dict[str, Any]) -> bool:
+        return bool(
+            obj.get("visible", False) and target.get("visible", False)
+            and float(obj.get("confidence", 0.0)) >= 0.60
+            and float(target.get("confidence", 0.0)) >= 0.60
+            and not obj.get("stale", False) and not target.get("stale", False)
+        )
+
     return (
         AtomicSkill(
             "observe_scene", "perception", ("object or target not visible",),
             {"visible": True, "target_visible": True}, (FailureType.PERCEPTION_FAILURE,),
-            lambda obj, target: not obj.get("visible", False) or not target.get("visible", False),
+            lambda obj, target: not perception_ready(obj, target),
         ),
         AtomicSkill(
             "reach_object", "manipulation", ("visible", "not grasped", "not ee_near"),
             {"ee_near": True}, (FailureType.IK_FAILURE, FailureType.COLLISION),
-            lambda obj, target: obj.get("visible", False) and not obj.get("grasped", False)
+            lambda obj, target: perception_ready(obj, target) and not obj.get("grasped", False)
             and not obj.get("ee_near", False) and not obj.get("inserted", False),
         ),
         AtomicSkill(

@@ -21,6 +21,7 @@ def run_tasks(
     use_neural: bool = True, use_memory: bool = True,
     position_noise_m: float = 0.0, target_noise_m: float = 0.0,
     inject_failures: bool = False,
+    observation_mode: str = "segmentation",
 ) -> dict[str, object]:
     os.environ.setdefault("MUJOCO_GL", "egl")
     output_directory.mkdir(parents=True, exist_ok=True)
@@ -28,6 +29,7 @@ def run_tasks(
         seed=seed, position_noise_m=position_noise_m, target_noise_m=target_noise_m,
         alignment_failure_once={"triangle_01"} if inject_failures else set(),
         grasp_failure_once={"circle_01"} if inject_failures else set(),
+        observation_mode=observation_mode,
     )
     skills = build_shape_manipulation_skills()
     brain = PhysicalAtomicRuntime(
@@ -47,6 +49,7 @@ def run_tasks(
     payload = {
         "schema_version": "1.0", "mode": "neural+rules" if use_neural else "rules_only",
         "memory": use_memory, "seed": seed, "headless": True,
+        "observation_mode": observation_mode,
         "position_noise_m": position_noise_m, "target_noise_m": target_noise_m,
         "failure_injection": inject_failures, "goal_order": list(goals),
         "single_world_reset_count": environment.reset_count,
@@ -71,6 +74,7 @@ def main() -> None:
     parser.add_argument("--position-noise-m", type=float, default=0.0)
     parser.add_argument("--target-noise-m", type=float, default=0.0)
     parser.add_argument("--inject-failures", action="store_true")
+    parser.add_argument("--observation-mode", choices=("oracle", "segmentation", "camera"), default="camera")
     parser.add_argument("--output-directory", type=Path, default=Path("artifacts/phase2_physical"))
     args = parser.parse_args()
     goals = tuple(item.strip() for item in args.goals.split(",") if item.strip())
@@ -82,6 +86,7 @@ def main() -> None:
         use_neural=args.world_model == "neural", use_memory=args.memory == "on",
         position_noise_m=args.position_noise_m, target_noise_m=args.target_noise_m,
         inject_failures=args.inject_failures,
+        observation_mode=args.observation_mode,
     )
     print(json.dumps(payload, ensure_ascii=False, indent=2))
 

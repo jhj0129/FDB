@@ -123,7 +123,12 @@ class CameraOnlyShapePerception:
                 moments = cv2.moments(contour)
                 u = float(moments["m10"] / moments["m00"])
                 v = float(moments["m01"] / moments["m00"])
-                position = self._unproject(frame, u, v)
+                contour_mask = np.zeros(mask.shape, dtype=np.uint8)
+                cv2.drawContours(contour_mask, [contour], -1, 1, thickness=-1)
+                surface_depths = frame.depth_m[(contour_mask > 0) & mask]
+                valid_depths = surface_depths[np.isfinite(surface_depths) & (surface_depths > 0)]
+                surface_depth = float(np.median(valid_depths)) if valid_depths.size else None
+                position = self._unproject(frame, u, v, depth_m=surface_depth)
                 yaw = self._orientation(contour, shape, role)
                 confidence = min(0.99, class_confidence * min(1.0, area / 400.0))
                 detections.append(VisualDetection(
@@ -176,11 +181,13 @@ class CameraOnlyShapePerception:
         return -angle
 
     @staticmethod
-    def _unproject(frame: CameraFrame, u: float, v: float) -> tuple[float, float, float]:
+    def _unproject(
+        frame: CameraFrame, u: float, v: float, *, depth_m: float | None = None,
+    ) -> tuple[float, float, float]:
         intr = frame.calibration.intrinsics
         row = max(0, min(intr.height - 1, int(round(v))))
         col = max(0, min(intr.width - 1, int(round(u))))
-        depth = float(frame.depth_m[row, col])
+        depth = float(frame.depth_m[row, col]) if depth_m is None else depth_m
         camera_point = np.asarray([
             (u - intr.cx) * depth / intr.fx,
             (v - intr.cy) * depth / intr.fy,
@@ -209,7 +216,7 @@ class Track:
 class SemanticNearestTracker:
     """Semantic + nearest-position tracker without simulator identity labels."""
 
-    def __init__(self, *, distance_gate_m: float = 0.12, stale_after_frames: int = 2) -> None:
+    def __init__(self, *, distance_gate_m: float = 0.35, stale_after_frames: int = 2) -> None:
         self.distance_gate_m = distance_gate_m
         self.stale_after_frames = stale_after_frames
         self.tracks: dict[str, Track] = {}

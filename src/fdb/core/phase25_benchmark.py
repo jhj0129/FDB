@@ -19,6 +19,18 @@ TARGET_LEVELS_MM = (0, 2, 5, 10)
 
 def _experiment_matrix(suite: str) -> list[dict[str, Any]]:
     rows: list[dict[str, Any]] = []
+    if suite == "boundary":
+        return [
+            {"axis": "position_mm", "level": 20, "observation_mode": "camera",
+             "position_noise_m": .020, "object_yaw_noise_deg": 0.0, "target_yaw_noise_deg": 0.0},
+            {"axis": "yaw_deg", "level": 40, "observation_mode": "camera",
+             "object_yaw_noise_deg": 40.0, "target_yaw_noise_deg": 0.0},
+            {"axis": "target_mm", "level": 10, "observation_mode": "camera",
+             "target_noise_m": .010, "object_yaw_noise_deg": 0.0, "target_yaw_noise_deg": 0.0},
+            {"axis": "combined", "level": "P10_Y20_T10", "observation_mode": "camera",
+             "position_noise_m": .010, "target_noise_m": .010,
+             "object_yaw_noise_deg": 20.0, "target_yaw_noise_deg": 0.0},
+        ]
     if suite in {"baseline", "all"}:
         rows.extend({"axis": "baseline", "level": 0, "observation_mode": mode}
                     for mode in ("oracle", "camera"))
@@ -160,7 +172,7 @@ def run_benchmark(
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="FDB Phase 2.5 카메라·강건성 benchmark")
-    parser.add_argument("--suite", choices=("baseline", "position", "yaw", "target", "combined", "ablation", "all"), default="baseline")
+    parser.add_argument("--suite", choices=("baseline", "position", "yaw", "target", "combined", "ablation", "boundary", "all"), default="baseline")
     parser.add_argument("--seeds", default="0")
     parser.add_argument("--goals", default="square,circle,triangle,rectangle")
     parser.add_argument("--episodes", type=int, help="seeds 앞에서 사용할 episode 수")

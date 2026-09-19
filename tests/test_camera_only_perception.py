@@ -3,7 +3,7 @@ import math
 import cv2
 import numpy as np
 
-from fdb.core.camera import CameraCalibration, CameraFrame, CameraIntrinsics, CameraOnlyShapePerception, SemanticNearestTracker
+from fdb.core.camera import CameraCalibration, CameraFrame, CameraIntrinsics, CameraOnlyShapePerception, SemanticNearestTracker, VisualDetection
 
 
 def synthetic_frame() -> CameraFrame:
@@ -41,3 +41,28 @@ def test_tracker_preserves_identity_and_expires_stale_pose() -> None:
     tracker.update([])
     stale = tracker.update([])["triangle_01"]
     assert not tracker.usable(stale)
+
+
+def test_static_target_cannot_jump_to_neighbor_after_classification_flip() -> None:
+    tracker = SemanticNearestTracker()
+    original = VisualDetection("square", "target", (0.62, -0.24, 0.34), 0.0, 0.93, (0, 0), 100)
+    circle = VisualDetection("circle", "target", (0.62, -0.08, 0.34), 0.0, 0.81, (0, 0), 100)
+    tracker.update([original, circle])
+    wrong_neighbor = VisualDetection("square", "target", (0.62, -0.08, 0.34), 0.0, 0.80, (0, 0), 100)
+    updated = tracker.update([wrong_neighbor])["square_target"]
+    assert updated.position == original.position
+    assert updated.missed_frames == 1
+    recovered_circle = tracker.tracks["circle_target"]
+    assert recovered_circle.missed_frames == 0
+    assert recovered_circle.tracking_age == 2
+
+
+def test_low_confidence_partial_detection_does_not_corrupt_last_pose() -> None:
+    tracker = SemanticNearestTracker()
+    original = VisualDetection("square", "target", (0.62, -0.24, 0.34), 0.0, 0.93, (0, 0), 100)
+    tracker.update([original])
+    partial = VisualDetection("square", "target", (0.60, -0.22, 0.34), 0.0, 0.40, (0, 0), 30)
+    track = tracker.update([partial])["square_target"]
+    assert track.position == original.position
+    assert track.confidence == original.confidence
+    assert track.missed_frames == 1

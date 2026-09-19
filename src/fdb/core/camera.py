@@ -142,21 +142,29 @@ class CameraOnlyShapePerception:
         perimeter = float(cv2.arcLength(contour, True))
         circularity = 4.0 * math.pi * area / max(perimeter * perimeter, 1e-9)
         vertices = len(cv2.approxPolyDP(contour, 0.06 * perimeter, True))
+        fine_vertices = len(cv2.approxPolyDP(contour, 0.02 * perimeter, True))
         width, height = cv2.minAreaRect(contour)[1]
         aspect = max(width, height) / max(min(width, height), 1e-6)
-        if circularity > 0.80:
-            return "circle", min(0.99, circularity)
         if vertices == 3:
             return "triangle", 0.94
+        if fine_vertices >= 7 and aspect < 1.15:
+            return "circle", min(0.99, circularity)
         if aspect > 1.20:
             return "rectangle", min(0.98, 0.75 + (aspect - 1.2) * 0.3)
         return "square", 0.93
 
     @staticmethod
     def _orientation(contour: np.ndarray, shape: str, role: str) -> float:
-        angle = math.radians(float(cv2.minAreaRect(contour)[2]))
+        rectangle = cv2.minAreaRect(contour)
+        angle = math.radians(float(rectangle[2]))
         if shape == "circle":
             return 0.0
+        if shape in {"square", "rectangle"}:
+            width, height = rectangle[1]
+            long_axis = angle + (math.pi / 2.0 if height > width else 0.0)
+            yaw = -long_axis
+            period = math.pi / 2.0 if shape == "square" else math.pi
+            return (yaw + period / 2.0) % period - period / 2.0
         if role == "target":
             return math.radians(90.0) - angle
         if shape == "triangle":
@@ -224,12 +232,27 @@ class SemanticNearestTracker:
     def update(self, detections: list[VisualDetection]) -> dict[str, Track]:
         unmatched = set(self.tracks)
         for detection in detections:
+            if detection.confidence < 0.60:
+                continue
             track_id = f"{detection.semantic_class}_{'01' if detection.role == 'object' else 'target'}"
+            if detection.role == "target":
+                nearby = [
+                    (math.dist(track.position[:2], detection.position[:2]), candidate_id)
+                    for candidate_id, track in self.tracks.items()
+                    if candidate_id in unmatched and track.role == "target"
+                ]
+                if nearby:
+                    distance, candidate_id = min(nearby)
+                    if distance <= 0.05:
+                        track_id = candidate_id
             existing = self.tracks.get(track_id)
             if existing is not None:
                 distance = math.dist(existing.position[:2], detection.position[:2])
-                if distance > self.distance_gate_m:
-                    existing.missed_frames += 1
+                # Receptacles are static within an episode. A tighter gate stops
+                # a partly occluded circle from being relabeled as a neighboring
+                # square target. Objects retain the wider commanded-motion gate.
+                gate = min(self.distance_gate_m, 0.05) if detection.role == "target" else self.distance_gate_m
+                if distance > gate:
                     continue
                 existing.position = detection.position
                 existing.yaw = detection.yaw

@@ -411,9 +411,11 @@ class PhysicalPersistentShapeEnvironment:
             body = self.data.body(entity_id)
             truth_yaw = float(math.atan2(body.xmat[3], body.xmat[0]))
             estimated_yaw = float(estimate.get("orientation", 0.0))
-            yaw_error = math.degrees(math.atan2(
-                math.sin(estimated_yaw - truth_yaw), math.cos(estimated_yaw - truth_yaw),
-            ))
+            shape = entity_id.split("_", 1)[0]
+            period = {"square": math.pi / 2.0, "triangle": 2.0 * math.pi / 3.0,
+                      "rectangle": math.pi, "circle": 2.0 * math.pi}[shape]
+            delta = estimated_yaw - truth_yaw
+            yaw_error = math.degrees((delta + period / 2.0) % period - period / 2.0)
             entities[entity_id] = {
                 "translation_error_mm": 1000.0 * float(np.linalg.norm(
                     np.asarray(estimate["pose"][:2]) - body.xpos[:2],

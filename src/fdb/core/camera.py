@@ -216,7 +216,7 @@ class Track:
 class SemanticNearestTracker:
     """Semantic + nearest-position tracker without simulator identity labels."""
 
-    def __init__(self, *, distance_gate_m: float = 0.35, stale_after_frames: int = 2) -> None:
+    def __init__(self, *, distance_gate_m: float = 0.35, stale_after_frames: int = 8) -> None:
         self.distance_gate_m = distance_gate_m
         self.stale_after_frames = stale_after_frames
         self.tracks: dict[str, Track] = {}
@@ -246,7 +246,9 @@ class SemanticNearestTracker:
             unmatched.discard(track_id)
         for track_id in unmatched:
             self.tracks[track_id].missed_frames += 1
-            self.tracks[track_id].confidence *= 0.5
+            # Preserve the confidence of the last measurement; freshness is a
+            # separate signal and the frame-age gate expires the pose.
+            pass
         return dict(self.tracks)
 
     def usable(self, track: Track) -> bool:

@@ -102,6 +102,7 @@ class PhysicalAtomicRuntime:
         initial_neural_calls = self.world_model.neural_calls
         initial_fallbacks = self.world_model.deterministic_fallbacks
         initial_observation = self.environment.observe()
+        initial_perception_error = self.environment.evaluate_observation(initial_observation)
 
         for index in range(max_actions):
             observation = self.environment.observe()
@@ -137,6 +138,7 @@ class PhysicalAtomicRuntime:
                 "selected_skill": selected.candidate.skill_name,
                 "selection_reason": "safe candidate with highest predicted success and lowest uncertainty",
                 "execution": asdict(execution), "actual_next_state": asdict(after),
+                "perception_error": self.environment.evaluate_observation(after),
                 "prediction_comparison": {
                     "predicted_effects": selected.predicted_next_state,
                     "actual_effects": actual_effects, "effect_mismatch_count": prediction_error,
@@ -170,6 +172,7 @@ class PhysicalAtomicRuntime:
                 "headless": True,
             },
             "observation": asdict(initial_observation), "goal": asdict(goal),
+            "initial_perception_error": initial_perception_error,
             "candidate_plans": [],
             "decision": {
                 "selected_plan_id": "state_dependent_atomic_composition",

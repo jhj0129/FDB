@@ -22,6 +22,8 @@ def run_tasks(
     position_noise_m: float = 0.0, target_noise_m: float = 0.0,
     inject_failures: bool = False,
     observation_mode: str = "segmentation",
+    object_yaw_noise_deg: float | None = None,
+    target_yaw_noise_deg: float | None = None,
 ) -> dict[str, object]:
     os.environ.setdefault("MUJOCO_GL", "egl")
     output_directory.mkdir(parents=True, exist_ok=True)
@@ -30,6 +32,8 @@ def run_tasks(
         alignment_failure_once={"triangle_01"} if inject_failures else set(),
         grasp_failure_once={"circle_01"} if inject_failures else set(),
         observation_mode=observation_mode,
+        object_yaw_noise_deg=object_yaw_noise_deg,
+        target_yaw_noise_deg=target_yaw_noise_deg,
     )
     skills = build_shape_manipulation_skills()
     brain = PhysicalAtomicRuntime(
@@ -50,6 +54,8 @@ def run_tasks(
         "schema_version": "1.0", "mode": "neural+rules" if use_neural else "rules_only",
         "memory": use_memory, "seed": seed, "headless": True,
         "observation_mode": observation_mode,
+        "object_yaw_noise_deg": object_yaw_noise_deg,
+        "target_yaw_noise_deg": target_yaw_noise_deg,
         "position_noise_m": position_noise_m, "target_noise_m": target_noise_m,
         "failure_injection": inject_failures, "goal_order": list(goals),
         "single_world_reset_count": environment.reset_count,
@@ -73,6 +79,8 @@ def main() -> None:
     parser.add_argument("--memory", choices=("on", "off"), default="on")
     parser.add_argument("--position-noise-m", type=float, default=0.0)
     parser.add_argument("--target-noise-m", type=float, default=0.0)
+    parser.add_argument("--object-yaw-noise-deg", type=float)
+    parser.add_argument("--target-yaw-noise-deg", type=float)
     parser.add_argument("--inject-failures", action="store_true")
     parser.add_argument("--observation-mode", choices=("oracle", "segmentation", "camera"), default="camera")
     parser.add_argument("--output-directory", type=Path, default=Path("artifacts/phase2_physical"))
@@ -87,6 +95,8 @@ def main() -> None:
         position_noise_m=args.position_noise_m, target_noise_m=args.target_noise_m,
         inject_failures=args.inject_failures,
         observation_mode=args.observation_mode,
+        object_yaw_noise_deg=args.object_yaw_noise_deg,
+        target_yaw_noise_deg=args.target_yaw_noise_deg,
     )
     print(json.dumps(payload, ensure_ascii=False, indent=2))
 

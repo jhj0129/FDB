@@ -46,6 +46,8 @@ class PhysicalPersistentShapeEnvironment:
         target_noise_m: float = 0.0, grasp_failure_once: set[str] | None = None,
         alignment_failure_once: set[str] | None = None,
         observation_mode: str = "segmentation",
+        object_yaw_noise_deg: float | None = None,
+        target_yaw_noise_deg: float | None = None,
     ) -> None:
         if observation_mode not in {"oracle", "segmentation", "camera"}:
             raise ValueError(f"unsupported observation mode: {observation_mode}")
@@ -61,9 +63,16 @@ class PhysicalPersistentShapeEnvironment:
         self._logical: dict[str, dict[str, Any]] = {}
         self._agent_logical: dict[str, dict[str, Any]] = {}
         self.vision_model = ShapeFitPredictor(DEFAULT_VISION_MODEL)
-        self._build(position_noise_m, target_noise_m)
+        self._build(
+            position_noise_m, target_noise_m,
+            object_yaw_noise_deg=object_yaw_noise_deg,
+            target_yaw_noise_deg=target_yaw_noise_deg,
+        )
 
-    def _build(self, position_noise_m: float, target_noise_m: float) -> None:
+    def _build(
+        self, position_noise_m: float, target_noise_m: float, *,
+        object_yaw_noise_deg: float | None, target_yaw_noise_deg: float | None,
+    ) -> None:
         import mujoco
 
         record, _ = load_robot()
@@ -82,10 +91,12 @@ class PhysicalPersistentShapeEnvironment:
             target_id = f"{shape}_target"
             ox = 0.38 + float(self.rng.uniform(-position_noise_m, position_noise_m))
             oy = source_y[index] + float(self.rng.uniform(-position_noise_m, position_noise_m))
-            oyaw = float(self.rng.uniform(-math.pi / 3, math.pi / 3))
+            object_limit = math.pi / 3 if object_yaw_noise_deg is None else math.radians(object_yaw_noise_deg)
+            oyaw = float(self.rng.uniform(-object_limit, object_limit))
             tx = 0.62 + float(self.rng.uniform(-target_noise_m, target_noise_m))
             ty = target_y[index] + float(self.rng.uniform(-target_noise_m, target_noise_m))
-            tyaw = float(self.rng.uniform(-math.pi / 6, math.pi / 6))
+            target_limit = math.pi / 6 if target_yaw_noise_deg is None else math.radians(target_yaw_noise_deg)
+            tyaw = float(self.rng.uniform(-target_limit, target_limit))
             object_poses[obj_id] = (ox, oy, oyaw)
             target_poses[target_id] = (tx, ty, tyaw)
             self._add_target(spec, shape, target_id, tx, ty, tyaw)
@@ -319,7 +330,7 @@ class PhysicalPersistentShapeEnvironment:
                 objects[track_id] = {
                     "object_id": track_id, "shape": track.semantic_class, "pose": pose,
                     "orientation": track.yaw, "velocity": [0.0, 0.0, 0.0],
-                    "visible": usable and track.missed_frames == 0,
+                    "visible": usable, "currently_detected": track.missed_frames == 0,
                     "confidence": track.confidence, "last_seen": track.last_seen,
                     "tracking_age": track.tracking_age, "missed_frames": track.missed_frames,
                     "stale": not usable, "yaw_error_deg": math.degrees(track.yaw - target_yaw),
@@ -332,7 +343,7 @@ class PhysicalPersistentShapeEnvironment:
                 targets[track_id] = {
                     "target_id": track_id, "shape": track.semantic_class,
                     "pose": list(track.position), "orientation": track.yaw,
-                    "visible": usable and track.missed_frames == 0,
+                    "visible": usable, "currently_detected": track.missed_frames == 0,
                     "confidence": track.confidence, "last_seen": track.last_seen,
                     "tracking_age": track.tracking_age, "missed_frames": track.missed_frames,
                     "stale": not usable,
@@ -390,6 +401,34 @@ class PhysicalPersistentShapeEnvironment:
             and float(np.linalg.norm(obj[:2] - target[:2])) <= 0.015
             and abs(float(obj[2]) - (TABLE_TOP_Z + PEG_HALF_HEIGHT)) <= 0.025
         )
+
+    def evaluate_observation(self, observation: Observation) -> dict[str, Any]:
+        """Evaluator-only pose errors. The returned values are logging-only."""
+        entities: dict[str, dict[str, float]] = {}
+        for entity_id, estimate in {**observation.objects, **observation.targets}.items():
+            if estimate.get("pose") is None:
+                continue
+            body = self.data.body(entity_id)
+            truth_yaw = float(math.atan2(body.xmat[3], body.xmat[0]))
+            estimated_yaw = float(estimate.get("orientation", 0.0))
+            yaw_error = math.degrees(math.atan2(
+                math.sin(estimated_yaw - truth_yaw), math.cos(estimated_yaw - truth_yaw),
+            ))
+            entities[entity_id] = {
+                "translation_error_mm": 1000.0 * float(np.linalg.norm(
+                    np.asarray(estimate["pose"][:2]) - body.xpos[:2],
+                )),
+                "yaw_error_deg": yaw_error,
+            }
+        translations = [item["translation_error_mm"] for item in entities.values()]
+        yaws = [abs(item["yaw_error_deg"]) for name, item in entities.items() if not name.startswith("circle")]
+        return {
+            "entities": entities,
+            "mean_translation_error_mm": float(np.mean(translations)) if translations else None,
+            "max_translation_error_mm": float(np.max(translations)) if translations else None,
+            "mean_abs_yaw_error_deg": float(np.mean(yaws)) if yaws else None,
+            "max_abs_yaw_error_deg": float(np.max(yaws)) if yaws else None,
+        }
 
     def preview_safety(self, action: CandidateAction) -> tuple[str, ...]:
         """Compute IK and conservative joint kinematics before allowing execution."""
@@ -505,7 +544,7 @@ class PhysicalPersistentShapeEnvironment:
             return FailureType.LOW_PERCEPTION_CONFIDENCE
         if name == "lift_object" and float(obj["pose"][2]) < TABLE_TOP_Z + PEG_HALF_HEIGHT + 0.07:
             return FailureType.GRASP_FAILURE
-        if target is None or not target.get("visible"):
+        if target is None or target.get("stale"):
             return FailureType.TARGET_NOT_FOUND
         distance = float(np.linalg.norm(np.asarray(obj["pose"][:2]) - np.asarray(target["pose"][:2])))
         if name == "move_to_target" and distance > 0.065:

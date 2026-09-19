@@ -72,6 +72,7 @@ fdb-drok-arm-sort = "fdb.challenge.drok_arm_sorting:main"
 fdb-runtime-demo = "fdb.core.demo:main"
 fdb-physical-persistent = "fdb.core.physical_cli:main"
 fdb-phase2-scripted-baseline = "fdb.core.phase2_evaluation:main"
+fdb-phase25-benchmark = "fdb.core.phase25_benchmark:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]

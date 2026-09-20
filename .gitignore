@@ -31,3 +31,4 @@ artifacts/phase2_physical_safety_*/final_camera.png
 # Phase 2.5 raw episode trees stay local. Selected aggregate summaries and final
 # camera evidence are force-added explicitly.
 artifacts/phase2_5_*/
+artifacts/jetson_phase3*/

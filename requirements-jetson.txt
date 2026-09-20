@@ -1,0 +1,15 @@
+# Python 3.10 / L4T 36.5.2. CUDA-enabled torch is a verified host prerequisite.
+# Do not install the generic torch wheel or the Python >=3.11 vision extra.
+numpy==1.26.4
+scipy==1.15.3
+mujoco==3.13.0
+mujoco-menagerie==2026.9.0
+opencv-python==4.11.0.86
+imageio-ffmpeg==0.6.0
+jax==0.6.2
+jaxlib==0.6.2
+flax==0.10.6
+optax==0.2.5
+orbax-checkpoint==0.11.5
+pytest==8.4.2
+jsonschema==4.26.0

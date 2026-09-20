@@ -35,7 +35,8 @@ class NeuralPrediction:
 
 
 class NeuralDynamicsEnsemble:
-    def __init__(self, checkpoint: dict[str, Any]) -> None:
+    def __init__(self, checkpoint: dict[str, Any], *, device: str = "cpu") -> None:
+        self.device = torch.device(device)
         self.feature_mean = np.asarray(checkpoint["feature_mean"], dtype=np.float32)
         self.feature_std = np.asarray(checkpoint["feature_std"], dtype=np.float32)
         self.target_mean = np.asarray(checkpoint["target_mean"], dtype=np.float32)
@@ -50,12 +51,13 @@ class NeuralDynamicsEnsemble:
                 hidden_size=int(checkpoint["hidden_size"]),
             )
             model.load_state_dict(state)
+            model.to(self.device)
             model.eval()
             self.models.append(model)
 
     @classmethod
-    def load(cls, path: Path) -> "NeuralDynamicsEnsemble":
-        return cls(torch.load(path, map_location="cpu", weights_only=False))
+    def load(cls, path: Path, *, device: str = "cpu") -> "NeuralDynamicsEnsemble":
+        return cls(torch.load(path, map_location="cpu", weights_only=False), device=device)
 
     def predict(self, features: np.ndarray) -> NeuralPrediction:
         vector = np.asarray(features, dtype=np.float32)
@@ -63,10 +65,10 @@ class NeuralDynamicsEnsemble:
             np.all(vector >= self.feature_min) and np.all(vector <= self.feature_max)
         )
         normalized = (vector - self.feature_mean) / self.feature_std
-        tensor = torch.from_numpy(normalized[None, :])
+        tensor = torch.from_numpy(normalized[None, :]).to(self.device)
         with torch.no_grad():
             normalized_predictions = torch.stack([model(tensor)[0] for model in self.models])
-        predictions = normalized_predictions.numpy() * self.target_std + self.target_mean
+        predictions = normalized_predictions.cpu().numpy() * self.target_std + self.target_mean
         mean = predictions.mean(axis=0)
         uncertainty = float(np.max(predictions.std(axis=0)))
         confident = uncertainty <= self.uncertainty_threshold_m

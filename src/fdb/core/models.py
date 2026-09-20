@@ -1,11 +1,14 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from enum import StrEnum
+from enum import Enum
 from typing import Any
 
 
-class FailureType(StrEnum):
+class FailureType(str, Enum):
+    # Keep string serialization on Python 3.10 (JetPack's system Python).
+    __str__ = str.__str__
+
     PERCEPTION_FAILURE = "PERCEPTION_FAILURE"
     OBJECT_LOST = "OBJECT_LOST"
     LOW_PERCEPTION_CONFIDENCE = "LOW_PERCEPTION_CONFIDENCE"

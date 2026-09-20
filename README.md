@@ -175,6 +175,10 @@ to long-term memory or skills.
 See [Memory architecture](docs/memory_architecture.md),
 [Memory policy](policies/memory_policy.json), and [Repository records](docs/records.md).
 
+Jetson simulation setup and headless commands are documented in
+[Jetson installation](docs/jetson/INSTALLATION_KO.md). Measured results and remaining
+regressions are recorded in the [Phase 3 report](docs/FDB_JETSON_PHASE3_REPORT_KO.md).
+
 ## Roadmap
 
 - v1: MuJoCo-based push, move, and rotate interactions (planar push foundation active).

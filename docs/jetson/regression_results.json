@@ -1,0 +1,52 @@
+{
+  "baseline_commit": "465ac48f706b0093893f5b44b549a90485260c83",
+  "original_suite": {
+    "command": "MUJOCO_GL=egl JAX_PLATFORMS=cpu PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 .venv/bin/python -m pytest -q",
+    "collected": 103,
+    "passed": 95,
+    "failed": 4,
+    "skipped": 4,
+    "duration_s": 517.08,
+    "log": "artifacts/jetson_phase3/pytest_after_compat.log",
+    "failures": [
+      {
+        "tests": "tests/test_deepmimic_training.py (3 tests)",
+        "classification": "dependency",
+        "error": "ModuleNotFoundError: No module named 'loco_mujoco'",
+        "scope": "External humanoid training, not installed for simulation camera deployment"
+      },
+      {
+        "test": "tests/test_physical_persistent_runtime.py::test_multi_goal_world_recovers_without_reset",
+        "classification": "legacy segmentation perception/control regression; platform attribution unresolved",
+        "isolated_rerun": "FAIL in 107.63 s",
+        "outcomes": {
+          "triangle": "success after alignment recovery",
+          "circle": "grasp recovery succeeds, then insertion/alignment failure repeats to action limit",
+          "rectangle": "grasp/lift failure repeats to timeout"
+        },
+        "first_circle_insertion_target_error_mm": 23.06573630611967,
+        "log": "artifacts/jetson_phase3/recovery_regression_detail.log",
+        "episodes": "artifacts/jetson_phase3/segmentation_failure_episodes/",
+        "note": "No test deleted, expected result relaxed, or algorithm changed to mask the failure"
+      }
+    ],
+    "skips": "Four existing DROK tests skip because external DROK_ARM_Sim_only repository is absent"
+  },
+  "fast_ci_plus_python310_test": {
+    "passed": 18,
+    "duration_s": 0.32,
+    "log": "artifacts/jetson_phase3/pytest_fast.log"
+  },
+  "added_tests": {
+    "passed": 11,
+    "duration_s": 3.69,
+    "coverage": [
+      "Python 3.10 failure enum string and JSON contract",
+      "Physical gate workspace, invalid pose, table clearance, predicted collision",
+      "Physical preview joint limit, velocity, acceleration, nonfinite trajectory, IK exception",
+      "Same-checkpoint CPU/CUDA predictions and CUDA model placement"
+    ],
+    "log": "artifacts/jetson_phase3/pytest_added.log"
+  },
+  "counts_note": "Separate test runs overlap on the Python 3.10 test; do not add counts as distinct tests"
+}

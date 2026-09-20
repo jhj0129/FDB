@@ -1,0 +1,120 @@
+{
+  "machine": "aarch64",
+  "kernel": "5.15.199-tegra",
+  "python": "3.10.12 (main, Jul 15 2026, 23:40:17) [GCC 11.4.0]",
+  "python_executable": "/home/kudos/FDB/.venv/bin/python",
+  "packages": {
+    "numpy": "1.26.4",
+    "scipy": "1.15.3",
+    "mujoco": "3.13.0",
+    "mujoco-menagerie": "2026.9.0",
+    "opencv-python": "4.11.0.86",
+    "torch": "2.8.0",
+    "jax": "0.6.2",
+    "jaxlib": "0.6.2",
+    "flax": "0.10.6",
+    "optax": "0.2.5",
+    "pytest": "8.4.2",
+    "jsonschema": "4.26.0",
+    "pip": "25.3",
+    "setuptools": "79.0.1",
+    "wheel": "0.47.0"
+  },
+  "disk": {
+    "total": 501386080256,
+    "used": 290648276992,
+    "free": 185193598976
+  },
+  "torch": {
+    "file": "/home/kudos/.local/lib/python3.10/site-packages/torch/__init__.py",
+    "version": "2.8.0",
+    "cuda": "12.6",
+    "device": "Orin",
+    "tensor_shape": [
+      1024,
+      1024
+    ],
+    "finite": true
+  },
+  "os": {
+    "exit_code": 0,
+    "stdout": "Distributor ID:\tUbuntu\nDescription:\tUbuntu 22.04.5 LTS\nRelease:\t22.04\nCodename:\tjammy",
+    "stderr": "No LSB modules are available."
+  },
+  "l4t": {
+    "exit_code": 0,
+    "stdout": "# R36 (release), REVISION: 5.2, GCID: 46426093, BOARD: generic, EABI: aarch64, DATE: Thu Jul 16 18:56:22 UTC 2026\n# KERNEL_VARIANT: oot\nTARGET_USERSPACE_LIB_DIR=nvidia\nTARGET_USERSPACE_LIB_DIR_PATH=usr/lib/aarch64-linux-gnu/nvidia",
+    "stderr": ""
+  },
+  "model": {
+    "exit_code": 0,
+    "stdout": "NVIDIA Jetson AGX Orin Developer Kit\u0000",
+    "stderr": ""
+  },
+  "ram": {
+    "exit_code": 0,
+    "stdout": "\ucd1d\uacc4         \uc0ac\uc6a9        \uc5ec\ubd84      \uacf5\uc720    \ubc84\ud37c/\uce90\uc2dc    \uac00\uc6a9\n\uba54\ubaa8\ub9ac:65879957504 14497218560 42821259264   202186752  8561479680 50492612608\n\uc2a4  \uc651:32939950080           0 32939950080",
+    "stderr": ""
+  },
+  "cuda": {
+    "exit_code": 0,
+    "stdout": "nvcc: NVIDIA (R) Cuda compiler driver\nCopyright (c) 2005-2024 NVIDIA Corporation\nBuilt on Wed_Aug_14_10:14:07_PDT_2024\nCuda compilation tools, release 12.6, V12.6.68\nBuild cuda_12.6.r12.6/compiler.34714021_0",
+    "stderr": ""
+  },
+  "nvidia_smi": {
+    "exit_code": 0,
+    "stdout": "Sun Sep 20 16:08:41 2026       \n+---------------------------------------------------------------------------------------+\n| NVIDIA-SMI 540.5.0                Driver Version: 540.5.0      CUDA Version: 12.6     |\n|-----------------------------------------+----------------------+----------------------+\n| GPU  Name                 Persistence-M | Bus-Id        Disp.A | Volatile Uncorr. ECC |\n| Fan  Temp   Perf          Pwr:Usage/Cap |         Memory-Usage | GPU-Util  Compute M. |\n|                                         |                      |               MIG M. |\n|=========================================+======================+======================|\n|   0  Orin (nvgpu)                  N/A  | N/A              N/A |                  N/A |\n| N/A   N/A  N/A               N/A /  N/A | Not Supported        |     N/A          N/A |\n|                                         |                      |                  N/A |\n+-----------------------------------------+----------------------+----------------------+\n                                                                                         \n+---------------------------------------------------------------------------------------+\n| Processes:                                                                            |\n|  GPU   GI   CI        PID   Type   Process name                            GPU Memory |\n|        ID   ID                                                             Usage      |\n|=======================================================================================|\n|  No running processes found                                                           |\n+---------------------------------------------------------------------------------------+",
+    "stderr": ""
+  },
+  "gcc": {
+    "exit_code": 0,
+    "stdout": "gcc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0\nCopyright (C) 2021 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.",
+    "stderr": ""
+  },
+  "cmake": {
+    "exit_code": 0,
+    "stdout": "cmake version 3.22.1\n\nCMake suite maintained and supported by Kitware (kitware.com/cmake).",
+    "stderr": ""
+  },
+  "power": {
+    "exit_code": 0,
+    "stdout": "NV Power Mode: MAXN\n0",
+    "stderr": ""
+  },
+  "jetpack": {
+    "exit_code": 1,
+    "stdout": "",
+    "stderr": "dpkg-query: nvidia-jetpack\uc640 \uc77c\uce58\ud558\ub294 \ud328\ud0a4\uc9c0\ub97c \ucc3e\uc9c0 \ubabb\ud588\uc2b5\ub2c8\ub2e4"
+  },
+  "nvidia_packages": {
+    "exit_code": 0,
+    "stdout": "libcudnn9-cuda-12\t9.3.0.75-1\nlibnvinfer10\t10.3.0.30-1+cuda12.5\nnvidia-l4t-core\t36.5.2-20260716114719",
+    "stderr": ""
+  },
+  "git_head": {
+    "exit_code": 0,
+    "stdout": "465ac48f706b0093893f5b44b549a90485260c83",
+    "stderr": ""
+  },
+  "git_status": {
+    "exit_code": 0,
+    "stdout": "M .gitignore\n M src/fdb/core/models.py\n M src/fdb/v5/network.py\n?? docs/jetson/\n?? requirements-jetson.txt\n?? scripts/\n?? tests/test_jetson_compatibility.py\n?? tests/test_neural_device.py\n?? tests/test_physical_safety_gate.py",
+    "stderr": ""
+  },
+  "cooling_types": {
+    "cooling_device13": "devfreq-17000000.gpu",
+    "cooling_device1": "cpufreq-cpu4",
+    "cooling_device11": "soc2-throttle-alert",
+    "cooling_device8": "cv2-throttle-alert",
+    "cooling_device6": "cv0-throttle-alert",
+    "cooling_device4": "cpu-throttle-alert",
+    "cooling_device2": "cpufreq-cpu8",
+    "cooling_device12": "hot-surface-alert",
+    "cooling_device0": "cpufreq-cpu0",
+    "cooling_device10": "soc1-throttle-alert",
+    "cooling_device9": "soc0-throttle-alert",
+    "cooling_device7": "cv1-throttle-alert",
+    "cooling_device5": "gpu-throttle-alert",
+    "cooling_device3": "pwm-fan"
+  }
+}
